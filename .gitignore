@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+
+# workspace local
+.kilo/
+.gstack/
+
+# node / web
+node_modules/
+.next/
+.output/
+dist/
+build/
+.turbo/
+.cache/
+coverage/
+.vercel/
+*.log
+
+# python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# top-level binary backups
+/*.zip
+
+# misc generated
+tmp/
+temp/

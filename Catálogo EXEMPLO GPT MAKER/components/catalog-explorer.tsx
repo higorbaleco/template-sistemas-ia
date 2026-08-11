@@ -82,7 +82,7 @@ export function CatalogExplorer({ scope, payload, initialFilters, pathPrefix }: 
         </div>
 
         <div className="grid-actions" style={{ marginTop: 18 }}>
-          <Link className="btn btn-primary" href={scope.apiPath}>
+          <Link className="btn btn-primary" href={apiUrl}>
             Abrir endpoint IA
           </Link>
           <button
@@ -169,10 +169,14 @@ ${apiUrl}`}
             </div>
 
             <div className="glass-card" style={{ padding: 18 }}>
-              <div className="kicker">Consulta simulada</div>
-              <div className="field" style={{ marginTop: 12 }}>
-                <textarea value={testPhrase} onChange={(event) => setTestPhrase(event.target.value)} />
-              </div>
+              <label className="field" style={{ marginTop: 0 }}>
+                <span className="field-label">Consulta simulada</span>
+                <textarea
+                  aria-label="Consulta simulada"
+                  value={testPhrase}
+                  onChange={(event) => setTestPhrase(event.target.value)}
+                />
+              </label>
               <div className="inline-actions" style={{ marginTop: 12 }}>
                 <button className="btn btn-primary" type="button" onClick={() => applyPrompt(testPhrase, setTestResult)}>
                   Interpretar frase
@@ -187,10 +191,15 @@ ${apiUrl}`}
       </section>
 
       <section className="section-card">
-        <div className="kicker">Teste de URL</div>
-        <div className="field" style={{ marginTop: 12 }}>
-          <textarea value={builderPhrase} onChange={(event) => setBuilderPhrase(event.target.value)} placeholder="Ex: Quero um SUV automático até 130 mil." />
-        </div>
+        <label className="field" style={{ marginTop: 0 }}>
+          <span className="kicker">Teste de URL</span>
+          <textarea
+            aria-label="Teste de URL"
+            value={builderPhrase}
+            onChange={(event) => setBuilderPhrase(event.target.value)}
+            placeholder="Ex: Quero um SUV automático até 130 mil."
+          />
+        </label>
         <div className="inline-actions" style={{ marginTop: 12 }}>
           <button className="btn btn-primary" type="button" onClick={() => applyPrompt(builderPhrase, setFilters)}>
             Gerar filtros a partir da frase
@@ -201,6 +210,9 @@ ${apiUrl}`}
             onClick={() => {
               setBuilderPhrase("");
               setFilters({});
+              setTestResult({});
+              router.replace(pathPrefix);
+              router.refresh();
             }}
           >
             Resetar builder

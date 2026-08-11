@@ -27,6 +27,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -38,6 +40,7 @@ body {
     radial-gradient(circle at top right, rgba(147, 184, 255, 0.12), transparent 20rem),
     linear-gradient(180deg, #08101c 0%, #09111f 48%, #070d16 100%);
   font-family: "Avenir Next", "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -50,6 +53,14 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
 }
 
 button {
@@ -278,6 +289,14 @@ code {
   background:
     linear-gradient(180deg, rgba(17, 28, 49, 0.95), rgba(11, 18, 32, 0.98));
   box-shadow: var(--shadow);
+}
+
+.segment-card,
+.company-card,
+.item-card,
+.detail-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 280px;
 }
 
 .bento-card::after,
@@ -582,6 +601,7 @@ code {
 .field select,
 .field textarea {
   width: 100%;
+  min-height: 48px;
   padding: 12px 14px;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -662,6 +682,8 @@ code {
 .codebox {
   padding: 14px;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .empty-state {

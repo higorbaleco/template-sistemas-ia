@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   title: "Catálogo Lab",
   description: "Dashboard interno para navegar catálogos demo e rotas espelhadas para agentes de IA.",
   applicationName: "Catálogo Lab",
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export const viewport: Viewport = {

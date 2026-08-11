@@ -4,14 +4,16 @@ import { buildCatalogListPayload, getCompanyBySlug, getScope, toFilterState } fr
 import { SegmentKey } from "@/lib/catalog-types";
 
 type PageProps = {
-  params: { company: string; segment: SegmentKey };
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ company: string; segment: SegmentKey }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export default function CompanySegmentPage({ params, searchParams }: PageProps) {
-  const company = getCompanyBySlug(params.company);
-  const scope = getScope(params.segment, params.company);
-  const filters = toFilterState(params.segment, searchParams);
+export default async function CompanySegmentPage({ params, searchParams }: PageProps) {
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+  const company = getCompanyBySlug(resolvedParams.company);
+  const scope = getScope(resolvedParams.segment, resolvedParams.company);
+  const filters = toFilterState(resolvedParams.segment, resolvedSearchParams);
   const payload = buildCatalogListPayload(scope, filters);
 
   return (
@@ -20,7 +22,7 @@ export default function CompanySegmentPage({ params, searchParams }: PageProps) 
         <header className="topbar">
           <div className="brand">
             <span className="brand-mark" />
-            Catálogo Lab · {company?.name ?? params.company}
+            Catálogo Lab · {company?.name ?? resolvedParams.company}
           </div>
           <nav className="nav-links">
             <Link className="nav-chip" href="/catalogos">

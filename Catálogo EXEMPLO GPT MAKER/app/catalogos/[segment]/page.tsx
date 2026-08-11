@@ -4,15 +4,17 @@ import { buildCatalogListPayload, getAllCompaniesBySegment, getScope, toFilterSt
 import { SegmentKey } from "@/lib/catalog-types";
 
 type PageProps = {
-  params: { segment: SegmentKey };
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ segment: SegmentKey }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export default function SegmentPage({ params, searchParams }: PageProps) {
-  const scope = getScope(params.segment);
-  const filters = toFilterState(params.segment, searchParams);
+export default async function SegmentPage({ params, searchParams }: PageProps) {
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+  const scope = getScope(resolvedParams.segment);
+  const filters = toFilterState(resolvedParams.segment, resolvedSearchParams);
   const payload = buildCatalogListPayload(scope, filters);
-  const companies = getAllCompaniesBySegment(params.segment);
+  const companies = getAllCompaniesBySegment(resolvedParams.segment);
 
   return (
     <main className="page" id="main-content">

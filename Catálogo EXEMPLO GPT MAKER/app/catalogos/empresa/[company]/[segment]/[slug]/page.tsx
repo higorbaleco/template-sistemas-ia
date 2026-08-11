@@ -12,17 +12,18 @@ import {
 import { SegmentKey } from "@/lib/catalog-types";
 
 type PageProps = {
-  params: { company: string; segment: SegmentKey; slug: string };
+  params: Promise<{ company: string; segment: SegmentKey; slug: string }>;
 };
 
-export default function CompanySegmentItemPage({ params }: PageProps) {
-  const company = getCompanyBySlug(params.company);
-  const item = getItemBySlug(params.segment, params.slug, params.company);
+export default async function CompanySegmentItemPage({ params }: PageProps) {
+  const resolvedParams = await params;
+  const company = getCompanyBySlug(resolvedParams.company);
+  const item = getItemBySlug(resolvedParams.segment, resolvedParams.slug, resolvedParams.company);
   if (!item || !company) {
     notFound();
   }
 
-  const scope = getScope(params.segment, params.company);
+  const scope = getScope(resolvedParams.segment, resolvedParams.company);
   const payload = buildCatalogDetailPayload(scope, item);
 
   return (

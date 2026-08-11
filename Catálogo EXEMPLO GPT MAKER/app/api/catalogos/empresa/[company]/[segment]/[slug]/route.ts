@@ -3,16 +3,18 @@ import { buildCatalogDetailPayload, getItemBySlug, resolveScope } from "@/lib/ca
 import { SegmentKey } from "@/lib/catalog-types";
 
 type Params = {
-  params: { company: string; segment: SegmentKey; slug: string };
+  params: Promise<{ company: string; segment: string; slug: string }>;
 };
 
-export function GET(_request: NextRequest, { params }: Params) {
-  const scope = resolveScope(params.segment, params.company);
+export async function GET(_request: NextRequest, { params }: Params) {
+  const resolvedParams = await params;
+  const segment = resolvedParams.segment as SegmentKey;
+  const scope = resolveScope(segment, resolvedParams.company);
   if (!scope) {
     return Response.json({ error: "Catalog not found" }, { status: 404 });
   }
 
-  const item = getItemBySlug(params.segment, params.slug, params.company);
+  const item = getItemBySlug(segment, resolvedParams.slug, resolvedParams.company);
 
   if (!item) {
     return Response.json({ error: "Item not found" }, { status: 404 });

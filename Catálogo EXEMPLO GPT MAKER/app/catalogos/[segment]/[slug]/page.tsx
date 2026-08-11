@@ -11,12 +11,13 @@ import {
 import { SegmentKey } from "@/lib/catalog-types";
 
 type PageProps = {
-  params: { segment: SegmentKey; slug: string };
+  params: Promise<{ segment: SegmentKey; slug: string }>;
 };
 
-export default function SegmentItemPage({ params }: PageProps) {
-  const scope = getScope(params.segment);
-  const item = getItemBySlug(params.segment, params.slug);
+export default async function SegmentItemPage({ params }: PageProps) {
+  const resolvedParams = await params;
+  const scope = getScope(resolvedParams.segment);
+  const item = getItemBySlug(resolvedParams.segment, resolvedParams.slug);
   if (!item) {
     notFound();
   }

@@ -1,10 +1,10 @@
 # Catálogo Lab
 
-Shell interno em `Next.js 14 + TypeScript` para expor catálogos demo em interface humana e endpoints JSON espelhados para agentes de IA.
+Shell interno em `Next.js 16.3 + TypeScript` para expor catálogos demo em interface humana e endpoints JSON espelhados para agentes de IA.
 
 ## Stack e premissas
 
-- `Next.js 14` com App Router
+- `Next.js 16.3` com App Router
 - seeds locais em TypeScript
 - sem banco de dados e sem CRUD administrativo no MVP
 - URLs humanas e URLs de API compartilham a mesma lógica de filtros
@@ -37,6 +37,7 @@ Exemplos com filtros:
 
 - `/api/catalogos/imoveis?cidade=maringa&quartos_min=3&preco_max=700000`
 - `/api/catalogos/veiculos?carroceria=suv&cambio=automatico`
+- `/api/catalogos/ecommerce?cor=azul&variacao=azul`
 - `/api/catalogos/food?sem=cebola&serve_min=4`
 
 ## Como rodar localmente

@@ -1,11 +1,19 @@
 import { notFound } from "next/navigation";
+import {
+  buildQueryString,
+  cleanFilters,
+  formatCompactCurrency,
+  formatCurrency,
+  formatNumber,
+  getItemLabel,
+  inferFiltersFromPhrase,
+} from "./catalog-browser";
 import { companies, segments } from "./catalog-data";
 import {
   filterIndexedItems,
   getIndexedFacets,
   getIndexedItem,
   getIndexedItems,
-  inferFiltersFromPhrase,
 } from "./catalog-index";
 import {
   CatalogCompany,
@@ -27,14 +35,6 @@ const toStringValue = (value?: string | string[]) => {
   if (!value) return "";
   return Array.isArray(value) ? value[0] : value;
 };
-
-export const formatCurrency = (value: number) =>
-  new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(value);
-
-export const formatCompactCurrency = (value: number) =>
-  new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 2 }).format(value);
-
-export const formatNumber = (value: number) => new Intl.NumberFormat("pt-BR").format(value);
 
 export const getSegmentConfig = (segment: SegmentKey): SegmentConfig => {
   const config = segmentMap.get(segment);
@@ -90,11 +90,6 @@ export const getAllCompaniesBySegment = (segment: SegmentKey) => companies.filte
 
 export const getFilterDefinitions = (segment: SegmentKey): FilterDefinition[] => getSegmentConfig(segment).filterDefinitions;
 
-export const cleanFilters = (filters: CatalogFilterValues) =>
-  Object.fromEntries(
-    Object.entries(filters).filter(([, value]) => typeof value === "string" && value.trim() !== ""),
-  ) as CatalogFilterValues;
-
 export const parseSearchParams = (searchParams: Record<string, string | string[] | undefined>): CatalogFilterValues => {
   const result: CatalogFilterValues = {};
 
@@ -106,17 +101,6 @@ export const parseSearchParams = (searchParams: Record<string, string | string[]
   }
 
   return result;
-};
-
-export const buildQueryString = (filters: CatalogFilterValues) => {
-  const params = new URLSearchParams();
-
-  for (const [key, value] of Object.entries(cleanFilters(filters))) {
-    params.set(key, value);
-  }
-
-  const query = params.toString();
-  return query ? `?${query}` : "";
 };
 
 export const toFilterState = (segment: SegmentKey, searchParams: Record<string, string | string[] | undefined>) => {
@@ -177,17 +161,12 @@ export const routeSubtitle = (segment: SegmentKey, companySlug?: string) => {
 
 export const getAllSegments = () => segments;
 
-export const getItemLabel = (item: CatalogItem) => {
-  if (item.segment === "imoveis") {
-    return `${item.details.type} · ${item.details.city} · ${formatCurrency(item.price)}`;
-  }
-  if (item.segment === "veiculos") {
-    return `${item.details.brand} ${item.details.model} · ${item.details.year} · ${formatCurrency(item.price)}`;
-  }
-  if (item.segment === "ecommerce") {
-    return `${item.details.category} · ${item.details.color} · ${formatCompactCurrency(item.price)}`;
-  }
-  return `${item.details.category} · serve ${item.details.serves} · ${formatCompactCurrency(item.price)}`;
+export {
+  buildQueryString,
+  cleanFilters,
+  formatCompactCurrency,
+  formatCurrency,
+  formatNumber,
+  getItemLabel,
+  inferFiltersFromPhrase,
 };
-
-export { inferFiltersFromPhrase };

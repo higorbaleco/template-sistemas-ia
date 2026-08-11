@@ -1,4 +1,5 @@
 import { catalogItems } from "./catalog-data";
+import { inferFiltersFromPhrase as inferBrowserFilters, normalizeText } from "./catalog-browser";
 import {
   CatalogFilterValues,
   CatalogIndexEntry,
@@ -6,13 +7,6 @@ import {
   CatalogSegmentIndex,
   SegmentKey,
 } from "./catalog-types";
-
-const normalizeText = (value: string) =>
-  value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim();
 
 const uniqueSorted = (values: string[]) =>
   Array.from(
@@ -38,6 +32,60 @@ const toBoolean = (value?: string) => {
 };
 
 const stringify = (value: string | number | boolean) => String(value);
+
+const scopedSlugKey = (companySlug: string, slug: string) => `${companySlug}:${slug}`;
+
+const splitTokens = (value: string) => normalizeText(value).split(/[^a-z0-9]+/).filter(Boolean);
+
+const matchesToken = (actual: string, expected?: string) => {
+  if (!expected) return true;
+  const normalizedExpected = normalizeText(expected);
+  if (!normalizedExpected) return true;
+  return splitTokens(actual).includes(normalizedExpected);
+};
+
+const commerceColorTerms: Record<string, string[]> = {
+  preto: ["preto", "preta"],
+  branco: ["branco", "branca"],
+  cinza: ["cinza"],
+  azul: ["azul"],
+  grafite: ["grafite"],
+  prata: ["prata"],
+  rose: ["rose"],
+  marrom: ["marrom"],
+};
+
+const matchesCommerceColor = (actual: string, expected?: string) => {
+  if (!expected) return true;
+  const normalizedExpected = normalizeText(expected);
+  const terms = commerceColorTerms[normalizedExpected] ?? [normalizedExpected];
+  const actualTokens = splitTokens(actual);
+  return terms.some((term) => actualTokens.includes(term) || normalizeText(actual).includes(term));
+};
+
+const getProductVariantText = (variant: { label: string; value: string }) => `${variant.label} ${variant.value}`;
+
+const getVariantFacetValues = (item: CatalogItem, kind: "cor" | "tamanho" | "variacao") => {
+  if (item.segment !== "ecommerce") return [];
+  if (kind === "variacao") {
+    return item.details.variants.flatMap((variant) => [variant.label, variant.value]);
+  }
+  if (kind === "cor") {
+    const colorValues = item.details.variants.flatMap((variant) => {
+      const text = normalizeText(getProductVariantText(variant));
+      return Object.entries(commerceColorTerms)
+        .filter(([, terms]) => terms.some((term) => splitTokens(text).includes(term)))
+        .map(([color]) => color);
+    });
+    return [item.details.color, ...colorValues];
+  }
+
+  const sizeTokens = ["pp", "p", "m", "g", "gg"];
+  const variantSizes = item.details.variants.flatMap((variant) =>
+    splitTokens(getProductVariantText(variant)).filter((token) => sizeTokens.includes(token) || /^\d{2}$/.test(token)),
+  );
+  return [item.details.size, ...variantSizes.map((value) => value.toUpperCase())];
+};
 
 const toSearchParts = (item: CatalogItem) => {
   if (item.segment === "imoveis") {
@@ -135,8 +183,9 @@ const toEntryFacets = (item: CatalogItem): Record<string, string[]> => {
       categoria: [item.details.category],
       subcategoria: [item.details.subcategory],
       marca: [item.details.brand],
-      cor: [item.details.color],
-      tamanho: [item.details.size],
+      cor: getVariantFacetValues(item, "cor"),
+      tamanho: getVariantFacetValues(item, "tamanho"),
+      variacao: getVariantFacetValues(item, "variacao"),
     };
   }
 
@@ -160,7 +209,26 @@ const segmentKeys: SegmentKey[] = ["imoveis", "veiculos", "ecommerce", "food"];
 const buildSegmentIndex = (segment: SegmentKey): CatalogSegmentIndex => {
   const items = catalogItems.filter((item) => item.segment === segment);
   const entries = items.map(buildEntry);
-  const itemBySlug = new Map(entries.map((entry) => [entry.item.slug, entry]));
+  const itemBySlug = new Map<string, CatalogIndexEntry>();
+  const itemByScopedSlug = new Map<string, CatalogIndexEntry>();
+
+  for (const entry of entries) {
+    const existingUnscoped = itemBySlug.get(entry.item.slug);
+    if (existingUnscoped) {
+      throw new Error(
+        `Duplicate unscoped slug "${entry.item.slug}" in segment "${segment}" between "${existingUnscoped.companySlug}" and "${entry.companySlug}". Use company-scoped routes or unique segment slugs.`,
+      );
+    }
+
+    const scopedKey = scopedSlugKey(entry.companySlug, entry.item.slug);
+    if (itemByScopedSlug.has(scopedKey)) {
+      throw new Error(`Duplicate scoped slug "${scopedKey}" in segment "${segment}".`);
+    }
+
+    itemBySlug.set(entry.item.slug, entry);
+    itemByScopedSlug.set(scopedKey, entry);
+  }
+
   const facets = uniqueSorted(
     entries.flatMap((entry) => Object.entries(entry.facets).flatMap(([key, values]) => values.map((value) => `${key}:${value}`))),
   ).reduce<Record<string, string[]>>((result, facetPair) => {
@@ -179,6 +247,7 @@ const buildSegmentIndex = (segment: SegmentKey): CatalogSegmentIndex => {
     items,
     entries,
     itemBySlug,
+    itemByScopedSlug,
     facets,
   };
 };
@@ -214,6 +283,24 @@ const matchesMax = (actual: number, expected?: string) => {
   const parsed = toNumber(expected);
   if (parsed === undefined) return true;
   return actual <= parsed;
+};
+
+const matchesProductVariants = (item: Extract<CatalogItem, { segment: "ecommerce" }>, filters: CatalogFilterValues) => {
+  const variantFilters = [filters.cor, filters.tamanho, filters.variacao, filters.estoque_min, filters.preco_max].some(Boolean);
+  if (!variantFilters) {
+    return matchesMax(item.price, filters.preco_max) && matchesMin(item.details.stock, filters.estoque_min);
+  }
+
+  return item.details.variants.some((variant) => {
+    const variantText = getProductVariantText(variant);
+    return (
+      matchesCommerceColor(variantText, filters.cor) &&
+      matchesToken(variantText, filters.tamanho) &&
+      matchesString(variantText, filters.variacao) &&
+      matchesMax(variant.price, filters.preco_max) &&
+      matchesMin(variant.stock, filters.estoque_min)
+    );
+  });
 };
 
 const matchesFilters = (entry: CatalogIndexEntry, filters: CatalogFilterValues) => {
@@ -258,11 +345,8 @@ const matchesFilters = (entry: CatalogIndexEntry, filters: CatalogFilterValues) 
       matchesString(item.details.category, filters.categoria) &&
       matchesString(item.details.subcategory, filters.subcategoria) &&
       matchesString(item.details.brand, filters.marca) &&
-      matchesString(item.details.color, filters.cor) &&
-      matchesString(item.details.size, filters.tamanho) &&
       matchesString(item.details.sku, filters.sku) &&
-      matchesMax(item.price, filters.preco_max) &&
-      matchesMin(item.details.stock, filters.estoque_min)
+      matchesProductVariants(item, filters)
     );
   }
 
@@ -276,23 +360,6 @@ const matchesFilters = (entry: CatalogIndexEntry, filters: CatalogFilterValues) 
   );
 };
 
-const phrasePriceToValue = (phrase: string) => {
-  const match = normalizeText(phrase).match(
-    /(?:ate|até|max(?:imo|imum)?|por|custa|orcamento)[^\d]*(\d+(?:[.,]\d+)?)\s*(mil|milhao|milhoes|k)?/,
-  );
-
-  if (!match) return undefined;
-
-  const numeric = Number(match[1].replace(",", "."));
-  if (!Number.isFinite(numeric)) return undefined;
-
-  if (match[2]) {
-    return String(Math.round(numeric * 1000));
-  }
-
-  return String(Math.round(numeric));
-};
-
 export const getCatalogIndex = (segment: SegmentKey) => {
   const index = catalogIndexes.get(segment);
   if (!index) {
@@ -302,9 +369,9 @@ export const getCatalogIndex = (segment: SegmentKey) => {
 };
 
 export const getIndexedItem = (segment: SegmentKey, slug: string, companySlug?: string) => {
-  const entry = getCatalogIndex(segment).itemBySlug.get(slug);
+  const index = getCatalogIndex(segment);
+  const entry = companySlug ? index.itemByScopedSlug.get(scopedSlugKey(companySlug, slug)) : index.itemBySlug.get(slug);
   if (!entry) return undefined;
-  if (companySlug && entry.companySlug !== companySlug) return undefined;
   return entry.item;
 };
 
@@ -336,77 +403,5 @@ export const filterIndexedItems = (segment: SegmentKey, filters: CatalogFilterVa
     .map((entry) => entry.item);
 
 export const inferFiltersFromPhrase = (segment: SegmentKey, phrase: string): CatalogFilterValues => {
-  const text = normalizeText(phrase);
-  const filters: CatalogFilterValues = {};
-  const price = phrasePriceToValue(phrase);
-
-  if (segment === "imoveis") {
-    if (text.includes("apart")) filters.tipo = "apartamento";
-    if (text.includes("casa")) filters.tipo = "casa";
-    if (text.includes("terreno")) filters.tipo = "terreno";
-    if (text.includes("studio")) filters.tipo = "studio";
-    if (text.includes("cobertura")) filters.tipo = "cobertura";
-    if (text.includes("aluguel") || text.includes("alugar")) filters.finalidade = "aluguel";
-    if (text.includes("venda") || text.includes("compr")) filters.finalidade = "venda";
-
-    const city = ["maringa", "londrina", "cianorte", "campo mourao", "paranavai", "apucarana", "sarandi"].find((value) =>
-      text.includes(value),
-    );
-    if (city) filters.cidade = city;
-
-    const bedrooms = text.match(/(\d+)\s*quartos?/);
-    if (bedrooms) filters.quartos_min = bedrooms[1];
-    if (price) filters.preco_max = price;
-  }
-
-  if (segment === "veiculos") {
-    if (text.includes("suv")) filters.carroceria = "suv";
-    if (text.includes("picape")) filters.carroceria = "picape";
-    if (text.includes("sedan")) filters.carroceria = "sedan";
-    if (text.includes("hatch")) filters.carroceria = "hatch";
-    if (text.includes("utilitario")) filters.carroceria = "utilitario";
-    if (text.includes("automatic")) filters.cambio = "automatico";
-    if (text.includes("manual")) filters.cambio = "manual";
-    if (text.includes("cvt")) filters.cambio = "cvt";
-    if (text.includes("diesel")) filters.combustivel = "diesel";
-    if (text.includes("flex")) filters.combustivel = "flex";
-    if (text.includes("gasolina")) filters.combustivel = "gasolina";
-    if (text.includes("eletric")) filters.combustivel = "eletrico";
-    if (text.includes("hibrid")) filters.combustivel = "hibrido";
-
-    const year = text.match(/20\d{2}/);
-    if (year) filters.ano_min = year[0];
-    if (price) filters.preco_max = price;
-  }
-
-  if (segment === "ecommerce") {
-    if (text.includes("preto") || text.includes("preta")) filters.cor = "preto";
-    if (text.includes("branco") || text.includes("branca")) filters.cor = "branco";
-    if (text.includes("cinza")) filters.cor = "cinza";
-
-    const size = ["pp", "p", "m", "g", "gg"].find(
-      (value) => text.includes(`tamanho ${value}`) || text.includes(` ${value}`),
-    );
-    if (size) filters.tamanho = size.toUpperCase();
-    if (text.includes("notebook") || text.includes("fone")) filters.categoria = "eletrônicos";
-    if (text.includes("camiseta")) filters.categoria = "moda";
-    if (price) filters.preco_max = price;
-  }
-
-  if (segment === "food") {
-    if (text.includes("pizza")) filters.categoria = "pizzas";
-    if (text.includes("burger") || text.includes("hamburg")) filters.categoria = "burgers";
-    if (text.includes("salada")) filters.categoria = "saladas";
-    if (text.includes("sobremesa") || text.includes("brownie")) filters.categoria = "sobremesas";
-
-    const serves = text.match(/(?:serve|para)\s*(\d+)/);
-    if (serves) filters.serve_min = serves[1];
-    if (text.includes("sem cebola")) filters.sem = "cebola";
-    if (text.includes("sem lactose")) filters.sem = "lactose";
-    if (text.includes("catupiry")) filters.adicional = "catupiry";
-    if (text.includes("bacon")) filters.adicional = "bacon";
-    if (price) filters.preco_max = price;
-  }
-
-  return filters;
+  return inferBrowserFilters(segment, phrase, getIndexedFacets(segment));
 };

@@ -175,6 +175,7 @@ export type CatalogSegmentIndex = {
   items: CatalogItem[];
   entries: CatalogIndexEntry[];
   itemBySlug: Map<string, CatalogIndexEntry>;
+  itemByScopedSlug: Map<string, CatalogIndexEntry>;
   facets: Record<string, string[]>;
 };
 

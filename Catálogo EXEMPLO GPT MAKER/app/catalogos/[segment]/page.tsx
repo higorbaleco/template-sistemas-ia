@@ -35,7 +35,15 @@ export default async function SegmentPage({ params, searchParams }: PageProps) {
             ))}
           </nav>
         </header>
-        <CatalogExplorer scope={scope} payload={payload} initialFilters={filters} pathPrefix={scope.publicPath} />
+        <CatalogExplorer
+          scope={payload.scope}
+          payload={payload}
+          initialFilters={filters}
+          pathPrefix={scope.publicPath}
+          filterDefinitions={scope.segment.filterDefinitions}
+          segmentLabel={scope.segment.label}
+          queryExamples={scope.segment.queryExamples}
+        />
       </div>
     </main>
   );

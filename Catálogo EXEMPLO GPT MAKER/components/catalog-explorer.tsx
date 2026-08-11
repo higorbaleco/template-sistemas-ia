@@ -1,38 +1,44 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   buildQueryString,
   formatCompactCurrency,
   formatCurrency,
   formatNumber,
-  getCompanyBySlug,
-  getFilterDefinitions,
   getItemLabel,
   inferFiltersFromPhrase,
-} from "@/lib/catalog-utils";
-import { CatalogFilterValues, CatalogListPayload, CatalogScope } from "@/lib/catalog-types";
+} from "@/lib/catalog-browser";
+import { CatalogFilterValues, CatalogListPayload, CatalogScopeSummary, FilterDefinition } from "@/lib/catalog-types";
 
 type Props = {
-  scope: CatalogScope;
+  scope: CatalogScopeSummary;
   payload: CatalogListPayload;
   initialFilters: CatalogFilterValues;
   pathPrefix: string;
+  filterDefinitions: FilterDefinition[];
+  segmentLabel: string;
+  queryExamples: string[];
 };
 
-export function CatalogExplorer({ scope, payload, initialFilters, pathPrefix }: Props) {
+export function CatalogExplorer({ scope, payload, initialFilters, pathPrefix, filterDefinitions, segmentLabel, queryExamples }: Props) {
   const router = useRouter();
   const [filters, setFilters] = useState<CatalogFilterValues>(initialFilters);
   const [builderPhrase, setBuilderPhrase] = useState("");
-  const [testPhrase, setTestPhrase] = useState(scope.segment.queryExamples[0] ?? "");
+  const [testPhrase, setTestPhrase] = useState(queryExamples[0] ?? "");
   const [testResult, setTestResult] = useState<CatalogFilterValues>({});
+  const [origin, setOrigin] = useState("");
+  const [clipboardStatus, setClipboardStatus] = useState("");
 
-  const filterDefs = getFilterDefinitions(scope.segment.key);
   const apiUrl = `${scope.apiPath}${buildQueryString(filters)}`;
   const publicUrl = `${scope.publicPath}${buildQueryString(filters)}`;
-  const copiedCompany = scope.company ? getCompanyBySlug(scope.company.slug) : undefined;
+  const toAbsoluteUrl = (path: string) => (origin ? `${origin}${path}` : path);
+
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
 
   const setFilter = (key: string, value: string) => {
     setFilters((current) => ({
@@ -52,10 +58,33 @@ export function CatalogExplorer({ scope, payload, initialFilters, pathPrefix }: 
   };
 
   const applyPrompt = (prompt: string, targetSetter: (value: CatalogFilterValues) => void) => {
-    const nextFilters = inferFiltersFromPhrase(scope.segment.key, prompt);
+    const nextFilters = inferFiltersFromPhrase(scope.segment, prompt, payload.filters.facets);
     targetSetter(nextFilters);
     setFilters(nextFilters);
     router.replace(`${pathPrefix}${buildQueryString(nextFilters)}`);
+  };
+
+  const copyToClipboard = async (path: string, label: string) => {
+    const value = toAbsoluteUrl(path);
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = value;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+      setClipboardStatus(`${label} copiada com domínio completo.`);
+    } catch {
+      setClipboardStatus(`Não consegui copiar automaticamente. Use: ${value}`);
+    }
   };
 
   return (
@@ -64,7 +93,7 @@ export function CatalogExplorer({ scope, payload, initialFilters, pathPrefix }: 
         <div className="breadcrumb">
           <Link href="/catalogos">Catálogo Lab</Link>
           <span>/</span>
-          <span>{scope.segment.label}</span>
+          <span>{segmentLabel}</span>
           {scope.company ? (
             <>
               <span>/</span>
@@ -88,21 +117,24 @@ export function CatalogExplorer({ scope, payload, initialFilters, pathPrefix }: 
           <button
             className="btn btn-secondary"
             type="button"
-            onClick={() => navigator.clipboard.writeText(apiUrl)}
+            onClick={() => copyToClipboard(apiUrl, "URL da IA")}
           >
             Copiar URL da IA
           </button>
-          <button className="btn btn-secondary" type="button" onClick={() => navigator.clipboard.writeText(publicUrl)}>
+          <button className="btn btn-secondary" type="button" onClick={() => copyToClipboard(publicUrl, "URL pública")}>
             Copiar URL pública
           </button>
         </div>
+        <p className="sr-status" aria-live="polite">
+          {clipboardStatus}
+        </p>
 
         <div className="page-section builder-grid">
           <div className="glass-card" style={{ padding: 18 }}>
             <div className="kicker">Filtros</div>
             <div className="builder-form" style={{ marginTop: 14 }}>
               <div className="form-grid">
-                {filterDefs.map((definition) => (
+                {filterDefinitions.map((definition) => (
                   <label className="field" key={definition.key}>
                     <span className="field-label">{definition.label}</span>
                     {definition.type === "select" ? (
@@ -156,14 +188,14 @@ export function CatalogExplorer({ scope, payload, initialFilters, pathPrefix }: 
               <div className="kicker">Endpoints</div>
               <div className="codebox" style={{ marginTop: 12 }}>
                 {`VISUAL
-${publicUrl}
+${toAbsoluteUrl(publicUrl)}
 
 IA
-${apiUrl}`}
+${toAbsoluteUrl(apiUrl)}`}
               </div>
               <p className="footer-note">
                 {scope.company
-                  ? `Empresa demo: ${scope.company.name}${copiedCompany ? ` · ${copiedCompany.city}` : ""}.`
+                  ? `Empresa demo: ${scope.company.name} · ${scope.company.city}.`
                   : "A mesma base alimenta a interface humana e a rota JSON para o agente."}
               </p>
             </div>
@@ -229,7 +261,7 @@ ${apiUrl}`}
         <div className="page-section" style={{ display: "grid", gap: 14 }}>
           <div className="tag-row">
             <span className="tag tag-accent">{payload.count} itens encontrados</span>
-            <span className="tag">{scope.segment.label}</span>
+            <span className="tag">{segmentLabel}</span>
             {scope.company ? <span className="tag tag-warm">{scope.company.name}</span> : null}
             {Object.keys(payload.filters.applied).length ? <span className="tag tag-sky">URL ativa</span> : null}
           </div>
@@ -302,7 +334,7 @@ ${apiUrl}`}
                     <button
                       className="btn btn-secondary"
                       type="button"
-                      onClick={() => navigator.clipboard.writeText(`${scope.apiPath}/${item.slug}`)}
+                      onClick={() => copyToClipboard(`${scope.apiPath}/${item.slug}`, "Endpoint do item")}
                     >
                       Copiar item da IA
                     </button>

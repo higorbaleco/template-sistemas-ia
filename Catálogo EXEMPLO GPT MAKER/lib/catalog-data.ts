@@ -116,6 +116,7 @@ const productFilters: FilterDefinition[] = [
   { key: "categoria", label: "Categoria", type: "text", placeholder: "Moda, eletrônicos..." },
   { key: "cor", label: "Cor", type: "text", placeholder: "Preto" },
   { key: "tamanho", label: "Tamanho", type: "text", placeholder: "M" },
+  { key: "variacao", label: "Variação", type: "text", placeholder: "Preto G, azul..." },
   { key: "marca", label: "Marca", type: "text", placeholder: "Urban Studio" },
   { key: "subcategoria", label: "Subcategoria", type: "text", placeholder: "Camisetas" },
   { key: "preco_max", label: "Preço máx.", type: "number", step: 1 },

@@ -78,7 +78,11 @@ export default function CatalogsHomePage() {
               const segment = segments.find((item) => item.key === company.segment);
 
               return (
-                <Link className="company-card company-card-gateway" href={segment?.publicPath ?? "/catalogos"} key={company.slug}>
+                <Link
+                  className="company-card company-card-gateway"
+                  href={`/catalogos/empresa/${company.slug}/${company.segment}`}
+                  key={company.slug}
+                >
                   <div className="card-row">
                     <span className="tag tag-accent">{company.name}</span>
                     <span className="tag">{company.segment}</span>
@@ -86,7 +90,7 @@ export default function CatalogsHomePage() {
                   <h3>{company.city}</h3>
                   <p>{company.tagline}</p>
                   <div className="card-row">
-                    <span className="route-chip">{segment?.publicPath}</span>
+                    <span className="route-chip">{`/catalogos/empresa/${company.slug}/${company.segment}`}</span>
                   </div>
                 </Link>
               );

@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+.next/
+out/
+dist/
+
+# Env e segredos
+.env
+.env.*
+!.env.example
+
+# Docker
+*.log
+
+# Editor e SO
+.vscode/
+.idea/
+.DS_Store
+
+# Claude Code local
+.claude/settings.local.json

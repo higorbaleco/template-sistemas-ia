@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Prospecting Finder</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">Group Prospecting Finder</p>
+          <h1>Caça, organiza e valida grupos públicos de WhatsApp sem dor de cabeça.</h1>
+          <p class="lede">
+            Tudo local no Chrome, com campanhas, resultados, deduplicação e validação assistida.
+          </p>
+        </div>
+        <div class="hero__badge">
+          <span class="badge badge--accent">MV3 Local</span>
+          <span class="badge">Sem backend</span>
+        </div>
+      </header>
+
+      <nav class="tabs" aria-label="Seções da extensão">
+        <button class="tab tab--active" data-tab="search">Nova busca</button>
+        <button class="tab" data-tab="results">Resultados</button>
+        <button class="tab" data-tab="campaigns">Campanhas</button>
+        <button class="tab" data-tab="settings">Configurações</button>
+      </nav>
+
+      <main>
+        <section class="panel panel--active" id="panel-search" data-panel="search">
+          <div class="card">
+            <div class="card__header">
+              <div>
+                <h2>Nova busca</h2>
+                <p>Crie uma campanha e deixe a extensão abrir e coletar tudo para você.</p>
+              </div>
+              <button class="ghost-button" id="btn-generate-queries" type="button">Gerar preview</button>
+            </div>
+
+            <div class="execution-card" id="execution-card">
+              <div class="execution-card__header">
+                <div>
+                  <p class="execution-card__eyebrow">Execução ao vivo</p>
+                  <h3>Fila com no máximo 2 guias</h3>
+                </div>
+                <span class="status-pill status-pill--neutral" id="execution-status">Sem execução</span>
+              </div>
+
+              <div class="execution-stats">
+                <div class="execution-stat">
+                  <span>Rede atual</span>
+                  <strong id="execution-source">-</strong>
+                </div>
+                <div class="execution-stat">
+                  <span>Executadas</span>
+                  <strong id="execution-completed">0</strong>
+                </div>
+                <div class="execution-stat">
+                  <span>Links encontrados</span>
+                  <strong id="execution-links">0</strong>
+                </div>
+                <div class="execution-stat">
+                  <span>Pendentes</span>
+                  <strong id="execution-pending">0</strong>
+                </div>
+              </div>
+
+              <div class="execution-progress">
+                <div class="execution-progress__bar" id="execution-progress-bar"></div>
+              </div>
+
+              <div class="execution-lanes" id="execution-lanes"></div>
+            </div>
+
+            <form id="campaign-form" class="form-grid">
+              <label class="field field--wide">
+                <span>Nome da campanha</span>
+                <input name="name" type="text" placeholder="Ex.: Imobiliário Maringá" required />
+              </label>
+
+              <label class="field">
+                <span>Palavra-chave principal</span>
+                <input name="primaryKeyword" type="text" placeholder="Ex.: corretores de imóveis" required />
+              </label>
+
+              <label class="field">
+                <span>Região</span>
+                <input name="region" type="text" placeholder="Ex.: Maringá" />
+              </label>
+
+              <label class="field field--wide">
+                <span>Termos adicionais</span>
+                <textarea
+                  name="additionalTerms"
+                  rows="4"
+                  placeholder="Uma linha ou vírgula por termo"
+                ></textarea>
+              </label>
+
+              <fieldset class="field field--wide">
+                <legend>Fontes</legend>
+                <div class="source-grid" id="source-list"></div>
+              </fieldset>
+
+              <label class="field">
+                <span>Páginas por fonte</span>
+                <input name="pagesPerSource" type="number" min="1" max="50" value="3" />
+              </label>
+
+              <label class="field">
+                <span>Profundidade</span>
+                <select name="depth">
+                  <option value="quick">Rápida</option>
+                  <option value="medium" selected>Média</option>
+                  <option value="deep">Profunda</option>
+                </select>
+              </label>
+
+              <div class="actions actions--wide">
+                <button class="primary-button" type="submit">Executar busca</button>
+                <button class="secondary-button" id="btn-save-draft" type="button">Salvar campanha</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="card__header">
+              <div>
+                <h3>Preview de queries</h3>
+                <p>Essas buscas serão usadas para abrir o Google e coletar os links.</p>
+              </div>
+              <div class="muted" id="query-count">0 queries</div>
+            </div>
+            <div id="query-preview" class="query-preview empty-state">
+              Preencha a busca e clique em "Gerar preview".
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-results" data-panel="results">
+          <div class="card">
+              <div class="card__header">
+                <div>
+                  <h2>Resultados</h2>
+                  <p>Filtre, valide, exporte e acompanhe tudo por campanha.</p>
+                </div>
+                <div class="toolbar">
+                  <button class="ghost-button" id="btn-copy-visible" type="button">Copiar visíveis</button>
+                  <button class="ghost-button" id="btn-export-csv" type="button">CSV</button>
+                  <button class="ghost-button" id="btn-export-json" type="button">JSON</button>
+                </div>
+              </div>
+
+            <div class="filters">
+              <label class="field">
+                <span>Campanha</span>
+                <select id="results-campaign-filter"></select>
+              </label>
+              <label class="field">
+                <span>Status</span>
+                <select id="results-status-filter">
+                  <option value="">Todos</option>
+                  <option value="pending_validation">Pendente</option>
+                  <option value="valid">Válido</option>
+                  <option value="invalid">Inválido</option>
+                  <option value="group_full">Grupo cheio</option>
+                  <option value="invite_revoked">Revogado</option>
+                  <option value="removed">Removido</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Fonte</span>
+                <select id="results-source-filter">
+                  <option value="">Todas</option>
+                </select>
+              </label>
+              <label class="field field--wide">
+                <span>Busca textual</span>
+                <input id="results-text-filter" type="text" placeholder="Filtrar por link, nota, campanha..." />
+              </label>
+            </div>
+
+            <div class="bulk-bar">
+              <span class="muted" id="results-count">0 links</span>
+              <div class="bulk-actions">
+                <button class="ghost-button" id="btn-bulk-valid" type="button">Marcar válidos</button>
+                <button class="ghost-button" id="btn-bulk-invalid" type="button">Marcar inválidos</button>
+                <button class="ghost-button" id="btn-bulk-delete" type="button">Remover</button>
+              </div>
+            </div>
+
+            <div id="results-list" class="list empty-state">
+              Nenhum resultado por enquanto. Rode uma busca para começar.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-campaigns" data-panel="campaigns">
+          <div class="card">
+            <div class="card__header">
+              <div>
+                <h2>Campanhas</h2>
+                <p>Histórico organizado por buscas, links coletados e validações.</p>
+              </div>
+              <button class="ghost-button" id="btn-refresh-campaigns" type="button">Atualizar</button>
+            </div>
+            <div id="campaign-list" class="list empty-state">
+              Nenhuma campanha criada ainda.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-settings" data-panel="settings">
+          <div class="card">
+            <div class="card__header">
+              <div>
+                <h2>Configurações</h2>
+                <p>Controle o ritmo da coleta para deixar tudo estável.</p>
+              </div>
+            </div>
+
+            <form id="settings-form" class="form-grid">
+              <label class="field">
+                <span>Máximo de abas simultâneas</span>
+                <input name="maxConcurrentTabs" type="number" min="1" max="2" value="2" />
+              </label>
+              <label class="field">
+                <span>Delay entre buscas (ms)</span>
+                <input name="delayBetweenSearchesMs" type="number" min="0" max="10000" value="1200" />
+              </label>
+              <label class="field">
+                <span>Fechar abas após coleta</span>
+                <select name="closeTabsAfterCollect">
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Validar em nova aba</span>
+                <select name="openValidationInNewTab">
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Exportar apenas válidos</span>
+                <select name="exportOnlyValid">
+                  <option value="false">Não</option>
+                  <option value="true">Sim</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Exportar apenas pendentes</span>
+                <select name="exportOnlyPending">
+                  <option value="false">Não</option>
+                  <option value="true">Sim</option>
+                </select>
+              </label>
+              <div class="actions actions--wide">
+                <button class="primary-button" type="submit">Salvar configurações</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="result-item-template">
+      <article class="result-item">
+        <label class="result-item__select">
+          <input type="checkbox" data-role="select-result" />
+        </label>
+        <div class="result-item__body">
+          <div class="result-item__topline">
+            <div>
+              <h3 data-role="result-title"></h3>
+              <p class="muted" data-role="result-meta"></p>
+            </div>
+            <span class="status-pill" data-role="result-status"></span>
+          </div>
+          <p class="result-item__link" data-role="result-link"></p>
+          <div class="result-item__notes">
+            <label class="inline-field">
+              <span>Nota</span>
+              <input type="text" data-role="result-note" placeholder="Adicionar observação..." />
+            </label>
+            <label class="inline-field">
+              <span>Status manual</span>
+              <select data-role="result-manual-status">
+                <option value="not_tested">Não testado</option>
+                <option value="valid">Válido</option>
+                <option value="invalid">Inválido</option>
+                <option value="group_full">Grupo cheio</option>
+                <option value="invite_revoked">Revogado</option>
+                <option value="out_of_niche">Fora do nicho</option>
+                <option value="duplicate">Duplicado</option>
+                <option value="priority">Prioritário</option>
+                <option value="joined">Entrei</option>
+                <option value="not_joined">Não entrei</option>
+              </select>
+            </label>
+          </div>
+          <div class="result-item__actions">
+            <button class="ghost-button" data-action="open">Abrir</button>
+            <button class="ghost-button" data-action="copy">Copiar</button>
+            <button class="ghost-button" data-action="validate">Validar</button>
+            <button class="ghost-button" data-action="save">Salvar</button>
+            <button class="ghost-button" data-action="delete">Remover</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <template id="campaign-item-template">
+      <article class="campaign-item">
+        <div>
+          <h3 data-role="campaign-title"></h3>
+          <p class="muted" data-role="campaign-meta"></p>
+        </div>
+        <div class="campaign-item__stats">
+          <span class="stat" data-role="campaign-links"></span>
+          <span class="stat" data-role="campaign-queries"></span>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Groups Hunter Advance",
+  "short_name": "GHA",
+  "version": "2.0.0",
+  "description": "Extensão simples para buscar grupos WhatsApp e Telegram com keyword, categoria, +18 e cópia rápida.",
+  "action": {
+    "default_title": "Groups Hunter Advance",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon-16.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "downloads"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "shared.js",
+        "content-script.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html"
+}

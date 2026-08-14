@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Groups Hunter Advance</title>
+  <style>
+    :root {
+      --background: #f8fafc;
+      --foreground: #1e293b;
+      --card: #ffffff;
+      --card-foreground: #1e293b;
+      --secondary: #e5e7eb;
+      --secondary-foreground: #374151;
+      --muted: #f3f4f6;
+      --muted-foreground: #6b7280;
+      --border: #d1d5db;
+      --input: #d1d5db;
+      --ring: #6366f1;
+      --accent: #e0e7ff;
+      --accent-foreground: #374151;
+      --primary: #6366f1;
+      --primary-foreground: #ffffff;
+      --destructive: #ef4444;
+      --destructive-foreground: #ffffff;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      width: 392px;
+      min-height: 620px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent 26%),
+        var(--background);
+      color: var(--foreground);
+    }
+
+    .shell {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card);
+      color: var(--card-foreground);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 16px;
+      display: grid;
+      gap: 8px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary);
+    }
+
+    .title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.15;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted-foreground);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .section {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      background: var(--muted);
+      border: 1px solid var(--border);
+      color: var(--secondary-foreground);
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .pill.primary {
+      background: var(--accent);
+      border-color: rgba(99, 102, 241, 0.18);
+      color: var(--primary);
+    }
+
+    .status-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--secondary-foreground);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #f59e0b;
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12);
+    }
+
+    .status.online .dot {
+      background: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+    }
+
+    .status.offline .dot {
+      background: var(--destructive);
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--secondary-foreground);
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--input);
+      border-radius: 12px;
+      background: #ffffff;
+      color: var(--foreground);
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+    }
+
+    textarea {
+      min-height: 170px;
+      resize: vertical;
+      line-height: 1.45;
+      white-space: pre;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: var(--muted-foreground);
+      line-height: 1.45;
+    }
+
+    .toggles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      background: #fefefe;
+      border-radius: 14px;
+    }
+
+    .toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--secondary-foreground);
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle input {
+      margin: 0;
+      accent-color: var(--primary);
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .actions.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    button {
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--foreground);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    }
+
+    button.primary {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      border-color: var(--primary);
+    }
+
+    button.secondary {
+      background: var(--secondary);
+      color: var(--secondary-foreground);
+    }
+
+    button.ghost {
+      background: #ffffff;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 6px;
+      background: var(--muted);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .segmented button {
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      padding: 9px 10px;
+      border-radius: 10px;
+      color: var(--muted-foreground);
+    }
+
+    .segmented button.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    .pill strong {
+      margin-left: 4px;
+    }
+
+    .results {
+      display: grid;
+      gap: 10px;
+      max-height: 190px;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .result {
+      border: 1px solid var(--border);
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 12px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .result-url {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--foreground);
+      word-break: break-word;
+      line-height: 1.35;
+    }
+
+    .result-meta {
+      font-size: 12px;
+      color: var(--muted-foreground);
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+
+    .result-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 999px;
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      background: var(--muted);
+      color: var(--secondary-foreground);
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge.clean {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.2);
+      color: #047857;
+    }
+
+    .badge.suspect {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.2);
+      color: #92400e;
+    }
+
+    .badge.rejected {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.2);
+      color: #b91c1c;
+    }
+
+    .empty {
+      padding: 12px;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      color: var(--muted-foreground);
+      font-size: 12px;
+      background: #ffffff;
+    }
+
+    .log {
+      min-height: 84px;
+      max-height: 150px;
+      overflow: auto;
+      white-space: pre-wrap;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--foreground);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .footer-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .copy-box {
+      display: grid;
+      gap: 10px;
+    }
+
+    .copy-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: var(--muted-foreground);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="card hero">
+      <div class="eyebrow">Chrome Extension</div>
+      <h1 class="title">Groups Hunter Advance</h1>
+      <p class="subtitle">
+        Busque por palavra-chave ou categoria, filtre +18 e copie links limpos com um clique.
+      </p>
+    </div>
+
+    <div class="card section">
+      <div class="section-head">
+        <span>Busca</span>
+        <span class="pill primary" id="source-count">0 fontes ativas</span>
+      </div>
+      <div class="grid-2">
+        <div class="field" style="grid-column: 1 / -1;">
+          <label for="search-keyword">Palavra-chave opcional</label>
+          <input id="search-keyword" type="text" placeholder="Ex: futebol, música, empregos...">
+          <div class="hint">Deixe em branco para buscar só com filtros e fontes ativas.</div>
+        </div>
+        <div class="field" style="grid-column: 1 / -1;">
+          <label for="search-category">Categoria / tipo de grupo</label>
+          <select id="search-category"></select>
+        </div>
+      </div>
+
+      <div class="toggles">
+        <label class="toggle"><input id="toggle-current-tab" type="checkbox"> Incluir aba atual</label>
+        <label class="toggle"><input id="toggle-whatsapp" type="checkbox"> WhatsApp</label>
+        <label class="toggle"><input id="toggle-telegram" type="checkbox"> Telegram</label>
+        <label class="toggle"><input id="toggle-adult" type="checkbox"> +18</label>
+      </div>
+      <div class="hint">O toggle +18 libera as fontes adultas configuradas nas opções.</div>
+
+      <div class="actions">
+        <button class="primary" id="btn-scan">Buscar</button>
+        <button class="ghost" id="btn-copy">Copiar links</button>
+        <button class="secondary" id="btn-export">Exportar CSV</button>
+      </div>
+    </div>
+
+    <div class="card section">
+      <div class="status-line">
+        <div class="status offline" id="status-badge">
+          <span class="dot"></span>
+          <span id="status-text">Pronto para buscar</span>
+        </div>
+        <span class="pill" id="last-run">Sem execução ainda</span>
+      </div>
+      <div class="grid-2">
+        <div class="pill">Total: <strong id="metric-total">0</strong></div>
+        <div class="pill">Fontes varridas: <strong id="metric-sources">0</strong></div>
+      </div>
+    </div>
+
+    <div class="card section">
+      <div class="section-head">
+        <span>Resultados</span>
+        <div class="segmented" role="tablist" aria-label="Modo de visualização">
+          <button type="button" id="view-list" class="active">Lista</button>
+          <button type="button" id="view-clean">Limpar</button>
+          <button type="button" id="view-copy">Copiar</button>
+        </div>
+      </div>
+
+      <div id="list-panel">
+        <div class="results" id="results-list"></div>
+      </div>
+
+      <div id="copy-panel" style="display:none;">
+        <div class="copy-box">
+          <div class="copy-meta">
+            <span id="copy-count">0 links</span>
+            <span>URL limpa, um por linha</span>
+          </div>
+          <textarea id="copy-output" readonly placeholder="Os links aparecerão aqui após a busca."></textarea>
+          <div class="actions two">
+            <button class="primary" id="btn-copy-links">Copiar links</button>
+            <button class="ghost" id="btn-copy-refresh">Atualizar vista</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section">
+      <div class="section-head">
+        <span>Log</span>
+        <span class="pill" id="results-count">0 itens</span>
+      </div>
+      <div class="log" id="progress-log">Clique em Buscar para iniciar.</div>
+    </div>
+
+    <div class="footer-actions">
+      <button id="btn-refresh">Atualizar</button>
+      <button id="btn-options">Opções</button>
+    </div>
+  </div>
+
+  <script src="sources.js"></script>
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

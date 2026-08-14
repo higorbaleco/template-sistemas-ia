@@ -1,0 +1,395 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="UIDEVENTSDB000"]
+
+[sub_resource type="Dictionary" id=1]
+id = 1
+title = "Oferta de Emprego"
+type = "oportunidade"
+description = "Você recebeu uma oferta de emprego em uma empresa respeitável. O salário é bom, mas exige longas horas de trabalho."
+option_a = "Aceitar o emprego"
+option_b = "Recusar e continuar procurando"
+outcome_a_money = 500
+outcome_a_happiness = -10
+outcome_a_energy = -20
+outcome_b_money = 0
+outcome_b_happiness = 5
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=2]
+title = "Investimento em Ações"
+type = "oportunidade"
+description = "Um amigo sugeriu investir em uma ação que está em alta. Há potencial de lucro, mas também risco de perda."
+option_a = "Investir $100"
+option_b = "Não investir e guardar o dinheiro"
+outcome_a_money = -100
+outcome_a_potential_gain = 150
+outcome_a_risk = 0.3
+outcome_b_money = 0
+outcome_b_potential_gain = 0
+outcome_b_risk = 0
+
+[sub_resource type="Dictionary" id=3]
+title = "Concurso Público"
+type = "oportunidade"
+description = "Aprovado em um concurso público para uma posição de destaque no setor público. Salário estável e benefícios excelentes."
+option_a = "Aceitar a posição"
+option_b = "Recusar por falta de tempo"
+outcome_a_money = 6000
+outcome_a_happiness = 20
+outcome_a_energy = -10
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=4]
+title = "Doença na Família"
+type = "problema"
+description = "Um membro da família precisa de cuidados médicos urgentes. Isso vai consumir seu tempo e dinheiro."
+option_a = "Cuidar da família"
+option_b = "Delegar para outros familiares"
+outcome_a_money = -500
+outcome_a_happiness = 15
+outcome_a_energy = -30
+outcome_b_money = -200
+outcome_b_happiness = 5
+outcome_b_energy = -10
+
+[sub_resource type="Dictionary" id=5]
+title = "Falha no Projeto"
+type = "problema"
+description = "O projeto principal em que você está trabalhando enfrentou um revés significativo. Pode afetar sua reputação e financiamento."
+option_a = "Recomeçar do zero"
+option_b = "Buscar investidores externos"
+outcome_a_money = -1000
+outcome_a_happiness = -20
+outcome_a_energy = -40
+outcome_b_money = 500
+outcome_b_happiness = -5
+outcome_b_energy = -15
+
+[sub_resource type="Dictionary" id=6]
+title = "Herança Inesperada"
+type = "oportunidade"
+description = "Você recebeu uma herança de um parente distante. Uma quantia considerável de dinheiro chega à sua conta."
+option_a = "Investir tudo"
+option_b = "Guardar parte para emergências"
+outcome_a_money = 5000
+outcome_a_happiness = 30
+outcome_a_energy = 10
+outcome_b_money = 2000
+outcome_b_happiness = 20
+outcome_b_energy = 5
+
+[sub_resource type="Dictionary" id=7]
+title = "Acidente de Carro"
+type = "problema"
+description = "Você se envolveu em um pequeno acidente de carro. Embora não haja feridos, há prejuízos materiais e burocracia a ser resolvida."
+option_a = "Resolver tudo imediatamente"
+option_b = "Deixar para depois"
+outcome_a_money = -300
+outcome_a_happiness = -10
+outcome_a_energy = -20
+outcome_b_money = -100
+outcome_b_happiness = -5
+outcome_b_energy = -10
+
+[sub_resource type="Dictionary" id=8]
+title = "Convite para Conferência"
+type = "convite"
+description = "Você foi convidado para uma importante conferência internacional na sua área. É uma oportunidade de networking e aprendizado valioso."
+option_a = "Aceitar o convite"
+option_b = "Recusar e economizar"
+outcome_a_money = -200
+outcome_a_happiness = 15
+outcome_a_energy = -5
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=9]
+title = "Falha de Equipamento"
+type = "problema"
+description = "Seu equipamento principal quebrou no meio de um projeto crítico. Você precisa arrumar ou substituir rapidamente."
+option_a = "Comprar novo equipamento"
+option_b = "Consertar o existente"
+outcome_a_money = -800
+outcome_a_happiness = -5
+outcome_a_energy = -15
+outcome_b_money = -300
+outcome_b_happiness = 5
+outcome_b_energy = -10
+
+[sub_resource type="Dictionary" id=10]
+title = "Parceria Inusitada"
+type = "oportunidade"
+description = "Uma empresa concorrente oferece uma parceria improvável que pode beneficiar ambas as partes."
+option_a = "Aceitar a parceria"
+option_b = "Recusar e manter independência"
+outcome_a_money = 2000
+outcome_a_happiness = 10
+outcome_a_energy = -10
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=11]
+title = "Falha de Segurança"
+type = "problema"
+description = "Uma falha de segurança foi detectada em seu sistema. Pode levar a perdas financeiras e de reputação se não for resolvida rapidamente."
+option_a = "Corrigir imediatamente"
+option_b = "Adiar a correção"
+outcome_a_money = -500
+outcome_a_happiness = -10
+outcome_a_energy = -25
+outcome_b_money = -2000
+outcome_b_happiness = -30
+outcome_b_energy = -20
+
+[sub_resource type="Dictionary" id=12]
+title = "Premiação Inesperada"
+type = "oportunidade"
+description = "Você foi selecionado para receber uma premiação inesperada de uma organização que reconhece seu trabalho."
+option_a = "Aceitar a premiação"
+option_b = "Recusar a premiação"
+outcome_a_money = 3000
+outcome_a_happiness = 40
+outcome_a_energy = 10
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=13]
+title = "Aumento de Aluguel"
+type = "problema"
+description = "O dono do prédio onde você opera seu negócio anunciou um aumento significativo no aluguel."
+option_a = "Aceitar o aumento"
+option_b = "Negociar um valor menor"
+outcome_a_money = -1500
+outcome_a_happiness = -15
+outcome_a_energy = -10
+outcome_b_money = -800
+outcome_b_happiness = 5
+outcome_b_energy = -5
+
+[sub_resource type="Dictionary" id=14]
+title = "Tecnologia Revolucionária"
+type = "oportunidade"
+description = "Descobriu uma nova tecnologia que pode revolucionar seu negócio. Requer investimento inicial, mas pode trazer retornos massivos."
+option_a = "Investir na tecnologia"
+option_b = "Ignorar e continuar com o método atual"
+outcome_a_money = -1500
+outcome_a_happiness = 25
+outcome_a_energy = -20
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=15]
+title = "Demissão Inesperada"
+type = "problema"
+description = "Você foi demitido de uma posição importante. Precisa rapidamente encontrar novas oportunidades."
+option_a = "Procurar novo emprego imediatamente"
+option_b = "Tentar negociar o desligamento"
+outcome_a_money = -1000
+outcome_a_happiness = -30
+outcome_a_energy = -40
+outcome_b_money = -200
+outcome_b_happiness = -10
+outcome_b_energy = -20
+
+[sub_resource type="Dictionary" id=16]
+title = "Convite para TV"
+type = "convite"
+description = "Uma importante estação de TV convidou você para participar de um programa que pode aumentar sua visibilidade e oportunidades."
+option_a = "Aceitar o convite"
+option_b = "Recusar por falta de tempo"
+outcome_a_money = 1000
+outcome_a_happiness = 20
+outcome_a_energy = -15
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=17]
+title = "Falha de Software"
+type = "problema"
+description = "Seu software apresentou um bug crítico que afeta milhares de usuários. Precisa resolver rapidamente."
+option_a = "Corrigir imediatamente"
+option_b = "Liberar atualização gradual"
+outcome_a_money = -600
+outcome_a_happiness = -20
+outcome_a_energy = -30
+outcome_b_money = -100
+outcome_b_happiness = -10
+outcome_b_energy = -15
+
+[sub_resource type="Dictionary" id=18]
+title = "Doação Generosa"
+type = "oportunidade"
+description = "Um possível doador oferece uma doação significativa para sua causa ou projeto."
+option_a = "Aceitar a doação"
+option_b = "Recusar por questões éticas"
+outcome_a_money = 5000
+outcome_a_happiness = 35
+outcome_a_energy = 5
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=19]
+title = "Falha de Energia"
+type = "problema"
+description = "Houve uma falha de energia que afetou seu escritório e equipamentos. Equipamentos podem estar danificados."
+option_a = "Consertar imediatamente"
+option_b = "Esperar a energia voltar"
+outcome_a_money = -400
+outcome_a_happiness = -10
+outcome_a_energy = -20
+outcome_b_money = -100
+outcome_b_happiness = -5
+outcome_b_energy = -10
+
+[sub_resource type="Dictionary" id=20]
+title = "Oportunidade de Mercado"
+type = "oportunidade"
+description = "O mercado está em alta para seu tipo de produto/serviço. É hora de expandir."
+option_a = "Expandir imediatamente"
+option_b = "Aguardar e observar"
+outcome_a_money = 1500
+outcome_a_happiness = 15
+outcome_a_energy = -15
+outcome_b_money = 500
+outcome_b_happiness = 5
+outcome_b_energy = -5
+
+[sub_resource type="Dictionary" id=21]
+title = "Crise de Relacionamento"
+type = "problema"
+description = "Houve uma crise de relacionamento com um cliente ou parceiro chave."
+option_a = "Resolver pessoalmente"
+option_b = "Enviar e-mail formal"
+outcome_a_money = -200
+outcome_a_happiness = 10
+outcome_a_energy = -10
+outcome_b_money = -50
+outcome_b_happiness = -5
+outcome_b_energy = -5
+
+[sub_resource type="Dictionary" id=22]
+title = "Herança Duplicada"
+type = "oportunidade"
+description = "Você descobre que tem direito a outra herança, duplicando a quantia anterior."
+option_a = "Aceitar ambas as heranças"
+option_b = "Recusar a segunda herança"
+outcome_a_money = 10000
+outcome_a_happiness = 40
+outcome_a_energy = 20
+outcome_b_money = 5000
+outcome_b_happiness = 20
+outcome_b_energy = 10
+
+[sub_resource type="Dictionary" id=23]
+title = "Falha de Hardware"
+type = "problema"
+description = "O hardware crítico falhou e precisa ser substituído urgentemente."
+option_a = "Substituir imediatamente"
+option_b = "Usar solução temporária"
+outcome_a_money = -1200
+outcome_a_happiness = -10
+outcome_a_energy = -25
+outcome_b_money = -300
+outcome_b_happiness = 5
+outcome_b_energy = -15
+
+[sub_resource type="Dictionary" id=24]
+title = "Parceria Estratégica"
+type = "oportunidade"
+description = "Uma parceria estratégica com outra empresa pode abrir novas possibilidades de mercado."
+option_a = "Aceitar a parceria"
+option_b = "Recusar e manter foco"
+outcome_a_money = 2500
+outcome_a_happiness = 20
+outcome_a_energy = -15
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=25]
+title = "Falha de Backup"
+type = "problema"
+description = "O sistema de backup falhou e dados importantes foram perdidos."
+option_a = "Recuperar dos backups alternativos"
+option_b = "Recriar os dados perdidos"
+outcome_a_money = -300
+outcome_a_happiness = -20
+outcome_a_energy = -30
+outcome_b_money = -1000
+outcome_b_happiness = -40
+outcome_b_energy = -40
+
+[sub_resource type="Dictionary" id=26]
+title = "Reconhecimento Público"
+type = "oportunidade"
+description = "Você recebeu reconhecimento público por suas contribuições."
+option_a = "Aceitar o reconhecimento"
+option_b = "Recusar o reconhecimento"
+outcome_a_money = 500
+outcome_a_happiness = 50
+outcome_a_energy = 10
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=27]
+title = "Falha de Comunicação"
+type = "problema"
+description = "Houve uma falha de comunicação que causou mal-entendidos entre equipes."
+option_a = "Reunião de alinhamento imediata"
+option_b = "Enviar e-mail explicativo"
+outcome_a_money = -100
+outcome_a_happiness = 10
+outcome_a_energy = -10
+outcome_b_money = -50
+outcome_b_happiness = 5
+outcome_b_energy = -5
+
+[sub_resource type="Dictionary" id=28]
+title = "Oportunidade de Investimento"
+type = "oportunidade"
+description = "Uma nova oportunidade de investimento surgiu com potencial de alto retorno."
+option_a = "Investir agora"
+option_b = "Pesquisar mais antes de decidir"
+outcome_a_money = -2000
+outcome_a_happiness = 30
+outcome_a_energy = -20
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[sub_resource type="Dictionary" id=29]
+title = "Falha de Fornecedor"
+type = "problema"
+description = "O fornecedor principal falhou em entregar os componentes essenciais."
+option_a = "Encontrar novo fornecedor"
+option_b = "Paralisar operações até nova entrega"
+outcome_a_money = -600
+outcome_a_happiness = -15
+outcome_a_energy = -20
+outcome_b_money = -2000
+outcome_b_happiness = -30
+outcome_b_energy = -30
+
+[sub_resource type="Dictionary" id=30]
+title = "Parceria de Longo Prazo"
+type = "oportunidade"
+description = "Uma parceria de longo prazo com um cliente chave foi estabelecida."
+option_a = "Aceitar a parceria"
+option_b = "Recusar por incerteza"
+outcome_a_money = 3000
+outcome_a_happiness = 25
+outcome_a_energy = -10
+outcome_b_money = 0
+outcome_b_happiness = 0
+outcome_b_energy = 0
+
+[resource]
+events = [ SubResource(1), SubResource(2), SubResource(3), SubResource(4), SubResource(5), SubResource(6), SubResource(7), SubResource(8), SubResource(9), SubResource(10), SubResource(11), SubResource(12), SubResource(13), SubResource(14), SubResource(15), SubResource(16), SubResource(17), SubResource(18), SubResource(19), SubResource(20), SubResource(21), SubResource(22), SubResource(23), SubResource(24), SubResource(25), SubResource(26), SubResource(27), SubResource(28), SubResource(29), SubResource(30) ]

@@ -1,0 +1,6 @@
+{
+  "perfil": "omagodowhats",
+  "max_por_rodada": 100,
+  "categorias": ["ia", "whatsapp", "empreendedorismo", "vendas", "automacoes", "tutorial-conteudo"],
+  "manter_videos": false
+}

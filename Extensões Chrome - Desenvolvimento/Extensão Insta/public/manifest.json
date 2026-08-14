@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "IG Content Intelligence",
+  "version": "0.1.0",
+  "description": "Collects visible Instagram post data into an IA-friendly JSON (manual trigger).",
+  "permissions": ["storage", "downloads", "activeTab"],
+  "host_permissions": ["https://www.instagram.com/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["contentScript.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "IG Content Intelligence"
+  }
+}
+

@@ -1,0 +1,39 @@
+#!/bin/sh
+set -eu
+
+APP_BUNDLE="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
+WEB_DIR="$APP_BUNDLE/Resources/web"
+PORT="${INSTA_SCRAP_PORT:-47831}"
+
+choose_port() {
+  candidate="$1"
+  while lsof -ti "tcp:$candidate" >/dev/null 2>&1; do
+    candidate=$((candidate + 1))
+  done
+  printf '%s' "$candidate"
+}
+
+PORT="$(choose_port "$PORT")"
+
+if command -v python3 >/dev/null 2>&1; then
+  PYTHON="python3"
+elif command -v python >/dev/null 2>&1; then
+  PYTHON="python"
+else
+  osascript -e 'display alert "Insta-Scrap" message "Python 3 não está disponível para iniciar o servidor local." as critical'
+  exit 1
+fi
+
+cd "$WEB_DIR"
+"$PYTHON" -m http.server "$PORT" >/tmp/insta-scrap-server.log 2>&1 &
+SERVER_PID=$!
+
+cleanup() {
+  kill "$SERVER_PID" >/dev/null 2>&1 || true
+}
+
+trap cleanup EXIT INT TERM
+
+sleep 1
+open "http://127.0.0.1:$PORT/"
+wait "$SERVER_PID"

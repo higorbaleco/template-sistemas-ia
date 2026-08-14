@@ -1,0 +1,1 @@
+/Users/higorplens/Antigravity Software/Ferramenta Consulta /Instalar Extensao Chrome.command

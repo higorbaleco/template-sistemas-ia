@@ -1,0 +1,126 @@
+==========================================
+PROMPTS PRONTOS PARA COPIAR E COLAR
+==========================================
+
+Base: /Users/higorplens/Antigravity Software/Claude/Insta-Scrap/instagram-salvos/
+
+==========================================
+PROMPT 1: ADICIONAR POSTS POR URL
+==========================================
+
+Vou adicionar alguns posts do Instagram à minha base de conhecimento.
+
+URLs para adicionar:
+[COLE AQUI]
+
+Para cada URL:
+1. Use o script: python3 baixar_por_url.py "URL"
+2. O script vai extrair, baixar, categorizar e renomear automaticamente
+3. Mostre o resumo final
+
+Caminho: /Users/higorplens/Antigravity Software/Claude/Insta-Scrap/instagram-salvos/
+
+==========================================
+PROMPT 2: BAIXAR NOVOS SALVOS
+==========================================
+
+Vou baixar novos posts dos meus salvos do Instagram.
+
+Configuração:
+- Perfil: omagodowhats
+- Quantidade: [50] (máximo seguro)
+- Temas para filtrar: [IA, WhatsApp, Empreendedorismo, Vendas, Automações, Tutorial de Conteúdo]
+
+Processo:
+1. Baixe até 50 posts usando o Instaloader
+2. Rode catalogar.py para categorizar por tema
+3. Rode renomear.py para renomear com título + @autor
+4. Mostre o resumo: quantos em cada pasta
+
+Caminho: /Users/higorplens/Antigravity Software/Claude/Insta-Scrap/instagram-salvos/
+
+==========================================
+PROMPT 3: BUSCAR NA BASE
+==========================================
+
+Que posts eu salvei sobre [TEMA]?
+
+Consulte os arquivos:
+- INDEX.md (índice geral)
+- inspiracao-conteudos/INDEX.md (IA, WhatsApp, Empreendedorismo, Vendas, Automações)
+- tutorial-conteudo/INDEX.md (dicas de criar conteúdo)
+
+Caminho: /Users/higorplens/Antigravity Software/Claude/Insta-Scrap/instagram-salvos/
+
+==========================================
+PROMPT 4: RECATALOGAR TUDO
+==========================================
+
+Quero recatalogar e renomear todos os posts da minha base.
+
+Comandos:
+1. cd /Users/higorplens/Antigravity\ Software/Claude/Insta-Scrap/instagram-salvos/
+2. python3 catalogar.py
+3. python3 renomear.py
+
+Mostre o resumo final.
+
+==========================================
+PROMPT 5: VER STATUS DA BASE
+==========================================
+
+Quantos posts tenho em cada categoria?
+
+Comandos:
+1. Conte arquivos em: inspiracao-conteudos/
+2. Conte arquivos em: tutorial-conteudo/
+3. Total em salvos.json
+
+Caminho: /Users/higorplens/Antigravity Software/Claude/Insta-Scrap/instagram-salvos/
+
+==========================================
+DICA: COPIE E CUSTOMIZE
+==========================================
+
+Cada prompt acima tem [PLACEHOLDERS] que você preenche:
+- [COLE AQUI] → suas URLs
+- [50] → número de posts
+- [IA, WhatsApp, ...] → temas que quer
+- [TEMA] → tema para buscar
+
+Depois é só colar no chat!
+
+==========================================
+ESTRUTURA DE PASTAS
+==========================================
+
+instagram-salvos/
+├── salvos.json (base bruta)
+├── inspiracao-conteudos/ (IA, WhatsApp, etc)
+├── tutorial-conteudo/ (dicas de conteúdo)
+├── posts/ (cópias dos principais)
+├── catalogar.py (script de categorização)
+├── renomear.py (script de renomeação)
+└── baixar_por_url.py (script de URL)
+
+==========================================
+TEMAS RECONHECIDOS AUTOMATICAMENTE
+==========================================
+
+#ia — Claude, IA agents, APIs, automação, código
+#whatsapp — WhatsApp, Meta, chatbots, automações
+#empreendedorismo — negócio, startups, vendas, marketing, estratégia
+#vendas — venda, leads, conversão, pitch
+#automacoes — automação, workflows, integrações
+#tutorial-conteudo — como criar, produção, edição, copywriting
+
+==========================================
+PERFIL E SESSÃO
+==========================================
+
+Perfil: omagodowhats
+Sessão salva: /Users/higorplens/.config/instaloader/session-omagodowhats
+
+(Não precisa fazer login novamente — a sessão já está autenticada)
+
+==========================================

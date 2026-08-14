@@ -1,0 +1,56 @@
+{
+  "cores": {
+    "background_principal": "#0E0E14",
+    "background_card": "#161622",
+    "background_card_hover": "#1E1E30",
+    "primaria": "#8A5CF5",
+    "secundaria": "#00F0FF",
+    "sucesso": "#00E676",
+    "erro": "#FF3D00",
+    "texto_primario": "#FFFFFF",
+    "texto_secundario": "#B3B3C6",
+    "texto_suprimido": "#6C6C85",
+    "borda": "#2D2D3F",
+    "borda_ativa": "#8A5CF5"
+  },
+  "tipografia": {
+    "familia_principal": "'Outfit', 'Inter', system-ui, -apple-system, sans-serif",
+    "tamanho": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "md": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "xxl": "1.5rem",
+      "xxxl": "2rem",
+      "display": "3rem"
+    },
+    "peso": {
+      "regular": "400",
+      "medium": "500",
+      "semibold": "600",
+      "bold": "700"
+    }
+  },
+  "espacamento": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px",
+    "xxl": "48px",
+    "xxxl": "64px"
+  },
+  "bordas": {
+    "raio_sm": "4px",
+    "raio_md": "8px",
+    "raio_lg": "16px",
+    "raio_circular": "9999px"
+  },
+  "sombras": {
+    "suave": "0 4px 12px rgba(0, 0, 0, 0.4)",
+    "forte": "0 8px 24px rgba(0, 0, 0, 0.6)",
+    "neon_primario": "0 0 16px rgba(138, 92, 245, 0.3)",
+    "neon_secundario": "0 0 16px rgba(0, 240, 255, 0.3)"
+  }
+}

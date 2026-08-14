@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph - Token Efficiency Stack</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0f1419;
+            color: #e0e6ed;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2a3f5f;
+            padding-bottom: 20px;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #1a2332;
+            border: 1px solid #2a3f5f;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4ecdc4;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #8b95a5;
+        }
+        .graph-container {
+            background: #1a2332;
+            border: 1px solid #2a3f5f;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 600px;
+            margin: 30px 0;
+        }
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .community-0 { background: #FF6B6B; }
+        .community-1 { background: #4ECDC4; }
+        .community-2 { background: #45B7D1; }
+        .community-3 { background: #96CEB4; }
+        .community-4 { background: #FFEAA7; }
+        .community-5 { background: #DDA15E; }
+        
+        .nodes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .node-card {
+            background: #1a2332;
+            border-left: 4px solid #4ecdc4;
+            padding: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .node-card:hover {
+            border-left-color: #ff6b6b;
+            background: #232d3d;
+        }
+        .node-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #e0e6ed;
+        }
+        .node-info {
+            font-size: 12px;
+            color: #8b95a5;
+        }
+        
+        .communities-section {
+            margin: 40px 0;
+        }
+        .community-card {
+            background: #1a2332;
+            border: 1px solid #2a3f5f;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        .community-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .community-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .community-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .community-cohesion {
+            color: #8b95a5;
+            font-size: 14px;
+        }
+        .community-nodes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .tag {
+            background: #2a3f5f;
+            color: #e0e6ed;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #2a3f5f;
+            text-align: center;
+            color: #8b95a5;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗺️ Knowledge Graph</h1>
+            <p style="color: #8b95a5; margin-top: 5px;">Token Efficiency Stack · Architecture · Projects</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">79</div>
+                <div class="stat-label">Nodes (Concepts)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">69</div>
+                <div class="stat-label">Edges (Relationships)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Communities</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24</div>
+                <div class="stat-label">Files Analyzed</div>
+            </div>
+        </div>
+
+        <div class="graph-container">
+            <h2 style="margin-bottom: 15px;">📊 Community Distribution</h2>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color community-0"></div>
+                    <span>Token Efficiency (0.94)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color community-1"></div>
+                    <span>Project Template (0.91)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color community-2"></div>
+                    <span>Frontend Tech (0.89)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color community-3"></div>
+                    <span>Backend Tech (0.88)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color community-4"></div>
+                    <span>Architecture (0.87)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color community-5"></div>
+                    <span>Design & Projects (0.85)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="communities-section">
+            <h2 style="margin-bottom: 20px;">🎯 Communities</h2>
+            
+            <div class="community-card">
+                <div class="community-header">
+                    <div class="community-badge community-0"></div>
+                    <div>
+                        <div class="community-title">Token Efficiency</div>
+                        <div class="community-cohesion">Cohesion: 0.94 (Strongest)</div>
+                    </div>
+                </div>
+                <div class="community-nodes">
+                    <span class="tag">RTK (Rust Token Killer)</span>
+                    <span class="tag">context-mode</span>
+                    <span class="tag">claude-mem</span>
+                    <span class="tag">artifact-design</span>
+                </div>
+            </div>
+
+            <div class="community-card">
+                <div class="community-header">
+                    <div class="community-badge community-1"></div>
+                    <div>
+                        <div class="community-title">Project Template</div>
+                        <div class="community-cohesion">Cohesion: 0.91</div>
+                    </div>
+                </div>
+                <div class="community-nodes">
+                    <span class="tag">operacao IA</span>
+                    <span class="tag">10 Principles</span>
+                    <span class="tag">Agent Orchestration</span>
+                </div>
+            </div>
+
+            <div class="community-card">
+                <div class="community-header">
+                    <div class="community-badge community-3"></div>
+                    <div>
+                        <div class="community-title">Tech Stack (Backend)</div>
+                        <div class="community-cohesion">Cohesion: 0.88</div>
+                    </div>
+                </div>
+                <div class="community-nodes">
+                    <span class="tag">Python 3.12</span>
+                    <span class="tag">PostgreSQL 16</span>
+                    <span class="tag">Redis 7</span>
+                    <span class="tag">FastAPI</span>
+                </div>
+            </div>
+
+            <div class="community-card">
+                <div class="community-header">
+                    <div class="community-badge community-4"></div>
+                    <div>
+                        <div class="community-title">Architecture Layers</div>
+                        <div class="community-cohesion">Cohesion: 0.87</div>
+                    </div>
+                </div>
+                <div class="community-nodes">
+                    <span class="tag">API Layer</span>
+                    <span class="tag">Domain Layer</span>
+                    <span class="tag">Services Layer</span>
+                </div>
+            </div>
+
+            <div class="community-card">
+                <div class="community-header">
+                    <div class="community-badge community-5"></div>
+                    <div>
+                        <div class="community-title">Design & Projects</div>
+                        <div class="community-cohesion">Cohesion: 0.85</div>
+                    </div>
+                </div>
+                <div class="community-nodes">
+                    <span class="tag">Design Tokens</span>
+                    <span class="tag">Catalogo Car</span>
+                    <span class="tag">SITE AVRAHAM</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 style="margin: 30px 0 20px;">🎯 God Nodes (Highest Connectivity)</h2>
+            <div class="nodes-list">
+                <div class="node-card">
+                    <div class="node-title">token_efficiency_stack</div>
+                    <div class="node-info">14 connections • Token optimization hub</div>
+                </div>
+                <div class="node-card">
+                    <div class="node-title">template_operacao_ia</div>
+                    <div class="node-info">12 connections • Project template foundation</div>
+                </div>
+                <div class="node-card">
+                    <div class="node-title">tech_python312</div>
+                    <div class="node-info">10 connections • Backend technology hub</div>
+                </div>
+                <div class="node-card">
+                    <div class="node-title">arch_api_layer</div>
+                    <div class="node-info">9 connections • API architecture center</div>
+                </div>
+                <div class="node-card">
+                    <div class="node-title">project_catalogo_car</div>
+                    <div class="node-info">8 connections • Protected project</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Generated: 2026-08-14 | Method: Multi-agent semantic extraction + AST analysis</p>
+            <p>Use <code>/graphify query</code>, <code>/graphify path</code>, or <code>/graphify explain</code> to explore</p>
+        </footer>
+    </div>
+</body>
+</html>

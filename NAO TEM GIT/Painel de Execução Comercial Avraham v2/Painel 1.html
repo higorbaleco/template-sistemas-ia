@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Comercial — Avraham Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07070e;
+      --surface: rgba(255,255,255,0.04);
+      --surface-2: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.07);
+      --border-2: rgba(255,255,255,0.12);
+      --accent: #7c6ef5;
+      --accent-dim: rgba(124,110,245,0.12);
+      --green: #10b981;
+      --green-dim: rgba(16,185,129,0.10);
+      --amber: #f59e0b;
+      --amber-dim: rgba(245,158,11,0.10);
+      --red: #ef4444;
+      --red-dim: rgba(239,68,68,0.10);
+      --blue: #3b82f6;
+      --blue-dim: rgba(59,130,246,0.10);
+      --purple-dim: rgba(167,139,250,0.10);
+      --text: #eef2ff;
+      --text-dim: #94a3b8;
+      --text-muted: #475569;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse 70% 50% at 15% 0%, rgba(124,110,245,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 85% 100%, rgba(59,130,246,0.05) 0%, transparent 55%);
+    }
+    h1,h2,h3,h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    /* LAYOUT */
+    .shell { display: grid; grid-template-rows: 56px auto auto 1fr; min-height: 100vh; }
+
+    /* HEADER */
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(7,7,14,0.85);
+      backdrop-filter: blur(20px);
+      position: sticky; top: 0; z-index: 200;
+    }
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #7c6ef5 0%, #4f46e5 100%);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; font-size: 15px; color: #fff; flex-shrink: 0;
+    }
+    .header-name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; }
+    .header-divider { width: 1px; height: 18px; background: var(--border); }
+    .header-painel { font-size: 12px; color: var(--text-dim); }
+    .header-right { display: flex; align-items: center; gap: 10px; }
+    .header-date { font-size: 12px; color: var(--text-muted); }
+    .live-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 6px var(--green);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    .btn {
+      display: flex; align-items: center; gap: 5px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-dim); border-radius: var(--radius-sm);
+      padding: 5px 12px; font-size: 11px; cursor: pointer;
+      font-family: 'Poppins', sans-serif; transition: all 0.15s;
+    }
+    .btn:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-2); }
+
+    /* CONFIG BANNER */
+    .config-banner {
+      margin: 16px 28px 0;
+      background: rgba(245,158,11,0.07);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 12px; color: var(--amber);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .config-banner.hidden { display: none; }
+    .config-banner code {
+      background: rgba(245,158,11,0.15); border-radius: 4px;
+      padding: 1px 5px; font-family: monospace; font-size: 11px;
+    }
+
+    /* KPI SECTION */
+    .kpi-section { padding: 20px 28px 0; }
+    .section-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px;
+    }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+
+    .kpi-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 18px 14px;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .kpi-card:hover { border-color: var(--border-2); transform: translateY(-1px); }
+    .kpi-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--c), transparent 80%);
+    }
+    .kpi-icon { font-size: 18px; margin-bottom: 10px; display: block; filter: drop-shadow(0 0 6px var(--c)); }
+    .kpi-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+    .kpi-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 28px; font-weight: 800; color: var(--text);
+      margin: 4px 0 2px; line-height: 1;
+    }
+    .kpi-meta { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; }
+    .kpi-meta b { color: var(--c); font-weight: 600; }
+    .prog-track { height: 3px; background: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden; }
+    .prog-fill {
+      height: 100%; border-radius: 99px;
+      background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 70%, #fff));
+      transition: width 1s cubic-bezier(.4,0,.2,1);
+    }
+    .prog-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-top: 5px; }
+
+    /* MAIN GRID */
+    .main { display: grid; grid-template-columns: 1fr 284px; gap: 16px; padding: 16px 28px 28px; align-items: start; }
+
+    /* CARD */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .card-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px; border-bottom: 1px solid var(--border);
+    }
+    .card-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; }
+
+    /* PIPELINE TABLE */
+    .tbl { width: 100%; border-collapse: collapse; }
+    .tbl th {
+      text-align: left; padding: 9px 18px;
+      font-size: 10px; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.07em;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.015);
+    }
+    .tbl td { padding: 11px 18px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .tbl tr:last-child td { border-bottom: none; }
+    .tbl tbody tr { transition: background 0.1s; }
+    .tbl tbody tr:hover td { background: rgba(255,255,255,0.02); }
+    .lead-name { font-weight: 500; font-size: 13px; color: var(--text); }
+    .lead-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+    /* STATUS BADGES */
+    .badge {
+      display: inline-flex; align-items: center;
+      font-size: 10px; font-weight: 700;
+      padding: 2px 9px; border-radius: 99px; border: 1px solid; white-space: nowrap;
+    }
+    .s-abordado  { background:rgba(71,85,105,.15);  color:#94a3b8; border-color:rgba(71,85,105,.25); }
+    .s-respondeu { background:var(--blue-dim);        color:#60a5fa; border-color:rgba(59,130,246,.2); }
+    .s-agendado  { background:var(--amber-dim);       color:#fbbf24; border-color:rgba(245,158,11,.25); }
+    .s-reuniao   { background:var(--purple-dim);      color:#c4b5fd; border-color:rgba(167,139,250,.2); }
+    .s-proposta  { background:var(--accent-dim);      color:#a5b4fc; border-color:rgba(124,110,245,.2); }
+    .s-fechado   { background:var(--green-dim);       color:#34d399; border-color:rgba(16,185,129,.2); }
+    .s-perdido   { background:var(--red-dim);         color:#f87171; border-color:rgba(239,68,68,.2); }
+
+    .fu-date { font-size: 11px; }
+    .fu-urgent { color:var(--red);   font-weight:600; }
+    .fu-today  { color:var(--amber); font-weight:600; }
+    .fu-normal { color:var(--text-dim); }
+    .fu-none   { color:var(--text-muted); }
+    .obs-cell  { font-size:11px; color:var(--text-muted); max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .pill-count {
+      font-size:10px; font-weight:700; padding:2px 9px; border-radius:99px;
+      background:var(--accent-dim); color:var(--accent); border:1px solid rgba(124,110,245,.2);
+    }
+    .empty { padding:40px; text-align:center; color:var(--text-muted); font-size:12px; }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 12px; }
+
+    /* ROTINA */
+    .rotina-item {
+      display:flex; align-items:flex-start; gap:10px;
+      padding:11px 16px; cursor:pointer;
+      border-bottom:1px solid var(--border); transition:background .1s;
+    }
+    .rotina-item:last-child { border-bottom:none; }
+    .rotina-item:hover { background:rgba(255,255,255,.03); }
+    .rotina-item.done .ri-text { color:var(--text-muted); text-decoration:line-through; }
+    .ri-box {
+      width:17px; height:17px; min-width:17px;
+      border:1.5px solid var(--border-2); border-radius:4px;
+      display:flex; align-items:center; justify-content:center;
+      transition:all .2s; margin-top:2px;
+    }
+    .rotina-item.done .ri-box { background:var(--green); border-color:var(--green); }
+    .ri-check { display:none; font-size:10px; color:#fff; font-weight:800; }
+    .rotina-item.done .ri-check { display:block; }
+    .ri-text { font-size:12px; line-height:1.4; }
+    .ri-time { font-size:10px; color:var(--text-muted); display:block; margin-top:1px; }
+
+    /* REGRAS */
+    .regra-item {
+      display:flex; gap:8px; padding:9px 16px;
+      border-bottom:1px solid var(--border); align-items:flex-start;
+    }
+    .regra-item:last-child { border-bottom:none; }
+    .regra-n {
+      font-size:9px; font-weight:800; color:var(--accent);
+      background:var(--accent-dim); border-radius:4px;
+      padding:2px 5px; margin-top:1px; min-width:18px; text-align:center; flex-shrink:0;
+    }
+    .regra-t { font-size:11px; color:var(--text-dim); line-height:1.4; }
+
+    /* PROGRESS RING */
+    .prog-ring-wrap { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-muted); }
+    .prog-ring { transform:rotate(-90deg); }
+    .prb { fill:none; stroke:var(--border); stroke-width:2.5; }
+    .prf { fill:none; stroke:var(--green); stroke-width:2.5; stroke-linecap:round; transition:stroke-dashoffset .4s; }
+
+    /* LOADING */
+    .loading { display:flex; align-items:center; justify-content:center; gap:8px; padding:36px; color:var(--text-muted); font-size:12px; }
+    .spin { width:14px; height:14px; border:2px solid var(--border-2); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){ .kpi-grid{grid-template-columns:repeat(2,1fr)} .main{grid-template-columns:1fr} }
+    @media(max-width:600px) { .header,.kpi-section,.main{padding-left:14px;padding-right:14px} .kpi-grid{grid-template-columns:1fr 1fr} }
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">A</div>
+      <span class="header-name">Avraham Digital</span>
+      <div class="header-divider"></div>
+      <span class="header-painel">Painel Comercial</span>
+    </div>
+    <div class="header-right">
+      <span class="header-date" id="hDate"></span>
+      <div class="live-dot" title="Ao vivo"></div>
+      <button class="btn" onclick="loadAll()">↻ Atualizar</button>
+    </div>
+  </header>
+
+  <!-- CONFIG BANNER -->
+  <div class="config-banner" id="cfgBanner">
+    <span>⚠️</span>
+    <span>Configure o <code>SHEET_ID</code> no bloco de script para conectar ao Google Sheets. Exibindo dados de demonstração.</span>
+  </div>
+
+  <!-- KPIs -->
+  <section class="kpi-section">
+    <div class="section-label">Metas do mês — <span id="mesLabel">—</span></div>
+    <div class="kpi-grid" id="kpiGrid"><div class="loading"><div class="spin"></div></div></div>
+  </section>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- Pipeline -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">Pipeline de Leads</span>
+        <span class="pill-count" id="pipeCount">0 ativos</span>
+      </div>
+      <div id="pipeContent"><div class="loading"><div class="spin"></div> Carregando...</div></div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Rotina de Hoje</span>
+          <div class="prog-ring-wrap">
+            <svg class="prog-ring" width="22" height="22" viewBox="0 0 22 22">
+              <circle class="prb" cx="11" cy="11" r="8"/>
+              <circle class="prf" id="ringFill" cx="11" cy="11" r="8"
+                stroke-dasharray="50.27" stroke-dashoffset="50.27"/>
+            </svg>
+            <span id="rotProg">0/4</span>
+          </div>
+        </div>
+        <div id="rotinaList"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="card-title">Regras Invioláveis</span></div>
+        <div id="regrasList"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /shell -->
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  CONFIGURAÇÃO
+// ═══════════════════════════════════════════════════════════════
+
+const SHEET_ID = '1TPsiy8sUbM_NPmkGl2EVX74DT92FmAhp7PkiI_mjGus';
+
+// ═══════════════════════════════════════════════════════════════
+//  DADOS DE DEMONSTRAÇÃO
+// ═══════════════════════════════════════════════════════════════
+
+const DEMO = {
+  kpis: {
+    mes: 'Maio 2026',
+    reunioes:    { atual: 7,     meta: 20 },
+    propostas:   { atual: 3,     meta: 20 },
+    fechamentos: { atual: 2,     meta: 4  },
+    mrr:         { atual: 24000, meta: 40000 },
+  },
+  pipeline: [
+    { nome:'Carlos Mendes',   empresa:'Mendes Veículos',        cidade:'Curitiba',          status:'Agendado',         followup:'2026-05-05', obs:'Demo bot pós-horário' },
+    { nome:'Fernanda Luz',    empresa:'Moto Paraná',            cidade:'Londrina',           status:'Respondeu',        followup:'2026-05-06', obs:'Perguntou sobre preço' },
+    { nome:'Roberto Alves',   empresa:'Caminhões Sul',          cidade:'Maringá',            status:'Proposta Enviada', followup:'2026-05-07', obs:'Aguardando retorno do sócio' },
+    { nome:'Juliana Braga',   empresa:'Auto Braga',             cidade:'Cascavel',           status:'Reunião Feita',    followup:'2026-05-06', obs:'Quer proposta até sexta' },
+    { nome:'Paulo Sena',      empresa:'Sena Implementos',       cidade:'Ponta Grossa',       status:'Abordado',         followup:'2026-05-09', obs:'' },
+    { nome:'Ana Costa',       empresa:'Náutica PR',             cidade:'Paranaguá',          status:'Fechado',          followup:'',           obs:'Contrato assinado ✓' },
+    { nome:'Ricardo Fonseca', empresa:'Fonseca Motors',         cidade:'São José dos Pinhais',status:'Perdido',         followup:'',           obs:'Decidiu não avançar' },
+  ],
+};
+
+// ═══════════════════════════════════════════════════════════════
+//  CONTEÚDO FIXO
+// ═══════════════════════════════════════════════════════════════
+
+const ROTINA = [
+  { id:'b1', label:'Montar lista do dia',    time:'Bloco 1 · 0–15 min'  },
+  { id:'b2', label:'Disparar 50 abordagens', time:'Bloco 2 · 15–40 min' },
+  { id:'b3', label:'Responder e qualificar', time:'Bloco 3 · 40–55 min' },
+  { id:'b4', label:'Atualizar CRM',          time:'Bloco 4 · 55–60 min' },
+];
+
+const REGRAS = [
+  '1h de prospecção por dia. Sem exceções.',
+  'Nunca sair de reunião de proposta sem decisão ou data.',
+  'Lead não registrado no CRM não existe.',
+  'Desqualificação rápida é respeito — não gastar tempo com Fit C.',
+  'Conteúdo para @omagodowhats: produção-ready, sem ajustes pendentes.',
+  'Avraham ≠ Irrah Tech. Nunca misturar.',
+];
+
+const KPI_DEF = [
+  { key:'reunioes',    label:'Reuniões',    icon:'🤝', color:'#7c6ef5', fmt: v => v },
+  { key:'propostas',   label:'Propostas',   icon:'📋', color:'#3b82f6', fmt: v => v },
+  { key:'fechamentos', label:'Fechamentos', icon:'✅', color:'#10b981', fmt: v => v },
+  { key:'mrr',         label:'MRR',         icon:'💰', color:'#f59e0b',
+    fmt: v => 'R$ ' + Number(v).toLocaleString('pt-BR') },
+];
+
+// ═══════════════════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════════════════
+
+function pct(a, m) { return Math.min(100, Math.round((a / (m || 1)) * 100)); }
+function todayISO() { return new Date().toISOString().slice(0,10); }
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function diffDays(str) {
+  if (!str) return null;
+  const today = new Date(); today.setHours(0,0,0,0);
+  return Math.round((new Date(str + 'T00:00:00') - today) / 86400000);
+}
+function fmtDate(str) {
+  if (!str) return null;
+  const [,m,d] = str.split('-');
+  return `${d}/${m}`;
+}
+function followupHTML(str) {
+  const d = diffDays(str), f = fmtDate(str);
+  if (d === null)  return `<span class="fu-date fu-none">—</span>`;
+  if (d < 0)       return `<span class="fu-date fu-urgent">${f} ⚠</span>`;
+  if (d === 0)     return `<span class="fu-date fu-today">Hoje</span>`;
+  return `<span class="fu-date fu-normal">${f}</span>`;
+}
+function statusClass(s) {
+  return ({ 'Abordado':'s-abordado','Respondeu':'s-respondeu','Agendado':'s-agendado',
+    'Reunião Feita':'s-reuniao','Proposta Enviada':'s-proposta',
+    'Fechado':'s-fechado','Perdido':'s-perdido' })[s] || 's-abordado';
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  GOOGLE SHEETS
+// ═══════════════════════════════════════════════════════════════
+
+async function fetchGviz(tab) {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(tab)}`;
+  const txt = await (await fetch(url)).text();
+  const json = JSON.parse(txt.replace(/^[^\(]+\(/, '').replace(/\);\s*$/, ''));
+  const cols = json.table.cols.map(c => c.label || c.id);
+  return (json.table.rows || []).map(row => {
+    const obj = {};
+    (row.c || []).forEach((cell, i) => { obj[cols[i]] = cell ? (cell.f ?? cell.v ?? '') : ''; });
+    return obj;
+  });
+}
+
+async function loadSheetData() {
+  const [kpiRows, pipeRows] = await Promise.allSettled([fetchGviz('KPIs'), fetchGviz('Pipeline')]);
+  const k = (kpiRows.status === 'fulfilled' ? kpiRows.value[0] : null) || {};
+  const pipe = pipeRows.status === 'fulfilled' ? pipeRows.value : [];
+  return {
+    kpis: {
+      mes:         k.mes || '—',
+      reunioes:    { atual: +k.reunioes_realizadas || 0, meta: +k.reunioes_meta || 20 },
+      propostas:   { atual: +k.propostas_enviadas  || 0, meta: +k.propostas_meta || 20 },
+      fechamentos: { atual: +k.fechamentos         || 0, meta: +k.fechamentos_meta || 4 },
+      mrr:         { atual: +k.mrr_atual           || 0, meta: +k.mrr_meta || 40000 },
+    },
+    pipeline: pipe.filter(r => r.nome).map(r => ({
+      nome: r.nome, empresa: r.empresa, cidade: r.cidade,
+      status: r.status, followup: r.proximo_followup, obs: r.observacao,
+    })),
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════════════════════════
+
+function renderKPIs(kpis) {
+  document.getElementById('mesLabel').textContent = kpis.mes;
+  document.getElementById('kpiGrid').innerHTML = KPI_DEF.map(k => {
+    const d = kpis[k.key], p = pct(d.atual, d.meta);
+    return `
+      <div class="kpi-card" style="--c:${k.color}">
+        <span class="kpi-icon">${k.icon}</span>
+        <div class="kpi-label">${k.label}</div>
+        <div class="kpi-value">${k.fmt(d.atual)}</div>
+        <div class="kpi-meta">meta: <b>${k.fmt(d.meta)}</b></div>
+        <div class="prog-track"><div class="prog-fill" style="width:${p}%"></div></div>
+        <div class="prog-labels"><span>${p}%</span><span>${d.atual}/${d.meta}</span></div>
+      </div>`;
+  }).join('');
+}
+
+function renderPipeline(leads) {
+  const active = leads.filter(l => l.status !== 'Perdido' && l.status !== 'Fechado');
+  document.getElementById('pipeCount').textContent = `${active.length} ativo${active.length !== 1 ? 's' : ''}`;
+
+  if (!leads.length) {
+    document.getElementById('pipeContent').innerHTML =
+      '<div class="empty">Nenhum lead no pipeline ainda.<br>Adicione na aba Pipeline da planilha.</div>';
+    return;
+  }
+
+  const order = ['Agendado','Reunião Feita','Proposta Enviada','Respondeu','Abordado','Fechado','Perdido'];
+  const sorted = [...leads].sort((a,b) => {
+    const oa = order.indexOf(a.status), ob = order.indexOf(b.status);
+    return (oa<0?99:oa) - (ob<0?99:ob);
+  });
+
+  document.getElementById('pipeContent').innerHTML = `
+    <table class="tbl">
+      <thead><tr><th>Lead</th><th>Status</th><th>Follow-up</th><th>Observação</th></tr></thead>
+      <tbody>
+        ${sorted.map(l => `
+          <tr>
+            <td>
+              <div class="lead-name">${esc(l.nome)||'—'}</div>
+              <div class="lead-sub">${esc(l.empresa)}${l.cidade?' · '+esc(l.cidade):''}</div>
+            </td>
+            <td><span class="badge ${statusClass(l.status)}">${esc(l.status)||'—'}</span></td>
+            <td>${followupHTML(l.followup)}</td>
+            <td><span class="obs-cell" title="${esc(l.obs)}">${esc(l.obs)||'—'}</span></td>
+          </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function renderRotina() {
+  const key = 'rot_' + todayISO();
+  const saved = JSON.parse(localStorage.getItem(key) || '{}');
+  const done = ROTINA.filter(r => saved[r.id]).length;
+
+  const C = 50.27;
+  document.getElementById('ringFill').style.strokeDashoffset = C - (done / ROTINA.length) * C;
+  document.getElementById('rotProg').textContent = `${done}/${ROTINA.length}`;
+
+  document.getElementById('rotinaList').innerHTML = ROTINA.map(r => `
+    <div class="rotina-item ${saved[r.id]?'done':''}" onclick="toggleRot('${r.id}')">
+      <div class="ri-box"><span class="ri-check">✓</span></div>
+      <div class="ri-text">${esc(r.label)}<span class="ri-time">${esc(r.time)}</span></div>
+    </div>`).join('');
+}
+
+window.toggleRot = function(id) {
+  const key = 'rot_' + todayISO();
+  const saved = JSON.parse(localStorage.getItem(key) || '{}');
+  saved[id] = !saved[id];
+  localStorage.setItem(key, JSON.stringify(saved));
+  renderRotina();
+};
+
+function renderRegras() {
+  document.getElementById('regrasList').innerHTML = REGRAS.map((r,i) => `
+    <div class="regra-item">
+      <span class="regra-n">${i+1}</span>
+      <span class="regra-t">${esc(r)}</span>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  BOOT
+// ═══════════════════════════════════════════════════════════════
+
+async function loadAll() {
+  const configured = SHEET_ID.length > 10;
+  document.getElementById('cfgBanner').classList.toggle('hidden', configured);
+  document.getElementById('hDate').textContent =
+    new Date().toLocaleDateString('pt-BR', { weekday:'long', day:'numeric', month:'long' });
+
+  renderRotina();
+  renderRegras();
+
+  let data = DEMO;
+  if (configured) {
+    try { data = await loadSheetData(); }
+    catch(e) { console.warn('[Painel] Falha ao carregar Sheet, usando demo.', e.message); }
+  }
+
+  renderKPIs(data.kpis);
+  renderPipeline(data.pipeline);
+}
+
+loadAll();
+</script>
+</body>
+</html>

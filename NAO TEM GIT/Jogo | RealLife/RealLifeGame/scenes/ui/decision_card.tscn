@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="UIDECISIONCARD000"]
+
+[node name="DecisionCard" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+margin_left = -250
+margin_top = -150
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/min_size = Vector2(500, 300)
+
+[node name="Background" type="TextureRect" parent="."]
+expand = true
+stretch_mode = 2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0
+margin_top = 0
+margin_right = 0
+margin_bottom = 0
+
+[node name="TitleLabel" type="Label" parent="."]
+text = "Título do Evento"
+anchor_left = 0.5
+anchor_top = 0.2
+margin_left = -200
+margin_top = -20
+align = 2
+valign = 1
+font_size = 24
+custom_colors/font_color = Color(1.0, 1.0, 1.0, 1.0)
+
+[node name="DescriptionLabel" type="Label" parent="."]
+text = "Descrição detalhada do evento que aconteceu. Escolha uma das opções abaixo para proceder."
+anchor_left = 0.5
+anchor_top = 0.4
+margin_left = -220
+margin_top = 10
+align = 2
+valign = 1
+custom_colors/font_color = Color(0.9, 0.9, 0.9, 1.0)
+
+[node name="OptionA" type="Button" parent="."]
+text = "Opção A"
+anchor_left = 0.3
+anchor_top = 0.7
+margin_left = -150
+margin_top = 10
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OptionB" type="Button" parent="."]
+text = "Opção B"
+anchor_left = 0.7
+anchor_top = 0.7
+margin_left = -30
+margin_top = 10
+size_flags_horizontal = 4
+size_flags_vertical = 4

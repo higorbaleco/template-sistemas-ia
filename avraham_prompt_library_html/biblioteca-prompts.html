@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de Prompts Avraham</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-bottom: 1px solid #333;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .count {
+            font-size: 14px;
+            color: #999;
+            margin-left: 8px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #2d9d78;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #24a070;
+        }
+
+        .btn-secondary {
+            background: #333;
+            color: #e0e0e0;
+            border: 1px solid #555;
+        }
+
+        .btn-secondary:hover {
+            background: #444;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 16px;
+            padding: 20px 24px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 0 12px;
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #e0e0e0;
+            outline: none;
+            padding: 8px 0;
+        }
+
+        .search-box input::placeholder {
+            color: #666;
+        }
+
+        .filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .filter-group label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .filter-select {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 6px 10px;
+            color: #e0e0e0;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .filter-select:hover {
+            border-color: #555;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #2d9d78;
+        }
+
+        .content {
+            padding: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card:hover {
+            border-color: #555;
+            background: #242424;
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .card-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #e0e0e0;
+            flex: 1;
+        }
+
+        .card-fav {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .card-fav:hover {
+            color: #ffb800;
+        }
+
+        .card-fav.active {
+            color: #ffb800;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #999;
+            line-height: 1.4;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #2a2a2a;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .tag.type {
+            background: #1a3a2d;
+            color: #2d9d78;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 200;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            margin: auto;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            max-height: 90vh;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 201;
+        }
+
+        .modal-form {
+            padding: 24px;
+            overflow-y: auto;
+            border-right: 1px solid #333;
+        }
+
+        .modal-preview {
+            padding: 24px;
+            overflow-y: auto;
+            background: #0f0f0f;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px 10px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 13px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2d9d78;
+        }
+
+        .preview-section {
+            margin-bottom: 20px;
+        }
+
+        .preview-section h3 {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .preview-content {
+            background: #2a2a2a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 13px;
+            color: #e0e0e0;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty p {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 1024px) {
+            .modal-content {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-form {
+                border-right: none;
+                border-bottom: 1px solid #333;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 Biblioteca de Prompts <span class="count" id="count">(0)</span></h1>
+        <div class="header-actions">
+            <button class="btn btn-secondary" onclick="showFavorites()">⭐ Favoritos</button>
+            <button class="btn btn-secondary" onclick="resetFilters()">Resetar</button>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <div class="search-box">
+            <span>🔍</span>
+            <input type="text" id="search" placeholder="Buscar modelos..." onkeyup="filterCards()">
+        </div>
+        <div class="filters">
+            <div class="filter-group">
+                <label>Aplicação</label>
+                <select id="appFilter" class="filter-select" onchange="filterCards()">
+                    <option value="">Todas</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Tipo</label>
+                <select id="typeFilter" class="filter-select" onchange="filterCards()">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Canal</label>
+                <select id="channelFilter" class="filter-select" onchange="filterCards()">
+                    <option value="">Todos</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Plataforma</label>
+                <select id="platformFilter" class="filter-select" onchange="filterCards()">
+                    <option value="">Todas</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="content" id="content"></div>
+
+    <div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-form" id="form"></div>
+            <div class="modal-preview" id="preview"></div>
+        </div>
+    </div>
+
+    <script>
+        const prompts = [
+            {
+                id: "COM-007",
+                title: "Analista Especializado de WhatsApp Comercial",
+                description: "Analisa uma conversa de WhatsApp considerando ritmo, contexto, legibilidade e CTAs.",
+                type: "Prompt",
+                applications: ["WhatsApp", "Análise de Conversas", "Comercial e Vendas"],
+                channels: ["WhatsApp"],
+                platforms: ["Universal", "Claude", "OpenAI"],
+                version: "1.0.0",
+                icon: "💬",
+                fields: [
+                    { key: "nome_vendedor", label: "Nome do vendedor", type: "text", required: true, example: "Higor" },
+                    { key: "segmento", label: "Segmento do prospect", type: "text", required: true, example: "SaaS" },
+                    { key: "objetivo", label: "Objetivo da conversa", type: "text", required: true, example: "Qualificar lead" },
+                    { key: "conversa", label: "Exportação ou transcrição do WhatsApp", type: "textarea", required: true },
+                    { key: "resultado", label: "Resultado até agora", type: "text", required: false }
+                ],
+                prompt: `Você atuará como Especialista em vendas conversacionais no WhatsApp.
+
+Vendedor: {{nome_vendedor}}
+Segmento: {{segmento}}
+Objetivo: {{objetivo}}
+
+Conversa:
+{{conversa}}
+
+Resultado observado: {{resultado}}
+
+Analise a conversa considerando:
+1. Ritmo e intervalos de resposta
+2. Legibilidade e tamanho das mensagens
+3. Quantidade de perguntas
+4. Uso de áudio, anexos e links
+5. Follow-ups e respostas
+
+Forneça:
+- Resumo executivo
+- Timeline de eventos
+- Tabela de problemas e acertos
+- Resposta pronta para o próximo toque
+- Versão executiva`
+            },
+            {
+                id: "CNT-004",
+                title: "Gerador de Ganchos por Rede Social",
+                description: "Gera ganchos originais adequados ao objetivo, público, tema e plataforma.",
+                type: "Prompt",
+                applications: ["Conteúdo Automatizado", "Instagram e Conteúdo"],
+                channels: ["LinkedIn", "Instagram", "Facebook", "YouTube", "TikTok", "Pinterest"],
+                platforms: ["Universal", "Claude", "OpenAI"],
+                version: "1.0.0",
+                icon: "🎯",
+                fields: [
+                    { key: "tema", label: "Tema", type: "text", required: true, example: "Automação para restaurantes" },
+                    { key: "objetivo", label: "Objetivo", type: "text", required: true, example: "Lead" },
+                    { key: "persona", label: "Persona", type: "text", required: true, example: "Donos de restaurantes" },
+                    { key: "plataforma", label: "Plataforma", type: "select", options: ["LinkedIn", "Instagram", "TikTok", "YouTube", "Facebook", "Pinterest"], required: true },
+                    { key: "formato", label: "Formato", type: "text", required: false, example: "Carrossel" },
+                    { key: "quantidade", label: "Quantidade de ganchos", type: "number", required: false, value: "10" }
+                ],
+                prompt: `Você atuará como Copywriter e estrategista multiplataforma.
+
+Tema: {{tema}}
+Objetivo: {{objetivo}}
+Persona: {{persona}}
+Plataforma: {{plataforma}}
+Formato: {{formato}}
+Quantidade: {{quantidade}}
+
+Gere {{quantidade}} ganchos originais em famílias diferentes.
+
+Para cada gancho:
+- Texto do gancho
+- Família (curiosidade, contraste, dúvida, urgência, etc)
+- Por que pode funcionar
+- Risco de exagero
+- Versão curta
+
+Regras:
+- Sem promessa não comprovada
+- Adequado à plataforma
+- Teses diferentes`
+            },
+            {
+                id: "AGT-001",
+                title: "Arquiteto de Agentes de IA",
+                description: "Projetar agentes confiáveis para GPT Maker, OpenAI, Claude, Gemini ou ambientes próprios.",
+                type: "Agente",
+                applications: ["Agentes de IA", "Automações"],
+                channels: [],
+                platforms: ["Universal", "Claude", "OpenAI"],
+                version: "1.0.0",
+                icon: "🤖",
+                fields: [
+                    { key: "problema", label: "Problema de negócio", type: "textarea", required: true },
+                    { key: "usuarios", label: "Quem usará ou será atendido", type: "text", required: true },
+                    { key: "canal", label: "Canal", type: "text", required: true },
+                    { key: "dados", label: "Dados e fontes disponíveis", type: "textarea", required: false },
+                    { key: "ferramentas", label: "Ferramentas e integrações", type: "textarea", required: false },
+                    { key: "acoes", label: "Ações permitidas e proibidas", type: "textarea", required: true },
+                    { key: "resultado", label: "Resultado esperado", type: "textarea", required: true }
+                ],
+                prompt: `Você atuará como Arquiteto de Agentes de IA.
+
+Diagnóstico:
+Problema: {{problema}}
+Usuários: {{usuarios}}
+Canal: {{canal}}
+Dados: {{dados}}
+
+Gere:
+1. Diagnóstico
+2. Arquitetura
+3. Especificação universal
+4. Versões por plataforma
+5. Testes
+6. Plano de implantação
+
+Proibições:
+- Não recomendar agente quando um formulário resolve
+- Não dar autonomia financeira por padrão
+- Não transformar todo documento em memória permanente`
+            },
+            {
+                id: "WF-COM-001",
+                title: "Workflow de Análise Completa de Uma Conversa",
+                description: "Análise estruturada de conversa comercial com contexto, tom, dores, objeções e próxima ação.",
+                type: "Workflow",
+                applications: ["Análise de Conversas", "Comercial e Vendas", "Automações"],
+                channels: ["WhatsApp", "Telefone", "E-mail", "LinkedIn", "Presencial"],
+                platforms: ["Universal", "Claude", "OpenAI"],
+                version: "1.0.0",
+                icon: "🔄",
+                fields: [
+                    { key: "canal", label: "Canal", type: "select", options: ["WhatsApp", "Telefone", "E-mail", "LinkedIn", "Presencial"], required: true },
+                    { key: "vendedor", label: "Vendedor e prospect", type: "text", required: true },
+                    { key: "objetivo", label: "Objetivo comercial", type: "text", required: true },
+                    { key: "contexto_crm", label: "Contexto do CRM", type: "textarea", required: false },
+                    { key: "conversa", label: "Conversa completa", type: "textarea", required: true }
+                ],
+                prompt: `Executar análise completa:
+
+1. Normalizar conversa (COM-001)
+2. Reconstruir contexto e estágio (COM-002)
+3. Analisar tom e engajamento (COM-003)
+4. Auditar abordagem (COM-004)
+5. Mapear dores e objeções (COM-005)
+6. Análise específica do canal
+7. Recomendar próxima ação (COM-006)
+
+Entrada:
+Canal: {{canal}}
+Conversa: {{conversa}}
+Contexto: {{contexto_crm}}
+
+Saída:
+- Executive summary
+- Estágio
+- Sinais
+- Força do vendedor
+- Oportunidades de melhoria
+- Objeções
+- Próxima ação
+- Follow-up sugerido`
+            },
+            {
+                id: "FRW-005",
+                title: "Framework de Pitch Deck",
+                description: "Estrutura e regras para pitch deck de startup com narrativa contínua e dados verificáveis.",
+                type: "Framework",
+                applications: ["Comercial e Vendas", "Imagens e Design"],
+                channels: ["Presencial"],
+                platforms: ["Universal"],
+                version: "1.0.0",
+                icon: "📊",
+                fields: [
+                    { key: "startup", label: "Nome da startup", type: "text", required: true },
+                    { key: "tagline", label: "Tagline", type: "text", required: true },
+                    { key: "problema", label: "Problema", type: "textarea", required: true },
+                    { key: "metricas", label: "Métricas de tração", type: "textarea", required: false },
+                    { key: "captacao", label: "Valor de captação", type: "text", required: true }
+                ],
+                prompt: `Framework de Pitch Deck:
+
+Startup: {{startup}}
+Tagline: {{tagline}}
+Problema: {{problema}}
+Métricas: {{metricas}}
+Captação: {{captacao}}
+
+Estrutura:
+1. Capa - {{startup}} - {{tagline}}
+2. Problema
+3. Solução
+4. Produto
+5. Mercado
+6. Modelo de negócio
+7. Tração - {{metricas}}
+8. Concorrência
+9. Time
+10. Financeiro
+11. Captação - {{captacao}}
+12. Contato
+
+Regras:
+- Narrativa contínua
+- Uma ideia por slide
+- Dados com fonte
+- Premissas explícitas
+- Sem adjetivos vazios`
+            }
+        ];
+
+        let allPrompts = [...prompts];
+        let favorites = JSON.parse(localStorage.getItem('promptFavorites')) || [];
+        let currentView = 'all';
+
+        function initializeUI() {
+            populateFilters();
+            renderCards(allPrompts);
+            updateCount();
+        }
+
+        function populateFilters() {
+            const apps = new Set();
+            const types = new Set();
+            const channels = new Set();
+            const platforms = new Set();
+
+            allPrompts.forEach(p => {
+                p.applications.forEach(a => apps.add(a));
+                types.add(p.type);
+                p.channels.forEach(c => channels.add(c));
+                p.platforms.forEach(pl => platforms.add(pl));
+            });
+
+            populateSelect('appFilter', Array.from(apps).sort());
+            populateSelect('typeFilter', Array.from(types).sort());
+            populateSelect('channelFilter', Array.from(channels).sort());
+            populateSelect('platformFilter', Array.from(platforms).sort());
+        }
+
+        function populateSelect(id, options) {
+            const select = document.getElementById(id);
+            options.forEach(opt => {
+                const option = document.createElement('option');
+                option.value = opt;
+                option.textContent = opt;
+                select.appendChild(option);
+            });
+        }
+
+        function filterCards() {
+            currentView = 'filtered';
+            const search = document.getElementById('search').value.toLowerCase();
+            const appFilter = document.getElementById('appFilter').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            const channelFilter = document.getElementById('channelFilter').value;
+            const platformFilter = document.getElementById('platformFilter').value;
+
+            const filtered = allPrompts.filter(p => {
+                const matchSearch = p.title.toLowerCase().includes(search) ||
+                                   p.description.toLowerCase().includes(search) ||
+                                   p.id.toLowerCase().includes(search);
+                const matchApp = !appFilter || p.applications.includes(appFilter);
+                const matchType = !typeFilter || p.type === typeFilter;
+                const matchChannel = !channelFilter || p.channels.length === 0 || p.channels.includes(channelFilter);
+                const matchPlatform = !platformFilter || p.platforms.includes(platformFilter);
+
+                return matchSearch && matchApp && matchType && matchChannel && matchPlatform;
+            });
+
+            renderCards(filtered);
+        }
+
+        function updateCount() {
+            const visible = document.querySelectorAll('.card').length;
+            document.getElementById('count').textContent = `(${visible})`;
+        }
+
+        function renderCards(items) {
+            const content = document.getElementById('content');
+            content.innerHTML = '';
+
+            if (items.length === 0) {
+                content.innerHTML = '<div class="empty"><p>Nenhum prompt encontrado</p></div>';
+                return;
+            }
+
+            items.forEach(prompt => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                const isFav = favorites.includes(prompt.id);
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div style="flex:1;">
+                            <span class="card-icon">${prompt.icon}</span>
+                            <span class="card-title">${prompt.title}</span>
+                        </div>
+                        <button class="card-fav ${isFav ? 'active' : ''}" onclick="toggleFavorite(event, '${prompt.id}')">★</button>
+                    </div>
+                    <p class="card-desc">${prompt.description}</p>
+                    <div class="card-tags">
+                        <span class="tag type">${prompt.type}</span>
+                        <span class="tag">${prompt.id}</span>
+                        <span class="tag">${prompt.version}</span>
+                    </div>
+                `;
+
+                card.onclick = () => openModal(prompt);
+                content.appendChild(card);
+            });
+
+            updateCount();
+        }
+
+        function openModal(prompt) {
+            const modal = document.getElementById('modal');
+            const form = document.getElementById('form');
+            const preview = document.getElementById('preview');
+
+            form.innerHTML = `<h2 style="margin-bottom:20px">${prompt.title}</h2>`;
+
+            prompt.fields.forEach(field => {
+                const group = document.createElement('div');
+                group.className = 'form-group';
+
+                const label = document.createElement('label');
+                label.textContent = field.label + (field.required ? ' *' : '');
+                group.appendChild(label);
+
+                let input;
+                if (field.type === 'textarea') {
+                    input = document.createElement('textarea');
+                    input.placeholder = field.example || '';
+                } else if (field.type === 'select') {
+                    input = document.createElement('select');
+                    input.innerHTML = '<option value="">Selecione...</option>';
+                    field.options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt;
+                        option.textContent = opt;
+                        input.appendChild(option);
+                    });
+                } else if (field.type === 'number') {
+                    input = document.createElement('input');
+                    input.type = 'number';
+                    input.value = field.value || '';
+                } else {
+                    input = document.createElement('input');
+                    input.type = 'text';
+                    input.placeholder = field.example || '';
+                }
+
+                input.id = field.key;
+                input.required = field.required;
+                input.oninput = () => updatePreview(prompt);
+
+                group.appendChild(input);
+                form.appendChild(group);
+            });
+
+            preview.innerHTML = `
+                <div class="preview-section">
+                    <h3>Prompt Gerado</h3>
+                    <div class="preview-content" id="promptPreview">${escapeHtml(prompt.prompt)}</div>
+                </div>
+                <div class="preview-section">
+                    <button class="btn btn-primary" style="width:100%" onclick="copyPrompt()">Copiar Prompt</button>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        function updatePreview(prompt) {
+            let text = prompt.prompt;
+
+            prompt.fields.forEach(field => {
+                const value = document.getElementById(field.key)?.value || '';
+                text = text.replace(new RegExp(`{{${field.key}}}`, 'g'), value);
+            });
+
+            document.getElementById('promptPreview').textContent = text;
+        }
+
+        function copyPrompt() {
+            const preview = document.getElementById('promptPreview').textContent;
+            navigator.clipboard.writeText(preview).then(() => {
+                alert('Prompt copiado com sucesso!');
+            }).catch(() => {
+                alert('Erro ao copiar');
+            });
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function toggleFavorite(e, id) {
+            e.stopPropagation();
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(f => f !== id);
+            } else {
+                favorites.push(id);
+            }
+            localStorage.setItem('promptFavorites', JSON.stringify(favorites));
+
+            if (currentView === 'favorites') {
+                showFavorites();
+            } else {
+                filterCards();
+            }
+        }
+
+        function showFavorites() {
+            currentView = 'favorites';
+            const filtered = allPrompts.filter(p => favorites.includes(p.id));
+            renderCards(filtered);
+        }
+
+        function resetFilters() {
+            currentView = 'all';
+            document.getElementById('search').value = '';
+            document.getElementById('appFilter').value = '';
+            document.getElementById('typeFilter').value = '';
+            document.getElementById('channelFilter').value = '';
+            document.getElementById('platformFilter').value = '';
+            renderCards(allPrompts);
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        initializeUI();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano Operacional 50 Disparos | Avraham</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #131316;
+  --bg-low: #0D0E11;
+  --bg-institutional: #02153D;
+  --purple: #4B227A;
+  --teal: #0197AF;
+  --cyan: #00EED0;
+  --graphite: #222221;
+  --white: #FFFFFF;
+  --text-primary: #E4E2E6;
+  --text-secondary: #C5C6CF;
+  --text-muted: #9A9AA8;
+  --text-disabled: #4A4A55;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at top left, rgba(75, 34, 122, 0.15) 0%, transparent 40%),
+    radial-gradient(ellipse at bottom right, rgba(0, 238, 208, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at center, rgba(2, 21, 61, 0.4) 0%, transparent 60%),
+    var(--bg-deep);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 32px;
+}
+
+/* HEADER */
+.header {
+  margin-bottom: 64px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(0, 238, 208, 0.08);
+  border: 1px solid rgba(0, 238, 208, 0.2);
+  border-radius: 999px;
+  color: var(--cyan);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+
+.header-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.header h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--white);
+}
+
+.header h1 span {
+  color: var(--cyan);
+}
+
+.header-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 720px;
+  line-height: 1.6;
+}
+
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.meta-value {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* KPIs */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 64px;
+}
+
+.kpi {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(18px);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 1px;
+  background: var(--cyan);
+}
+
+.kpi-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.kpi-number {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.kpi-suffix {
+  font-size: 18px;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.kpi-detail {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* SECTION */
+.section {
+  margin-bottom: 96px;
+}
+
+.section-header {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.section-title-block h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.section-title-block p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+.section-counter {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--cyan);
+  padding: 6px 12px;
+  background: rgba(0, 238, 208, 0.08);
+  border: 1px solid rgba(0, 238, 208, 0.2);
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* NICHO TABS */
+.nicho-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.nicho-tab {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text-primary);
+}
+
+.nicho-tab:hover {
+  background: rgba(0, 238, 208, 0.04);
+  border-color: rgba(0, 238, 208, 0.25);
+}
+
+.nicho-tab.active {
+  background: rgba(0, 238, 208, 0.06);
+  border-color: var(--cyan);
+  box-shadow: 0 0 32px rgba(0, 238, 208, 0.1);
+}
+
+.nicho-tab-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.nicho-tab-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.nicho-tab-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* BLOCK CARD */
+.block-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.block {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(18px);
+  position: relative;
+}
+
+.block-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.block-id {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.block-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  background: rgba(0, 238, 208, 0.1);
+  border: 1px solid rgba(0, 238, 208, 0.25);
+  color: var(--cyan);
+  border-radius: 6px;
+}
+
+.block-tag.purple {
+  background: rgba(75, 34, 122, 0.15);
+  border-color: rgba(75, 34, 122, 0.4);
+  color: #a78bfa;
+}
+
+.block-tag.teal {
+  background: rgba(1, 151, 175, 0.1);
+  border-color: rgba(1, 151, 175, 0.3);
+  color: var(--teal);
+}
+
+.block-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.block-when {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid var(--teal);
+  border-radius: 4px;
+}
+
+.block-when strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.block-copy {
+  background: var(--bg-low);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.block-copy::before {
+  content: 'COPY';
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-disabled);
+}
+
+.block-vars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.var-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(0, 238, 208, 0.04);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.var-name {
+  color: var(--cyan);
+  font-weight: 600;
+  font-family: 'Space Grotesk', monospace;
+  white-space: nowrap;
+}
+
+.var-desc {
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.block-rule {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.block-rule strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.copy-btn {
+  width: 100%;
+  padding: 12px;
+  background: rgba(0, 238, 208, 0.08);
+  border: 1px solid rgba(0, 238, 208, 0.3);
+  color: var(--cyan);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.copy-btn:hover {
+  background: rgba(0, 238, 208, 0.15);
+  border-color: var(--cyan);
+}
+
+.copy-btn.copied {
+  background: rgba(0, 238, 208, 0.2);
+  color: var(--white);
+  border-color: var(--cyan);
+}
+
+/* FLOW DIAGRAM */
+.flow-diagram {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  position: relative;
+  margin-top: 24px;
+}
+
+.flow-node {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  position: relative;
+}
+
+.flow-node::before {
+  content: '';
+  position: absolute;
+  left: 60px;
+  bottom: -12px;
+  width: 1px;
+  height: 12px;
+  background: rgba(0, 238, 208, 0.3);
+}
+
+.flow-node:last-child::before {
+  display: none;
+}
+
+.flow-node-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--cyan);
+  text-align: center;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.flow-node-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.flow-node-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.flow-node-detail {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.flow-node-type {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  background: rgba(75, 34, 122, 0.2);
+  border: 1px solid rgba(75, 34, 122, 0.4);
+  color: #a78bfa;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.flow-node-type.action {
+  background: rgba(0, 238, 208, 0.08);
+  border-color: rgba(0, 238, 208, 0.25);
+  color: var(--cyan);
+}
+
+.flow-node-type.cond {
+  background: rgba(1, 151, 175, 0.08);
+  border-color: rgba(1, 151, 175, 0.25);
+  color: var(--teal);
+}
+
+.flow-node-type.wait {
+  background: rgba(154, 154, 168, 0.08);
+  border-color: rgba(154, 154, 168, 0.25);
+  color: var(--text-muted);
+}
+
+/* CRONOGRAMA */
+.schedule {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.schedule-day {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.schedule-day-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.schedule-day-name {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+}
+
+.schedule-day-date {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.schedule-day-time {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.schedule-action {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.schedule-action-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.schedule-action-detail {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.schedule-volume {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.schedule-volume-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  display: block;
+}
+
+/* METRIC TABLE */
+.metric-table {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.metric-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 24px;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  align-items: center;
+}
+
+.metric-row:last-child {
+  border-bottom: none;
+}
+
+.metric-row-header {
+  background: rgba(0, 238, 208, 0.04);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  padding: 14px 24px;
+}
+
+.metric-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.metric-target {
+  font-size: 14px;
+  color: var(--cyan);
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.metric-expected {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.metric-source {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* DONT DO */
+.dont-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.dont-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 2px solid #ef4444;
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.dont-item strong {
+  color: var(--text-primary);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* FUNNEL */
+.funnel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.funnel-step {
+  display: grid;
+  grid-template-columns: 40px 1fr 80px;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.funnel-step-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.funnel-step-name {
+  font-size: 15px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.funnel-step-detail {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.funnel-step-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+  text-align: right;
+  letter-spacing: -0.02em;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 96px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.footer-cyan {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+/* HIDDEN */
+.hidden {
+  display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .shell {
+    padding: 32px 20px;
+  }
+
+  .nicho-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-node {
+    grid-template-columns: 60px 1fr;
+  }
+
+  .flow-node-type {
+    grid-column: 1 / -1;
+    width: fit-content;
+  }
+
+  .schedule-day {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .schedule-volume {
+    text-align: left;
+  }
+
+  .metric-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .metric-target, .metric-expected, .metric-source {
+    text-align: left;
+  }
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-tag">SISTEMA OPERACIONAL DE PROSPECÇÃO</div>
+  <h1>Plano de <span>50 disparos</span> eficientes</h1>
+  <p class="header-subtitle">
+    Arquitetura completa de prospecção ativa para Estética Corporal e Veículos. Construída a partir da análise de dezesseis fluxos rodados, oito capturas da operação atual no Dispara Aí e a lista qualificada de prospects de hoje.
+  </p>
+  <div class="header-meta">
+    <div class="meta-item">
+      <span class="meta-label">Operação</span>
+      <span class="meta-value">Avraham WhatsApp e IA</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Ferramenta</span>
+      <span class="meta-value">Dispara Aí com Z API</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Ciclo</span>
+      <span class="meta-value">5 dias úteis</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Atualização</span>
+      <span class="meta-value">Maio 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- KPIs -->
+<section class="kpi-strip">
+  <div class="kpi">
+    <div class="kpi-label">Volume</div>
+    <div class="kpi-number">50<span class="kpi-suffix">disparos</span></div>
+    <div class="kpi-detail">distribuídos em 5 dias</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Resposta esperada</div>
+    <div class="kpi-number">15<span class="kpi-suffix">leads</span></div>
+    <div class="kpi-detail">taxa de 30 por cento</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Qualificação</div>
+    <div class="kpi-number">4<span class="kpi-suffix">prospects</span></div>
+    <div class="kpi-detail">decisor com problema</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Agendamento</div>
+    <div class="kpi-number">2<span class="kpi-suffix">calls</span></div>
+    <div class="kpi-detail">via Calendly</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Pipeline</div>
+    <div class="kpi-number">1<span class="kpi-suffix">proposta</span></div>
+    <div class="kpi-detail">ticket 15k a 30k</div>
+  </div>
+</section>
+
+<!-- ANÁLISE DA OPERAÇÃO ATUAL -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>O que a reanálise revelou</h2>
+      <p>Os fluxos enviados mostram uma operação que já roda, com tentativas em quatro frentes diferentes. Cinco padrões funcionaram. Três não funcionaram.</p>
+    </div>
+    <div class="section-counter">EVIDÊNCIA OPERACIONAL</div>
+  </div>
+
+  <div class="block-grid">
+    <div class="block">
+      <div class="block-header">
+        <div class="block-id">
+          <span class="block-tag">PADRÃO 1</span>
+          <h3 class="block-title">Abertura curta com construção de contexto</h3>
+        </div>
+      </div>
+      <div class="block-when">
+        <strong>Encontrado em:</strong> Fluxo do Lucas, registrado com 106 execuções e 61 entregas. A frase é "Meu time me passou o contato de vocês e achei interessante chamar por aqui".
+      </div>
+      <div class="block-rule">
+        <span><strong>Por que funciona.</strong> Reduz a sensação de spam ao implicar referência. Cria autoridade implícita ao mencionar "meu time". Convida sem pedir nada. Volume rodado prova que escala bem.</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-header">
+        <div class="block-id">
+          <span class="block-tag">PADRÃO 2</span>
+          <h3 class="block-title">Pergunta provocativa de cenário</h3>
+        </div>
+      </div>
+      <div class="block-when">
+        <strong>Encontrado em:</strong> Fluxos de Estéticas, Imóveis e Veículos. A estrutura é "Se eu te mandasse uma mensagem pós horário para [ação], você me atenderia?".
+      </div>
+      <div class="block-rule">
+        <span><strong>Por que funciona.</strong> Força o prospect a se colocar no lugar do próprio cliente. A reflexão acontece no momento da leitura, antes mesmo da resposta verbal.</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-header">
+        <div class="block-id">
+          <span class="block-tag">PADRÃO 3</span>
+          <h3 class="block-title">Validação empática antes do pitch</h3>
+        </div>
+      </div>
+      <div class="block-when">
+        <strong>Encontrado em:</strong> Fluxo do Lucas. A frase é "Show. Eu pergunto pois muitas empresas não respondem após o horário e acabam deixando sem resposta no WhatsApp".
+      </div>
+      <div class="block-rule">
+        <span><strong>Por que funciona.</strong> Posiciona o problema como universal, não como falha pessoal do prospect. Reduz defensividade.</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-header">
+        <div class="block-id">
+          <span class="block-tag">PADRÃO 4</span>
+          <h3 class="block-title">Dado quantificado para criar urgência</h3>
+        </div>
+      </div>
+      <div class="block-when">
+        <strong>Encontrado em:</strong> Fluxo "Clientes que não são respondidos tem 90%". A frase é "Você sabia que clientes respondidos em menos de 10 minutos tem 90 por cento mais chances de comprarem de você?".
+      </div>
+      <div class="block-rule">
+        <span><strong>Por que funciona.</strong> Transforma intuição em fato. É específico, memorável e difícil de contestar.</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-header">
+        <div class="block-id">
+          <span class="block-tag">PADRÃO 5</span>
+          <h3 class="block-title">Pergunta de qualificação de decisor</h3>
+        </div>
+      </div>
+      <div class="block-when">
+        <strong>Encontrado em:</strong> Fluxo do Lucas. A frase resolve o problema de gatekeeper sem confronto. Quem não é decisor passa o contato. Quem é decisor confirma sua autoridade.
+      </div>
+      <div class="block-rule">
+        <span><strong>Por que funciona.</strong> Filtra interlocutor antes da apresentação. Evita gastar energia com não decisor.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NICHOS -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>Os dois nichos da operação</h2>
+      <p>Estética Corporal e Veículos. Cada nicho tem dor específica, decisor específico e copy específico. Selecione abaixo para ver os blocos completos.</p>
+    </div>
+    <div class="section-counter">NICHOS ATIVOS</div>
+  </div>
+
+  <div class="nicho-tabs">
+    <button class="nicho-tab active" onclick="abrirNicho('estetica', this)">
+      <div class="nicho-tab-label">NICHO 01</div>
+      <div class="nicho-tab-name">Estética Corporal</div>
+      <div class="nicho-tab-desc">Clínicas de estética corporal, spas urbanos, centros de bem-estar e clínicas de procedimentos não invasivos. Não inclui salões de cabelo.</div>
+    </button>
+    <button class="nicho-tab" onclick="abrirNicho('veiculos', this)">
+      <div class="nicho-tab-label">NICHO 02</div>
+      <div class="nicho-tab-name">Veículos</div>
+      <div class="nicho-tab-desc">Concessionárias de motos, carros, tratores e caminhões. Inclui revendedores de náutica. Não inclui locadoras nem oficinas.</div>
+    </button>
+  </div>
+
+  <!-- ESTÉTICA -->
+  <div id="nicho-estetica" class="fade-in">
+
+    <div class="block-grid">
+
+      <!-- BLOCO A -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag">BLOCO A</span>
+            <h3 class="block-title">Abertura por contexto de evento ou grupo</h3>
+          </div>
+          <span class="flow-node-type action">ABERTURA</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Sempre que o prospect tem origem em evento, associação, grupo de WhatsApp do setor, feira ou networking real. Esta é a abertura com maior taxa de resposta na operação atual.
+        </div>
+        <div class="block-copy">Opa, tudo bem? Consegui seu contato através de algumas associações e eventos do setor que fazemos parte em comum.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Opa, tudo bem? Consegui seu contato através de algumas associações e eventos do setor que fazemos parte em comum.')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO B1 -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag teal">BLOCO B1</span>
+            <h3 class="block-title">Validação de decisor após resposta</h3>
+          </div>
+          <span class="flow-node-type cond">QUALIFICAÇÃO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Imediatamente após a primeira resposta positiva da abertura.
+        </div>
+        <div class="block-copy">Maravilha. Antes de te explicar o motivo do contato, posso confirmar uma coisa rápida com você? O assunto que vou trazer é sobre atendimento no WhatsApp depois do horário comercial. Esse tema é diretamente com você ou tem outro contato dentro da empresa que cuida disso?</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Maravilha. Antes de te explicar o motivo do contato, posso confirmar uma coisa rápida com você? O assunto que vou trazer é sobre atendimento no WhatsApp depois do horário comercial. Esse tema é diretamente com você ou tem outro contato dentro da empresa que cuida disso?')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO C ESTÉTICA -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag purple">BLOCO C</span>
+            <h3 class="block-title">Pergunta provocativa de cenário</h3>
+          </div>
+          <span class="flow-node-type action">PROVOCAÇÃO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Após validar decisor em prospect de estética corporal. A força do bloco está na especificidade do horário e do verbo agendar procedimento.
+        </div>
+        <div class="block-copy">Pergunta direta. Se uma cliente sua mandasse mensagem agora, dez da noite, querendo agendar um procedimento, ela conseguiria resposta hoje ainda ou só amanhã de manhã quando alguém chegasse?</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Pergunta direta. Se uma cliente sua mandasse mensagem agora, dez da noite, querendo agendar um procedimento, ela conseguiria resposta hoje ainda ou só amanhã de manhã quando alguém chegasse?')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO E1 -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag">BLOCO E1</span>
+            <h3 class="block-title">Validação empática quando o problema é confirmado</h3>
+          </div>
+          <span class="flow-node-type action">EMPATIA</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Quando o prospect confirma que a cliente só seria respondida no dia seguinte.
+        </div>
+        <div class="block-copy">Faz sentido. É a realidade da maioria das operações que conversamos. O que a gente vê na prática é que essa cliente que mandou mensagem dez da noite raramente espera. Ela já mandou mensagem para mais duas ou três concorrentes ao mesmo tempo. Quem responder primeiro, e responder bem, fica com a venda.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Faz sentido. É a realidade da maioria das operações que conversamos. O que a gente vê na prática é que essa cliente que mandou mensagem dez da noite raramente espera. Ela já mandou mensagem para mais duas ou três concorrentes ao mesmo tempo. Quem responder primeiro, e responder bem, fica com a venda.')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO G ESTÉTICA -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag teal">BLOCO G</span>
+            <h3 class="block-title">Apresentação após problema confirmado</h3>
+          </div>
+          <span class="flow-node-type cond">SOLUÇÃO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Imediatamente após o Bloco E1 na sequência de estética corporal.
+        </div>
+        <div class="block-copy">A gente resolve isso colocando um agente de IA dentro do WhatsApp da clínica que responde em segundos, vinte e quatro horas por dia, sete dias por semana. O agente identifica qual procedimento a cliente quer, coleta as informações que sua equipe precisaria coletar de qualquer forma, e já oferece os horários disponíveis na agenda. Quando você ou sua equipe entram no WhatsApp pela manhã, a cliente já está com horário marcado e confirmado. Já implementamos isso em clínicas que tinham trinta a quarenta por cento de perda de agendamento pós horário e essa perda virou zero.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'A gente resolve isso colocando um agente de IA dentro do WhatsApp da clínica que responde em segundos, vinte e quatro horas por dia, sete dias por semana. O agente identifica qual procedimento a cliente quer, coleta as informações que sua equipe precisaria coletar de qualquer forma, e já oferece os horários disponíveis na agenda. Quando você ou sua equipe entram no WhatsApp pela manhã, a cliente já está com horário marcado e confirmado. Já implementamos isso em clínicas que tinham trinta a quarenta por cento de perda de agendamento pós horário e essa perda virou zero.')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO H -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag purple">BLOCO H</span>
+            <h3 class="block-title">Oferta de conversa de quinze minutos</h3>
+          </div>
+          <span class="flow-node-type action">CONVERSÃO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Imediatamente após o Bloco G de apresentação.
+        </div>
+        <div class="block-copy">Faz sentido conversarmos quinze minutos sobre como ficaria isso aplicado na sua operação? Não tem custo. Se fizer sentido, a gente fala de implementação. Se não fizer, fica o aprendizado pra você.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Faz sentido conversarmos quinze minutos sobre como ficaria isso aplicado na sua operação? Não tem custo. Se fizer sentido, a gente fala de implementação. Se não fizer, fica o aprendizado pra você.')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO I -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag">BLOCO I</span>
+            <h3 class="block-title">Envio do Calendly após aceite</h3>
+          </div>
+          <span class="flow-node-type action">FECHAMENTO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Quando o prospect aceita a conversa.
+        </div>
+        <div class="block-copy">Perfeito. Esse é meu calendário. Pode escolher o horário que cabe melhor pra você. https://calendly.com/higorplens</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Perfeito. Esse é meu calendário. Pode escolher o horário que cabe melhor pra você. https://calendly.com/higorplens')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO J -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag teal">BLOCO J</span>
+            <h3 class="block-title">Tratamento de objeção comum</h3>
+          </div>
+          <span class="flow-node-type cond">OBJEÇÃO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Quando o prospect responde com objeção do tipo preciso ver com sócio, estamos avaliando outras coisas, talvez mais pra frente.
+        </div>
+        <div class="block-copy">Entendi. Faço uma proposta diferente. Em vez de marcar essa conversa agora, posso te mandar um material de cinco minutos mostrando exatamente como ficaria a operação. Você assiste no seu tempo, no seu ritmo, e me retorna se fizer sentido. Vale?</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Entendi. Faço uma proposta diferente. Em vez de marcar essa conversa agora, posso te mandar um material de cinco minutos mostrando exatamente como ficaria a operação. Você assiste no seu tempo, no seu ritmo, e me retorna se fizer sentido. Vale?')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO K -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag">BLOCO K</span>
+            <h3 class="block-title">Saída digna sem queima de relacionamento</h3>
+          </div>
+          <span class="flow-node-type wait">FINAL</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Quando o prospect recusa toda forma de continuidade. Marcar contato para reabordagem em 60 dias com fluxo diferente.
+        </div>
+        <div class="block-copy">Tranquilo. Vou deixar meu contato salvo aqui. Se em algum momento o tema voltar a fazer sentido, a porta tá aberta.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Tranquilo. Vou deixar meu contato salvo aqui. Se em algum momento o tema voltar a fazer sentido, a porta tá aberta.')">Copiar copy</button>
+      </div>
+
+    </div>
+
+    <h3 style="margin-top: 48px; margin-bottom: 16px; font-size: 22px; font-weight: 700; color: var(--white);">Sequência de follow-up</h3>
+    <p style="margin-bottom: 24px; color: var(--text-secondary); font-size: 15px;">Não responder na primeira mensagem é o cenário mais comum. A sequência de follow-up é a parte da operação que mais separa quem fecha de quem desiste.</p>
+
+    <div class="block-grid">
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag">FOLLOW-UP D+1</span>
+            <h3 class="block-title">Reabertura suave após 24 horas</h3>
+          </div>
+        </div>
+        <div class="block-copy">Opa, fiquei na dúvida se a mensagem chegou de fato. Sigo te perguntando rápido. Como vocês estão lidando com cliente que chega no WhatsApp fora do horário? Vou ficar quieto se não fizer sentido.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Opa, fiquei na dúvida se a mensagem chegou de fato. Sigo te perguntando rápido. Como vocês estão lidando com cliente que chega no WhatsApp fora do horário? Vou ficar quieto se não fizer sentido.')">Copiar copy</button>
+      </div>
+
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag teal">FOLLOW-UP D+3</span>
+            <h3 class="block-title">Tentativa final com curiosidade</h3>
+          </div>
+        </div>
+        <div class="block-copy">Última vez que te chamo aqui sobre isso, prometo. Acabei de fechar um diagnóstico com uma clínica de estética corporal em [cidade próxima] e os números surpreenderam. Se você tiver dois minutos pra eu te resumir o que encontramos, te mando aqui.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Última vez que te chamo aqui sobre isso, prometo. Acabei de fechar um diagnóstico com uma clínica de estética corporal em [cidade próxima] e os números surpreenderam. Se você tiver dois minutos pra eu te resumir o que encontramos, te mando aqui.')">Copiar copy</button>
+      </div>
+
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag purple">FOLLOW-UP D+7</span>
+            <h3 class="block-title">Saída com porta aberta</h3>
+          </div>
+        </div>
+        <div class="block-copy">Entendi que o momento não é agora. Vou te tirar da minha sequência de contato. Se em algum momento o tema voltar, me chama aqui que respondo no mesmo dia.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Entendi que o momento não é agora. Vou te tirar da minha sequência de contato. Se em algum momento o tema voltar, me chama aqui que respondo no mesmo dia.')">Copiar copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VEÍCULOS -->
+  <div id="nicho-veiculos" class="hidden">
+
+    <div class="block-grid">
+
+      <!-- BLOCO A VEÍCULOS -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag">BLOCO A</span>
+            <h3 class="block-title">Abertura por contexto de evento ou grupo</h3>
+          </div>
+          <span class="flow-node-type action">ABERTURA</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Sempre que o prospect tem origem em evento, associação ou grupo do setor automotivo.
+        </div>
+        <div class="block-copy">Opa, tudo bem? Consegui seu contato através de algumas associações e eventos do setor que fazemos parte em comum.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Opa, tudo bem? Consegui seu contato através de algumas associações e eventos do setor que fazemos parte em comum.')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO B1 VEÍCULOS -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag teal">BLOCO B1</span>
+            <h3 class="block-title">Validação de decisor após resposta</h3>
+          </div>
+          <span class="flow-node-type cond">QUALIFICAÇÃO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Imediatamente após a primeira resposta positiva. Em concessionárias, este bloco é especialmente importante porque o vendedor raramente é decisor de contratação de tecnologia.
+        </div>
+        <div class="block-copy">Maravilha. Antes de te explicar o motivo do contato, posso confirmar uma coisa rápida com você? O assunto que vou trazer é sobre atendimento no WhatsApp depois do horário comercial. Esse tema é diretamente com você ou tem outro contato dentro da empresa que cuida disso?</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Maravilha. Antes de te explicar o motivo do contato, posso confirmar uma coisa rápida com você? O assunto que vou trazer é sobre atendimento no WhatsApp depois do horário comercial. Esse tema é diretamente com você ou tem outro contato dentro da empresa que cuida disso?')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO C VEÍCULOS -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag purple">BLOCO C</span>
+            <h3 class="block-title">Pergunta provocativa de cenário</h3>
+          </div>
+          <span class="flow-node-type action">PROVOCAÇÃO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Após validar decisor. Substituir [modelo X] pelo modelo mais relevante do tipo de loja. Para Yamaha usar MT 03 ou Fazer 250. Para multimarcas usar um carro semi-novo de até cinquenta mil. Para tratores usar um trator de oitenta cavalos.
+        </div>
+        <div class="block-copy">Pergunta direta. Um cliente entra no site de vocês onze da noite, procurando o modelo X, manda mensagem perguntando preço e prazo de entrega. Ele consegue resposta naquele momento ou só no dia seguinte quando o vendedor chegar?</div>
+        <div class="block-vars">
+          <div class="var-row">
+            <span class="var-name">[modelo X]</span>
+            <span class="var-desc">Substituir pelo modelo mais relevante do tipo de loja. Não usar termos genéricos.</span>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Pergunta direta. Um cliente entra no site de vocês onze da noite, procurando o modelo X, manda mensagem perguntando preço e prazo de entrega. Ele consegue resposta naquele momento ou só no dia seguinte quando o vendedor chegar?')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO E1 VEÍCULOS -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag">BLOCO E1</span>
+            <h3 class="block-title">Validação empática com dado quantificado</h3>
+          </div>
+          <span class="flow-node-type action">EMPATIA</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Quando o prospect confirma que o cliente só seria respondido no dia seguinte. Em veículos, citar o dado de 40 por cento de perda em 24 horas.
+        </div>
+        <div class="block-copy">Faz sentido. É a realidade da maioria das concessionárias. O dado que a gente trabalha é que quarenta por cento dos leads de veículos somem em vinte e quatro horas. Aquele cliente que mandou mensagem onze da noite já está em três outras lojas no dia seguinte. Quem responder primeiro, com modelo correto e prazo correto, fica com a venda.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Faz sentido. É a realidade da maioria das concessionárias. O dado que a gente trabalha é que quarenta por cento dos leads de veículos somem em vinte e quatro horas. Aquele cliente que mandou mensagem onze da noite já está em três outras lojas no dia seguinte. Quem responder primeiro, com modelo correto e prazo correto, fica com a venda.')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO G VEÍCULOS -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag teal">BLOCO G</span>
+            <h3 class="block-title">Apresentação após problema confirmado</h3>
+          </div>
+          <span class="flow-node-type cond">SOLUÇÃO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Imediatamente após o Bloco E1 na sequência de veículos.
+        </div>
+        <div class="block-copy">A gente resolve isso colocando um agente de IA dentro do WhatsApp da concessionária que responde em segundos, vinte e quatro horas por dia. Esse agente entende qual modelo o cliente quer, qualifica orçamento, condição de entrada, prazo de decisão, e te entrega o lead pronto pra venda. Quando o vendedor chega no dia seguinte, ele não tem mensagem genérica esperando, tem um lead qualificado com nome, modelo de interesse, orçamento e prazo. Já fizemos isso em concessionárias que perdiam quarenta por cento dos leads em vinte e quatro horas. A perda caiu pra menos de cinco por cento.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'A gente resolve isso colocando um agente de IA dentro do WhatsApp da concessionária que responde em segundos, vinte e quatro horas por dia. Esse agente entende qual modelo o cliente quer, qualifica orçamento, condição de entrada, prazo de decisão, e te entrega o lead pronto pra venda. Quando o vendedor chega no dia seguinte, ele não tem mensagem genérica esperando, tem um lead qualificado com nome, modelo de interesse, orçamento e prazo. Já fizemos isso em concessionárias que perdiam quarenta por cento dos leads em vinte e quatro horas. A perda caiu pra menos de cinco por cento.')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO H VEÍCULOS -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag purple">BLOCO H</span>
+            <h3 class="block-title">Oferta de conversa de quinze minutos</h3>
+          </div>
+          <span class="flow-node-type action">CONVERSÃO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Imediatamente após o Bloco G de apresentação.
+        </div>
+        <div class="block-copy">Faz sentido conversarmos quinze minutos sobre como ficaria isso aplicado na sua operação? Não tem custo. Se fizer sentido, a gente fala de implementação. Se não fizer, fica o aprendizado pra você.</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Faz sentido conversarmos quinze minutos sobre como ficaria isso aplicado na sua operação? Não tem custo. Se fizer sentido, a gente fala de implementação. Se não fizer, fica o aprendizado pra você.')">Copiar copy</button>
+      </div>
+
+      <!-- BLOCO I VEÍCULOS -->
+      <div class="block">
+        <div class="block-header">
+          <div class="block-id">
+            <span class="block-tag">BLOCO I</span>
+            <h3 class="block-title">Envio do Calendly após aceite</h3>
+          </div>
+          <span class="flow-node-type action">FECHAMENTO</span>
+        </div>
+        <div class="block-when">
+          <strong>Quando usar.</strong> Quando o prospect aceita a conversa.
+        </div>
+        <div class="block-copy">Perfeito. Esse é meu calendário. Pode escolher o horário que cabe melhor pra você. https://calendly.com/higorplens</div>
+        <button class="copy-btn" onclick="copiarTexto(this, 'Perfeito. Esse é meu calendário. Pode escolher o horário que cabe melhor pra você. https://calendly.com/higorplens')">Copiar copy</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FLUXO TÉCNICO -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>Fluxo técnico no Dispara Aí</h2>
+      <p>Os onze nós da sequência completa, na ordem em que devem ser montados na ferramenta. Cada nó tem tipo definido e variável de saída.</p>
+    </div>
+    <div class="section-counter">11 NÓS</div>
+  </div>
+
+  <div class="flow-diagram">
+    <div class="flow-node">
+      <div class="flow-node-num">01</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Bloco A. Abertura por contexto</div>
+        <div class="flow-node-detail">Primeira mensagem ativa. Sem variáveis obrigatórias.</div>
+      </div>
+      <span class="flow-node-type action">ENVIAR MENSAGEM</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">02</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Aguardar resposta</div>
+        <div class="flow-node-detail">Tempo limite 12 minutos. Salta para nó 3 ou para fluxo de follow-up.</div>
+      </div>
+      <span class="flow-node-type wait">AGUARDAR</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">03</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Bloco B1. Validação de decisor</div>
+        <div class="flow-node-detail">Salvar resposta na variável decisor.</div>
+      </div>
+      <span class="flow-node-type cond">FAZER PERGUNTA</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">04</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Multi condicional decisor</div>
+        <div class="flow-node-detail">Se contém sim ou comigo segue para nó 5. Se passa contato vai para tratamento.</div>
+      </div>
+      <span class="flow-node-type cond">CONDICIONAL</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">05</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Bloco C. Pergunta provocativa de cenário</div>
+        <div class="flow-node-detail">Versão Estética ou versão Veículos.</div>
+      </div>
+      <span class="flow-node-type action">ENVIAR MENSAGEM</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">06</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Aguardar resposta de cenário</div>
+        <div class="flow-node-detail">Salvar em variável cenario_resposta.</div>
+      </div>
+      <span class="flow-node-type wait">AGUARDAR</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">07</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Multi condicional cenário</div>
+        <div class="flow-node-detail">Três caminhos. Confirma problema, tem solução, ou desvia.</div>
+      </div>
+      <span class="flow-node-type cond">CONDICIONAL</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">08</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Bloco G. Apresentação</div>
+        <div class="flow-node-detail">Aguardar 3 segundos antes do envio para parecer humano.</div>
+      </div>
+      <span class="flow-node-type action">ENVIAR MENSAGEM</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">09</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Bloco H. Oferta de conversa</div>
+        <div class="flow-node-detail">Pergunta de aceite para call de 15 minutos.</div>
+      </div>
+      <span class="flow-node-type cond">FAZER PERGUNTA</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">10</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Aguardar aceite</div>
+        <div class="flow-node-detail">Salvar em variável aceite.</div>
+      </div>
+      <span class="flow-node-type wait">AGUARDAR</span>
+    </div>
+
+    <div class="flow-node">
+      <div class="flow-node-num">11</div>
+      <div class="flow-node-content">
+        <div class="flow-node-name">Multi condicional final</div>
+        <div class="flow-node-detail">Aceite positivo vai para Bloco I. Objeção vai para Bloco J. Recusa vai para Bloco K.</div>
+      </div>
+      <span class="flow-node-type cond">CONDICIONAL</span>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>Cronograma dos cinco dias</h2>
+      <p>Distribuição que protege a qualidade do número de WhatsApp e permite resposta rápida, que é o ativo principal da prospecção.</p>
+    </div>
+    <div class="section-counter">5 DIAS ÚTEIS</div>
+  </div>
+
+  <div class="schedule">
+    <div class="schedule-day">
+      <div class="schedule-day-info">
+        <span class="schedule-day-name">Dia 1. Segunda</span>
+        <span class="schedule-day-date">Lote um</span>
+        <span class="schedule-day-time">14h às 16h. 12 min entre disparos</span>
+      </div>
+      <div class="schedule-action">
+        <div class="schedule-action-title">Disparar para os 10 prospects de maior fit</div>
+        <div class="schedule-action-detail">MacPonta, Pico Motos, Auto Shopping, Icavel, Eriton Maringá, Podium, AMP, Camagril Cascavel, Camagril Maringá, Alvorada</div>
+      </div>
+      <div>
+        <span class="schedule-day-name schedule-volume-label">Disparos</span>
+        <span class="schedule-volume">10</span>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="schedule-day-info">
+        <span class="schedule-day-name">Dia 2. Terça</span>
+        <span class="schedule-day-date">Resposta concentrada</span>
+        <span class="schedule-day-time">Dia inteiro</span>
+      </div>
+      <div class="schedule-action">
+        <div class="schedule-action-title">Não disparar nada novo</div>
+        <div class="schedule-action-detail">Concentrar atenção em responder quem respondeu na segunda. Tempo de resposta importa mais que volume.</div>
+      </div>
+      <div>
+        <span class="schedule-day-name schedule-volume-label">Disparos</span>
+        <span class="schedule-volume">0</span>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="schedule-day-info">
+        <span class="schedule-day-name">Dia 3. Quarta</span>
+        <span class="schedule-day-date">Lote dois</span>
+        <span class="schedule-day-time">14h às 16h. Follow-up D+1 às 17h-19h</span>
+      </div>
+      <div class="schedule-action">
+        <div class="schedule-action-title">Disparar próximos 15 prospects do CSV</div>
+        <div class="schedule-action-detail">Marquinho, Ricardo, VIACAM, RR, Motorama, Kareka's, Adrenalina, Eriton Londrina, Yamanautica, Sport Náutica e mais 5 buscados manualmente</div>
+      </div>
+      <div>
+        <span class="schedule-day-name schedule-volume-label">Disparos</span>
+        <span class="schedule-volume">15</span>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="schedule-day-info">
+        <span class="schedule-day-name">Dia 4. Quinta</span>
+        <span class="schedule-day-date">Lote três</span>
+        <span class="schedule-day-time">14h às 16h. Follow-up D+1 do lote dois</span>
+      </div>
+      <div class="schedule-action">
+        <div class="schedule-action-title">Disparar mais 15 prospects buscados</div>
+        <div class="schedule-action-detail">Buscar manualmente seguindo o mesmo perfil de fit das listas anteriores. Foco no mesmo segmento e cidade.</div>
+      </div>
+      <div>
+        <span class="schedule-day-name schedule-volume-label">Disparos</span>
+        <span class="schedule-volume">15</span>
+      </div>
+    </div>
+
+    <div class="schedule-day">
+      <div class="schedule-day-info">
+        <span class="schedule-day-name">Dia 5. Sexta</span>
+        <span class="schedule-day-date">Lote quatro</span>
+        <span class="schedule-day-time">9h às 11h apenas. Tarde tem queda de leitura</span>
+      </div>
+      <div class="schedule-action">
+        <div class="schedule-action-title">Completar os 50 disparos</div>
+        <div class="schedule-action-detail">Fechar a meta da semana. Domingo à noite avaliar números do ciclo completo e calibrar para a próxima semana.</div>
+      </div>
+      <div>
+        <span class="schedule-day-name schedule-volume-label">Disparos</span>
+        <span class="schedule-volume">10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTRICAS -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>Métricas de calibração</h2>
+      <p>Sem métrica clara, não há recalibração possível. Esta é a estrutura mínima de medição que precisa estar rodando desde o primeiro disparo.</p>
+    </div>
+    <div class="section-counter">8 INDICADORES</div>
+  </div>
+
+  <div class="metric-table">
+    <div class="metric-row metric-row-header">
+      <div>Métrica</div>
+      <div>Meta</div>
+      <div>Esperado em 50</div>
+      <div>Onde medir</div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-name">Taxa de entrega</div>
+      <div class="metric-target">acima de 95%</div>
+      <div class="metric-expected">48 entregues</div>
+      <div class="metric-source">Dispara Aí</div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-name">Taxa de leitura</div>
+      <div class="metric-target">acima de 40%</div>
+      <div class="metric-expected">20 lidos</div>
+      <div class="metric-source">Dispara Aí</div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-name">Taxa de resposta</div>
+      <div class="metric-target">25 a 35%</div>
+      <div class="metric-expected">13 a 17 respostas</div>
+      <div class="metric-source">Tag manual</div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-name">Taxa de qualificação</div>
+      <div class="metric-target">25% das respostas</div>
+      <div class="metric-expected">3 a 5 qualificados</div>
+      <div class="metric-source">Tag manual</div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-name">Taxa de agendamento</div>
+      <div class="metric-target">60% dos qualificados</div>
+      <div class="metric-expected">2 a 3 agendados</div>
+      <div class="metric-source">Calendly</div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-name">Taxa de show</div>
+      <div class="metric-target">acima de 70%</div>
+      <div class="metric-expected">1 a 2 calls feitas</div>
+      <div class="metric-source">Google Meet</div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-name">Taxa de proposta</div>
+      <div class="metric-target">100% dos shows</div>
+      <div class="metric-expected">1 a 2 propostas</div>
+      <div class="metric-source">Pipeline</div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric-name">Taxa de fechamento</div>
+      <div class="metric-target">30 a 40%</div>
+      <div class="metric-expected">0 a 1 cliente novo</div>
+      <div class="metric-source">Contrato</div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNIL -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>Funil esperado por ciclo</h2>
+      <p>Conta final esperada por ciclo de cinquenta disparos. Receita potencial entre quinze e cinquenta mil reais por ciclo se houver fechamento.</p>
+    </div>
+    <div class="section-counter">CONVERSÃO PROJETADA</div>
+  </div>
+
+  <div class="funnel">
+    <div class="funnel-step">
+      <div class="funnel-step-num">01</div>
+      <div>
+        <div class="funnel-step-name">Disparos enviados</div>
+        <div class="funnel-step-detail">Volume bruto da campanha</div>
+      </div>
+      <div class="funnel-step-value">50</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">02</div>
+      <div>
+        <div class="funnel-step-name">Mensagens entregues</div>
+        <div class="funnel-step-detail">Após filtro de qualidade da lista</div>
+      </div>
+      <div class="funnel-step-value">48</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">03</div>
+      <div>
+        <div class="funnel-step-name">Mensagens lidas</div>
+        <div class="funnel-step-detail">Após horário de envio correto</div>
+      </div>
+      <div class="funnel-step-value">20</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">04</div>
+      <div>
+        <div class="funnel-step-name">Respostas recebidas</div>
+        <div class="funnel-step-detail">Abertura efetiva de conversa</div>
+      </div>
+      <div class="funnel-step-value">15</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">05</div>
+      <div>
+        <div class="funnel-step-name">Decisores qualificados</div>
+        <div class="funnel-step-detail">Com problema confirmado</div>
+      </div>
+      <div class="funnel-step-value">4</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">06</div>
+      <div>
+        <div class="funnel-step-name">Calls agendadas</div>
+        <div class="funnel-step-detail">Conversão via Calendly</div>
+      </div>
+      <div class="funnel-step-value">2</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">07</div>
+      <div>
+        <div class="funnel-step-name">Calls realizadas</div>
+        <div class="funnel-step-detail">Com show de fato</div>
+      </div>
+      <div class="funnel-step-value">1</div>
+    </div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">08</div>
+      <div>
+        <div class="funnel-step-name">Proposta enviada</div>
+        <div class="funnel-step-detail">Pipeline ativo</div>
+      </div>
+      <div class="funnel-step-value">1</div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE NÃO FAZER -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title-block">
+      <h2>O que não fazer</h2>
+      <p>Erros operacionais identificados nos fluxos enviados. A estratégia está correta. O que falha é execução.</p>
+    </div>
+    <div class="section-counter">10 ARMADILHAS</div>
+  </div>
+
+  <div class="dont-grid">
+    <div class="dont-item">
+      <strong>Não disparar fora do horário comercial.</strong>
+      Mensagem que chega às nove da noite tem leitura, mas não tem resposta. O prospect leu, esqueceu, não voltou.
+    </div>
+    <div class="dont-item">
+      <strong>Não disparar sexta à tarde.</strong>
+      Taxa de resposta cai pela metade. Sexta-feira à tarde só na manhã.
+    </div>
+    <div class="dont-item">
+      <strong>Não usar a mesma abertura para todos.</strong>
+      A abertura tem que ser ajustada por origem do contato. Um prospect de evento e um de base pública não recebem o mesmo texto.
+    </div>
+    <div class="dont-item">
+      <strong>Não enviar áudio na primeira mensagem.</strong>
+      Áudio cria fricção. Prospect que não conhece a Avraham não para para ouvir um minuto sem saber por quê.
+    </div>
+    <div class="dont-item">
+      <strong>Não enviar foto, vídeo ou documento na primeira mensagem.</strong>
+      Mesmo motivo do áudio. Reduz drasticamente a taxa de resposta.
+    </div>
+    <div class="dont-item">
+      <strong>Não fazer a oferta de Calendly antes do Bloco G.</strong>
+      Apresentação do problema e da solução é o que cria contexto para a aceitação da call. Pular essa etapa derruba o aceite.
+    </div>
+    <div class="dont-item">
+      <strong>Não responder em mais de cinco minutos.</strong>
+      Tempo de resposta é o ativo mais valioso desta operação. Quem demora, perde.
+    </div>
+    <div class="dont-item">
+      <strong>Não insistir mais que três follow-ups.</strong>
+      Após D+7 sem resposta, mover para reabordagem em 60 dias com fluxo diferente.
+    </div>
+    <div class="dont-item">
+      <strong>Não usar emojis.</strong>
+      Não combinam com a postura premium da Avraham e reduzem a percepção de seriedade do contato comercial.
+    </div>
+    <div class="dont-item">
+      <strong>Não escrever mensagens longas.</strong>
+      Cada bloco tem entre 15 e 60 palavras. Mais que isso é leitura abandonada.
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-text">
+    Plano Operacional <span class="footer-cyan">Avraham</span> WhatsApp e IA. Maio 2026.
+  </div>
+</footer>
+
+</div>
+
+<script>
+function abrirNicho(nicho, btn) {
+  document.querySelectorAll('.nicho-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('nicho-estetica').classList.add('hidden');
+  document.getElementById('nicho-veiculos').classList.add('hidden');
+  const target = document.getElementById('nicho-' + nicho);
+  target.classList.remove('hidden');
+  target.classList.add('fade-in');
+}
+
+function copiarTexto(btn, texto) {
+  navigator.clipboard.writeText(texto).then(() => {
+    const original = btn.textContent;
+    btn.textContent = 'Copiado';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1800);
+  });
+}
+</script>
+</body>
+</html>

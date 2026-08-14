@@ -1,0 +1,1 @@
+pedido_id,data_criacao,cliente_id,cliente_nome,telefone,tipo_atendimento,status,subtotal,taxa_entrega,desconto,total,observacoes,cep,rua,numero,complemento,bairro,cidade,referencia,chave_idempotencia

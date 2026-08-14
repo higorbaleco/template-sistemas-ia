@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="UIDUI0EXAMP000"]
+
+[node name="MainUI" type="Control"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0
+margin_top = 0
+margin_right = 0
+margin_bottom = 0
+
+[node name="MoneyLabel" type="Label" parent="."]
+text = "$0"
+anchor_left = 0.0
+anchor_top = 0.0
+margin_left = 20
+margin_top = 20
+font_size = 24
+
+[node name="ClickButton" type="Button" parent="."]
+text = "Click for Money!"
+anchor_left = 0.5
+anchor_top = 0.5
+margin_left = -100
+margin_top = -25
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EnergyLabel" type="Label" parent="."]
+text = "Energy: 100%"
+anchor_left = 0.0
+anchor_top = 0.0
+margin_left = 20
+margin_top = 60
+
+[node name="HungerLabel" type="Label" parent="."]
+text = "Hunger: 0%"
+anchor_left = 0.0
+anchor_top = 0.0
+margin_left = 20
+margin_top = 100
+
+[node name="HappinessLabel" type="Label" parent="."]
+text = "Happiness: 50%"
+anchor_left = 0.0
+anchor_top = 0.0
+margin_left = 20
+margin_top = 140

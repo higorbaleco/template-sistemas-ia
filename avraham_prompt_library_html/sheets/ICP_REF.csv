@@ -1,0 +1,61 @@
+﻿bloco,chave,valor,observacao
+segmento,saas,SaaS e produto tecnico,Lead parado esperando qualificacao
+ticket_por_segmento,saas,8000-15000,
+segmento,ecommerce,E-commerce e varejo,"Volume acima da capacidade, base parada"
+ticket_por_segmento,ecommerce,4000-15000,
+segmento,gaming,Gaming e apostas,"24h multi-idioma, risco de bloqueio. Prioridade"
+ticket_por_segmento,gaming,15000-30000,
+segmento,educacao,Educacao e comunidade,"Suporte ao aluno nao escala, vira churn"
+ticket_por_segmento,educacao,8000-15000,
+segmento,seguros,Seguros e servicos,"Triagem, cotacao, renovacao"
+ticket_por_segmento,seguros,8000-15000,
+segmento,b2b,B2B e gestao,"Prospeccao sem processo, lead frio parado"
+ticket_por_segmento,b2b,8000-15000,
+segmento,agencia,Agencia e consultoria,"White label, chips dedicados"
+ticket_por_segmento,agencia,8000-30000,
+segmento,servico_local,Servico local,"Agendamento, pre-atendimento"
+ticket_por_segmento,servico_local,4000-8000,
+segmento,outro,Fora do ICP,Score maximo 35
+ticket_por_segmento,outro,,
+peso_score,fit_segmento,30,Segmento e um dos oito alvo
+peso_score,aderencia_cargo,30,Quanto mais perto da operacao ou da decisao comercial
+peso_score,indicio_whatsapp,25,Evidencia de que WhatsApp e canal relevante
+peso_score,porte_compativel,15,Faixa de colaboradores ou volume compativel
+acao_por_score,80-100,Abordar hoje,proximo_toque = hoje
+acao_por_score,60-79,Abordar esta semana,proximo_toque = hoje + 2
+acao_por_score,40-59,Monitorar,proximo_toque = hoje + 14
+acao_por_score,0-39,Descartar,status = DESCARTADO
+status_valido,NOVO,,
+status_valido,COMENTADO,,
+status_valido,MSG_ENVIADA,,
+status_valido,RESPONDEU,,
+status_valido,QUALIFICANDO,,
+status_valido,CALL_AGENDADA,,
+status_valido,CALL_FEITA,,
+status_valido,DIAGNOSTICO,,
+status_valido,PROPOSTA,,
+status_valido,NEGOCIACAO,,
+status_valido,FECHADO,,
+status_valido,PERDIDO,,
+status_valido,NUTRICAO,,
+status_valido,DESCARTADO,,
+origem_valida,linkedin_busca,,
+origem_valida,linkedin_post,,
+origem_valida,linkedin_evento,,
+origem_valida,linkedin_empresa,,
+origem_valida,maps,,
+origem_valida,diretorio,,
+origem_valida,indicacao,,
+origem_valida,inbound,,
+probabilidade_por_estagio,NOVO,5,percentual
+probabilidade_por_estagio,COMENTADO,10,percentual
+probabilidade_por_estagio,MSG_ENVIADA,15,percentual
+probabilidade_por_estagio,RESPONDEU,30,percentual
+probabilidade_por_estagio,QUALIFICANDO,40,percentual
+probabilidade_por_estagio,CALL_AGENDADA,50,percentual
+probabilidade_por_estagio,CALL_FEITA,60,percentual
+probabilidade_por_estagio,DIAGNOSTICO,70,percentual
+probabilidade_por_estagio,PROPOSTA,75,percentual
+probabilidade_por_estagio,NEGOCIACAO,85,percentual
+probabilidade_por_estagio,FECHADO,100,percentual
+probabilidade_por_estagio,PERDIDO,0,percentual

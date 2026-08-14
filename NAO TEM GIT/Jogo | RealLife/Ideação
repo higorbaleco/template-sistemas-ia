@@ -1,0 +1,379 @@
+ é possível criar um jogo do absoluto zero com vscode codex, claude code sem ter a mínima noção de programação?
+
+Um jogo real instalável na apple/playstore incluindo com saldo real pagamentos e etc?
+
+Quero criar esse tipo de jogo. Uma mistura de the sims com jogo de vida real, banco imobiliário, monopoly.
+
+O objetivo do jogo é inconscientemente fazer o usuário refletir sobre sua vida e traçar no jogo sua rota para o mundo "real"
+
+Jogos como GTA o usuário fica rico em roubos, golpes e coisas assim, passando missões.
+
+Em outros como farcry mesma coisa, jogos de corrida geralmente em corridas ilegais.
+
+Aqui o objetivo é diferente, o usuário tem que ir tomando pequenas decisões, criando estratégias para ir alavancando patrimonialmente sem limite.
+
+Mas com profissões e atuação real. Por exemplo na vida real um usuário não consegue comprar uma casa só clicando na tela kkk então o objetivo é dar uma dificuldade e fazer o user realmente pensar bem em suas ações. Ensinar matemática finanças empreendedorismo com o jogo.
+
+Exemplo: O usuário agora tem um emprego que o paga 1.500 por mês, mas ele gasta 70% apenas com moradia  ( o jogo avisa "atenção restam apenas X% da sua renda. Esse mês você tem que priorizar 1) pagar contas básicas e deixar o lazer, 2) deixar a energia e agua sem pagar: risco de corte no 2° mês porém sobra X. 3) encontrar moradia mais compatível.
+
+Parabéns usuário esse mês sobrou 2x sua renda! 
+Parabéns pela decisão de investir! Com esse valor depositado todos os meses em X tempo você terá R$XX,00 acumulado e R$YY,00 de rendimento passivo!
+
+Por que isso? Pois queremos mostrar ao usuário que o rendimento é importante essa mente de investimentos mas ele focar nisso com pouco dinheiro é pior que tudo pois vai se frustrar.
+
+Ao longo das jornadas e dos "dias" do mês que são segundos vamos ter pelo menos 2 ou 3 decisões importantes para o usuário tomar sempre com questões e consequências ao longo de cada semana.
+
+O que pode impactar e muito em sua renda.
+
+Exemplo: Seu amigo João te propôs uma parceria ele tem uma ideia de negócio! 
+
+Ele precisa de R$1.000,00 para comprar um pequeno estoque de produtos e vender online!
+
+1- Emprestar a João para pagar em 6 meses com X% de juros.
+
+2- Apenas emprestar o dinheiro à João
+
+3- Aceitar parceria, emprestar o dinheiro em troca de % de lucros.
+
+4- Dizer não à João! Não é o momento que posso retirar esse dinheiro da conta
+
+
+E claro que cada escolha tem sua consequência! 
+
+Por exemplo: Se dizer não ao João ele pode ficar chateado e o nivel dd sociabilidade do user caia pois o amigo se afastou por 3 meses.
+
+Se só emprestou o dinheiro para João: João deu o calote! O negócio não era tão promissor ele tá sem recursos, você perdeu a grana!
+
+Se emprestou à juros João pode pagar certinho ou não e ai o usuário tem que cobrar por 5x ao longo do mês e depois caso 3 meses não pague o usuário pode sugerir um acordo e pegar algo como garantia ou parte do pagamento como "bicicleta, relógio, dispositivo eletrônico, fone, celular, caixa de som, rodas de carro, roupas e tenis de marca, pulseira, corrente e acessórios, veiculos, imoveis"
+
+Se aceitar o acordo pode colocar um percentual que quer receber e o outro pode aceitar ou não podem fazer até 5x tentativa de proposta.
+
+Caso não cheguem em um comum o amigo desiste por exemplo e deixa o usuário sem o negócio.
+
+Se ele aceitar ele precisa ajudar o amigo a aumentar os lucros e vender pra obter de volfa seu dinheiro.
+
+Pode gastar X horas de sono semanal para aprender, pode comprar um curso online pra aprender sobre algo, pode contratar alguém ou dividir mais % pra chamsr mais pessoas pra parceria.
+
+E assim sucessivamente o usuário pode tanto iniciar sua carreira como treinee/aprendiz ganhando 1/3 do salario base.
+
+Pode começar literalmente do zero tendo uma ideia e chamando amigos pra ser empresário.
+
+Pode "ganhar" alguns brindes e prêmios que o jogo de forma aleatória entrega como por exemplo. "Os seus pais ficaram felizes pela sua mentalidade empreendedora, acham que você vai longe! Decidiram apostar na sua ideia e você recebeu 100,00"
+
+E ai por exemplo o usuário pode tanto ter carreira corporativa aprendendo e subindo de cargo a cada 3 meses mas com exigências e etc, quanto pode ser totalmente autônomo e viver de compra e venda ou de seus negócios.
+
+Podemos ser as 1.000 profissões mais comuns dos últimos 20 anos e também as projetadas futuras como: Gestor de IA, Programador Vibe Coding, Engenheiro de Dados e Infraestrutura. 
+
+Mas pode ser: Contador, office boy, carteiro, entregador, motorista de aplicativo.
+
+Coisas assim.
+
+Detalhe: O usuário pode no início já definir sua meta com prazos de 3 meses, 6 meses, 1 ano, 3 anos, 5 anos , 8 anos, 10 anos, 15 anos, 20 anos, 30 anos, 50 anos
+
+E conforme sua trajetória ele vê quao perto ou longe está.
+
+Observação: Quando o usuário inicia ele pode selecionar informações básicas baseado em sua realidade atual.
+
+Nome, idade, gênero, profissão/ocupação parecida, renda, habitação (mora só/com pais e familiares) custo medio de vida atual, patrimônio e conquistas atuais (carro, moto, itens como citei anteriormente) valor disso estimado
+
+
+
+
+
+
+
+
+
+
+Então vamos tirar a completa complexidade de dinheiro real... Vai ser "real" por que é vai ser na mesma moeda, valores similares de itens e inflação.
+
+Mas nada de crédito ou usuário insdrir nada
+Show agora me faça perguntas o que precisa. Oque eu devo decidir pra gente criar tudo do zero.
+
+Primeiro a estrutura e o como vai ser depois parte técnica documentação stack e etc, depois telas front design, e prompt pras ias.
+
+
+Outro ponto:
+
+Quero que o usuário que jogue sinta na pele do patrão e vice versa.
+
+Ex: Muita gente fala sobre sonegação de impostos, imposto é roubo e etc. 
+
+Muitos funcionários reclamam que o patrão é mão de vaca e não paga o quanto o funcionário merece e etc.
+
+Nessa lógica teremos algo bem realista exemplo.
+
+"Parabéns usuário, a empresa cresceu! Mas agora você não está dando conta de tudo sozinho"
+
+1- Contratar equipe para expandir 
+2- Continuar sozinho e trabalhar depois do expediente 
+3- Contratar apenas o essencial 
+4- Contratar um amigo/familiar pra ajudar.
+
+E ai mesmas coisas... Só que na contratação devemos contemplar toda nossa carga tributária de empresas e contratados.
+
+Ex: Qual salario dessa vaga?  2.000 mensais ai colocamos os encargos do funcionário e o quanto o funcionário recebe ex: O funcionário custa 4.000 ou mais pra empresa, mas recebe 2.000 na carteira de trabalho mas tem os descontos do governo como fgts e outros e ai tem o salario liquido.
+
+De todo faturamento também vamos exibir essa "saúde financeira" da empresa.
+
+Exemplo: Empresa faturou 100.000,00 mas tem X de impostos, custos de espaço, salarios, marketing/vendas, custo de fornecedores/insumos.
+
+Pra mostrar a realidade...
+
+E ai tambem podemos na parte inicial de colocar "minha vida atual" por exemplo.
+
+Opções para "Herdeiros" e para "Jogador"
+
+Por que os herdeiros já possuem muitas vantagens como acesso amigos, network, conexões, lugares, empreendimentos, não precisam de dinheiro, nem veiculo. O basico da sobrevivência ele já tem.
+
+Mas a pressão por outro lado e responsabilidades são infinitamente maiores.
+
+Ex: "Parabéns Herdeiro Usuario! Você acaba de se tornar o sucessor oficial do império {sobrenome da família}. 
+
+A diretoria decidiu te dar esse voto de confiança, seus familiares vão se aposentar agora é contigo!"
+
+E ai por exemplo... A empresa da família fatura 100 milhões por ano,  o atual presidente lucra 20% líquido por mês e recebe um salário referente aos dividendos de X. Ele espera todo ano/ciclo periódico X de lucro.
+
+É papel do sucessor multiplicar esse capital e fazer o pagamento dos sócios e não só fazer o que ele quer.
+
+Ele tem papeis tem quanto precisa e pode gastar. Seu pagamento pela posição ocupada e sua lucratividade também.
+
+Então se ao fim por exemplo de 2 ou 3 anos consecutivos a meta for inferior à X. O conselho remove da sucessão volta uma nova diretoria e ele volta para o modo "Jogador".
+
+Ou seja, deixa de ser herdeiro sucessor com potencial de multiplicação de riqueza e se torna um assalariado corporativo na empresa da família com cargos
+
+
+
+
+
+Fechou cria esse formulário que vou respondendo pra não confundir 
+Nome: VisionLife
+
+2. "Fazer o usuário construir seu próprio império na vida real com base no jogo! Sem risco na vida real mas traçando seu plano
+
+3. O principal objetivo é gamificar e tangibilizar os sonhos do usuário através de um jogo.
+
+4. Realista, duro, estratégico, intenso, ambicioso, reflexivo e quase viciante.
+
+Ao ponto do usuário antes de dormir gastar uns 30/60 minutos planejando seu próximo passo na vida real com base no jogo.
+
+5. Ambição e Clareza
+
+6. O foco do jogo é misturar todos esses pontos que você citou, afinal tudo tem ganhos e perdas, benefícios e prejuízos. Mas de certa forma o usuário olha para pensa, o jogo vai dando algumas sugestões de saida ao ponto dele sempre conseguir uma saida e pensar na solução real pra vida dele.
+
+Ex: Perdeu dinheiro pq emprestou ao amigo. Buscar fortalecer a amizade e em dado momento buscar a recompensa com esse mesmo amigo.
+
+Ou se perdeu dinheiro, solução: Tentar criar do zero um negócio pra aumentar os ganhos com menos riscos.
+
+Esse tipo de coisa.
+
+
+7. Jovens majoritariamente homens mas também temos mulheres ambiciosas.
+
+Que querem vencer na vida
+
+8. Acredito que dos 14/15 até 30 anos. Passou disso geralmente eles não se interessam mais nisso as prioridades mudam.
+
+9. Simm o jogo precisa explicar e educar. "O que significa, qual o recomendado, como funciona, por que é assim e as consequências quando é diferente do recomendado"
+
+10. Linguagem mais misturada, pode ter um pouco de linguagem informal, gírias mas sem exagero 
+
+11. Equilíbrio 
+
+12. Vai ser híbrido. Vamos ter os cards com 2 a 4 opções para decisões. Mas também teremos as narrativas que "aparecem" no jogo.
+
+Os Dashboards a psrte visual, a "conta bancária" do usuário vai ser bem importante pra ele visualizar e tangibilizar tudo aquilo que ele tem.
+
+
+
+
+Agora vamos ao próximo bloco! Acho que tem até o 88 ne?
+13. 1 mês por 2 minutos acho que é interessante, mas seria ainda melhor se tivesse controle de tempo pro usuário setar.
+
+Igual ao farming simulador. Quando el precisa de alguma decisão importante como por exemplo a "colheita" o usuário consegue colocar em "tempo real" pra não perder a safra, já quando está esperando madurar ele pode acelerar o tempo.
+
+Mas as decisões param o tempo, inclusive se o usuário pular e adiar 3x a decisão ele tem consequências.
+
+14. Apenas single player mas com possiblidade de convite de amigos ou visualizar no hall de ascensão os top #100 por categoria ou destaque. Mas inicialmente cada 1 joga sozinho.
+
+15. Se o usuário pular e acelerar ele pode por exemplo ver seu "final" com as decisões dele mas se ele jogar normal vamos ter save continuo conforme seus "saves/mundos" pra ele se experimentar por exemplo.
+
+16. Pode criar vários saves e perfis para ter a experiência que quiser.
+
+17. Simm acho legal essas ramificações mas é legal explicar cada um.
+
+Pode ser que o usuário tenha outra categoria e a gente não saiba mas esse é um bom começo.
+
+18. Jogador comum, herdeiro, endividado
+
+Pq dai coloca as informações de cada e a gente tem um bom panorama da realidade do usuário pra moldar a "experiência dele"
+
+19. O modo herdeiro entra já no mvp
+
+20. O modo herdeiro vai ser diferente, aparentemente fácil no início pois ele já começa com coisas e itens inclusos básicos como:
+
+- Moradia, alimentação, veículos próprios, lazer, itens de luxo, começa com um "salário mesada" no máximo 10x o valor do jogador comum iniciante. E já pode selecionar no começo sua "profissão" ou "jornada acadêmica" sem custos extras.
+
+No entanto terá mais encargos mais responsabilidades menos tempo mais cobrança e mais pressão.
+
+Ex: Enquanto o player comum tem 4/6 horas livres ao longo do dia (exceto noite)  o herdeiro terá no máximo 1h livre.
+
+Terá que passar por mais itens, por exemplo: Aula de idiomas (pelo menos 2 além da linguagem nativa) pelo menos 1 ou 2 esportes, pelo menos 2 ou 3 atividades extras como: xadrez, equitação, trabalho com a família, cursos extracurriculares, economia e finanças, tecnologia e ia, artes/desenho, musica/canto.
+
+21 e 22. Exatamente isso (alguma sugestão?)
+
+23. A consequência é ele deixar de ser sucessor caso já tenha assumido tal posição e retorna sua trajetória como "Colaborador" da empresa de acordo com seu cargo e skills mas não deixa de fazer parte da família. Só não tem acesso ao dinheiro da família e decisões como antes. Mas ele pode também criar seu negócio próprio e ser um "player comum" mas com o dinheiro que ele já possui. Que ele ganhou e economizou sozinho sem contar com posses e patrimônio da família.
+
+Se ele for só herdeiro e estiver indo mal nas atividades e nas coisas anteriores fracassando consecutivamente nas decisões ele atrasa sua sucessão em 2 à 5 anos cada ciclo de fracasso.
+
+24. Cargo corporativo na familia ou vida comum assalariada. Pode depender do nivel de "reputação e confiabilidade" que a família tem nele com base em suas decisões fracassos e sucessos. Herdeiros que parecem "não estar nem ai pra nada" não merecem e a família pede para que o mesmo inicie a jornada como player comum até provar novamente merecimento.
+
+
+
+
+Bloco 5
+
+25. Hibrido, vamos colocar faixas mas também opções para ele preencher caso queira (usabilidade first)
+
+26. Sim vamos usar sua sugestão no 26 e 27
+
+28. Depois que pegarmos as informações do onboarding ai pedimos as metas. Para ser compatível. Ou ele pode pular isso e só ir jogando, mas claro mostrando a consequência dele não inserir isso agora. Depois nas configurações ele pode mexer nisso.
+
+Meta de patrimônio 
+Meta de renda mensal
+Meta de faturamento 
+Meta de lucro empresarial
+Meta de renda passiva (Liberdade financeira)
+
+30. Isso mesmo mas podemos começar com 6 meses, 1 ano, 3 anos, 5 anos, 10 anos e 20 anos
+Bloco 6.
+
+31. Toda semana o jogador recebe:
+
+Eventos, convites, decisões difíceis, problemas pra resolver, surpresas desagradáveis e "oportunidades disfarçadas de pegadinhas ou vice versa".
+
+Ex:
+
+Pedro te chamou para jogar bola no sábado! (Mas você tem que estudar para concurso que acontece daqui 2 semanas) o que prefere?
+
+Você foi convidado à participar de um jantar de {profissionais da area} mas precisa de um traje adequado.
+
+- Ir ao jantar! 
+- Recusar convite!
+
+Se for ao jantar gasta o dinheiro com traje mas faz network e conhece por exemplo alguém com uma boa oportunidade.
+
+Se não for economiza, mas tal oportunidade não abre (mostrar o prejuízo/perca) quando não for para alguém próximo por exemplo: 
+
+Pedro também foi convidado e foi ao jantar! Está mega animado com a oportunidade que surgiu de ser sócio de uma empresa no segmento graças à conexão que fez no evento.
+
+"Opss, más notícias! Aquele cliente que deu certeza da venda no valor de R$XXX.xx. Agora a meta está um pouco mais longe. 
+
+Como vamos resolver isso?"
+
+- Criar promoção/Oferta
+- Acionar rede de indicações e parceiros
+- Ligar ao cliente para renegociar e entender o motivo.
+- Não fazer nada a respeito por enquanto 
+
+"Hey jogador, esse é o seu dia de sorte! O empréstimo que fez ao seu amigo X acaba de ser pago... Os negócios estão indo super bem!"
+
+Você recebeu todo o valor com juros e correção após X tempo. E agora? O que quer fazer com esse recurso?
+
+- Deixa na conta pra pagar conta e usar (rendimento de X% ao dia caso não seja usado tudo)
+- Colocar para investir (retido por X tempo)
+- Comprar um bem/produto/estoque para fazer mais/ Reinvestir
+- Comprar algo que deseja
+
+
+32. 3 no máximo 5 mas isso acontece apenas 3x por ano.
+
+33. Não terá fixo começa na data que o usuário selecionar e vai seguindo.
+
+34. Simmm ele pode depois ter um histórico de decisões para ele entender seus erros e acertos. Mas não poderá trocar sua decisão 
+
+35. Análise e planejamento equilibrado 
+
+36. Moradia, alimentação, transporte, contas básicas, saúde, lazer, educação & luxo
+
+37. Podemos sugerir e o usuário pode sim ter mas depende de suas decisões e economias
+
+38. Poderá sim fazer investimentos como cripto, renda fixa(cdb) real state. Mas tudo bem basico (apenas dinheiro do game nada de dinheiro real)
+
+39. Com certeza!! Será o ponto mais crucial e importante é mostrar cada consequência 
+
+40. Sim, se o jogador for mal com suas finanças vai se endividar 
+
+41. Sim o jogo deve alertar mas o usuário pode ignorar. E melhor ainda, devemos mostrar as consequências das decisões ruins e não deixar o usuário ficar intacto sem erro.
+
+Incluindo impostos não pagos encargos, funcionários sem pagamentos tudo tem consequências 
+
+O jogo será bem estruturado 
+
+
+Aaah outra coisa muito legal, mas isso vamos deixar pra bemmm futuramente. 
+
+"Escolher construção" tipo aquele modo desenho do the sims.
+
+Mas outra coisa importante que faltou...
+
+Conforme o usuário vai crescendo em renda e patrimônio ele consegue fazer aquisições de empresas, bens, luxos, itens. Tipo esses simuladores...
+
+Como o jogo tem como o usuário selecionar o modo e a dificuldade se ele quiser algo mais clean tipo o "modo criativo" do minecraft ele vai ter como acessar essas coisss ou se tiver muito avançado.
+
+So que modo criativo não conta no ranking.
+
+
+Bloco 7
+
+42. Boa pergunta... Eu acredito que  depende do nivel que o user vai iniciar. Por exemplo, se ele começar como já um profissional formado com diploma ele tem as profissões mais comuns né? 
+
+Marketing /Publicidade, Arquitetura/ Engenharia, Advocacia, Medicina, Odontologia/Estética, Autônomo, Empresário, Programador/Tecnologia, Artes/Música, Esportes/Celebridade
+
+E ai de acordo com a macro area tem as ramificações.
+
+Estimo pelo menos 50/100
+
+43. As essenciais coloquei acima
+
+44. Combinação dos 3, o menos relevante é tempo em si mas por tempo de execução e performance. Não necessariamente tempo ao longo do jogo
+
+45. Sim poderá 
+
+46. todos
+
+47. Poderá sim se ele quiser até 24h por dia. Mas caso ele faça isso por muito tempo sua energia desce e consequentemente todo desencadeamento.
+
+
+
+Faltou os empregos de base né? Tem que ter pelo menos 20 profissões por area e começo.
+
+Exemplo. Uma pessoa não começa como advogado. 
+
+
+Bloco 8.
+
+48. Sim mas quanto menos recurso financeiro ele tem mais dificuldades ele tem! Se ele começa com zero não consegue comprar nada nem vender nada a não ser que tenha conhecimento e skills para prestar algum serviço.
+
+49.
+
+Todas essas, imoveis/veiculos
+50.
+Os que achar pertinente 
+
+51. Exatamente 
+
+52. Sim 
+53. Poderá sim contratar
+
+54. Simmm com certeza 
+55. Com certeza 
+Bloco 9.
+
+56. Depende do caminho que ele seguir pois quando ele deixar de ser clt por exemplo ele vai ver que maior parte do dinheiro é imposto e não o patrão que é ruim.
+57. Simm deve mostrar isso
+58. Altamente realidade mas didática 
+
+59. Exatamente 
+
+60. Com toda certeza causa e efeito. Mas também não pode ser um negócio totalmente insaciável que o usuário sempre se dá mal, na parte de gestão de negócios sim nos outros nem sempre.

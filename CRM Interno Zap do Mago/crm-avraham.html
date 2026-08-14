@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>CRM Avraham</title>
+<style>
+:root {
+  color-scheme: light;
+  --primary: #150f23;
+  --ink-deep: #1f1633;
+  --on-primary: #ffffff;
+  --accent-lime: #c2ef4e;
+  --accent-pink: #fa7faa;
+  --accent-violet: #6a5fc1;
+  --accent-violet-deep: #422082;
+  --accent-violet-mid: #79628c;
+  --surface-canvas-light: #ffffff;
+  --surface-night: #150f23;
+  --surface-press-light: #f0f0f0;
+  --surface-press-stronger: #efefef;
+  --hairline-violet: #362d59;
+  --hairline-cool: #cfcfdb;
+  --hairline-cloud: #e5e7eb;
+  --ink: #1f1633;
+  --ink-press: #1a1a1a;
+  --muted: #79628c;
+  --r-xs: 4px; --r-sm: 6px; --r-md: 8px; --r-lg: 10px; --r-xl: 12px; --r-xxl: 18px; --r-full: 9999px;
+  --sp-xxs: 2px; --sp-xs: 4px; --sp-sm: 8px; --sp-md: 12px; --sp-lg: 16px; --sp-xl: 24px; --sp-xxl: 32px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--surface-canvas-light);
+  color: var(--ink);
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: var(--sp-lg) var(--sp-xl);
+  background: var(--surface-canvas-light);
+  border-bottom: 1px solid var(--hairline-cloud);
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink-deep);
+  margin-right: 10px;
+  white-space: nowrap;
+}
+.brand .lime-chip {
+  background: var(--accent-lime);
+  color: var(--ink-deep);
+  border-radius: var(--r-xs);
+  padding: 0 var(--sp-md);
+  font-weight: 700;
+}
+.tabs { display: flex; gap: 4px; background: var(--surface-press-light); border-radius: var(--r-md); padding: 3px; }
+.tab {
+  border: none; background: transparent; padding: 7px 13px; border-radius: var(--r-sm);
+  font-family: Inter, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.2px;
+  text-transform: uppercase; cursor: pointer; color: var(--muted); white-space: nowrap;
+}
+.tab.active {
+  background: var(--surface-canvas-light); color: var(--ink-deep);
+  box-shadow: rgba(0,0,0,0.08) 0 2px 8px 0; font-weight: 700;
+}
+.search {
+  flex: 1; min-width: 140px; padding: var(--sp-sm) var(--sp-md);
+  border: 1px solid var(--hairline-cool); border-radius: var(--r-sm);
+  font-family: Inter, sans-serif; font-size: 14px; font-weight: 500; color: var(--ink-deep);
+}
+select.filter-select {
+  padding: 7px 8px; border: 1px solid var(--hairline-cool); border-radius: var(--r-sm);
+  font-family: Inter, sans-serif; font-size: 13px; max-width: 160px; color: var(--ink-deep);
+}
+.btn {
+  border: none; background: var(--primary); color: var(--on-primary);
+  padding: 12px 16px; border-radius: var(--r-md);
+  font-family: Inter, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.2px;
+  text-transform: uppercase; cursor: pointer; white-space: nowrap;
+}
+.btn:active { background: var(--surface-press-stronger); color: var(--ink-press); }
+.btn.secondary {
+  background: var(--surface-press-light); color: var(--ink-deep); font-weight: 500;
+}
+.btn.small { padding: 5px 10px; font-size: 11px; border-radius: var(--r-sm); }
+.counts { font-family: Inter, sans-serif; font-size: 13px; color: var(--muted); white-space: nowrap; }
+.board-wrap { overflow-x: auto; padding: var(--sp-lg); background: var(--surface-press-light); }
+.board { display: flex; gap: var(--sp-md); align-items: flex-start; min-height: 60vh; }
+.column { background: var(--hairline-cloud); border-radius: var(--r-lg); min-width: 264px; max-width: 264px; flex: 0 0 auto; padding: var(--sp-sm); }
+.column-header {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: Inter, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.25px;
+  color: var(--ink-deep); padding: var(--sp-xs) 6px var(--sp-sm) 6px; text-transform: uppercase;
+}
+.column-count { background: var(--surface-canvas-light); border-radius: var(--r-full); padding: 1px 8px; font-size: 11px; color: var(--muted); }
+.dropzone { min-height: 40px; border-radius: var(--r-md); transition: background 0.15s; }
+.dropzone.dragover { background: #dcd6c9; }
+.card {
+  background: var(--surface-canvas-light); border-radius: var(--r-xl); padding: var(--sp-md);
+  margin-bottom: var(--sp-sm); box-shadow: rgba(0,0,0,0.06) 0 1px 3px 0;
+  cursor: grab; border: 1px solid var(--hairline-cloud);
+}
+.card:active { cursor: grabbing; }
+.card-name { font-family: Inter, sans-serif; font-size: 14px; font-weight: 600; color: var(--ink-deep); margin-bottom: 4px; word-break: break-word; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: var(--sp-sm); }
+.chip {
+  background: var(--accent-violet-mid); color: var(--on-primary); border-radius: var(--r-full);
+  font-family: Inter, sans-serif; font-size: 10.5px; font-weight: 500; padding: 2px 9px;
+}
+.chip.product { background: var(--accent-violet-deep); }
+.card-notes { font-size: 11.5px; color: var(--muted); margin-top: var(--sp-sm); white-space: pre-wrap; }
+.card-meta-row { display: flex; justify-content: space-between; align-items: center; margin-top: var(--sp-sm); gap: 6px; }
+.deal-value { font-family: Inter, sans-serif; font-size: 13px; font-weight: 700; color: var(--ink-deep); }
+.last-interaction { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.2px; }
+.card-summary { font-size: 12px; color: var(--ink); margin-top: var(--sp-sm); line-height: 1.5; }
+.card-pendencia { font-size: 11px; color: var(--ink-deep); margin-top: 4px; padding-left: 10px; position: relative; }
+.card-pendencia::before { content: ''; position: absolute; left: 0; top: 5px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-pink); }
+.priority-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; }
+.p-alta { background: var(--accent-pink); }
+.p-media { background: var(--accent-violet-mid); }
+.p-baixa { background: var(--hairline-cool); }
+.empty-hint { font-size: 12px; color: var(--muted); padding: var(--sp-sm) 6px; }
+.move-select {
+  width: 100%; margin-top: var(--sp-sm); padding: 5px 7px; border: 1px solid var(--hairline-cool);
+  border-radius: var(--r-sm); font-family: Inter, sans-serif; font-size: 11px; background: var(--surface-press-light);
+  color: var(--ink-deep); text-transform: uppercase; font-weight: 500; letter-spacing: 0.2px;
+}
+.modal-overlay { position: fixed; inset: 0; background: rgba(21,15,35,0.45); display: flex; align-items: center; justify-content: center; z-index: 100; }
+.modal { background: var(--surface-canvas-light); border-radius: var(--r-xl); padding: var(--sp-xl); width: 460px; max-width: 92vw; max-height: 88vh; overflow-y: auto; box-shadow: rgba(0,0,0,0.1) 0 10px 15px -3px, rgba(0,0,0,0.1) 0 4px 6px -4px; }
+.modal h3 { margin: 0 0 var(--sp-lg) 0; font-family: Inter, sans-serif; font-size: 20px; font-weight: 600; color: var(--ink-deep); }
+.field { margin-bottom: var(--sp-md); }
+.field label { display: block; font-family: Inter, sans-serif; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: var(--sp-sm) var(--sp-md); border: 1px solid var(--hairline-cool);
+  border-radius: var(--r-sm); font-family: Inter, sans-serif; font-size: 14px; color: var(--ink-deep);
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; box-shadow: 0 0 0 3px rgba(157,193,245,0.5); border-color: var(--accent-violet);
+}
+.field textarea { min-height: 50px; resize: vertical; }
+.field-row { display: flex; gap: var(--sp-md); }
+.field-row .field { flex: 1; }
+.modal-actions { display: flex; justify-content: space-between; margin-top: var(--sp-lg); }
+.modal-actions .right { display: flex; gap: var(--sp-sm); }
+.link-btn { background: none; border: none; color: var(--accent-pink); font-family: Inter, sans-serif; font-size: 12.5px; font-weight: 500; cursor: pointer; padding: 0; }
+.footnote { font-size: 11px; color: var(--muted); padding: 0 var(--sp-xl) var(--sp-xl) var(--sp-xl); line-height: 1.6; background: var(--surface-canvas-light); }
+.playbook-wrap { padding: var(--sp-lg); background: var(--surface-press-light); min-height: 60vh; }
+.playbook-toolbar { display: flex; gap: var(--sp-sm); margin-bottom: var(--sp-lg); flex-wrap: wrap; }
+.playbook-list { display: flex; flex-direction: column; gap: var(--sp-md); max-width: 780px; }
+.playbook-card { background: var(--surface-canvas-light); border: 1px solid var(--hairline-cloud); border-radius: var(--r-xl); padding: var(--sp-lg) var(--sp-xl); }
+.playbook-card h4 { margin: 0 0 4px 0; font-family: Inter, sans-serif; font-size: 16px; font-weight: 600; color: var(--ink-deep); }
+.playbook-cat {
+  display: inline-block; background: var(--primary); color: var(--on-primary); font-family: Inter, sans-serif;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.25px; text-transform: uppercase; padding: 3px 9px;
+  border-radius: var(--r-xs); margin-bottom: var(--sp-sm);
+}
+.playbook-section { font-size: 12.5px; margin-top: 6px; color: var(--ink); line-height: 1.5; }
+.playbook-section b { color: var(--ink-deep); font-weight: 600; }
+.playbook-actions { display: flex; gap: var(--sp-md); margin-top: var(--sp-md); }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar"></div>
+<div id="boardView" class="board-wrap"><div class="board" id="board"></div></div>
+<div id="playbookView" class="playbook-wrap" style="display:none;"></div>
+<div class="footnote" id="footnote"></div>
+<div id="modalRoot"></div>
+
+<script>
+(function () {
+  var OLD_KEY = 'avraham_crm_data_v1';
+  var STORAGE_KEY = 'avraham_crm_data_v2';
+
+  var PIPELINES = {
+    comercial: { label: 'Comercial', stages: ['Novo lead', 'Contato feito', 'Qualificado', 'Proposta', 'Negociacao', 'Ganho', 'Perdido'] },
+    interno: { label: 'Pessoal e Interno', stages: ['Ativo', 'Esporadico', 'Arquivado'] }
+  };
+
+  function normalizeName(str) {
+    return (str || '').toString().normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+  }
+
+  function blankLeadFields() {
+    return { productTags: [], dealValue: null, summary: '', pendencia: '', proximosPassos: '', lastInteraction: '' };
+  }
+
+  function seedLeads() {
+    var comercial = [
+      ['Gustavo Fernando', 'Novo lead', ['a validar'], 'media'],
+      ['Kaique Moreira', 'Novo lead', ['trafego pago'], 'media'],
+      ['Autopar Funilaria', 'Novo lead', ['funilaria'], 'media'],
+      ['Paulo Marin', 'Novo lead', ['a validar'], 'media'],
+      ['Loovi Seguros', 'Novo lead', ['seguros'], 'media'],
+      ['Gustavo Pizza Do Gordo', 'Novo lead', ['alimentacao'], 'media'],
+      ['+55 34 8440-1098', 'Novo lead', ['numero nao salvo'], 'media'],
+      ['Decathlon', 'Novo lead', ['varejo'], 'media'],
+      ['MGP Telecom', 'Novo lead', ['telecom'], 'media'],
+      ['Rafa Martinelli Midia (O Boutiquim)', 'Novo lead', ['midia', 'indicacao'], 'media'],
+      ['Andressa Wolff | Secretaria Executiva', 'Novo lead', ['contato executivo'], 'media'],
+      ['Andre Oitte Automacao', 'Novo lead', ['automacao'], 'media'],
+      ['Filipe Machado Zapcerto', 'Novo lead', ['automacao whatsapp'], 'media'],
+      ['Lucas Ogawa Velasques (indicado Rafa Martinelli)', 'Novo lead', ['indicacao'], 'alta'],
+      ['Instituto Cerebro E Coluna Maringa', 'Novo lead', ['saude'], 'media'],
+      ['Carlos Nunes Speed Now', 'Novo lead', ['a validar'], 'media'],
+      ['+55 32 8416-0791', 'Novo lead', ['numero nao salvo'], 'media'],
+      ['Felipe Preciso', 'Novo lead', ['a validar'], 'baixa'],
+      ['O Rugido do Tigre', 'Novo lead', ['a validar'], 'baixa'],
+      ['Willian Gustavo GPT Maker', 'Novo lead', ['ia', 'automacao'], 'media'],
+      ['Leonardo Veronez Chips', 'Novo lead', ['chips'], 'media'],
+      ['Gustavo Manoel Primo', 'Novo lead', ['a validar'], 'baixa'],
+      ['Henrique Pacheco Gpt Maker', 'Novo lead', ['ia', 'automacao'], 'media'],
+      ['ODeivid Marques', 'Novo lead', ['a validar'], 'baixa'],
+      ['Easy Market - Spazio Medelin', 'Novo lead', ['varejo'], 'media'],
+      ['Greatsoftwares LTDA', 'Novo lead', ['software'], 'media'],
+      ['Emporio do Espeto (av. Gastao)', 'Novo lead', ['alimentacao'], 'media'],
+      ['+55 71 9373-6226', 'Novo lead', ['numero nao salvo'], 'media'],
+      ['Heitor Andrade', 'Novo lead', ['a validar'], 'baixa'],
+      ['Pro Condomino Cuiaba Negociacao', 'Negociacao', ['condominio'], 'alta'],
+      ['Morgana Kaisser', 'Novo lead', ['a validar'], 'baixa'],
+      ['Matheus Bertelli', 'Novo lead', ['a validar'], 'baixa'],
+      ['Pizza do Gordo Cianorte', 'Novo lead', ['alimentacao'], 'media'],
+      ['Rafa Noronha DaleO', 'Novo lead', ['a validar'], 'baixa']
+    ];
+    var interno = [
+      ['EU', 'Ativo', ['nota pessoal'], 'baixa'],
+      ['Familia', 'Ativo', ['familia'], 'baixa'],
+      ['Familia (2)', 'Ativo', ['familia'], 'baixa'],
+      ['Mae', 'Ativo', ['familia'], 'baixa'],
+      ['Familia Ba', 'Ativo', ['familia'], 'baixa'],
+      ['Cesar Baleco Pai', 'Ativo', ['familia'], 'baixa'],
+      ['Amor Da Minha Avraham Digital Vida', 'Ativo', ['relacionamento'], 'baixa'],
+      ['Arquivo Pessoal | Estudo Higor', 'Ativo', ['pessoal'], 'baixa'],
+      ['Financas HB', 'Ativo', ['pessoal'], 'baixa'],
+      ['Hangar de Homens Avisos', 'Arquivado', ['grupo'], 'baixa'],
+      ['Corajosos HUIOS Oficial', 'Arquivado', ['grupo'], 'baixa'],
+      ['Grupo gratuito 6', 'Arquivado', ['grupo'], 'baixa'],
+      ['Ingles com o Cooper | Group 4', 'Esporadico', ['grupo', 'estudo'], 'baixa'],
+      ['Turma 2 - Sinapses (Irrah)', 'Esporadico', ['grupo', 'comunidade'], 'baixa'],
+      ['Digital Club', 'Ativo', ['comunidade interna'], 'baixa'],
+      ['Avraham // Tretta', 'Ativo', ['time interno'], 'media'],
+      ['Avraham & Irrah Tech', 'Ativo', ['time interno'], 'media'],
+      ['Avraham Digital', 'Ativo', ['time interno'], 'media'],
+      ['Avraham I Design', 'Ativo', ['time interno'], 'media'],
+      ['Della | Avraham IA', 'Ativo', ['time interno'], 'media'],
+      ['Anna TopSend', 'Ativo', ['parceiro'], 'media'],
+      ['Higor Plens + TopSend', 'Ativo', ['interno'], 'media'],
+      ['Luiz Henrique Socio', 'Ativo', ['socio'], 'alta'],
+      ['Give Back do Digital', 'Esporadico', ['programa interno'], 'baixa'],
+      ['Chips Aquecidos Higor Whatsapp Maringa', 'Ativo', ['operacao interna'], 'media'],
+      ['Recados Spazio Medelin', 'Esporadico', ['a confirmar'], 'baixa'],
+      ['MKT Politico SN | Coleta de Leads IG-WPP', 'Ativo', ['automacao interna'], 'media'],
+      ['Herick Estrutura Contingencia', 'Esporadico', ['a confirmar'], 'baixa'],
+      ['Sellfy Academy (30/07 19:00)', 'Esporadico', ['curso', 'evento'], 'baixa'],
+      ['Anderson Marques | Z-API', 'Ativo', ['fornecedor', 'parceiro tech'], 'media'],
+      ['A Sociedade | Avraham', 'Ativo', ['a confirmar'], 'baixa']
+    ];
+    var out = [];
+    var id = 1;
+    comercial.forEach(function (row) {
+      var lead = { id: 'c' + (id++), pipeline: 'comercial', name: row[0], stage: row[1], tags: row[2], priority: row[3], notes: '', addedAt: new Date().toISOString() };
+      Object.assign(lead, blankLeadFields());
+      out.push(lead);
+    });
+    interno.forEach(function (row) {
+      var lead = { id: 'i' + (id++), pipeline: 'interno', name: row[0], stage: row[1], tags: row[2], priority: row[3], notes: '', addedAt: new Date().toISOString() };
+      Object.assign(lead, blankLeadFields());
+      out.push(lead);
+    });
+    return out;
+  }
+
+  // Lotes de sincronizacao gradual do WhatsApp. Cada lote so e aplicado uma vez
+  // e so atualiza campos de sincronizacao (lastInteraction, summary, pendencia,
+  // proximosPassos), nunca funil, estagio, tags, valor ou notas manuais.
+  var SYNC_BATCHES = [
+    {
+      id: 'sync-semana-2026-07-29',
+      label: 'Semana (ate 29/07/2026)',
+      updates: [
+        { name: 'Autopar Funilaria', lastInteraction: 'hoje 12:20', summary: 'Taiz (contato da oficina) mandou boa tarde e se apresentou.', pendencia: 'Responder Taiz, mensagem ainda nao lida.', proximosPassos: 'Responder e entender o que ela precisa.' },
+        { name: 'Gustavo Fernando', lastInteraction: 'hoje 11:07', summary: 'Ultima troca foi um comentario informal ("eu ate imagino kkk"), sem pauta comercial clara na previa.', pendencia: 'Sem pendencia clara pela previa da lista.', proximosPassos: 'Abrir a conversa completa para confirmar se ha proposta em aberto.' },
+        { name: 'Kaique Moreira', lastInteraction: 'hoje 10:59', summary: 'Ultima mensagem foi uma foto, sem texto na previa.', pendencia: 'Revisar o conteudo da foto.', proximosPassos: 'Abrir conversa para entender o contexto da imagem.' },
+        { name: 'Paulo Marin', lastInteraction: 'hoje 10:49', summary: 'Ultima mensagem: "Aah esta por ai mesmo".', pendencia: 'Sem pendencia clara pela previa.', proximosPassos: 'Revisar conversa completa.' },
+        { name: 'Loovi Seguros', lastInteraction: 'hoje 10:26', summary: 'Mensagem automatica avisando que o Escritorio Virtual esta sem movimentacao ha mais de 60 dias e a licenca sera inativada em 3 dias (1 de agosto).', pendencia: 'Decidir se renova a licenca ou deixa inativar. Este contato parece ser um servico/ferramenta que voce usa, nao um lead comercial novo.', proximosPassos: 'Considerar mover este contato para o pipeline Pessoal e Interno.' },
+        { name: 'Gustavo Pizza Do Gordo', lastInteraction: 'hoje 08:30', summary: 'Ultima mensagem foi o comando "/agente", parece teste de automacao/bot.', pendencia: 'Confirmar se e cliente real ou teste interno.', proximosPassos: 'Revisar conversa completa.' },
+        { name: '+55 34 8440-1098', lastInteraction: 'ontem', summary: 'Rafa, do time da Julia Vieira, avisou que o perfil foi pre aprovado para analise personalizada com estrategistas e comecou perguntas de qualificacao.', pendencia: 'Decidir se vale responder as perguntas de qualificacao desse funil.', proximosPassos: 'Definir se segue esse processo ou encerra.' },
+        { name: 'Rafa Martinelli Midia (O Boutiquim)', lastInteraction: 'ontem', summary: 'Ultima mensagem foi uma foto, sem texto na previa.', pendencia: 'Revisar o que foi enviado.', proximosPassos: 'Abrir a conversa completa.' },
+        { name: 'Andressa Wolff | Secretaria Executiva', lastInteraction: 'ontem', summary: 'Ultima mensagem: "Sim nos 2 como socios", sugere assunto de sociedade ou parceria em discussao.', pendencia: 'Confirmar se esta conversa e comercial ou trata de uma sociedade pessoal/interna.', proximosPassos: 'Revisar conversa completa antes de manter no pipeline comercial.' },
+        { name: 'Andre Oitte Automacao', lastInteraction: 'ontem', summary: 'Ultima mensagem parece ser um audio curto, sem transcricao disponivel na previa.', pendencia: 'Ouvir o audio para saber o conteudo.', proximosPassos: 'Abrir a conversa no WhatsApp para ouvir o audio.' },
+        { name: 'MGP Telecom', lastInteraction: 'ontem' },
+        { name: 'Filipe Machado Zapcerto', lastInteraction: 'ontem' },
+        { name: 'Lucas Ogawa Velasques (indicado Rafa Martinelli)', lastInteraction: 'ontem' },
+        { name: 'Instituto Cerebro E Coluna Maringa', lastInteraction: 'ontem' },
+        { name: 'Carlos Nunes Speed Now', lastInteraction: 'ontem' },
+        { name: '+55 32 8416-0791', lastInteraction: 'ontem' },
+        { name: 'Felipe Preciso', lastInteraction: 'recente (ultimos dias)' },
+        { name: 'O Rugido do Tigre', lastInteraction: 'ontem' },
+        { name: 'Willian Gustavo GPT Maker', lastInteraction: 'ontem' },
+        { name: 'Leonardo Veronez Chips', lastInteraction: 'ontem' },
+        { name: 'Gustavo Manoel Primo', lastInteraction: 'ontem' },
+        { name: 'Henrique Pacheco Gpt Maker', lastInteraction: 'ontem' },
+        { name: 'Easy Market - Spazio Medelin', lastInteraction: 'ontem' },
+        { name: 'Anderson Marques | Z-API', lastInteraction: 'ontem' },
+        { name: 'Recados Spazio Medelin', lastInteraction: 'ontem' },
+        { name: 'Higor Plens + TopSend', lastInteraction: 'ontem' },
+        { name: 'Anna TopSend', lastInteraction: 'ontem' },
+        { name: 'Aline Avraham', lastInteraction: 'ontem' },
+        { name: 'Mae', lastInteraction: 'ontem' },
+        { name: 'A Sociedade | Avraham', lastInteraction: 'ontem' },
+        { name: 'Arquivo Pessoal | Estudo Higor', lastInteraction: 'domingo' },
+        { name: 'EU', lastInteraction: 'segunda-feira' },
+        { name: 'Avraham // Tretta', lastInteraction: 'hoje 12:02' },
+        { name: 'Avraham & Irrah Tech', lastInteraction: 'hoje 11:03' },
+        { name: 'Familia', lastInteraction: 'hoje 12:14' }
+      ]
+    },
+    {
+      id: 'sync-trimestre-parcial-2026-07-29',
+      label: 'Trimestre (leitura parcial e verificada, 29/07/2026)',
+      updates: [
+        {
+          name: 'Gustavo Fernando',
+          lastInteraction: 'hoje 21:19',
+          summary: 'Conversa real aberta e lida no WhatsApp Web. Trata de gestao conjunta de leads: combinaram usar a central de leads para acompanhar entradas e que o Meta se atualiza automaticamente. Tom de parceria interna de trabalho, nao de prospeccao comercial de um cliente novo.',
+          pendencia: 'Responder a ultima mensagem ("Poutzzz", hoje 21:19), ainda sem resposta.',
+          proximosPassos: 'Avaliar mover este contato para o pipeline Pessoal e Interno como parceiro de gestao de leads, ja que o assunto e operacional interno, nao venda.'
+        },
+        {
+          name: 'Autopar Funilaria',
+          lastInteraction: 'hoje 21:19',
+          summary: 'Ao abrir esta conversa no WhatsApp Web, o cabecalho e o conteudo exibidos foram identicos aos do contato "Gustavo Fernando" desta lista (mesma discussao sobre central de leads e Meta Ads). Pode ser o mesmo contato salvo duas vezes com nomes diferentes.',
+          pendencia: 'Verificar manualmente no WhatsApp se "Autopar Funilaria" e "Gustavo Fernando" sao a mesma pessoa. Se forem, excluir um dos dois cards aqui no CRM para nao contar a mesma conversa duas vezes.',
+          proximosPassos: 'Confirmar duplicidade antes de seguir preenchendo dados deste contato especifico.'
+        },
+        {
+          name: 'Kaique Moreira',
+          lastInteraction: '21:59 (conversa aberta e lida de verdade)',
+          summary: 'Conversa contem um relatorio de resultados de trafego pago compartilhado por voce: caso "Dunna Decor" (nov/24 a jun/25). Investimento total em anuncios R$ 7.222,86, 1.381 conversas de WhatsApp geradas pelos anuncios, R$ 41.976,00 em vendas diretas registradas, ROI de 5,8x, custo medio por venda de R$ 1.204 e ticket medio de R$ 6.996. Voce compartilhou tambem um Google Doc e uma planilha com os dados completos.',
+          pendencia: 'Nenhuma pendencia clara de resposta na parte final lida; parece ser material de portfolio/prova social compartilhado com Kaique.',
+          proximosPassos: 'Confirmar se Kaique e um lead avaliando contratar trafego pago (nesse caso, este case serve como prova social para avancar a negociacao) ou se e apenas um parceiro recebendo o relatorio.'
+        }
+      ]
+    }
+  ];
+
+  function loadRawState() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      try { return JSON.parse(raw); } catch (e) {}
+    }
+    var oldRaw = localStorage.getItem(OLD_KEY);
+    if (oldRaw) {
+      try {
+        var oldLeads = JSON.parse(oldRaw);
+        oldLeads.forEach(function (l) { Object.assign(l, blankLeadFields(), l); if (!l.hasOwnProperty('productTags')) l.productTags = []; });
+        return { version: 2, leads: oldLeads, playbook: [], appliedBatches: ['seed-v1'] };
+      } catch (e) {}
+    }
+    return { version: 2, leads: seedLeads(), playbook: [], appliedBatches: ['seed-v1'] };
+  }
+
+  function saveState() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function applySyncBatches() {
+    SYNC_BATCHES.forEach(function (batch) {
+      if (state.appliedBatches.indexOf(batch.id) !== -1) return;
+      batch.updates.forEach(function (u) {
+        var key = normalizeName(u.name);
+        var lead = state.leads.find(function (l) { return normalizeName(l.name) === key; });
+        if (!lead) return;
+        if (u.lastInteraction) lead.lastInteraction = u.lastInteraction;
+        if (u.summary) lead.summary = u.summary;
+        if (u.pendencia) lead.pendencia = u.pendencia;
+        if (u.proximosPassos) lead.proximosPassos = u.proximosPassos;
+      });
+      state.appliedBatches.push(batch.id);
+    });
+  }
+
+  var state = loadRawState();
+  applySyncBatches();
+  saveState();
+
+  var view = { screen: 'board', pipeline: 'comercial', search: '', tagFilter: '', stageFilter: '' };
+
+  var topbar = document.getElementById('topbar');
+  var boardView = document.getElementById('boardView');
+  var playbookView = document.getElementById('playbookView');
+  var boardEl = document.getElementById('board');
+  var modalRoot = document.getElementById('modalRoot');
+  var footnote = document.getElementById('footnote');
+
+  var appliedLabels = SYNC_BATCHES.filter(function (b) { return state.appliedBatches.indexOf(b.id) !== -1; }).map(function (b) { return b.label; });
+  footnote.textContent = 'Lotes de sincronizacao aplicados: ' + (appliedLabels.length ? appliedLabels.join(', ') : 'nenhum') + '. A leitura de historico completo por conversa depende de abrir cada chat no WhatsApp Web, o que nem sempre e confiavel via automacao; dados marcados como "revisar" ainda nao foram confirmados abrindo a conversa. Nenhum dado e inventado quando a evidencia nao esta disponivel.';
+
+  function renderTopbar() {
+    var html = '<div class="brand"><span>CRM</span><span class="lime-chip">Avraham</span></div>';
+    html += '<div class="tabs">';
+    html += '<button class="tab' + (view.screen === 'board' && view.pipeline === 'comercial' ? ' active' : '') + '" data-action="show-pipeline" data-pipeline="comercial">Comercial</button>';
+    html += '<button class="tab' + (view.screen === 'board' && view.pipeline === 'interno' ? ' active' : '') + '" data-action="show-pipeline" data-pipeline="interno">Pessoal e Interno</button>';
+    html += '<button class="tab' + (view.screen === 'playbook' ? ' active' : '') + '" data-action="show-playbook">Playbook interno</button>';
+    html += '</div>';
+    if (view.screen === 'board') {
+      html += '<input class="search" id="searchInput" placeholder="Buscar por nome, etiqueta ou produto" value="' + escapeAttr(view.search) + '">';
+      html += '<select class="filter-select" id="stageFilterSelect"><option value="">Todos os estagios</option>' + PIPELINES[view.pipeline].stages.map(function (s) { return '<option value="' + s + '"' + (view.stageFilter === s ? ' selected' : '') + '>' + s + '</option>'; }).join('') + '</select>';
+      html += '<span class="counts" id="pipelineCounts"></span>';
+      html += '<button class="btn" id="addLeadBtn">+ Novo contato</button>';
+    } else {
+      html += '<span class="counts">Base interna de abordagens, follow-ups e resolucao de casos</span>';
+      html += '<button class="btn" id="addPlaybookBtn">+ Nova anotacao</button>';
+    }
+    topbar.innerHTML = html;
+
+    topbar.querySelectorAll('[data-action="show-pipeline"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        view.screen = 'board';
+        view.pipeline = btn.getAttribute('data-pipeline');
+        view.stageFilter = '';
+        renderAll();
+      });
+    });
+    var playbookBtn = topbar.querySelector('[data-action="show-playbook"]');
+    if (playbookBtn) playbookBtn.addEventListener('click', function () { view.screen = 'playbook'; renderAll(); });
+
+    var searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.addEventListener('input', function () { view.search = searchInput.value; renderAll(); });
+    var stageSel = document.getElementById('stageFilterSelect');
+    if (stageSel) stageSel.addEventListener('change', function () { view.stageFilter = stageSel.value; renderAll(); });
+    var addLeadBtn = document.getElementById('addLeadBtn');
+    if (addLeadBtn) addLeadBtn.addEventListener('click', function () { openLeadModal(null); });
+    var addPlaybookBtn = document.getElementById('addPlaybookBtn');
+    if (addPlaybookBtn) addPlaybookBtn.addEventListener('click', function () { openPlaybookModal(null); });
+  }
+
+  function escapeHtml(str) { var d = document.createElement('div'); d.textContent = str == null ? '' : String(str); return d.innerHTML; }
+  function escapeAttr(str) { return escapeHtml(str).replace(/"/g, '&quot;'); }
+  function formatBRL(v) {
+    if (v === null || v === undefined || v === '') return '';
+    var n = Number(v);
+    if (isNaN(n)) return '';
+    return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function filteredLeads() {
+    return state.leads.filter(function (lead) {
+      if (lead.pipeline !== view.pipeline) return false;
+      if (view.stageFilter && lead.stage !== view.stageFilter) return false;
+      if (view.search) {
+        var s = view.search.toLowerCase();
+        var haystack = [lead.name, (lead.tags || []).join(' '), (lead.productTags || []).join(' '), lead.notes, lead.summary].join(' ').toLowerCase();
+        if (haystack.indexOf(s) === -1) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderBoard() {
+    boardView.style.display = '';
+    playbookView.style.display = 'none';
+    var stages = PIPELINES[view.pipeline].stages;
+    var leads = filteredLeads();
+    var totalInPipeline = state.leads.filter(function (l) { return l.pipeline === view.pipeline; }).length;
+    var countsEl = document.getElementById('pipelineCounts');
+    if (countsEl) countsEl.textContent = totalInPipeline + ' contatos neste pipeline';
+
+    boardEl.innerHTML = '';
+    stages.forEach(function (stage) {
+      var col = document.createElement('div');
+      col.className = 'column';
+      var stageLeads = leads.filter(function (l) { return l.stage === stage; });
+
+      var header = document.createElement('div');
+      header.className = 'column-header';
+      header.innerHTML = '<span>' + escapeHtml(stage) + '</span><span class="column-count">' + stageLeads.length + '</span>';
+      col.appendChild(header);
+
+      var zone = document.createElement('div');
+      zone.className = 'dropzone';
+      zone.addEventListener('dragover', function (e) { e.preventDefault(); zone.classList.add('dragover'); });
+      zone.addEventListener('dragleave', function () { zone.classList.remove('dragover'); });
+      zone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        zone.classList.remove('dragover');
+        var leadId = e.dataTransfer.getData('text/plain');
+        moveLeadStage(leadId, stage);
+      });
+
+      if (stageLeads.length === 0) {
+        var hint = document.createElement('div');
+        hint.className = 'empty-hint';
+        hint.textContent = 'Vazio';
+        zone.appendChild(hint);
+      }
+      stageLeads.forEach(function (lead) { zone.appendChild(renderCard(lead)); });
+      col.appendChild(zone);
+      boardEl.appendChild(col);
+    });
+  }
+
+  function renderCard(lead) {
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.setAttribute('draggable', 'true');
+    card.addEventListener('dragstart', function (e) { e.dataTransfer.setData('text/plain', lead.id); });
+
+    var nameRow = document.createElement('div');
+    nameRow.className = 'card-name';
+    var dot = document.createElement('span');
+    dot.className = 'priority-dot p-' + lead.priority;
+    nameRow.appendChild(dot);
+    nameRow.appendChild(document.createTextNode(lead.name));
+    nameRow.style.cursor = 'pointer';
+    nameRow.addEventListener('click', function () { openLeadModal(lead.id); });
+    card.appendChild(nameRow);
+
+    var allTags = (lead.tags || []).concat((lead.productTags || []).map(function (t) { return t; }));
+    if (allTags.length) {
+      var tagsRow = document.createElement('div');
+      tagsRow.className = 'card-tags';
+      (lead.tags || []).forEach(function (t) { var c = document.createElement('span'); c.className = 'chip'; c.textContent = t; tagsRow.appendChild(c); });
+      (lead.productTags || []).forEach(function (t) { var c = document.createElement('span'); c.className = 'chip product'; c.textContent = t; tagsRow.appendChild(c); });
+      card.appendChild(tagsRow);
+    }
+
+    if (lead.summary) {
+      var sum = document.createElement('div');
+      sum.className = 'card-summary';
+      sum.textContent = lead.summary;
+      card.appendChild(sum);
+    }
+    if (lead.pendencia) {
+      var pend = document.createElement('div');
+      pend.className = 'card-pendencia';
+      pend.textContent = 'Pendencia: ' + lead.pendencia;
+      card.appendChild(pend);
+    }
+
+    var metaRow = document.createElement('div');
+    metaRow.className = 'card-meta-row';
+    var dealSpan = document.createElement('span');
+    dealSpan.className = 'deal-value';
+    dealSpan.textContent = formatBRL(lead.dealValue);
+    var lastSpan = document.createElement('span');
+    lastSpan.className = 'last-interaction';
+    lastSpan.textContent = lead.lastInteraction || '';
+    metaRow.appendChild(dealSpan);
+    metaRow.appendChild(lastSpan);
+    card.appendChild(metaRow);
+
+    if (lead.notes) {
+      var notes = document.createElement('div');
+      notes.className = 'card-notes';
+      notes.textContent = lead.notes;
+      card.appendChild(notes);
+    }
+
+    var moveSelect = document.createElement('select');
+    moveSelect.className = 'move-select';
+    var options = ['<option value="">Mover para...</option>'];
+    Object.keys(PIPELINES).forEach(function (pKey) {
+      options.push('<optgroup label="' + PIPELINES[pKey].label + '">');
+      PIPELINES[pKey].stages.forEach(function (s) {
+        var val = pKey + '::' + s;
+        var isCurrent = pKey === lead.pipeline && s === lead.stage;
+        options.push('<option value="' + val + '"' + (isCurrent ? ' selected disabled' : '') + '>' + s + '</option>');
+      });
+      options.push('</optgroup>');
+    });
+    moveSelect.innerHTML = options.join('');
+    moveSelect.addEventListener('click', function (e) { e.stopPropagation(); });
+    moveSelect.addEventListener('change', function (e) {
+      e.stopPropagation();
+      var val = moveSelect.value;
+      if (!val) return;
+      var parts = val.split('::');
+      lead.pipeline = parts[0];
+      lead.stage = parts[1];
+      saveState();
+      renderAll();
+    });
+    card.appendChild(moveSelect);
+
+    return card;
+  }
+
+  function moveLeadStage(leadId, newStage) {
+    var lead = state.leads.find(function (l) { return l.id === leadId; });
+    if (!lead) return;
+    lead.stage = newStage;
+    saveState();
+    renderAll();
+  }
+
+  function openLeadModal(leadId) {
+    var lead = leadId ? state.leads.find(function (l) { return l.id === leadId; }) : null;
+    var isNew = !lead;
+    var pipelineKey = lead ? lead.pipeline : view.pipeline;
+
+    var overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+
+    var modal = document.createElement('div');
+    modal.className = 'modal';
+
+    var pipelineOptions = Object.keys(PIPELINES).map(function (key) {
+      return '<option value="' + key + '"' + (key === pipelineKey ? ' selected' : '') + '>' + PIPELINES[key].label + '</option>';
+    }).join('');
+
+    modal.innerHTML =
+      '<h3>' + (isNew ? 'Novo contato' : 'Editar contato') + '</h3>' +
+      '<div class="field"><label>Nome</label><input id="f_name" value="' + (lead ? escapeAttr(lead.name) : '') + '"></div>' +
+      '<div class="field-row">' +
+        '<div class="field"><label>Pipeline</label><select id="f_pipeline">' + pipelineOptions + '</select></div>' +
+        '<div class="field"><label>Estagio</label><select id="f_stage"></select></div>' +
+      '</div>' +
+      '<div class="field-row">' +
+        '<div class="field"><label>Prioridade</label><select id="f_priority">' +
+          '<option value="alta"' + (lead && lead.priority === 'alta' ? ' selected' : '') + '>Alta</option>' +
+          '<option value="media"' + (!lead || lead.priority === 'media' ? ' selected' : '') + '>Media</option>' +
+          '<option value="baixa"' + (lead && lead.priority === 'baixa' ? ' selected' : '') + '>Baixa</option>' +
+        '</select></div>' +
+        '<div class="field"><label>Valor de negociacao (R$)</label><input id="f_dealvalue" type="number" step="0.01" value="' + (lead && lead.dealValue !== null && lead.dealValue !== undefined ? lead.dealValue : '') + '"></div>' +
+      '</div>' +
+      '<div class="field"><label>Etiquetas de interesse/contexto (separadas por virgula)</label><input id="f_tags" value="' + (lead ? escapeAttr((lead.tags || []).join(', ')) : '') + '"></div>' +
+      '<div class="field"><label>Etiquetas de produto (separadas por virgula)</label><input id="f_producttags" value="' + (lead ? escapeAttr((lead.productTags || []).join(', ')) : '') + '"></div>' +
+      '<div class="field"><label>Resumo da conversa (contexto geral)</label><textarea id="f_summary">' + (lead ? escapeHtml(lead.summary) : '') + '</textarea></div>' +
+      '<div class="field-row">' +
+        '<div class="field"><label>Pendencia (o que precisa fazer)</label><textarea id="f_pendencia">' + (lead ? escapeHtml(lead.pendencia) : '') + '</textarea></div>' +
+        '<div class="field"><label>Proximos passos</label><textarea id="f_proximos">' + (lead ? escapeHtml(lead.proximosPassos) : '') + '</textarea></div>' +
+      '</div>' +
+      '<div class="field"><label>Data/hora da ultima interacao</label><input id="f_lastinteraction" value="' + (lead ? escapeAttr(lead.lastInteraction) : '') + '" placeholder="ex: hoje 14:30, ontem, 25/07/2026"></div>' +
+      '<div class="field"><label>Notas</label><textarea id="f_notes">' + (lead ? escapeHtml(lead.notes) : '') + '</textarea></div>' +
+      '<div class="modal-actions">' +
+        '<div>' + (isNew ? '' : '<button class="link-btn" id="deleteBtn">Excluir contato</button>') + '</div>' +
+        '<div class="right"><button class="btn secondary" id="cancelBtn">Cancelar</button><button class="btn" id="saveBtn">Salvar</button></div>' +
+      '</div>';
+
+    overlay.appendChild(modal);
+    modalRoot.appendChild(overlay);
+
+    var pipelineSelect = document.getElementById('f_pipeline');
+    var stageSelect = document.getElementById('f_stage');
+    function fillStages(pKey, selectedStage) {
+      stageSelect.innerHTML = PIPELINES[pKey].stages.map(function (s) {
+        return '<option value="' + s + '"' + (s === selectedStage ? ' selected' : '') + '>' + s + '</option>';
+      }).join('');
+    }
+    fillStages(pipelineKey, lead ? lead.stage : PIPELINES[pipelineKey].stages[0]);
+    pipelineSelect.addEventListener('change', function () { fillStages(pipelineSelect.value, PIPELINES[pipelineSelect.value].stages[0]); });
+
+    document.getElementById('cancelBtn').addEventListener('click', closeModal);
+
+    document.getElementById('saveBtn').addEventListener('click', function () {
+      var name = document.getElementById('f_name').value.trim();
+      if (!name) return;
+      var pKey = pipelineSelect.value;
+      var sVal = stageSelect.value;
+      var priority = document.getElementById('f_priority').value;
+      var dealValueRaw = document.getElementById('f_dealvalue').value;
+      var dealValue = dealValueRaw === '' ? null : Number(dealValueRaw);
+      var tags = document.getElementById('f_tags').value.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+      var productTags = document.getElementById('f_producttags').value.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+      var summary = document.getElementById('f_summary').value;
+      var pendencia = document.getElementById('f_pendencia').value;
+      var proximosPassos = document.getElementById('f_proximos').value;
+      var lastInteraction = document.getElementById('f_lastinteraction').value;
+      var notes = document.getElementById('f_notes').value;
+
+      if (isNew) {
+        state.leads.push({
+          id: 'n' + Date.now(), pipeline: pKey, name: name, stage: sVal, tags: tags, productTags: productTags,
+          priority: priority, dealValue: dealValue, summary: summary, pendencia: pendencia, proximosPassos: proximosPassos,
+          lastInteraction: lastInteraction, notes: notes, addedAt: new Date().toISOString()
+        });
+      } else {
+        lead.pipeline = pKey; lead.name = name; lead.stage = sVal; lead.tags = tags; lead.productTags = productTags;
+        lead.priority = priority; lead.dealValue = dealValue; lead.summary = summary; lead.pendencia = pendencia;
+        lead.proximosPassos = proximosPassos; lead.lastInteraction = lastInteraction; lead.notes = notes;
+      }
+      saveState();
+      closeModal();
+      view.pipeline = pKey;
+      renderAll();
+    });
+
+    if (!isNew) {
+      document.getElementById('deleteBtn').addEventListener('click', function () {
+        state.leads = state.leads.filter(function (l) { return l.id !== lead.id; });
+        saveState();
+        closeModal();
+        renderAll();
+      });
+    }
+  }
+
+  // Playbook interno
+  var PLAYBOOK_CATEGORIES = ['Abordagem', 'Follow-up', 'Objecao', 'Resolucao de conflito', 'Caso de uso'];
+
+  function renderPlaybook() {
+    boardView.style.display = 'none';
+    playbookView.style.display = '';
+    playbookView.innerHTML = '';
+
+    var toolbar = document.createElement('div');
+    toolbar.className = 'playbook-toolbar';
+    var catSelect = document.createElement('select');
+    catSelect.className = 'filter-select';
+    catSelect.innerHTML = '<option value="">Todas as categorias</option>' + PLAYBOOK_CATEGORIES.map(function (c) { return '<option value="' + c + '"' + (view.playbookCat === c ? ' selected' : '') + '>' + c + '</option>'; }).join('');
+    catSelect.addEventListener('change', function () { view.playbookCat = catSelect.value; renderAll(); });
+    toolbar.appendChild(catSelect);
+    playbookView.appendChild(toolbar);
+
+    var list = document.createElement('div');
+    list.className = 'playbook-list';
+
+    var entries = state.playbook.filter(function (p) { return !view.playbookCat || p.category === view.playbookCat; });
+    if (entries.length === 0) {
+      var empty = document.createElement('div');
+      empty.className = 'empty-hint';
+      empty.textContent = 'Nenhuma anotacao ainda. Use "+ Nova anotacao" para comecar o playbook.';
+      list.appendChild(empty);
+    }
+
+    entries.slice().reverse().forEach(function (p) {
+      var card = document.createElement('div');
+      card.className = 'playbook-card';
+      var cat = document.createElement('span');
+      cat.className = 'playbook-cat';
+      cat.textContent = p.category;
+      card.appendChild(cat);
+      var h = document.createElement('h4');
+      h.textContent = p.title;
+      card.appendChild(h);
+      if (p.situacao) card.appendChild(sectionEl('Situacao/caso de uso', p.situacao));
+      if (p.oQueFunciona) card.appendChild(sectionEl('O que funciona', p.oQueFunciona));
+      if (p.oQueNaoFunciona) card.appendChild(sectionEl('O que nao funciona', p.oQueNaoFunciona));
+      if (p.sugestao) card.appendChild(sectionEl('Sugestao de ajuste', p.sugestao));
+      if (p.contatoRelacionado) card.appendChild(sectionEl('Contato/negociacao relacionada', p.contatoRelacionado));
+      if (p.tags && p.tags.length) {
+        var tagsRow = document.createElement('div');
+        tagsRow.className = 'card-tags';
+        p.tags.forEach(function (t) { var c = document.createElement('span'); c.className = 'chip'; c.textContent = t; tagsRow.appendChild(c); });
+        card.appendChild(tagsRow);
+      }
+      var actions = document.createElement('div');
+      actions.className = 'playbook-actions';
+      var editBtn = document.createElement('button');
+      editBtn.className = 'btn small secondary';
+      editBtn.textContent = 'Editar';
+      editBtn.addEventListener('click', function () { openPlaybookModal(p.id); });
+      var delBtn = document.createElement('button');
+      delBtn.className = 'link-btn';
+      delBtn.textContent = 'Excluir';
+      delBtn.addEventListener('click', function () {
+        state.playbook = state.playbook.filter(function (x) { return x.id !== p.id; });
+        saveState();
+        renderAll();
+      });
+      actions.appendChild(editBtn);
+      actions.appendChild(delBtn);
+      card.appendChild(actions);
+      list.appendChild(card);
+    });
+
+    playbookView.appendChild(list);
+  }
+
+  function sectionEl(label, text) {
+    var div = document.createElement('div');
+    div.className = 'playbook-section';
+    div.innerHTML = '<b>' + escapeHtml(label) + ':</b> ' + escapeHtml(text);
+    return div;
+  }
+
+  function openPlaybookModal(entryId) {
+    var entry = entryId ? state.playbook.find(function (p) { return p.id === entryId; }) : null;
+    var isNew = !entry;
+
+    var overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+
+    var modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML =
+      '<h3>' + (isNew ? 'Nova anotacao de playbook' : 'Editar anotacao') + '</h3>' +
+      '<div class="field"><label>Categoria</label><select id="p_category">' + PLAYBOOK_CATEGORIES.map(function (c) { return '<option value="' + c + '"' + (entry && entry.category === c ? ' selected' : '') + '>' + c + '</option>'; }).join('') + '</select></div>' +
+      '<div class="field"><label>Titulo</label><input id="p_title" value="' + (entry ? escapeAttr(entry.title) : '') + '"></div>' +
+      '<div class="field"><label>Situacao / caso de uso</label><textarea id="p_situacao">' + (entry ? escapeHtml(entry.situacao) : '') + '</textarea></div>' +
+      '<div class="field"><label>O que funciona</label><textarea id="p_funciona">' + (entry ? escapeHtml(entry.oQueFunciona) : '') + '</textarea></div>' +
+      '<div class="field"><label>O que nao funciona</label><textarea id="p_naofunciona">' + (entry ? escapeHtml(entry.oQueNaoFunciona) : '') + '</textarea></div>' +
+      '<div class="field"><label>Sugestao de ajuste</label><textarea id="p_sugestao">' + (entry ? escapeHtml(entry.sugestao) : '') + '</textarea></div>' +
+      '<div class="field"><label>Contato ou negociacao relacionada (opcional)</label><input id="p_contato" value="' + (entry ? escapeAttr(entry.contatoRelacionado) : '') + '"></div>' +
+      '<div class="field"><label>Etiquetas (separadas por virgula)</label><input id="p_tags" value="' + (entry ? escapeAttr((entry.tags || []).join(', ')) : '') + '"></div>' +
+      '<div class="modal-actions">' +
+        '<div>' + (isNew ? '' : '<button class="link-btn" id="deletePlaybookBtn">Excluir</button>') + '</div>' +
+        '<div class="right"><button class="btn secondary" id="cancelPlaybookBtn">Cancelar</button><button class="btn" id="savePlaybookBtn">Salvar</button></div>' +
+      '</div>';
+
+    overlay.appendChild(modal);
+    modalRoot.appendChild(overlay);
+
+    document.getElementById('cancelPlaybookBtn').addEventListener('click', closeModal);
+    document.getElementById('savePlaybookBtn').addEventListener('click', function () {
+      var title = document.getElementById('p_title').value.trim();
+      if (!title) return;
+      var category = document.getElementById('p_category').value;
+      var situacao = document.getElementById('p_situacao').value;
+      var oQueFunciona = document.getElementById('p_funciona').value;
+      var oQueNaoFunciona = document.getElementById('p_naofunciona').value;
+      var sugestao = document.getElementById('p_sugestao').value;
+      var contatoRelacionado = document.getElementById('p_contato').value;
+      var tags = document.getElementById('p_tags').value.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+
+      if (isNew) {
+        state.playbook.push({
+          id: 'pb' + Date.now(), category: category, title: title, situacao: situacao, oQueFunciona: oQueFunciona,
+          oQueNaoFunciona: oQueNaoFunciona, sugestao: sugestao, contatoRelacionado: contatoRelacionado, tags: tags,
+          createdAt: new Date().toISOString()
+        });
+      } else {
+        entry.category = category; entry.title = title; entry.situacao = situacao; entry.oQueFunciona = oQueFunciona;
+        entry.oQueNaoFunciona = oQueNaoFunciona; entry.sugestao = sugestao; entry.contatoRelacionado = contatoRelacionado; entry.tags = tags;
+      }
+      saveState();
+      closeModal();
+      renderAll();
+    });
+
+    if (!isNew) {
+      document.getElementById('deletePlaybookBtn').addEventListener('click', function () {
+        state.playbook = state.playbook.filter(function (p) { return p.id !== entry.id; });
+        saveState();
+        closeModal();
+        renderAll();
+      });
+    }
+  }
+
+  function closeModal() { modalRoot.innerHTML = ''; }
+
+  function renderAll() {
+    renderTopbar();
+    if (view.screen === 'playbook') renderPlaybook();
+    else renderBoard();
+  }
+
+  renderAll();
+})();
+</script>
+
+</body>
+</html>

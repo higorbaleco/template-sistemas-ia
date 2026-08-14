@@ -1,0 +1,15 @@
+{
+  "runs": [
+    {
+      "date": "2026-08-14T09:31:37.490902+00:00",
+      "input_tokens": 0,
+      "output_tokens": 88201,
+      "files": 24,
+      "nodes": 79,
+      "edges": 69,
+      "communities": 6
+    }
+  ],
+  "total_input_tokens": 0,
+  "total_output_tokens": 88201
+}

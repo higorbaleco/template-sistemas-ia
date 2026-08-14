@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opções - Groups Hunter Advance</title>
+  <style>
+    :root {
+      --background: #f8fafc;
+      --foreground: #1e293b;
+      --card: #ffffff;
+      --card-foreground: #1e293b;
+      --secondary: #e5e7eb;
+      --secondary-foreground: #374151;
+      --muted: #f3f4f6;
+      --muted-foreground: #6b7280;
+      --border: #d1d5db;
+      --input: #d1d5db;
+      --ring: #6366f1;
+      --accent: #e0e7ff;
+      --primary: #6366f1;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--foreground);
+      background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.12), transparent 34%),
+        var(--background);
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero,
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    .hero {
+      padding: 20px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.12;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted-foreground);
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 72ch;
+    }
+
+    .card {
+      padding: 18px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--muted);
+      border: 1px solid var(--border);
+      color: var(--secondary-foreground);
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--secondary-foreground);
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--input);
+      background: #ffffff;
+      color: var(--foreground);
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input[type="number"]:focus,
+    select:focus {
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+    }
+
+    .hint {
+      font-size: 12px;
+      color: var(--muted-foreground);
+      line-height: 1.45;
+    }
+
+    .toggles {
+      display: grid;
+      gap: 10px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .toggle-row strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+
+    .toggle-row span {
+      display: block;
+      color: var(--muted-foreground);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .toggle-row input {
+      accent-color: var(--primary);
+    }
+
+    .toggle-row.disabled {
+      opacity: 0.5;
+    }
+
+    .toggle-row.disabled input {
+      cursor: not-allowed;
+    }
+
+    .source-list {
+      display: grid;
+      gap: 10px;
+      max-height: 360px;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .source-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .source-item.disabled {
+      opacity: 0.5;
+    }
+
+    .source-item strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .source-item span {
+      display: block;
+      color: var(--muted-foreground);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--muted);
+      color: var(--secondary-foreground);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      white-space: nowrap;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--foreground);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    }
+
+    button.primary {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .feedback {
+      margin-top: 12px;
+      min-height: 18px;
+      font-size: 13px;
+      color: var(--muted-foreground);
+    }
+
+    .feedback.success { color: #059669; }
+    .feedback.error { color: #dc2626; }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <p class="eyebrow">Configurações</p>
+      <h1>Groups Hunter Advance</h1>
+      <p class="subtitle">
+        Controle as fontes, o crawl e o filtro +18. A palavra-chave e a categoria ficam no popup.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="section-head">
+        <span>Filtro +18</span>
+        <span class="pill">visível e persistente</span>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <strong>Permitir fontes +18</strong>
+          <span>Quando desligado, as fontes adultas ficam fora da coleta.</span>
+        </div>
+        <input id="adult-mode" type="checkbox">
+      </div>
+      <div class="hint" style="margin-top:10px;">
+        Ao ativar +18, você pode marcar as fontes adultas na lista abaixo.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-head">
+        <span>Coleta</span>
+        <span class="pill">padrão local</span>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label for="crawl-depth">Profundidade do crawl</label>
+          <input id="crawl-depth" type="number" min="1" max="4" step="1">
+          <div class="hint">Quantas páginas internas cada fonte pode seguir. Menor = mais rápido.</div>
+        </div>
+        <div class="field">
+          <label for="include-current-tab">Aba atual</label>
+          <div class="toggle-row">
+            <div>
+              <strong>Incluir a aba aberta</strong>
+              <span>Extrai links da página que você já está vendo.</span>
+            </div>
+            <input id="include-current-tab" type="checkbox">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-head">
+        <span>Canal</span>
+        <span class="pill">WhatsApp / Telegram</span>
+      </div>
+      <div class="toggles">
+        <div class="toggle-row">
+          <div>
+            <strong>WhatsApp</strong>
+            <span>Inclui links `chat.whatsapp.com` na coleta.</span>
+          </div>
+          <input id="channel-whatsapp" type="checkbox">
+        </div>
+        <div class="toggle-row">
+          <div>
+            <strong>Telegram</strong>
+            <span>Inclui links `t.me` na coleta.</span>
+          </div>
+          <input id="channel-telegram" type="checkbox">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-head">
+        <span>Fontes</span>
+        <span class="pill" id="sources-summary">0 ativas</span>
+      </div>
+      <div class="source-list" id="sources-list"></div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="btn-save">Salvar</button>
+      <button id="btn-defaults">Restaurar padrões</button>
+    </div>
+
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <script src="sources.js"></script>
+  <script src="shared.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

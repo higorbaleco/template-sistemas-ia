@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Find WhatsApp Links - Prototype",
+  "description": "Extrai links públicos de grupos WhatsApp da página atual, filtra por palavra-chave e exporta resultados.",
+  "version": "0.1.0",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Find WhatsApp Links",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

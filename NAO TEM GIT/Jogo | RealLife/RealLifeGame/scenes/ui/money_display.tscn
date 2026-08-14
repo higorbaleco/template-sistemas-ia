@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="UIDMONEYDISPLAY000"]
+
+[node name="MoneyDisplay" type="Control"]
+anchor_left = 0.0
+anchor_top = 0.0
+margin_left = 20
+margin_top = 20
+
+[node name="Icon" type="TextureRect" parent="."]
+anchor_left = 0.0
+anchor_top = 0.5
+margin_top = -16
+texture = ExtResource( 0 )  # Placeholder for coin texture
+expand = false
+stretch_mode = 1
+custom_constants/min_size = Vector2(32, 32)
+
+[node name="Label" type="Label" parent="."]
+text = "$0"
+anchor_left = 0.0
+anchor_top = 0.5
+margin_left = 40
+margin_top = -18
+valign = 1
+font_size = 24
+custom_colors/font_color = Color(1.0, 0.8, 0.2, 1.0)  # Gold color

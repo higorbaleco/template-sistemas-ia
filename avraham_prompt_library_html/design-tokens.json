@@ -1,0 +1,92 @@
+{
+  "colors": {
+    "light": {
+      "background": {
+        "value": "#F3F4F6",
+        "description": "Fundo claro da aplicação"
+      },
+      "surface": {
+        "value": "#FFFFFF",
+        "description": "Fundo para cartões e modais no modo claro"
+      },
+      "text-primary": {
+        "value": "#111827",
+        "description": "Texto principal escuro para alto contraste (WCAG AA) em fundos claros"
+      },
+      "text-secondary": {
+        "value": "#4B5563",
+        "description": "Texto secundário escuro (WCAG AA)"
+      },
+      "primary": {
+        "value": "#2563EB",
+        "description": "Cor primária (azul) para botões e links no modo claro"
+      },
+      "primary-hover": {
+        "value": "#1D4ED8",
+        "description": "Cor primária no estado de hover"
+      },
+      "border": {
+        "value": "#E5E7EB",
+        "description": "Cor para bordas de elementos claros"
+      }
+    },
+    "dark": {
+      "background": {
+        "value": "#111827",
+        "description": "Fundo escuro da aplicação"
+      },
+      "surface": {
+        "value": "#1F2937",
+        "description": "Fundo para cartões e modais no modo escuro"
+      },
+      "text-primary": {
+        "value": "#F9FAFB",
+        "description": "Texto principal claro para alto contraste (WCAG AA) em fundos escuros"
+      },
+      "text-secondary": {
+        "value": "#D1D5DB",
+        "description": "Texto secundário claro (WCAG AA)"
+      },
+      "primary": {
+        "value": "#3B82F6",
+        "description": "Cor primária (azul claro) para botões no modo escuro"
+      },
+      "primary-hover": {
+        "value": "#60A5FA",
+        "description": "Cor primária no estado de hover no modo escuro"
+      },
+      "border": {
+        "value": "#374151",
+        "description": "Cor para bordas de elementos escuros"
+      }
+    }
+  },
+  "typography": {
+    "font-family": {
+      "sans": {
+        "value": "'Inter', 'Roboto', sans-serif",
+        "description": "Fonte primária"
+      },
+      "mono": {
+        "value": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+        "description": "Fonte para blocos de código"
+      }
+    }
+  },
+  "spacing": {
+    "xs": { "value": "0.25rem", "description": "4px" },
+    "sm": { "value": "0.5rem", "description": "8px" },
+    "md": { "value": "1rem", "description": "16px" },
+    "lg": { "value": "1.5rem", "description": "24px" },
+    "xl": { "value": "2rem", "description": "32px" }
+  },
+  "borderRadius": {
+    "sm": { "value": "0.25rem", "description": "Borda levemente arredondada" },
+    "md": { "value": "0.5rem", "description": "Borda padrão para cartões e modais" },
+    "full": { "value": "9999px", "description": "Borda circular ou formato de pílula" }
+  },
+  "shadows": {
+    "sm": { "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)", "description": "Sombra sutil para pequenos elementos" },
+    "md": { "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)", "description": "Sombra padrão para cartões" }
+  }
+}

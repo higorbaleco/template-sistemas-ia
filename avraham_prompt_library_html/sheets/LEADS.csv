@@ -1,0 +1,4 @@
+﻿id,data_captura,origem,nome,cargo,empresa,linkedin_url,site,segmento,porte,localizacao,telefone,whatsapp,email,sinal,sinal_data,score,faixa_ticket,status,proximo_toque,notas
+L0001,2026-07-30,linkedin_post,Exemplo Nome,Head de Operacoes,Exemplo Ecom,linkedin.com/in/exemplo,exemploecom.com.br,ecommerce,20-50,Sao Paulo SP,5511999990001,5511999990001,,Comentou que o time nao da conta do volume no pico,2026-07-29,82,8000-15000,NOVO,2026-07-31,Post sobre contratacao para atendimento
+L0002,2026-07-30,maps,,,Exemplo Varejo,,exemplovarejo.com.br,servico_local,,Fortaleza CE,5585999990002,5585999990002,,Avaliacoes recentes reclamam de demora no retorno,2026-07-30,68,4000-8000,NOVO,2026-08-01,1240 avaliacoes nota 4.1
+L0003,2026-07-30,linkedin_busca,Exemplo Socio,Fundador,Exemplo Gaming,linkedin.com/in/exemplo2,,gaming,50-100,Curitiba PR,,,,,,91,15000-30000,NOVO,2026-07-30,Operacao 24h multiplos idiomas

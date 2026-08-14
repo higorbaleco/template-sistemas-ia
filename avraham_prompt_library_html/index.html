@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Biblioteca operacional de prompts, agentes, workflows, frameworks e regras da Avraham Digital.">
+  <title>Avraham Prompt Library</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Filtros da biblioteca">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div>
+          <strong>Avraham</strong>
+          <span>Prompt Library</span>
+        </div>
+      </div>
+
+      <nav class="filter-nav">
+        <section class="nav-section">
+          <p class="nav-title">Biblioteca</p>
+          <button class="nav-item active" data-filter-group="scope" data-filter-value="all"><span>Todos os ativos</span><b id="count-all">0</b></button>
+          <button class="nav-item" data-filter-group="scope" data-filter-value="featured"><span>Em destaque</span><b id="count-featured">0</b></button>
+          <button class="nav-item" data-filter-group="scope" data-filter-value="favorites"><span>Favoritos</span><b id="count-favorites">0</b></button>
+          <button class="nav-item" data-filter-group="scope" data-filter-value="custom"><span>Meus prompts</span><b id="count-custom">0</b></button>
+        </section>
+        <section class="nav-section">
+          <div class="nav-title-row"><p class="nav-title">Plataformas</p><button class="clear-filter" data-clear="platform">Limpar</button></div>
+          <div id="platform-nav"></div>
+        </section>
+        <section class="nav-section">
+          <div class="nav-title-row"><p class="nav-title">Aplicações</p><button class="clear-filter" data-clear="application">Limpar</button></div>
+          <div id="application-nav"></div>
+        </section>
+        <section class="nav-section">
+          <div class="nav-title-row"><p class="nav-title">Tipos</p><button class="clear-filter" data-clear="type">Limpar</button></div>
+          <div id="type-nav"></div>
+        </section>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="button secondary full" id="export-btn">Exportar personalizados</button>
+        <label class="button ghost full file-button">Importar JSON<input type="file" id="import-input" accept="application/json"></label>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="icon-button mobile-only" id="menu-btn" aria-label="Abrir filtros"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+        <div class="search-wrap">
+          <span class="search-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+          <input id="search-input" type="search" placeholder="Buscar prompts, plataformas, tags ou aplicações..." autocomplete="off">
+          <kbd>/</kbd>
+        </div>
+        <button class="icon-button" id="theme-btn" aria-label="Alternar tema"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+        <button class="button primary" id="add-btn">Novo prompt</button>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Biblioteca operacional</span>
+          <h1>Prompts, agentes e workflows organizados para uso real.</h1>
+          <p>Filtre por plataforma, finalidade e tipo de ativo. Abra, copie, favorite ou crie versões personalizadas diretamente no navegador.</p>
+        </div>
+        <div class="hero-stats">
+          <div><strong id="stat-total">0</strong><span>ativos</span></div>
+          <div><strong id="stat-platforms">0</strong><span>plataformas</span></div>
+          <div><strong id="stat-apps">0</strong><span>aplicações</span></div>
+        </div>
+      </section>
+
+      <section class="toolbar">
+        <div>
+          <h2 id="result-title">Todos os ativos</h2>
+          <p id="result-count">0 resultados</p>
+        </div>
+        <div class="toolbar-actions">
+          <div class="active-filters" id="active-filters"></div>
+          <select id="sort-select" aria-label="Ordenação">
+            <option value="featured">Destaques primeiro</option>
+            <option value="az">Título A-Z</option>
+            <option value="type">Tipo</option>
+            <option value="platform">Plataforma</option>
+          </select>
+          <button class="view-toggle active" data-view="grid" aria-label="Visualização em grade"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></button>
+          <button class="view-toggle" data-view="list" aria-label="Visualização em lista"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button>
+        </div>
+      </section>
+
+      <section class="cards-grid" id="cards-grid" aria-live="polite"></section>
+      <section class="empty-state hidden" id="empty-state">
+        <div class="empty-icon"><svg width="42" height="42" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+        <h3>Nenhum ativo encontrado</h3>
+        <p>Ajuste a busca ou remova algum filtro.</p>
+        <button class="button secondary" id="reset-filters">Limpar filtros</button>
+      </section>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <dialog class="prompt-dialog" id="prompt-dialog">
+    <div class="dialog-shell">
+      <header class="dialog-header">
+        <div>
+          <div class="dialog-badges" id="dialog-badges"></div>
+          <h2 id="dialog-title"></h2>
+          <p id="dialog-description"></p>
+        </div>
+        <button class="icon-button" data-close-dialog aria-label="Fechar"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </header>
+      <div class="dialog-meta" id="dialog-meta"></div>
+      <pre class="prompt-content" id="dialog-content"></pre>
+      <footer class="dialog-footer">
+        <button class="button ghost" id="dialog-favorite">Favoritar</button>
+        <button class="button secondary hidden" id="dialog-delete">Excluir personalizado</button>
+        <button class="button primary" id="dialog-copy">Copiar conteúdo</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="editor-dialog" id="editor-dialog">
+    <form class="editor-shell" id="editor-form">
+      <header class="dialog-header">
+        <div><span class="eyebrow">Ativo personalizado</span><h2>Novo prompt</h2><p>O conteúdo fica salvo somente neste navegador.</p></div>
+        <button type="button" class="icon-button" data-close-editor aria-label="Fechar"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </header>
+      <div class="form-grid">
+        <label class="field span-2"><span>Título</span><input name="title" required maxlength="100" placeholder="Ex.: Auditor de campanhas"></label>
+        <label class="field span-2"><span>Descrição</span><input name="description" required maxlength="220" placeholder="Explique o resultado que este ativo entrega"></label>
+        <label class="field"><span>Plataforma</span><select name="platform"><option>Universal</option><option>Claude</option><option>Claude Cowork</option><option>OpenAI</option><option>GPT Work</option><option>Gemini</option><option>Antigravity</option><option>Hermes Agent</option><option>GPT Maker</option></select></label>
+        <label class="field"><span>Tipo</span><select name="type"><option>Prompt</option><option>Agente</option><option>Workflow</option><option>Framework</option><option>Skill</option><option>Regras</option><option>Template</option></select></label>
+        <label class="field"><span>Aplicação</span><select name="application"><option>Geral</option><option>Agentes de IA</option><option>Automações</option><option>WhatsApp</option><option>Comercial e Vendas</option><option>Imagens e Design</option><option>Desenvolvimento</option><option>Web, App e SaaS</option><option>Extensões Web</option><option>Scripts e Código</option><option>Pesquisa e Documentos</option><option>Produtividade e Mac</option><option>Instagram e Conteúdo</option></select></label>
+        <label class="field"><span>Tags</span><input name="tags" placeholder="Separe por vírgulas"></label>
+        <label class="field span-2"><span>Conteúdo</span><textarea name="content" required rows="18" placeholder="# Nome do prompt&#10;&#10;## Objetivo&#10;..."></textarea></label>
+      </div>
+      <footer class="dialog-footer"><button type="button" class="button ghost" data-close-editor>Cancelar</button><button class="button primary" type="submit">Salvar na biblioteca</button></footer>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="js/prompts.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

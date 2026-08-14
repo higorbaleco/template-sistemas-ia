@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel de Execução Comercial Avraham</title>
+    <style>
+        :root {
+            --bg: #0d0e11;
+            --surface: rgba(19, 19, 22, 0.78);
+            --border: rgba(182, 197, 247, 0.18);
+            --border-strong: rgba(0, 238, 208, 0.48);
+            --text: #e4e2e6;
+            --muted: rgba(228, 226, 230, 0.68);
+            --cyan: #00eed0;
+            --teal: #0197af;
+            --purple: #4b227a;
+            --lavender: #b6c5f7;
+            --danger: #ff6b7a;
+            --warning: #ffd166;
+            --success: #66f2b6;
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+            --glow: 0 0 24px rgba(0, 238, 208, 0.24);
+            --font: "Space Grotesk", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at top left, rgba(0, 238, 208, 0.12), transparent 30%),
+                radial-gradient(circle at 78% 16%, rgba(75, 34, 122, 0.28), transparent 32%),
+                radial-gradient(circle at 50% 92%, rgba(1, 151, 175, 0.16), transparent 34%),
+                #0d0e11;
+            color: var(--text);
+            font-family: var(--font);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(182, 197, 247, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(182, 197, 247, 0.035) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(circle at center, black, transparent 78%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .app {
+            width: min(1440px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 32px 0 56px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 28px;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            padding: 14px 0;
+            backdrop-filter: blur(18px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 250px;
+        }
+
+        .brand-mark {
+            width: 52px;
+            height: 52px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(0, 238, 208, 0.16), rgba(75, 34, 122, 0.18));
+            border: 1px solid var(--border-strong);
+            box-shadow: var(--glow);
+            font-weight: 800;
+            color: var(--cyan);
+            letter-spacing: -0.04em;
+            font-size: 22px;
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: clamp(18px, 2vw, 26px);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+        }
+
+        .brand p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav a,
+        .button {
+            color: var(--text);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .035);
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            transition: .2s ease;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .nav a:hover,
+        .button:hover {
+            border-color: var(--border-strong);
+            color: var(--cyan);
+            box-shadow: 0 0 18px rgba(0, 238, 208, .18);
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, rgba(19, 19, 22, .88), rgba(2, 21, 61, .52)), radial-gradient(circle at 18% 22%, rgba(0, 238, 208, .13), transparent 32%), radial-gradient(circle at 82% 18%, rgba(75, 34, 122, .22), transparent 32%);
+            box-shadow: var(--shadow);
+            padding: clamp(24px, 4vw, 46px);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 28px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            color: var(--cyan);
+            border: 1px solid rgba(0, 238, 208, .22);
+            background: rgba(0, 238, 208, .06);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .hero h2 {
+            font-size: clamp(34px, 6vw, 76px);
+            line-height: .92;
+            letter-spacing: -0.075em;
+            margin: 0;
+            max-width: 900px;
+        }
+
+        .hero h2 span {
+            color: var(--cyan);
+            text-shadow: 0 0 22px rgba(0, 238, 208, .28);
+        }
+
+        .hero-copy {
+            color: var(--muted);
+            font-size: clamp(15px, 1.4vw, 18px);
+            line-height: 1.65;
+            max-width: 760px;
+            margin: 20px 0 0;
+        }
+
+        .hero-aside {
+            display: grid;
+            gap: 12px;
+        }
+
+        .status-card {
+            border: 1px solid rgba(0, 238, 208, .22);
+            background: rgba(0, 238, 208, .06);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+        }
+
+        .status-card .label {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .status-card strong {
+            display: block;
+            font-size: 24px;
+            color: var(--cyan);
+            letter-spacing: -0.04em;
+        }
+
+        .grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .grid.cols-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .grid.cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .grid.cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .018)), var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: 0 18px 60px rgba(0, 0, 0, .22);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 17px;
+            letter-spacing: -0.025em;
+        }
+
+        .card p {
+            color: var(--muted);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        .tag {
+            display: inline-flex;
+            color: var(--cyan);
+            background: rgba(0, 238, 208, .06);
+            border: 1px solid rgba(0, 238, 208, .2);
+            border-radius: 999px;
+            padding: 6px 9px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .metric {
+            min-height: 150px;
+        }
+
+        .metric .number {
+            font-size: clamp(34px, 4vw, 54px);
+            color: var(--cyan);
+            font-weight: 800;
+            letter-spacing: -0.08em;
+            line-height: .9;
+            margin: 12px 0 10px;
+        }
+
+        .metric .caption {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.35;
+        }
+
+        .metric .delta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--success);
+            font-size: 12px;
+            margin-top: 14px;
+        }
+
+        section {
+            margin-top: 18px;
+            scroll-margin-top: 92px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin: 30px 0 16px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(22px, 3vw, 34px);
+            letter-spacing: -0.055em;
+            margin: 0;
+        }
+
+        .section-title p {
+            margin: 6px 0 0;
+            color: var(--muted);
+        }
+
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(220px, 1fr));
+            gap: 14px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .pipeline-column {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, .03);
+            padding: 14px;
+            min-height: 380px;
+        }
+
+        .pipeline-column h4 {
+            margin: 0 0 12px;
+            font-size: 14px;
+            color: var(--lavender);
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .count {
+            color: var(--cyan);
+            font-weight: 800;
+        }
+
+        .deal {
+            border: 1px solid rgba(228, 226, 230, .12);
+            background: rgba(13, 14, 17, .62);
+            border-radius: 16px;
+            padding: 13px;
+            margin-bottom: 10px;
+        }
+
+        .deal strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .deal span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .deal .mini {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            color: var(--cyan);
+            font-size: 12px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 820px;
+        }
+
+        th,
+        td {
+            padding: 14px 12px;
+            border-bottom: 1px solid rgba(228, 226, 230, .09);
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .11em;
+            font-weight: 700;
+        }
+
+        .progress {
+            width: 100%;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .07);
+            overflow: hidden;
+            min-width: 90px;
+        }
+
+        .progress span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--teal), var(--cyan));
+            box-shadow: 0 0 16px rgba(0, 238, 208, .32);
+        }
+
+        .decision {
+            display: inline-flex;
+            border-radius: 999px;
+            padding: 6px 9px;
+            font-size: 12px;
+            border: 1px solid;
+            white-space: nowrap;
+        }
+
+        .decision.scale {
+            color: var(--success);
+            border-color: rgba(102, 242, 182, .34);
+            background: rgba(102, 242, 182, .07);
+        }
+
+        .decision.adjust {
+            color: var(--warning);
+            border-color: rgba(255, 209, 102, .34);
+            background: rgba(255, 209, 102, .07);
+        }
+
+        .decision.pause {
+            color: var(--danger);
+            border-color: rgba(255, 107, 122, .34);
+            background: rgba(255, 107, 122, .07);
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .phase {
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .032);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            min-height: 210px;
+        }
+
+        .phase .phase-kicker {
+            color: var(--cyan);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .phase h4 {
+            margin: 0 0 12px;
+            font-size: 18px;
+            letter-spacing: -0.04em;
+        }
+
+        .phase ul,
+        .list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .phase li,
+        .list li {
+            color: var(--muted);
+            line-height: 1.45;
+            font-size: 14px;
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+        }
+
+        .phase li::before,
+        .list li::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            margin-top: 7px;
+            flex: 0 0 auto;
+            background: var(--cyan);
+            box-shadow: 0 0 12px rgba(0, 238, 208, .4);
+        }
+
+        .phase.done {
+            border-color: rgba(102, 242, 182, .32);
+            background: rgba(102, 242, 182, .045);
+        }
+
+        .phase.active {
+            border-color: rgba(0, 238, 208, .45);
+            box-shadow: 0 0 26px rgba(0, 238, 208, .12);
+        }
+
+        .warn-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .warn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255, 107, 122, .22);
+            background: rgba(255, 107, 122, .05);
+            border-radius: 16px;
+            padding: 14px;
+        }
+
+        .warn strong {
+            font-size: 14px;
+        }
+
+        .warn span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .priority {
+            color: var(--danger);
+            border: 1px solid rgba(255, 107, 122, .25);
+            border-radius: 999px;
+            padding: 5px 8px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .form-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .04);
+            color: var(--text);
+            border-radius: 14px;
+            padding: 12px 14px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--border-strong);
+            box-shadow: 0 0 0 3px rgba(0, 238, 208, .08);
+        }
+
+        .mini-chart {
+            height: 110px;
+            display: flex;
+            align-items: end;
+            gap: 8px;
+            padding-top: 12px;
+        }
+
+        .mini-chart div {
+            flex: 1;
+            border-radius: 999px 999px 6px 6px;
+            background: linear-gradient(180deg, var(--cyan), rgba(1, 151, 175, .32));
+            box-shadow: 0 0 18px rgba(0, 238, 208, .14);
+            min-width: 12px;
+        }
+
+        .footer-banner {
+            margin-top: 22px;
+            border: 1px solid rgba(0, 238, 208, .36);
+            background: linear-gradient(135deg, rgba(0, 238, 208, .12), rgba(75, 34, 122, .16)), rgba(255, 255, 255, .035);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 20px;
+            align-items: center;
+            box-shadow: var(--glow);
+        }
+
+        .target {
+            width: 64px;
+            height: 64px;
+            border-radius: 22px;
+            border: 1px solid rgba(0, 238, 208, .4);
+            display: grid;
+            place-items: center;
+            color: var(--cyan);
+            font-size: 28px;
+            background: rgba(0, 238, 208, .06);
+        }
+
+        .footer-banner h3 {
+            margin: 0;
+            font-size: clamp(22px, 3vw, 36px);
+            letter-spacing: -0.05em;
+        }
+
+        .footer-banner p {
+            margin: 6px 0 0;
+            color: var(--muted);
+        }
+
+        .footer-banner strong {
+            color: var(--cyan);
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 1180px) {
+            .grid.cols-4 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .grid.cols-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .app {
+                width: min(100% - 20px, 1440px);
+                padding-top: 18px;
+            }
+
+            .topbar {
+                position: static;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav {
+                justify-content: flex-start;
+            }
+
+            .grid.cols-4,
+            .grid.cols-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .form-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                justify-content: flex-start;
+            }
+        }
+
+        @media print {
+            body {
+                background: #0d0e11;
+            }
+
+            .topbar,
+            .form-panel,
+            .actions {
+                display: none;
+            }
+
+            .app {
+                width: 100%;
+                padding: 0;
+            }
+
+            .card,
+            .hero,
+            .footer-banner {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="app">
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-mark">A</div>
+                <div>
+                    <h1>Painel de Execução Comercial</h1>
+                    <p>Avraham | Demanda previsível, reuniões, propostas e receita</p>
+                </div>
+            </div>
+            <nav class="nav"><a href="#visao">Visão</a><a href="#pipeline">Pipeline</a><a href="#nichos">Nichos</a><a
+                    href="#scripts">Scripts</a><a href="#followup">Follow-up</a><button class="button"
+                    onclick="window.print()">Exportar PDF</button><button class="button"
+                    onclick="toggleFullscreen()">Tela cheia</button></nav>
+        </header>
+        <section class="hero" id="visao">
+            <div class="hero-content">
+                <div>
+                    <div class="eyebrow">Base estratégica concluída</div>
+                    <h2>Agora é execução controlada, <span>medição</span> e escala.</h2>
+                    <p class="hero-copy">ICP, nichos e scripts já estão definidos. O painel agora serve para acompanhar
+                        a operação diária da máquina comercial: abordagens, respostas, reuniões, propostas, follow-up,
+                        gargalos e receita potencial.</p>
+                </div>
+                <aside class="hero-aside">
+                    <div class="status-card">
+                        <div class="label">Fase atual</div><strong>Teste controlado</strong>
+                        <p>Rodar volume real por 14 dias, medir resposta por nicho e preservar apenas o que gera
+                            conversa útil.</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="label">Meta mensal</div><strong>20 a 30 propostas</strong>
+                        <p>Com pipeline alimentado diariamente e apresentação de proposta ao vivo sempre que possível.
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+        <section>
+            <div class="grid cols-4">
+                <article class="card metric">
+                    <div class="card-header">
+                        <h3>Abordagens feitas</h3><span class="tag">Semana</span>
+                    </div>
+                    <div class="number">250</div>
+                    <div class="caption">Meta recomendada: 30 a 50 abordagens qualificadas por dia.</div>
+                    <div class="delta">▲ Base mínima operacional ativa</div>
+                </article>
+                <article class="card metric">
+                    <div class="card-header">
+                        <h3>Taxa de resposta</h3><span class="tag">Funil</span>
+                    </div>
+                    <div class="number">18%</div>
+                    <div class="caption">Respostas recebidas sobre mensagens enviadas.</div>
+                    <div class="delta">▲ Benchmark inicial saudável</div>
+                </article>
+                <article class="card metric">
+                    <div class="card-header">
+                        <h3>Reuniões marcadas</h3><span class="tag">Agenda</span>
+                    </div>
+                    <div class="number">12</div>
+                    <div class="caption">Conversas que avançaram para agenda comercial.</div>
+                    <div class="delta">▲ Meta: 4 a 8 por semana no início</div>
+                </article>
+                <article class="card metric">
+                    <div class="card-header">
+                        <h3>Receita potencial</h3><span class="tag">Pipeline</span>
+                    </div>
+                    <div class="number">R$ 72k</div>
+                    <div class="caption">Potencial estimado em propostas e oportunidades ativas.</div>
+                    <div class="delta">▲ Ticket médio simulado: R$ 6k</div>
+                </article>
+            </div>
+        </section>
+        <section>
+            <div class="section-title">
+                <div>
+                    <h2>Plano de 60 dias</h2>
+                    <p>ICP e scripts não entram mais como pendência. Eles são a fundação concluída.</p>
+                </div><span class="tag">Foco: sair do planejamento</span>
+            </div>
+            <div class="timeline">
+                <article class="phase done">
+                    <div class="phase-kicker">Concluído</div>
+                    <h4>Base estratégica</h4>
+                    <ul>
+                        <li>ICP por nicho definido.</li>
+                        <li>Scripts iniciais definidos.</li>
+                        <li>Ângulos de dor documentados.</li>
+                        <li>Oferta de entrada validada.</li>
+                    </ul>
+                </article>
+                <article class="phase active">
+                    <div class="phase-kicker">Dias 1 a 14</div>
+                    <h4>Teste controlado</h4>
+                    <ul>
+                        <li>30 a 50 abordagens por dia.</li>
+                        <li>Registrar tudo no CRM.</li>
+                        <li>Medir resposta por nicho e script.</li>
+                        <li>Agendar reunião na própria conversa.</li>
+                    </ul>
+                </article>
+                <article class="phase">
+                    <div class="phase-kicker">Dias 15 a 30</div>
+                    <h4>Otimização</h4>
+                    <ul>
+                        <li>Cortar scripts fracos.</li>
+                        <li>Dobrar volume nos nichos que respondem.</li>
+                        <li>Melhorar follow-up e objeções.</li>
+                        <li>Padronizar passagem para proposta.</li>
+                    </ul>
+                </article>
+                <article class="phase">
+                    <div class="phase-kicker">Dias 31 a 60</div>
+                    <h4>Escala operacional</h4>
+                    <ul>
+                        <li>Delegar coleta e enriquecimento de listas.</li>
+                        <li>Manter fundador nas conversas qualificadas.</li>
+                        <li>Criar rotina semanal de análise.</li>
+                        <li>Transformar execução em playbook.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <section id="pipeline">
+            <div class="section-title">
+                <div>
+                    <h2>Pipeline comercial operacional</h2>
+                    <p>Visualização prática da esteira de geração de demanda até fechamento.</p>
+                </div><span class="tag">CRM visual</span>
+            </div>
+            <div class="card">
+                <div class="pipeline">
+                    <div class="pipeline-column">
+                        <h4>Mensagem enviada <span class="count">48</span></h4>
+                        <div class="deal"><strong>Auto Prime Maringá</strong><span>Concessionária | Script: atendimento
+                                fora do horário</span>
+                            <div class="mini"><span>Próxima ação</span><b>D+1</b></div>
+                        </div>
+                        <div class="deal"><strong>Clínica Essenza</strong><span>Estética | Script: agendamento
+                                perdido</span>
+                            <div class="mini"><span>Próxima ação</span><b>D+1</b></div>
+                        </div>
+                    </div>
+                    <div class="pipeline-column">
+                        <h4>Respondeu <span class="count">21</span></h4>
+                        <div class="deal"><strong>Imob Norte</strong><span>Imobiliária | Perguntou sobre o
+                                assunto</span>
+                            <div class="mini"><span>Próxima ação</span><b>Contextualizar</b></div>
+                        </div>
+                        <div class="deal"><strong>Ranger Motors</strong><span>Concessionária | Dono responde à
+                                noite</span>
+                            <div class="mini"><span>Próxima ação</span><b>Qualificar</b></div>
+                        </div>
+                    </div>
+                    <div class="pipeline-column">
+                        <h4>Reunião marcada <span class="count">12</span></h4>
+                        <div class="deal"><strong>Prime Saúde</strong><span>Clínica | Dor: demora no WhatsApp</span>
+                            <div class="mini"><span>Agenda</span><b>Ter 15h</b></div>
+                        </div>
+                        <div class="deal"><strong>Urban House</strong><span>Imobiliária | Dor: base parada</span>
+                            <div class="mini"><span>Agenda</span><b>Qua 10h</b></div>
+                        </div>
+                    </div>
+                    <div class="pipeline-column">
+                        <h4>Proposta <span class="count">7</span></h4>
+                        <div class="deal"><strong>Grupo Alvorada</strong><span>Proposta de IA + atendimento
+                                WhatsApp</span>
+                            <div class="mini"><span>Valor</span><b>R$ 8k/mês</b></div>
+                        </div>
+                        <div class="deal"><strong>Vitta Imóveis</strong><span>Reativação + automação de follow-up</span>
+                            <div class="mini"><span>Valor</span><b>R$ 6k/mês</b></div>
+                        </div>
+                    </div>
+                    <div class="pipeline-column">
+                        <h4>Negociação <span class="count">4</span></h4>
+                        <div class="deal"><strong>Autohaus Premium</strong><span>Aguardando reunião final com
+                                sócio</span>
+                            <div class="mini"><span>Chance</span><b>Alta</b></div>
+                        </div>
+                        <div class="deal"><strong>Clínica Bellavie</strong><span>Follow-up de proposta enviado</span>
+                            <div class="mini"><span>Chance</span><b>Média</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="nichos">
+            <div class="section-title">
+                <div>
+                    <h2>Performance por nicho</h2>
+                    <p>Decisão semanal: manter, ajustar ou escalar.</p>
+                </div>
+            </div>
+            <div class="card table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nicho</th>
+                            <th>Abordadas</th>
+                            <th>Resposta</th>
+                            <th>Reuniões</th>
+                            <th>Propostas</th>
+                            <th>Receita potencial</th>
+                            <th>Performance</th>
+                            <th>Decisão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Concessionárias</strong></td>
+                            <td>120</td>
+                            <td>22%</td>
+                            <td>7</td>
+                            <td>3</td>
+                            <td>R$ 24k/mês</td>
+                            <td>
+                                <div class="progress"><span style="width:78%"></span></div>
+                            </td>
+                            <td><span class="decision scale">Escalar</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Imobiliárias</strong></td>
+                            <td>80</td>
+                            <td>16%</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>R$ 12k/mês</td>
+                            <td>
+                                <div class="progress"><span style="width:58%"></span></div>
+                            </td>
+                            <td><span class="decision adjust">Ajustar</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clínicas</strong></td>
+                            <td>50</td>
+                            <td>20%</td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td>R$ 18k/mês</td>
+                            <td>
+                                <div class="progress"><span style="width:66%"></span></div>
+                            </td>
+                            <td><span class="decision scale">Escalar</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Estéticas</strong></td>
+                            <td>40</td>
+                            <td>9%</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>R$ 0</td>
+                            <td>
+                                <div class="progress"><span style="width:24%"></span></div>
+                            </td>
+                            <td><span class="decision pause">Pausar</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="scripts">
+            <div class="section-title">
+                <div>
+                    <h2>Performance por abordagem</h2>
+                    <p>O painel mede qual script realmente abre conversa e gera reunião.</p>
+                </div>
+            </div>
+            <div class="grid cols-2">
+                <article class="card table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Script</th>
+                                <th>Dor</th>
+                                <th>Enviadas</th>
+                                <th>Respostas</th>
+                                <th>Reuniões</th>
+                                <th>Decisão</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Permissão direta</strong></td>
+                                <td>Ligar rápido</td>
+                                <td>90</td>
+                                <td>14</td>
+                                <td>4</td>
+                                <td><span class="decision adjust">Ajustar</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fora do horário</strong></td>
+                                <td>Demora no atendimento</td>
+                                <td>110</td>
+                                <td>28</td>
+                                <td>9</td>
+                                <td><span class="decision scale">Escalar</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cliente oculto</strong></td>
+                                <td>Falha real de resposta</td>
+                                <td>70</td>
+                                <td>20</td>
+                                <td>6</td>
+                                <td><span class="decision scale">Escalar</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Base parada</strong></td>
+                                <td>Reativação</td>
+                                <td>60</td>
+                                <td>7</td>
+                                <td>2</td>
+                                <td><span class="decision adjust">Ajustar</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+                <article class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3>Leitura da semana</h3>
+                            <p>O script de maior sinal comercial é aquele que expõe uma dor operacional antes de vender
+                                a solução.</p>
+                        </div><span class="tag">Insight</span>
+                    </div>
+                    <div class="mini-chart">
+                        <div style="height:38%"></div>
+                        <div style="height:72%"></div>
+                        <div style="height:64%"></div>
+                        <div style="height:28%"></div>
+                        <div style="height:80%"></div>
+                        <div style="height:52%"></div>
+                        <div style="height:88%"></div>
+                    </div>
+                    <ul class="list" style="margin-top:18px">
+                        <li>Não vender IA na abertura. Vender diagnóstico da perda.</li>
+                        <li>Abordagem de cliente oculto revela dor sem parecer pitch comercial.</li>
+                        <li>Mensagem curta performa melhor do que explicação longa.</li>
+                        <li>Reunião precisa ser agendada na hora em que o lead demonstra abertura.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <section id="followup">
+            <div class="section-title">
+                <div>
+                    <h2>Follow-up e erros ativos</h2>
+                    <p>O que mata a previsibilidade não é só baixa resposta. É perder conversas já abertas.</p>
+                </div>
+            </div>
+            <div class="grid cols-2">
+                <article class="card">
+                    <div class="card-header">
+                        <h3>Adicionar próxima ação</h3><span class="tag">Simulação local</span>
+                    </div>
+                    <div class="form-panel"><input id="leadName" placeholder="Empresa ou lead" /><select
+                            id="leadAction">
+                            <option value="Enviar follow-up D+1">Enviar follow-up D+1</option>
+                            <option value="Contextualizar dor">Contextualizar dor</option>
+                            <option value="Enviar agenda">Enviar agenda</option>
+                            <option value="Reunião de proposta">Reunião de proposta</option>
+                            <option value="Nutrição futura">Nutrição futura</option>
+                        </select><button class="button" onclick="addAction()">Adicionar</button></div>
+                    <div id="actionList" class="warn-list">
+                        <div class="warn">
+                            <div><strong>Ranger Motors</strong><br><span>Contextualizar dor de atendimento fora do
+                                    horário.</span></div><span class="priority">Hoje</span>
+                        </div>
+                        <div class="warn">
+                            <div><strong>Vitta Imóveis</strong><br><span>Follow-up de proposta parada há 5 dias.</span>
+                            </div><span class="priority">Alta</span>
+                        </div>
+                        <div class="warn">
+                            <div><strong>Clínica Bellavie</strong><br><span>Marcar reunião final com decisor
+                                    financeiro.</span></div><span class="priority">Alta</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-header">
+                        <h3>Erros que o painel deve impedir</h3><span class="tag">Controle</span>
+                    </div>
+                    <ul class="list">
+                        <li>Lead respondeu e ficou sem próxima ação registrada.</li>
+                        <li>Reunião aconteceu e proposta não foi apresentada ao vivo.</li>
+                        <li>Proposta enviada sem dor clara ou impacto financeiro.</li>
+                        <li>Follow-up feito tarde demais, depois do lead esfriar.</li>
+                        <li>Mensagem inicial genérica com cara de disparo em massa.</li>
+                        <li>Ficar dependente de evento, indicação ou energia do fundador.</li>
+                        <li>Não separar performance por nicho, canal e abordagem.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <section>
+            <div class="section-title">
+                <div>
+                    <h2>Rotina diária de execução</h2>
+                    <p>Modelo simples para transformar a máquina comercial em disciplina operacional.</p>
+                </div>
+            </div>
+            <div class="grid cols-3">
+                <article class="card">
+                    <div class="card-header">
+                        <h3>Bloco 1: Base</h3><span class="tag">Manhã</span>
+                    </div>
+                    <ul class="list">
+                        <li>Selecionar leads do nicho da semana.</li>
+                        <li>Validar potencial mínimo de compra.</li>
+                        <li>Organizar nome, WhatsApp, cidade e observação.</li>
+                        <li>Preparar abordagem conforme dor provável.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <div class="card-header">
+                        <h3>Bloco 2: Conversa</h3><span class="tag">Execução</span>
+                    </div>
+                    <ul class="list">
+                        <li>Enviar 30 a 50 mensagens qualificadas.</li>
+                        <li>Responder rápido quem interagir.</li>
+                        <li>Qualificar sem transformar a conversa em palestra.</li>
+                        <li>Conduzir para agenda assim que houver abertura.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <div class="card-header">
+                        <h3>Bloco 3: Controle</h3><span class="tag">Fim do dia</span>
+                    </div>
+                    <ul class="list">
+                        <li>Atualizar CRM com status e próxima ação.</li>
+                        <li>Registrar respostas e objeções.</li>
+                        <li>Ver taxa de resposta por script.</li>
+                        <li>Planejar follow-ups do dia seguinte.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <footer class="footer-banner">
+            <div class="target">◎</div>
+            <div>
+                <h3><strong>Meta final:</strong> operar uma máquina comercial previsível.</h3>
+                <p>O fundador deixa de depender de exposição aleatória e passa a controlar demanda, reuniões, propostas
+                    e receita por processo.</p>
+            </div>
+            <div class="actions"><button class="button" onclick="window.print()">Exportar PDF</button><button
+                    class="button" onclick="window.scrollTo({top:0, behavior:'smooth'})">Voltar ao topo</button></div>
+        </footer>
+    </main>
+    <script>
+        function toggleFullscreen() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen?.(); } else { document.exitFullscreen?.(); } }
+        function addAction() { const name = document.getElementById('leadName').value.trim(); const action = document.getElementById('leadAction').value; const list = document.getElementById('actionList'); if (!name) { document.getElementById('leadName').focus(); return; } const item = document.createElement('div'); item.className = 'warn'; item.innerHTML = `<div><strong>${escapeHtml(name)}</strong><br><span>${escapeHtml(action)}.</span></div><span class="priority">Nova</span>`; list.prepend(item); document.getElementById('leadName').value = ''; }
+        function escapeHtml(value) { return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;'); }
+    </script>
+</body>
+
+</html>

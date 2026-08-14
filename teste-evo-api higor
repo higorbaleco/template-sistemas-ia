@@ -1,0 +1,619 @@
+# Guia de Implementação Local da Evolution API no Mac com Docker, VS Code e Antigravity
+
+## 1. Objetivo do documento
+
+Este documento organiza, em formato de aprendizado prático, o passo a passo para criar um ambiente local da Evolution API rodando via Docker no Mac, com apoio do VS Code ou Antigravity como central de edição e controle.
+
+O objetivo é permitir que você consiga:
+
+1. Rodar a Evolution API localmente.
+2. Acessar o painel Manager da Evolution API no navegador.
+3. Criar uma instância de WhatsApp.
+4. Gerar e escanear o QR Code.
+5. Testar integrações locais com ferramentas como n8n, webhooks e APIs.
+6. Entender a lógica técnica por trás da estrutura.
+7. Ter uma base replicável para evoluir depois para VPS, produção ou estrutura multi-instância.
+
+Este guia é voltado para testes locais. Para operação comercial, atendimento real de clientes, alta disponibilidade, multiusuários ou escala, o ambiente recomendado é uma VPS ou infraestrutura dedicada.
+
+## 2. Entendimento geral da arquitetura
+
+A Evolution API não é apenas um painel visual. Ela é uma aplicação que precisa de serviços auxiliares para funcionar bem.
+
+A estrutura local será composta por três serviços principais:
+
+### 2.1 Evolution API
+
+É o serviço principal. Ele expõe a API, o painel Manager e os endpoints para criar instâncias, conectar WhatsApp, enviar mensagens, configurar eventos e integrar automações.
+
+### 2.2 PostgreSQL
+
+É o banco de dados da aplicação. Ele armazena informações importantes, como instâncias, configurações, eventos e registros necessários para persistência.
+
+Sem banco de dados, a aplicação pode até iniciar, mas você perde robustez, histórico e controle.
+
+### 2.3 Redis
+
+É usado como cache e apoio de performance. Ele ajuda a aplicação a lidar melhor com estados, filas e operações mais rápidas.
+
+### 2.4 Docker Compose
+
+É o arquivo que orquestra tudo. Em vez de subir Evolution API, PostgreSQL e Redis manualmente, o Docker Compose descreve os serviços e faz o Docker montar o ambiente completo.
+
+## 3. O que você precisa instalar no Mac
+
+### 3.1 Docker Desktop
+
+A extensão do Docker no VS Code não substitui o Docker Desktop. A extensão é apenas uma interface de controle.
+
+Você precisa instalar o Docker Desktop porque ele é o motor que executa os containers no Mac.
+
+Checklist:
+
+1. Baixar o Docker Desktop para Mac.
+2. Escolher a versão correta conforme seu processador:
+   1. Apple Silicon para M1, M2, M3 ou M4.
+   2. Intel para Macs mais antigos com processador Intel.
+3. Instalar o Docker Desktop.
+4. Abrir o Docker Desktop.
+5. Confirmar que o ícone da baleia aparece na barra superior do Mac.
+
+### 3.2 VS Code ou Antigravity
+
+Você pode usar VS Code ou Antigravity. O importante é ter um editor onde você consiga:
+
+1. Criar arquivos.
+2. Editar `.env`.
+3. Editar `docker-compose.yml`.
+4. Abrir terminal integrado.
+5. Usar assistente de IA para revisar, corrigir e evoluir a estrutura.
+
+### 3.3 Extensão Docker no VS Code
+
+Se estiver usando VS Code, instale a extensão Docker da Microsoft.
+
+Ela permite:
+
+1. Ver containers ativos.
+2. Ver imagens baixadas.
+3. Executar Compose Up.
+4. Parar containers.
+5. Reiniciar containers.
+6. Visualizar logs.
+7. Gerenciar o ambiente de forma visual.
+
+No Antigravity, se a experiência for diferente, você ainda pode usar o terminal integrado com os comandos Docker.
+
+## 4. Estrutura de pastas recomendada
+
+Crie uma pasta dedicada para o projeto.
+
+Sugestão:
+
+```bash
+~/Documents/Avraham/evolution-api-local
+```
+
+Dentro dela, a estrutura inicial será:
+
+```text
+evolution-api-local/
+├── .env
+├── docker-compose.yml
+└── data/
+    └── postgres/
+```
+
+A pasta `data/postgres` será criada automaticamente quando o Docker subir o PostgreSQL.
+
+## 5. Criando o projeto no Mac
+
+Abra o terminal do Mac, VS Code ou Antigravity e execute:
+
+```bash
+mkdir -p ~/Documents/Avraham/evolution-api-local
+cd ~/Documents/Avraham/evolution-api-local
+touch .env docker-compose.yml
+```
+
+Depois, abra essa pasta no seu editor.
+
+Se estiver no VS Code:
+
+```bash
+code ~/Documents/Avraham/evolution-api-local
+```
+
+Se estiver no Antigravity, abra a pasta manualmente pelo menu de abertura de projeto.
+
+## 6. Criando o arquivo .env
+
+O arquivo `.env` guarda as variáveis de ambiente da aplicação.
+
+Ele define:
+
+1. Chave de autenticação da API.
+2. Credenciais do PostgreSQL.
+3. Configurações de cache Redis.
+4. Ajustes de sessão e versão do WhatsApp Web.
+
+Crie ou edite o arquivo `.env` com o conteúdo abaixo:
+
+```env
+# =========================================================
+# EVOLUTION API LOCAL
+# Ambiente local para testes no Mac com Docker
+# =========================================================
+
+# ---------------------------------------------------------
+# Autenticação da API
+# ---------------------------------------------------------
+AUTHENTICATION_TYPE=apikey
+AUTHENTICATION_API_KEY=troque_esta_chave_por_uma_chave_forte_de_32_caracteres
+
+# ---------------------------------------------------------
+# Banco de dados PostgreSQL
+# ---------------------------------------------------------
+DB_TYPE=postgres
+DB_POSTGRES_HOST=postgres
+DB_POSTGRES_PORT=5432
+DB_POSTGRES_USER=evolution_user
+DB_POSTGRES_PASSWORD=evolution_password
+DB_POSTGRES_DATABASE=evolution_db
+
+# ---------------------------------------------------------
+# Cache Redis
+# ---------------------------------------------------------
+CACHE_REDIS_ENABLED=true
+CACHE_REDIS_HOST=redis
+CACHE_REDIS_PORT=6379
+
+# ---------------------------------------------------------
+# Configuração de sessão
+# Ajuda quando houver falha de QR Code por versão defasada
+# ---------------------------------------------------------
+CONFIG_SESSION_PHONE_VERSION=2.3000.1018901637
+
+# ---------------------------------------------------------
+# Ambiente
+# ---------------------------------------------------------
+SERVER_TYPE=http
+SERVER_PORT=8080
+```
+
+## 7. Sobre a API Key
+
+A `AUTHENTICATION_API_KEY` é a chave que protege sua API.
+
+Troque:
+
+```env
+AUTHENTICATION_API_KEY=troque_esta_chave_por_uma_chave_forte_de_32_caracteres
+```
+
+Por uma chave real.
+
+Exemplo didático:
+
+```env
+AUTHENTICATION_API_KEY=AvrahamLocalEvolution2026SecretKey
+```
+
+Em um ambiente real, use uma chave aleatória e forte, preferencialmente com 32 caracteres ou mais.
+
+Você pode gerar essa chave em um gerenciador de senhas. Evite usar senhas óbvias, nome da empresa, nome pessoal ou datas.
+
+## 8. Criando o arquivo docker-compose.yml
+
+O `docker-compose.yml` define como os containers serão criados.
+
+Crie ou edite o arquivo `docker-compose.yml` com o conteúdo abaixo:
+
+```yaml
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: evolution_postgres
+    platform: linux/amd64
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${DB_POSTGRES_DATABASE}
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - evolution_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: evolution_redis
+    restart: unless-stopped
+    networks:
+      - evolution_network
+
+  evolution-api:
+    image: atendare/evolution-api:latest
+    container_name: evolution_api
+    platform: linux/amd64
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - evolution_network
+
+networks:
+  evolution_network:
+    driver: bridge
+```
+
+## 9. Observação importante sobre Mac M1, M2, M3 e M4
+
+A linha abaixo ajuda a evitar problemas de compatibilidade em alguns Macs com Apple Silicon:
+
+```yaml
+platform: linux/amd64
+```
+
+Ela força o Docker a rodar a imagem em arquitetura amd64. Em alguns casos, isso pode reduzir erros de dependências.
+
+Se tudo rodar bem sem essa linha, ela pode ser removida. Para começar, mantenha.
+
+## 10. Subindo a Evolution API pelo VS Code
+
+Se estiver usando VS Code com extensão Docker:
+
+1. Abra a pasta `evolution-api-local`.
+2. Confirme que os arquivos `.env` e `docker-compose.yml` existem.
+3. Clique com o botão direito no arquivo `docker-compose.yml`.
+4. Selecione `Compose Up`.
+5. Aguarde o Docker baixar as imagens.
+6. Abra o painel Docker na lateral esquerda.
+7. Confirme que os containers estão rodando:
+   1. `evolution_postgres`
+   2. `evolution_redis`
+   3. `evolution_api`
+
+## 11. Subindo a Evolution API pelo terminal
+
+Se preferir rodar pelo terminal:
+
+```bash
+cd ~/Documents/Avraham/evolution-api-local
+docker compose up -d
+```
+
+Em instalações antigas, o comando pode ser:
+
+```bash
+docker-compose up -d
+```
+
+Para ver os containers:
+
+```bash
+docker ps
+```
+
+Para ver os logs da Evolution API:
+
+```bash
+docker logs -f evolution_api
+```
+
+## 12. Acessando a API no navegador
+
+Com os containers rodando, abra:
+
+```text
+http://localhost:8080
+```
+
+Se estiver tudo certo, a API deve responder com status de funcionamento.
+
+## 13. Acessando o Manager da Evolution API
+
+Abra no navegador:
+
+```text
+http://localhost:8080/manager
+```
+
+Na tela de login ou conexão do Manager, use:
+
+```text
+Server URL:
+http://localhost:8080
+```
+
+E como API Key, use a chave definida no seu `.env`.
+
+Exemplo:
+
+```text
+AvrahamLocalEvolution2026SecretKey
+```
+
+## 14. Criando a primeira instância
+
+Dentro do Manager:
+
+1. Clique em criar nova instância.
+2. Defina um nome simples.
+3. Exemplo:
+   1. `teste_local`
+   2. `whatsapp_avraham_teste`
+   3. `instancia_01`
+4. Escolha o canal Baileys, caso o objetivo seja conexão gratuita via WhatsApp Web.
+5. Salve a instância.
+
+## 15. Gerando e escaneando o QR Code
+
+Depois de criar a instância:
+
+1. Abra as configurações da instância.
+2. Clique em conectar.
+3. Solicite o QR Code.
+4. Abra o WhatsApp no celular.
+5. Vá em aparelhos conectados.
+6. Escaneie o QR Code.
+7. Aguarde a conexão.
+
+Quando a conexão for concluída, o Manager deve mostrar informações como:
+
+1. Status conectado.
+2. Número conectado.
+3. Quantidade de contatos.
+4. Chats.
+5. Mensagens ou eventos disponíveis.
+
+## 16. Configurando webhooks
+
+A Evolution API permite configurar webhooks para avisar outros sistemas quando eventos acontecem.
+
+Exemplos de eventos:
+
+1. Mensagem recebida.
+2. Mensagem enviada.
+3. Status de conexão alterado.
+4. QR Code atualizado.
+5. Instância desconectada.
+
+No Manager, procure a área de eventos ou webhooks.
+
+Você poderá informar uma URL de webhook e selecionar os eventos que deseja escutar.
+
+## 17. Integração local com n8n
+
+Se o n8n também estiver rodando localmente via Docker, existe um detalhe importante.
+
+Dentro de containers Docker, `localhost` geralmente aponta para o próprio container, não para sua máquina.
+
+Por isso, quando um container precisar acessar outro serviço do host, use:
+
+```text
+host.docker.internal
+```
+
+Exemplo:
+
+```text
+http://host.docker.internal:8080
+```
+
+Se o n8n estiver em outro container na mesma rede Docker, o ideal pode ser usar o nome do serviço:
+
+```text
+http://evolution-api:8080
+```
+
+Ou, se estiver fora do Docker no seu Mac:
+
+```text
+http://localhost:8080
+```
+
+## 18. Teste básico de funcionamento
+
+Depois de conectar uma instância, faça o teste básico:
+
+1. Abra o Manager.
+2. Confirme que a instância está conectada.
+3. Acesse a documentação da API pelo próprio painel ou repositório.
+4. Teste uma chamada simples de status.
+5. Teste uma chamada de envio para um número autorizado.
+6. Valide o recebimento no celular.
+
+Recomendação de uso responsável:
+
+1. Faça testes apenas com seu próprio número ou números que autorizaram contato.
+2. Não use isso para disparo abusivo, spam ou contato sem consentimento.
+3. Para produção, implemente controle de filas, pausas, logs, opt out e limites de envio.
+
+## 19. Comandos úteis de operação
+
+### Subir containers
+
+```bash
+docker compose up -d
+```
+
+### Parar containers
+
+```bash
+docker compose down
+```
+
+### Reiniciar apenas a Evolution API
+
+```bash
+docker restart evolution_api
+```
+
+### Ver logs da Evolution API
+
+```bash
+docker logs -f evolution_api
+```
+
+### Ver containers ativos
+
+```bash
+docker ps
+```
+
+### Ver containers parados também
+
+```bash
+docker ps -a
+```
+
+### Recriar containers após alterar .env
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+## 20. Correção comum: QR Code não gera ou não conecta
+
+Um erro comum é a Evolution API não gerar QR Code corretamente por incompatibilidade de versão da sessão do WhatsApp Web.
+
+No material analisado, a correção sugerida foi alterar a variável:
+
+```env
+CONFIG_SESSION_PHONE_VERSION=2.3000.1018901637
+```
+
+Fluxo de correção:
+
+1. Pare os containers.
+2. Edite o `.env`.
+3. Atualize a variável `CONFIG_SESSION_PHONE_VERSION`.
+4. Suba os containers novamente.
+
+Comandos:
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+Depois, acesse novamente:
+
+```text
+http://localhost:8080/manager
+```
+
+E gere um novo QR Code.
+
+## 21. Persistência dos dados
+
+O PostgreSQL salva os dados nesta pasta:
+
+```text
+./data/postgres
+```
+
+Isso significa que, mesmo se você parar os containers, os dados continuam armazenados na pasta local.
+
+Atenção:
+
+Se você apagar a pasta `data`, pode perder dados do banco, conexões, registros e configurações.
+
+## 22. Quando usar local e quando usar VPS
+
+### Ambiente local serve para:
+
+1. Aprender.
+2. Testar a Evolution API.
+3. Validar QR Code.
+4. Testar webhooks.
+5. Construir integrações.
+6. Conectar com n8n local.
+7. Criar protótipos.
+8. Entender a lógica de instâncias.
+
+### VPS ou servidor dedicado serve para:
+
+1. Rodar automações em produção.
+2. Manter o sistema ligado 24 horas.
+3. Atender clientes.
+4. Criar infraestrutura multi-instância.
+5. Usar domínio próprio.
+6. Configurar SSL.
+7. Integrar com sistemas externos.
+8. Dar escala operacional.
+
+## 23. Como usar o Antigravity ou Claude Code para ajudar
+
+Você pode usar o assistente de IA dentro do Antigravity, Claude Code ou terminal para:
+
+1. Verificar se os containers estão rodando.
+2. Corrigir erros no `docker-compose.yml`.
+3. Revisar o `.env`.
+4. Analisar logs.
+5. Criar scripts auxiliares.
+6. Montar rotas de teste.
+7. Criar um frontend próprio.
+8. Criar um painel simplificado para gerenciar instâncias.
+9. Documentar a estrutura.
+10. Evoluir para produção.
+
+Exemplo de comando para o assistente:
+
+```text
+Analise meu projeto local da Evolution API. Verifique os arquivos .env e docker-compose.yml, confira se a estrutura está correta para rodar no Mac com Docker Desktop, identifique possíveis erros e me diga exatamente quais comandos devo executar para subir o ambiente.
+```
+
+## 24. Caminho de evolução natural do projeto
+
+Depois de rodar a Evolution API localmente, o próximo caminho lógico é:
+
+1. Criar primeira instância.
+2. Conectar WhatsApp de teste.
+3. Configurar webhook.
+4. Integrar com n8n.
+5. Criar fluxo simples de recebimento de mensagem.
+6. Criar fluxo simples de envio de mensagem.
+7. Criar logs de envio.
+8. Criar controle de contatos autorizados.
+9. Criar painel próprio.
+10. Evoluir para VPS.
+11. Adicionar domínio.
+12. Adicionar SSL.
+13. Criar estrutura de backup.
+14. Criar monitoramento.
+15. Definir limites operacionais.
+
+## 25. Checklist final
+
+Antes de considerar o ambiente pronto, valide:
+
+1. Docker Desktop está aberto.
+2. Pasta do projeto criada.
+3. Arquivo `.env` configurado.
+4. Arquivo `docker-compose.yml` configurado.
+5. Containers sobem sem erro.
+6. `http://localhost:8080` responde.
+7. `http://localhost:8080/manager` abre.
+8. API Key funciona.
+9. Instância é criada.
+10. QR Code é gerado.
+11. WhatsApp conecta.
+12. Logs não mostram erro crítico.
+13. Webhook pode ser configurado.
+14. Você sabe parar e subir novamente o ambiente.
+
+## 26. Observação final
+
+Este ambiente deve ser entendido como uma base de aprendizado e prototipação. Ele serve para dominar a estrutura, validar integrações e entender como a Evolution API funciona.
+
+Para produção, a arquitetura precisa evoluir com domínio, SSL, backups, controle de usuários, monitoramento, logs persistentes, segurança de API Key, limites de envio, política de consentimento e uma camada operacional adequada.

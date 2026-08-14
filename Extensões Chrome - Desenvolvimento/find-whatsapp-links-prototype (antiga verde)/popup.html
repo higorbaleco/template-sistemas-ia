@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Find WhatsApp Links</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div>
+        <p class="eyebrow">Crawler local</p>
+        <h1>Find WhatsApp Links</h1>
+      </div>
+      <span id="statusBadge" class="badge">Pronto</span>
+    </header>
+
+    <section class="panel">
+      <label for="keyword">Palavra-chave</label>
+      <input id="keyword" type="text" placeholder="Ex: memes, vendas, apostas, vagas" />
+      <p class="hint">Filtra pelo texto do link, título do card e URL encontrada na página.</p>
+
+      <div class="grid two">
+        <button id="scanPage" class="primary">Escanear página</button>
+        <button id="scanSelection" class="secondary">Escanear seleção</button>
+      </div>
+
+      <div class="grid two small-gap">
+        <label class="check"><input id="onlyGroups" type="checkbox" checked /> Só chat.whatsapp.com</label>
+        <label class="check"><input id="dedupe" type="checkbox" checked /> Remover duplicados</label>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div><strong id="totalFound">0</strong><span>Encontrados</span></div>
+      <div><strong id="totalUnique">0</strong><span>Únicos</span></div>
+      <div><strong id="totalFiltered">0</strong><span>Filtrados</span></div>
+    </section>
+
+    <section class="panel">
+      <div class="resultHeader">
+        <h2>Links extraídos</h2>
+        <button id="clear" class="ghost">Limpar</button>
+      </div>
+      <textarea id="results" readonly placeholder="Os links aparecerão aqui..."></textarea>
+      <div class="grid three">
+        <button id="copy" class="secondary">Copiar</button>
+        <button id="exportTxt" class="secondary">TXT</button>
+        <button id="exportCsv" class="secondary">CSV</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>Protótipo v0.1. Não entra nos grupos. Apenas extrai links visíveis na página.</p>
+    </footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

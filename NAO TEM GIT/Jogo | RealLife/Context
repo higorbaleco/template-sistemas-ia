@@ -1,0 +1,367 @@
+# 🎮 VisionLife
+
+## 📌 Visão do Produto
+
+VisionLife é um simulador estratégico de vida, carreira e negócios que permite ao usuário construir seu próprio império virtual com base em decisões realistas.
+
+O objetivo do jogo é gamificar a construção de patrimônio e progresso pessoal, permitindo que o jogador experimente diferentes caminhos sem risco real, enquanto reflete sobre suas decisões na vida real.
+
+O jogo busca gerar ambição e clareza, incentivando o jogador a planejar seu futuro dentro e fora do jogo.
+
+---
+
+## 🎯 Proposta de Valor
+
+- Simular decisões reais de vida e negócios
+- Mostrar consequências financeiras, sociais e emocionais
+- Tangibilizar sonhos e metas
+- Ensinar finanças, carreira e empreendedorismo na prática
+- Criar um ambiente seguro para errar e aprender
+
+---
+
+## 🧠 Emoções Principais
+
+- Ambição
+- Clareza
+- Responsabilidade
+- Pressão estratégica
+- Reflexão
+
+---
+
+## 👤 Público-Alvo
+
+- Jovens de 14 a 30 anos
+- Perfil ambicioso
+- Interesse em crescimento pessoal, financeiro e profissional
+- Homens e mulheres que querem “vencer na vida”
+
+---
+
+## 🧩 Estrutura do Jogo
+
+### 🎮 Tipo
+Simulador híbrido:
+- Decisões por cards
+- Narrativa contextual
+- Dashboards financeiros
+
+---
+
+## ⏳ Sistema de Tempo
+
+- 1 mês ≈ 2 minutos
+- Tempo ajustável pelo usuário
+- Decisões pausam o tempo
+- Ignorar decisões gera consequências
+
+---
+
+## 🔁 Loop Principal
+
+Semana → Evento → Decisão → Consequência → Atualização de estado → Próxima semana
+
+---
+
+## 🧬 Modos de Jogo (MVP)
+
+### 1. Jogador Comum
+Começa com:
+- renda limitada
+- poucos recursos
+- necessidade de crescimento
+
+---
+
+### 2. Herdeiro
+Começa com:
+- alta renda
+- estrutura básica garantida
+- acesso a educação e oportunidades
+
+Porém:
+- menos tempo livre
+- alta pressão
+- responsabilidades elevadas
+
+Consequência:
+- pode perder sucessão se performar mal
+- pode ser rebaixado para colaborador ou vida comum
+
+---
+
+### 3. Endividado
+Começa com:
+- dívida inicial
+- pressão financeira
+- baixa margem de erro
+
+---
+
+## 🎯 Sistema de Metas
+
+Tipos:
+- patrimônio
+- renda mensal
+- faturamento
+- lucro
+- renda passiva
+
+Prazos:
+- 6 meses
+- 1 ano
+- 3 anos
+- 5 anos
+- 10 anos
+- 20 anos
+
+---
+
+## 💰 Sistema Financeiro
+
+### Receita
+- salário
+- negócios
+- rendimentos
+
+### Custos
+- moradia
+- alimentação
+- transporte
+- contas básicas
+- saúde
+- lazer
+- educação
+- luxo
+
+---
+
+### Recursos
+- saldo
+- caixa
+- dívida
+- patrimônio
+
+---
+
+## 📊 Projeções
+
+O jogo mostra:
+
+- projeção futura baseada em decisões
+- impacto de longo prazo
+- distância da meta
+
+---
+
+## 📉 Endividamento
+
+- jogador pode entrar em dívida
+- decisões ruins acumulam impacto
+- recuperação possível, mas difícil
+
+---
+
+## 📚 Sistema de Carreira
+
+Progressão baseada em:
+- performance
+- estudo
+- execução
+
+Não baseada apenas em tempo.
+
+---
+
+### Estrutura de Profissões
+
+Cada área possui níveis:
+
+1. Entrada (auxiliar, estagiário)
+2. Intermediário
+3. Avançado
+4. Elite (gestão / dono)
+
+---
+
+## 🧠 Estudo
+
+Custa:
+- tempo
+- dinheiro
+- energia
+
+Permite:
+- mudança de carreira
+- crescimento mais rápido
+
+---
+
+## 💼 Múltiplas rendas
+
+Permitido, porém:
+- excesso gera queda de energia
+- impacto em performance
+
+---
+
+## 🏢 Sistema de Empresas
+
+Jogador pode:
+
+- abrir empresa
+- gerenciar negócios
+- crescer ou segurar caixa
+- contratar equipe
+
+---
+
+### Indicadores da empresa
+
+- faturamento
+- impostos
+- custos
+- salários
+- marketing
+- fornecedores
+- lucro líquido
+- margem
+- caixa
+
+---
+
+### Saúde da empresa
+
+Mostrada em dashboard:
+- lucro vs custo
+- sustentabilidade
+- risco
+
+---
+
+## 👥 Contratação
+
+Inclui:
+
+- salário bruto
+- salário líquido
+- custo real para empresa
+
+---
+
+## ⚖️ Funcionário vs Patrão
+
+O jogo mostra:
+
+- diferença real de custos
+- encargos
+- impostos
+- impacto da folha
+
+---
+
+## 🤝 Gestão de Pessoas
+
+Decisões impactam:
+
+- produtividade
+- satisfação
+- conflitos
+- cultura
+- turnover
+
+---
+
+## 🧩 Sistema de Eventos
+
+Tipos:
+
+- decisões financeiras
+- oportunidades
+- crises
+- eventos sociais
+- consequências de decisões passadas
+
+---
+
+### Estrutura do Evento
+
+- contexto
+- narrativa
+- opções (2 a 4)
+- consequências múltiplas
+
+---
+
+## 🔗 Eventos em Cadeia
+
+Decisões geram:
+
+- efeitos futuros
+- novas situações
+- recompensas ou perdas
+
+---
+
+## 🧠 Sistema de Feedback
+
+O jogo orienta:
+
+- alerta decisões ruins
+- sugere caminhos
+- mostra consequências
+
+Mas não impede o erro.
+
+---
+
+## 📜 Histórico
+
+- jogador pode revisar decisões passadas
+- não pode alterá-las
+
+---
+
+## 🧠 Sistema de Atributos (a definir na próxima versão)
+
+Exemplo:
+
+- energia
+- disciplina
+- inteligência financeira
+- networking
+- reputação
+
+---
+
+## 🎨 Interface
+
+- estilo moderno e limpo
+- inspirado em apps financeiros
+- dashboards + cards
+- foco em clareza
+
+---
+
+## 🎮 Modo Criativo (Futuro)
+
+- sem restrições
+- sem impacto no ranking
+- livre para experimentar
+
+---
+
+## 🏆 Ranking (Futuro)
+
+- top jogadores
+- categorias de destaque
+
+---
+
+## 🚀 Visão futura
+
+- simulador completo de vida
+- ferramenta educacional
+- planner gamificado
+- produto para escolas e empresas

@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="UIDMAINMENU000"]
+
+[node name="MainMenu" type="Control"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0
+margin_top = 0
+margin_right = 0
+margin_bottom = 0
+custom_constants/min_size = Vector2(800, 600)
+
+[node name="Background" type="ColorRect" parent="."]
+color = Color(0.1, 0.1, 0.15, 1.0)
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0
+margin_top = 0
+margin_right = 0
+margin_bottom = 0
+
+[node name="TitleLabel" type="Label" parent="."]
+text = "RealLife Game"
+anchor_left = 0.5
+anchor_top = 0.3
+margin_left = -200
+margin_top = -30
+align = 2
+valign = 1
+font_size = 48
+custom_colors/font_color = Color(0.8, 0.6, 1.0, 1.0)
+
+[node name="StartButton" type="Button" parent="."]
+text = "Iniciar Jogo"
+anchor_left = 0.5
+anchor_top = 0.5
+margin_left = -100
+margin_top = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OptionsButton" type="Button" parent="."]
+text = "Opções"
+anchor_left = 0.5
+anchor_top = 0.6
+margin_left = -100
+margin_top = 20
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="QuitButton" type="Button" parent="."]
+text = "Sair"
+anchor_left = 0.5
+anchor_top = 0.7
+margin_left = -100
+margin_top = 40
+size_flags_horizontal = 4
+size_flags_vertical = 4

@@ -1,0 +1,22 @@
+{
+  "name": "avraham_prompt_library_html",
+  "version": "1.0.0",
+  "description": "Mini biblioteca estática construída com HTML, CSS e JavaScript puro.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}

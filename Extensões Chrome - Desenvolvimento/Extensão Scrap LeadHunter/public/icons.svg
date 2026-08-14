@@ -1,0 +1,41 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="88" y1="56" x2="424" y2="456" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#163B8A"/>
+      <stop offset="1" stop-color="#2C8CFF"/>
+    </linearGradient>
+    <linearGradient id="card" x1="156" y1="170" x2="356" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#E7EEF9"/>
+    </linearGradient>
+    <filter id="shadow" x="76" y="66" width="360" height="360" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#081B3B" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect x="48" y="40" width="416" height="432" rx="108" fill="url(#bg)"/>
+  <path d="M84 132C150 88 244 72 350 84L422 96V148C372 112 286 104 214 112C156 119 106 138 84 160V132Z" fill="white" fill-opacity="0.12"/>
+
+  <g filter="url(#shadow)">
+    <rect x="146" y="142" width="220" height="220" rx="28" fill="url(#card)" stroke="#B8C8E0" stroke-width="6"/>
+    <rect x="164" y="160" width="184" height="28" rx="14" fill="#DDE8F7"/>
+    <rect x="186" y="222" width="150" height="16" rx="8" fill="#D4DEEC"/>
+    <rect x="186" y="258" width="124" height="16" rx="8" fill="#D4DEEC"/>
+    <rect x="186" y="294" width="138" height="16" rx="8" fill="#D4DEEC"/>
+    <circle cx="170" cy="230" r="13" fill="#FFFFFF" stroke="#7E9BCD" stroke-width="4"/>
+    <circle cx="170" cy="266" r="13" fill="#FFFFFF" stroke="#7E9BCD" stroke-width="4"/>
+    <circle cx="170" cy="302" r="13" fill="#FFFFFF" stroke="#7E9BCD" stroke-width="4"/>
+    <circle cx="170" cy="230" r="6" fill="#2C8CFF"/>
+    <circle cx="170" cy="266" r="6" fill="#2C8CFF"/>
+    <circle cx="170" cy="302" r="6" fill="#2C8CFF"/>
+  </g>
+
+  <g transform="translate(274 254)">
+    <circle cx="0" cy="0" r="58" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="18"/>
+    <circle cx="0" cy="0" r="38" fill="#1FB56D" fill-opacity="0.16" stroke="#1FB56D" stroke-width="12"/>
+    <rect x="48" y="48" width="72" height="20" rx="10" transform="rotate(45 48 48)" fill="#FFFFFF"/>
+    <rect x="52" y="52" width="72" height="20" rx="10" transform="rotate(45 52 52)" fill="#2C8CFF"/>
+  </g>
+
+  <path d="M100 204L116 170L132 204L166 220L132 236L116 270L100 236L66 220L100 204Z" fill="#B8FF2B"/>
+</svg>

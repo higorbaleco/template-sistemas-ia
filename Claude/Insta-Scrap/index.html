@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Central única do Insta-Scrap: Inserir vídeos, gerenciar referências, extrair salvos e acompanhar automações em tempo real."
+    />
+    <title>Insta-Scrap Central</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="sidebar__header">
+          <div class="sidebar__logo">
+            <div class="logo-mark"><i data-feather="camera"></i></div>
+            <div class="logo-text">
+              <div class="logo-title">Insta-Scrap</div>
+              <div class="logo-subtitle">Central</div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <button class="nav-item is-active" data-nav="dashboard" type="button">
+            <i class="nav-icon" data-feather="bar-chart-2"></i>
+            <span class="nav-label">Dashboard</span>
+          </button>
+          <button class="nav-item" data-nav="composer" type="button">
+            <i class="nav-icon" data-feather="edit-3"></i>
+            <span class="nav-label">Composer</span>
+          </button>
+          <button class="nav-item" data-nav="library" type="button">
+            <i class="nav-icon" data-feather="book-open"></i>
+            <span class="nav-label">Biblioteca</span>
+          </button>
+          <button class="nav-item" data-nav="patterns" type="button">
+            <i class="nav-icon" data-feather="target"></i>
+            <span class="nav-label">Padrões</span>
+          </button>
+          <button class="nav-item" data-nav="profiles" type="button">
+            <i class="nav-icon" data-feather="users"></i>
+            <span class="nav-label">Referências</span>
+          </button>
+        </nav>
+
+        <div class="sidebar__footer">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema">
+            <i class="theme-toggle__icon" data-feather="moon"></i>
+          </button>
+          <button class="sidebar-action" id="quickRunBtn" type="button" title="Executar automação">
+            <i data-feather="play"></i>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="page-header">
+          <div class="page-header__title">
+            <h1 id="pageTitle">Dashboard</h1>
+            <p id="pageSubtitle">Visão geral da operação</p>
+          </div>
+          <div class="page-header__actions">
+            <input type="search" id="globalSearch" class="search-input" placeholder="Buscar em tudo..." />
+          </div>
+        </header>
+
+        <!-- Dashboard Panel -->
+        <section class="panel is-active" data-panel="dashboard">
+          <div class="section-grid">
+            <!-- KPIs -->
+            <div class="kpi-section">
+              <h3 class="section-title">Métricas</h3>
+              <div class="kpi-grid" id="kpis"></div>
+            </div>
+
+            <!-- Queue Status -->
+            <div class="queue-section">
+              <div class="queue-header">
+                <h3 class="section-title">Fila de Automação</h3>
+                <span class="queue-badge" id="queueCount">0 jobs</span>
+              </div>
+              <div class="queue-list" id="jobList"></div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-section">
+              <h3 class="section-title">Atividade Recente</h3>
+              <div class="inbox-list" id="inboxList"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Composer Panel -->
+        <section class="panel" data-panel="composer">
+          <div class="composer-container">
+            <div class="composer-tabs" role="tablist" aria-label="Tipos de entrada">
+              <button class="composer-tab is-active" type="button" data-tab="video">
+                <i class="tab-icon" data-feather="video"></i>
+                <span class="tab-label">Inserir Vídeo</span>
+              </button>
+              <button class="composer-tab" type="button" data-tab="reference">
+                <i class="tab-icon" data-feather="link"></i>
+                <span class="tab-label">Salvar Referência</span>
+              </button>
+              <button class="composer-tab" type="button" data-tab="extract">
+                <i class="tab-icon" data-feather="zap"></i>
+                <span class="tab-label">Extrair Salvos</span>
+              </button>
+            </div>
+
+            <form class="composer-form" id="automationForm">
+              <!-- Video Panel -->
+              <div class="composer-panel is-active" data-panel="video">
+                <div class="form-section">
+                  <h4 class="form-title">Adicionar novo vídeo</h4>
+                  <div class="form-group">
+                    <label for="videoUrl" class="form-label">URL do Vídeo</label>
+                    <input
+                      id="videoUrl"
+                      name="videoUrl"
+                      type="url"
+                      class="form-input"
+                      placeholder="https://www.instagram.com/reel/..."
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="videoTitle" class="form-label">Título / Resumo</label>
+                    <input
+                      id="videoTitle"
+                      name="videoTitle"
+                      type="text"
+                      class="form-input"
+                      placeholder="Ex: Automação com Claude"
+                    />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="videoCategory" class="form-label">Categoria</label>
+                      <select id="videoCategory" name="videoCategory" class="form-select">
+                        <option value="ia">IA</option>
+                        <option value="automation">Automações</option>
+                        <option value="business">Business</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="education">Educação</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="videoNote" class="form-label">Nota Interna</label>
+                      <input
+                        id="videoNote"
+                        name="videoNote"
+                        type="text"
+                        class="form-input"
+                        placeholder="Observação rápida"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reference Panel -->
+              <div class="composer-panel" data-panel="reference">
+                <div class="form-section">
+                  <h4 class="form-title">Salvar como referência</h4>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="refHandle" class="form-label">@Handle</label>
+                      <input
+                        id="refHandle"
+                        name="refHandle"
+                        type="text"
+                        class="form-input"
+                        placeholder="@perfil"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="refUrl" class="form-label">URL do Perfil</label>
+                      <input
+                        id="refUrl"
+                        name="refUrl"
+                        type="url"
+                        class="form-input"
+                        placeholder="https://instagram.com/perfil/"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="refCategory" class="form-label">Categoria</label>
+                      <select id="refCategory" name="refCategory" class="form-select">
+                        <option value="ia">IA</option>
+                        <option value="automation">Automações</option>
+                        <option value="business">Business</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="education">Educação</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="refNote" class="form-label">Contexto</label>
+                      <input
+                        id="refNote"
+                        name="refNote"
+                        type="text"
+                        class="form-input"
+                        placeholder="Ex: Referência de captação"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Extract Panel -->
+              <div class="composer-panel" data-panel="extract">
+                <div class="form-section">
+                  <h4 class="form-title">Extrair salvos do Instagram</h4>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="extractProfile" class="form-label">Perfil</label>
+                      <input
+                        id="extractProfile"
+                        name="extractProfile"
+                        type="text"
+                        class="form-input"
+                        value="omagodowhats"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="extractMax" class="form-label">Quantidade</label>
+                      <input
+                        id="extractMax"
+                        name="extractMax"
+                        type="number"
+                        class="form-input"
+                        min="1"
+                        max="500"
+                        value="50"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="extractPause" class="form-label">Pausa (segundos)</label>
+                      <input
+                        id="extractPause"
+                        name="extractPause"
+                        type="number"
+                        class="form-input"
+                        min="0"
+                        max="30"
+                        value="3"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="extractConfirm" class="form-label">Confirmação</label>
+                      <input
+                        id="extractConfirm"
+                        name="extractConfirm"
+                        type="text"
+                        class="form-input"
+                        value="confirmo perfil omagodowhats"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Form Actions -->
+              <div class="form-actions">
+                <button class="btn btn-primary" id="submitAutomation" type="submit">
+                  Enviar para Automação
+                </button>
+                <button class="btn btn-secondary" id="resetForm" type="button">
+                  Limpar
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- Library Panel -->
+        <section class="panel" data-panel="library">
+          <div class="library-container">
+            <div class="toolbar">
+              <input
+                type="search"
+                id="searchInput"
+                class="search-input"
+                placeholder="Autor, título, tag ou trecho..."
+              />
+              <div class="filter-group">
+                <div class="chips" id="categoryChips"></div>
+                <div class="chips" id="statusChips"></div>
+              </div>
+              <div class="results-count" id="postCount">0 itens</div>
+            </div>
+
+            <div class="library-grid">
+              <div class="posts-section">
+                <div class="post-grid" id="postGrid"></div>
+              </div>
+              <div class="detail-sidebar">
+                <div class="detail-card" id="detailCard"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Patterns Panel -->
+        <section class="panel" data-panel="patterns">
+          <div class="patterns-container">
+            <div class="section-header">
+              <h3 class="section-title">Padrões Virais</h3>
+              <p class="section-description">5 padrões testados com replicabilidade de setup</p>
+            </div>
+            <div class="pattern-grid" id="patternGrid"></div>
+          </div>
+        </section>
+
+        <!-- Profiles Panel -->
+        <section class="panel" data-panel="profiles">
+          <div class="profiles-container">
+            <div class="section-header">
+              <h3 class="section-title">Perfis de Referência</h3>
+              <p class="section-description">13 criadores para acompanhamento</p>
+            </div>
+            <div class="profile-grid" id="profileGrid"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script defer src="./app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+      });
+    </script>
+  </body>
+</html>

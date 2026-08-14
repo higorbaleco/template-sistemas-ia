@@ -22,7 +22,11 @@ coverage/
 venv/
 __pycache__/
 *.pyc
+*.py[cod]
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
 
 # env / secrets
 .env
@@ -35,3 +39,10 @@ __pycache__/
 # misc generated
 tmp/
 temp/
+
+# editor
+.vscode/
+.idea/
+
+# Claude Code local
+.claude/settings.local.json

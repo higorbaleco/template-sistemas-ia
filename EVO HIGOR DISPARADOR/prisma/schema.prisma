@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id                    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                  String
+  apiKey                String   @unique @map("api_key")
+  messagesPerMonth      Int      @default(10000) @map("messages_per_month")
+  messagesSentThisMonth Int      @default(0) @map("messages_sent_this_month")
+  isActive              Boolean  @default(true) @map("is_active")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
+
+  instances     Instance[]
+  messageQueues MessageQueue[]
+  webhookLogs   WebhookLog[]
+
+  @@map("organizations")
+}
+
+model Instance {
+  id                  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  organizationId      String   @map("organization_id") @db.Uuid
+  name                String
+  phoneNumber         String?  @map("phone_number")
+  instanceName        String   @unique @map("instance_name")
+  evolutionApiToken   String   @map("evolution_api_token")
+  status              String   @default("disconnected") // disconnected, connecting, connected, error
+  qrCodeUrl           String?  @map("qr_code_url")
+  lastHeartbeat       DateTime? @map("last_heartbeat")
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  organization  Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  messageQueues MessageQueue[]
+  webhookLogs   WebhookLog[]
+
+  @@unique([organizationId, name])
+  @@map("instances")
+}
+
+model MessageQueue {
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  organizationId    String   @map("organization_id") @db.Uuid
+  instanceId        String   @map("instance_id") @db.Uuid
+  recipientPhone    String   @map("recipient_phone")
+  messageText       String   @map("message_text")
+  status            String   @default("pending") // pending, sent, failed, cancelled
+  scheduledAt       DateTime @default(now()) @map("scheduled_at")
+  sentAt            DateTime? @map("sent_at")
+  retryCount        Int      @default(0) @map("retry_count")
+  retryUntil        DateTime? @map("retry_until")
+  errorMessage      String?  @map("error_message")
+  metadata          Json?
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  instance     Instance     @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+  messageLogs  MessageLog[]
+
+  @@index([organizationId, status])
+  @@index([organizationId, scheduledAt])
+  @@map("message_queues")
+}
+
+model WebhookLog {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  organizationId String   @map("organization_id") @db.Uuid
+  instanceId     String   @map("instance_id") @db.Uuid
+  eventType      String   @map("event_type") // message.received, message.sent, instance.connected
+  payload        Json
+  receivedAt     DateTime @default(now()) @map("received_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  instance     Instance     @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@map("webhook_logs")
+}
+
+model MessageLog {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  messageQueueId  String   @map("message_queue_id") @db.Uuid
+  event           String   // queued, sent, failed, delivered
+  timestamp       DateTime @default(now())
+  meta            Json?
+
+  messageQueue MessageQueue @relation(fields: [messageQueueId], references: [id], onDelete: Cascade)
+
+  @@map("message_logs")
+}

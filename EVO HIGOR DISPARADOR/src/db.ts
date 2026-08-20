@@ -1,0 +1,24 @@
+import { PrismaClient } from '@prisma/client';
+
+let prisma: PrismaClient;
+
+export function getPrisma(): PrismaClient {
+  if (!prisma) {
+    prisma = new PrismaClient();
+  }
+  return prisma;
+}
+
+export async function disconnectPrisma(): Promise<void> {
+  if (prisma) {
+    await prisma.$disconnect();
+  }
+}
+
+export type {
+  Organization,
+  Instance,
+  MessageQueue,
+  WebhookLog,
+  MessageLog,
+} from '@prisma/client';

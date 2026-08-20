@@ -1,0 +1,346 @@
+{
+  "agents": [
+    {
+      "id": "agent_nina",
+      "name": "Nina Vale",
+      "username": "nina.vale",
+      "avatar": null,
+      "role": "relacionamento",
+      "personality": "calma, direta e calorosa",
+      "tone": "humano e preciso",
+      "writingStyle": "frases curtas com linguagem natural",
+      "responseLengthPolicy": "curta",
+      "language": "pt-BR",
+      "timezone": "America/Sao_Paulo",
+      "trainingBase": "Base de boas-vindas e respostas de relacionamento",
+      "knowledgeSources": [
+        "FAQ comercial",
+        "scripts de suporte"
+      ],
+      "greetingTemplates": [
+        "Oi, tudo certo por ai?",
+        "Passando para ajudar rapidinho."
+      ],
+      "fallbackTemplates": [
+        "Me confirma esse ponto?",
+        "Deixa eu revisar isso rapidinho."
+      ],
+      "groupBehaviorPolicy": "responder apenas quando mencionada",
+      "privateChatPolicy": "responder com objetividade",
+      "mentionOnlyMode": true,
+      "active": true,
+      "riskLevel": 0.18,
+      "llmProvider": "openai",
+      "llmModel": "gpt-4o-mini",
+      "llmApiKeyRef": "env:OPENAI_API_KEY",
+      "temperature": 0.4,
+      "maxTokens": 320,
+      "memoryWindow": 20,
+      "memoryPolicy": "persistir apenas preferencias e contexto recente",
+      "allowedChannels": [
+        "private",
+        "group"
+      ],
+      "blockedChannels": [],
+      "tags": [
+        "demo",
+        "principal"
+      ],
+      "createdAt": "2026-08-20T12:47:32.616Z",
+      "updatedAt": "2026-08-20T12:47:32.616Z"
+    },
+    {
+      "id": "agent_caio",
+      "name": "Caio Norte",
+      "username": "caio.norte",
+      "avatar": null,
+      "role": "aquecimento",
+      "personality": "leve, social e espontaneo",
+      "tone": "descontraido",
+      "writingStyle": "mensagens curtas com variacao",
+      "responseLengthPolicy": "curta",
+      "language": "pt-BR",
+      "timezone": "America/Sao_Paulo",
+      "trainingBase": "Conversas de aquecimento e humanidade controlada",
+      "knowledgeSources": [
+        "roteiros de aquecimento"
+      ],
+      "greetingTemplates": [
+        "E ai, como ta por ai?",
+        "Tudo certo, seguimos na area."
+      ],
+      "fallbackTemplates": [
+        "Pode ser",
+        "Fechou, entendi"
+      ],
+      "groupBehaviorPolicy": "aguardar mencao",
+      "privateChatPolicy": "aceitar conversas leves",
+      "mentionOnlyMode": true,
+      "active": false,
+      "riskLevel": 0.11,
+      "llmProvider": "anthropic",
+      "llmModel": "claude-3-5-sonnet",
+      "llmApiKeyRef": "env:ANTHROPIC_API_KEY",
+      "temperature": 0.55,
+      "maxTokens": 260,
+      "memoryWindow": 12,
+      "memoryPolicy": "somente contexto atual",
+      "allowedChannels": [
+        "private",
+        "group"
+      ],
+      "blockedChannels": [],
+      "tags": [
+        "warming"
+      ],
+      "createdAt": "2026-08-20T12:47:32.616Z",
+      "updatedAt": "2026-08-20T12:47:32.616Z"
+    }
+  ],
+  "instances": [
+    {
+      "id": "instance_01",
+      "phoneNumber": "+55 11 99999-0001",
+      "label": "Operacional A",
+      "sessionRef": "session:instance_01",
+      "connectionStatus": "connected",
+      "connectionUpdatedAt": "2026-08-20T12:47:32.616Z",
+      "lifecycleStatus": "OPERATIONAL",
+      "lifecycleUpdatedAt": "2026-08-20T12:47:32.616Z",
+      "linkedAgentId": "agent_nina",
+      "warmingProfileId": "default-conservative",
+      "warmingStartedAt": null,
+      "warmingCompletedAt": null,
+      "dailyMessageLimitTarget": 30,
+      "dailyMessageLimitCurrent": 30,
+      "messagesSentToday": 11,
+      "messagesSentTotal": 421,
+      "lastResetAt": "2026-08-20",
+      "excludedFromGroupWarming": false,
+      "riskScore": 0.14,
+      "createdAt": "2026-08-20T12:47:32.616Z",
+      "createdByUserId": null,
+      "deletedAt": null
+    },
+    {
+      "id": "instance_02",
+      "phoneNumber": "+55 11 99999-0002",
+      "label": "Warming B",
+      "sessionRef": "session:instance_02",
+      "connectionStatus": "connected",
+      "connectionUpdatedAt": "2026-08-20T12:47:32.616Z",
+      "lifecycleStatus": "WARMING",
+      "lifecycleUpdatedAt": "2026-08-20T12:47:32.616Z",
+      "linkedAgentId": null,
+      "warmingProfileId": "default-conservative",
+      "warmingStartedAt": "2026-08-20T12:47:32.616Z",
+      "warmingCompletedAt": null,
+      "dailyMessageLimitTarget": 30,
+      "dailyMessageLimitCurrent": 10,
+      "messagesSentToday": 4,
+      "messagesSentTotal": 38,
+      "lastResetAt": "2026-08-20",
+      "excludedFromGroupWarming": false,
+      "riskScore": 0.33,
+      "createdAt": "2026-08-20T12:47:32.616Z",
+      "createdByUserId": null,
+      "deletedAt": null
+    }
+  ],
+  "conversations": [
+    {
+      "id": "conv_private_01",
+      "channelKind": "private",
+      "channelId": "5511999991111",
+      "title": "Lead - Maria",
+      "agentId": "agent_nina",
+      "instanceId": "instance_01",
+      "paused": false,
+      "sensitive": false,
+      "createdAt": "2026-08-20T12:47:32.616Z",
+      "updatedAt": "2026-08-20T12:47:32.616Z"
+    },
+    {
+      "id": "conv_group_01",
+      "channelKind": "group",
+      "channelId": "5511999992222-123456@g.us",
+      "title": "Clube VIP",
+      "agentId": "agent_nina",
+      "instanceId": "instance_01",
+      "paused": false,
+      "sensitive": false,
+      "createdAt": "2026-08-20T12:47:32.616Z",
+      "updatedAt": "2026-08-20T12:47:32.616Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg_1",
+      "conversationId": "conv_private_01",
+      "direction": "inbound",
+      "content": "Oi, queria entender melhor o fluxo.",
+      "contentPreview": "Oi, queria entender melhor o fluxo.",
+      "authorId": "contact_maria",
+      "agentId": null,
+      "instanceId": null,
+      "sentAt": "2026-08-20T12:47:32.616Z",
+      "createdAt": "2026-08-20T12:47:32.616Z"
+    },
+    {
+      "id": "msg_2",
+      "conversationId": "conv_private_01",
+      "direction": "outbound",
+      "content": "Claro, te explico rapidinho.",
+      "contentPreview": "Claro, te explico rapidinho.",
+      "authorId": null,
+      "agentId": "agent_nina",
+      "instanceId": "instance_01",
+      "sentAt": "2026-08-20T12:47:32.616Z",
+      "createdAt": "2026-08-20T12:47:32.616Z"
+    }
+  ],
+  "warmingProfiles": [
+    {
+      "id": "default-conservative",
+      "name": "Conservative 7 Day Ramp",
+      "workspaceId": "default",
+      "steps": [
+        {
+          "stepOrder": 0,
+          "dayOffset": 0,
+          "maxMessagesPerDay": 5,
+          "minIntervalSeconds": 30,
+          "maxIntervalSeconds": 120
+        },
+        {
+          "stepOrder": 1,
+          "dayOffset": 2,
+          "maxMessagesPerDay": 10,
+          "minIntervalSeconds": 30,
+          "maxIntervalSeconds": 120
+        },
+        {
+          "stepOrder": 2,
+          "dayOffset": 4,
+          "maxMessagesPerDay": 20,
+          "minIntervalSeconds": 30,
+          "maxIntervalSeconds": 120
+        },
+        {
+          "stepOrder": 3,
+          "dayOffset": 6,
+          "maxMessagesPerDay": 30,
+          "minIntervalSeconds": 30,
+          "maxIntervalSeconds": 120
+        }
+      ],
+      "promoteToReadyCriteria": "days",
+      "promoteToReadyDays": 7,
+      "promoteToReadyTotalMessages": 80,
+      "switchPartnerAfterNMessages": 10,
+      "stopAfterNMessages": 50,
+      "useLlmContent": true,
+      "templateMessages": [
+        "E ai, tudo certo por aqui?",
+        "Passando so para manter o papo vivo.",
+        "Hoje ta corrido, mas sigo na area."
+      ],
+      "minIntervalSeconds": 30,
+      "maxIntervalSeconds": 120,
+      "createdAt": "2026-08-20T12:47:32.616Z",
+      "updatedAt": "2026-08-20T12:47:32.616Z"
+    }
+  ],
+  "warmingSessions": [
+    {
+      "id": "warming_session_01",
+      "mode": "private",
+      "status": "running",
+      "stopReason": null,
+      "participants": [
+        {
+          "instanceId": "instance_01",
+          "joinOrder": 1
+        },
+        {
+          "instanceId": "instance_02",
+          "joinOrder": 2
+        }
+      ],
+      "startedAt": "2026-08-20T12:47:32.616Z",
+      "endedAt": null,
+      "messagesExchangedCount": 14,
+      "createdAt": "2026-08-20T12:47:32.616Z"
+    }
+  ],
+  "warmingMessageLogs": [],
+  "instanceBlockEvents": [],
+  "webhookSubscriptions": [
+    {
+      "id": "webhook_01",
+      "url": "https://example.com/webhooks/whatsapp",
+      "secretRef": "env:WEBHOOK_SECRET",
+      "eventTypes": [
+        "agent.created",
+        "message.received",
+        "instance.blocked"
+      ],
+      "active": true,
+      "createdAt": "2026-08-20T12:47:32.616Z",
+      "updatedAt": "2026-08-20T12:47:32.616Z"
+    }
+  ],
+  "webhookDeliveries": [],
+  "metrics": [
+    {
+      "id": "metric_1787230052617",
+      "scopeType": "workspace",
+      "scopeId": "default",
+      "metricKey": "agents.active",
+      "metricValue": 1,
+      "periodStart": "2026-08-20T12:47:32.617Z",
+      "periodEnd": "2026-08-20T12:47:32.617Z",
+      "createdAt": "2026-08-20T12:47:32.617Z"
+    },
+    {
+      "id": "metric_1787230052617",
+      "scopeType": "workspace",
+      "scopeId": "default",
+      "metricKey": "instances.active",
+      "metricValue": 2,
+      "periodStart": "2026-08-20T12:47:32.617Z",
+      "periodEnd": "2026-08-20T12:47:32.617Z",
+      "createdAt": "2026-08-20T12:47:32.617Z"
+    },
+    {
+      "id": "metric_1787230052617",
+      "scopeType": "workspace",
+      "scopeId": "default",
+      "metricKey": "instances.blocked",
+      "metricValue": 0,
+      "periodStart": "2026-08-20T12:47:32.617Z",
+      "periodEnd": "2026-08-20T12:47:32.617Z",
+      "createdAt": "2026-08-20T12:47:32.617Z"
+    },
+    {
+      "id": "metric_1787230052617",
+      "scopeType": "workspace",
+      "scopeId": "default",
+      "metricKey": "warming.sessions.running",
+      "metricValue": 1,
+      "periodStart": "2026-08-20T12:47:32.617Z",
+      "periodEnd": "2026-08-20T12:47:32.617Z",
+      "createdAt": "2026-08-20T12:47:32.617Z"
+    },
+    {
+      "id": "metric_1787230052617",
+      "scopeType": "workspace",
+      "scopeId": "default",
+      "metricKey": "messages.sent_today",
+      "metricValue": 15,
+      "periodStart": "2026-08-20T12:47:32.617Z",
+      "periodEnd": "2026-08-20T12:47:32.617Z",
+      "createdAt": "2026-08-20T12:47:32.617Z"
+    }
+  ]
+}

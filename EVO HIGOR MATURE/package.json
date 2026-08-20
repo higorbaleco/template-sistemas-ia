@@ -1,0 +1,16 @@
+{
+  "name": "evo-higor-mature",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "check": "tsc -p tsconfig.base.json --noEmit",
+    "dev:api": "npm exec --yes --package tsx -- tsx apps/api/src/main.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

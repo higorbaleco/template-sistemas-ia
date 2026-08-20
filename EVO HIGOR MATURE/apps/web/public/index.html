@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EVO HIGOR MATURE</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">E</span>
+          <div>
+            <div class="brand-title">EVO HIGOR MATURE</div>
+            <div class="brand-subtitle">WhatsApp Agent Ops Console</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a href="#overview" class="nav-item active">Overview</a>
+          <a href="#agents" class="nav-item">Agents</a>
+          <a href="#instances" class="nav-item">Instances</a>
+          <a href="#warming" class="nav-item">Warming</a>
+          <a href="#webhooks" class="nav-item">Webhooks</a>
+          <a href="#metrics" class="nav-item">Metrics</a>
+        </nav>
+
+        <div class="sidebar-card">
+          <div class="sidebar-label">Runtime</div>
+          <div class="runtime-pill" id="runtime-status">loading</div>
+          <p class="sidebar-copy">Preview visual conectada ao estado real da API e ao store persistido.</p>
+          <button id="seed-btn" class="button button-primary">Seed demo data</button>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="hero" id="overview">
+          <div class="hero-copy">
+            <div class="eyebrow">Operational preview</div>
+            <h1>Control room for agents, instances, warming, and webhooks.</h1>
+            <p>
+              Acompanhamento em tempo real da operação, com personas, instâncias Baileys, aquecimento e auditoria.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="/dashboard" target="_blank" rel="noreferrer">Open JSON dashboard</a>
+              <a class="button button-secondary" href="/health" target="_blank" rel="noreferrer">Health check</a>
+            </div>
+          </div>
+
+          <div class="signal-map">
+            <svg viewBox="0 0 520 260" aria-hidden="true">
+              <defs>
+                <linearGradient id="line" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#0e0f10" />
+                  <stop offset="100%" stop-color="#7f5b34" />
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="520" height="260" rx="18" fill="rgba(255,255,255,0.8)" />
+              <circle cx="92" cy="82" r="26" fill="#111111" />
+              <circle cx="256" cy="82" r="26" fill="#7f5b34" />
+              <circle cx="420" cy="82" r="26" fill="#0f8b5f" />
+              <circle cx="174" cy="180" r="26" fill="#d7c39b" />
+              <circle cx="350" cy="180" r="26" fill="#111111" />
+              <path d="M118 82H230" stroke="url(#line)" stroke-width="4" stroke-linecap="round" />
+              <path d="M282 82H394" stroke="url(#line)" stroke-width="4" stroke-linecap="round" />
+              <path d="M256 108V154" stroke="url(#line)" stroke-width="4" stroke-linecap="round" />
+              <path d="M200 180H324" stroke="url(#line)" stroke-width="4" stroke-linecap="round" />
+              <text x="92" y="124" text-anchor="middle">Agent</text>
+              <text x="256" y="124" text-anchor="middle">Instance</text>
+              <text x="420" y="124" text-anchor="middle">Webhook</text>
+              <text x="174" y="222" text-anchor="middle">Warming</text>
+              <text x="350" y="222" text-anchor="middle">Metrics</text>
+            </svg>
+          </div>
+        </section>
+
+        <section class="stat-grid" id="metrics"></section>
+
+        <section class="panel-grid">
+          <article class="panel wide" id="agents">
+            <div class="panel-head">
+              <div>
+                <div class="panel-label">Agents</div>
+                <h2>Personas em operação</h2>
+              </div>
+              <span class="pill" id="agents-count">0</span>
+            </div>
+            <div id="agents-list" class="list-stack"></div>
+          </article>
+
+          <article class="panel" id="instances">
+            <div class="panel-head">
+              <div>
+                <div class="panel-label">Instances</div>
+                <h2>Conexões WhatsApp</h2>
+              </div>
+              <span class="pill" id="instances-count">0</span>
+            </div>
+            <div id="instances-list" class="list-stack"></div>
+          </article>
+
+          <article class="panel" id="warming">
+            <div class="panel-head">
+              <div>
+                <div class="panel-label">Warming</div>
+                <h2>Rampa de maturação</h2>
+              </div>
+              <span class="pill" id="warming-count">0</span>
+            </div>
+            <div id="warming-list" class="list-stack"></div>
+          </article>
+        </section>
+
+        <section class="panel-grid">
+          <article class="panel" id="webhooks">
+            <div class="panel-head">
+              <div>
+                <div class="panel-label">Webhooks</div>
+                <h2>Subscriptions e entrega</h2>
+              </div>
+              <span class="pill" id="webhooks-count">0</span>
+            </div>
+            <div id="webhooks-list" class="list-stack"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-label">Forms</div>
+                <h2>Quick create</h2>
+              </div>
+            </div>
+
+            <form id="agent-form" class="form-stack">
+              <div class="form-title">Create agent</div>
+              <div class="grid-2">
+                <input name="name" placeholder="Agent name" />
+                <input name="username" placeholder="username" />
+              </div>
+              <textarea name="personality" rows="3" placeholder="Personality"></textarea>
+              <div class="grid-2">
+                <input name="llmModel" placeholder="LLM model" value="gpt-4o-mini" />
+                <input name="llmProvider" placeholder="Provider" value="openai" />
+              </div>
+              <button class="button button-primary" type="submit">Create agent</button>
+            </form>
+
+            <form id="instance-form" class="form-stack">
+              <div class="form-title">Create instance</div>
+              <div class="grid-2">
+                <input name="phoneNumber" placeholder="+55 11 99999-0000" />
+                <input name="label" placeholder="Instance label" />
+              </div>
+              <div class="grid-2">
+                <select name="connectionStatus">
+                  <option value="disconnected">disconnected</option>
+                  <option value="connecting">connecting</option>
+                  <option value="qr_pending">qr_pending</option>
+                  <option value="connected">connected</option>
+                </select>
+                <select name="lifecycleStatus">
+                  <option value="CONNECTING">CONNECTING</option>
+                  <option value="WARMING">WARMING</option>
+                  <option value="READY">READY</option>
+                  <option value="OPERATIONAL">OPERATIONAL</option>
+                  <option value="BLOCKED">BLOCKED</option>
+                </select>
+              </div>
+              <button class="button button-primary" type="submit">Create instance</button>
+            </form>
+
+            <form id="profile-form" class="form-stack">
+              <div class="form-title">Create warming profile</div>
+              <input name="name" placeholder="Profile name" />
+              <button class="button button-secondary" type="submit">Create profile</button>
+            </form>
+          </article>
+        </section>
+
+        <section class="panel-grid">
+          <article class="panel wide" id="activity">
+            <div class="panel-head">
+              <div>
+                <div class="panel-label">Activity</div>
+                <h2>Messages and incidents</h2>
+              </div>
+            </div>
+            <div class="dual-list">
+              <div>
+                <div class="form-title">Recent messages</div>
+                <div id="messages-list" class="list-stack"></div>
+              </div>
+              <div>
+                <div class="form-title">Block events</div>
+                <div id="events-list" class="list-stack"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="panel-label">Warming actions</div>
+                <h2>Run the ramp</h2>
+              </div>
+            </div>
+
+            <form id="warming-form" class="form-stack">
+              <div class="form-title">Start session</div>
+              <select name="mode">
+                <option value="private">private</option>
+                <option value="group">group</option>
+              </select>
+              <button class="button button-primary" type="submit">Start warming session</button>
+            </form>
+
+            <form id="turn-form" class="form-stack">
+              <div class="form-title">Emit turn</div>
+              <input name="content" placeholder="Message content" value="Tudo certo por aqui?" />
+              <button class="button button-secondary" type="submit">Send synthetic turn</button>
+            </form>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

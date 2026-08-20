@@ -1,2 +1,5 @@
-// Jest setup file
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 export {};

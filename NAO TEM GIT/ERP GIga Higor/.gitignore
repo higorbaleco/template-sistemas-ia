@@ -1,0 +1,82 @@
+# Dados locais (NUNCA commitar)
+dados/
+*.db
+*.db-journal
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+
+# Build outputs
+dist/
+build/
+frontend/build/
+frontend/dist/
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.production
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.nyc_output/
+coverage/
+
+# Package manager
+package-lock.json
+yarn.lock
+
+# Electron
+out/
+release/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+*.swp
+*~
+
+# IDE metadata
+.vscode/launch.json
+.vscode/extensions.json
+
+# OS Lock files
+.localized

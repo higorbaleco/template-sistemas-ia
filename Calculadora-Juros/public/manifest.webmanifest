@@ -1,0 +1,10 @@
+{
+  "name": "Simulador Financeiro",
+  "short_name": "Simulador",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ece7df",
+  "theme_color": "#ece7df",
+  "icons": []
+}
+

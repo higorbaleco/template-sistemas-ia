@@ -1,1 +1,0 @@
-CCP ou Método CCPitch foi uma metodologia criada com o intuito de ajudar pessoas a criarem pitch`s de vendas, abordagens, qualificação de clientes e aprenderem a vender muito mais de forma prática. O Nato foi uma sigla e metodologia que eu desenvolvi, com base no BANT. Porém adaptada no Brasil e utilizo para qualificar leads com o ICP ideal

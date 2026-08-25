@@ -1,3 +1,0 @@
-Nós decidimos casar em 9 meses, porém eu tinha um salário de 2.500 reais e ela tinha recém pedido demissão em uma loja de roupas. Começamos a nossa agência de marketing digital do zero e eu assumi o projeto do Z-API... Tinhamos a meta de fazer +100 mil reais para casar, mobiliar nosso apartamento e comprar um carro para nos locomover, além da viagem de lua de mel.
-
-Fizemos +300 mil reais entre dezembro e julho

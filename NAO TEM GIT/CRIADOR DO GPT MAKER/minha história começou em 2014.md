@@ -1,2 +1,0 @@
-
-Meus primeiros passos no marketing digital. Já fiz um pouco de tudo, já tive e-commerce de moda masculina, um sex shop, uma loja de dropshipping para casa e decoração, escrevi alguns livros, um treinamento sobre vendas online e como começar um e-commerce com um custo enxuto. Tráfego pago, live shop e até curso de comportamentos humanos

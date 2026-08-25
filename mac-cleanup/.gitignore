@@ -1,0 +1,17 @@
+.DS_Store
+.DS_Store?
+__pycache__/
+*.pyc
+.python-version
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+catalog/
+logs/
+reports/
+dashboard/
+.coverage
+dist/
+build/
+*.egg-info/

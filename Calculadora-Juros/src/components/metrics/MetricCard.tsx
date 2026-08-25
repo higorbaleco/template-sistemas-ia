@@ -11,6 +11,7 @@ type MetricCardProps = {
 export function MetricCard({ label, value, hint, tone = "default", icon }: MetricCardProps) {
   return (
     <article className={`metric-card tone-${tone}`}>
+      <span className="metric-card__accent" aria-hidden="true" />
       <div className="metric-card__label">
         {icon}
         <span>{label}</span>
@@ -20,4 +21,3 @@ export function MetricCard({ label, value, hint, tone = "default", icon }: Metri
     </article>
   );
 }
-

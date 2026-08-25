@@ -1,0 +1,1 @@
+"""Mac cleanup catalog scripts."""

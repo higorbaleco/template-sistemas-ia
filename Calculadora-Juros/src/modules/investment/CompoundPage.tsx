@@ -3,6 +3,7 @@ import { TrendingUp, Wallet } from "lucide-react";
 import { CurrencyField } from "../../components/forms/CurrencyField";
 import { NumberField } from "../../components/forms/NumberField";
 import { MetricCard } from "../../components/metrics/MetricCard";
+import { PageHeader } from "../../components/ui/PageHeader";
 import { SectionCard } from "../../components/ui/SectionCard";
 import { formatCurrency, parseCurrencyInput } from "../../utils/formatters";
 import { calculateCompoundGrowth } from "../../utils/finance";
@@ -21,7 +22,14 @@ export function CompoundPage() {
 
   return (
     <div className="page-stack">
-      <SectionCard title="Juros compostos" subtitle="Crescimento com aportes e reinvestimento">
+      <PageHeader
+        kicker="Patrimônio"
+        title="Juros compostos"
+        description="Uma tela para enxergar crescimento com aporte, prazo e taxa."
+        chips={["Aporte", "Rendimento", "Valor futuro"]}
+      />
+
+      <SectionCard eyebrow="Entradas" title="Parâmetros" subtitle="Crescimento com aportes e reinvestimento">
         <div className="form-grid">
           <CurrencyField label="Capital inicial" value={initialInput} onChange={setInitialInput} />
           <CurrencyField label="Aporte mensal" value={contributionInput} onChange={setContributionInput} />
@@ -30,7 +38,7 @@ export function CompoundPage() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Resultado">
+      <SectionCard eyebrow="Saída" title="Resultado">
         <div className="hero-grid">
           <MetricCard label="Valor futuro" value={formatCurrency(futureValue)} tone="positive" icon={<TrendingUp size={14} />} />
           <MetricCard label="Capital inicial" value={formatCurrency(initial)} icon={<Wallet size={14} />} />

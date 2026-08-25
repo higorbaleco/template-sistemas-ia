@@ -1,0 +1,33 @@
+skip_dirs:
+  - .Trash
+  - .git
+  - node_modules
+  - .venv
+  - venv
+  - __pycache__
+  - .cache
+  - Cache
+  - .gradle
+  - Pods
+
+regenerable_markers:
+  - node_modules
+  - .venv
+  - venv
+  - .next
+  - dist
+  - build
+  - __pycache__
+  - .cache
+  - Cache
+  - CachedData
+  - CachedExtensionVSIXs
+  - .gradle
+  - Pods
+  - .pytest_cache
+  - .mypy_cache
+  - .tox
+  - vendor
+  - .bundle
+
+output_root: ~/mac-cleanup

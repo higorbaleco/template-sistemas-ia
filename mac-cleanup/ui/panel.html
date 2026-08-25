@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mac Curator</title>
+  <link rel="stylesheet" href="/ui/panel.css" />
+</head>
+<body>
+  <div class="backdrop"></div>
+  <div class="grain"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">MC</div>
+        <div>
+          <div class="eyebrow" data-i18n="brand_eyebrow">Local cleanup studio</div>
+          <h1>Mac Curator</h1>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item is-active" data-filter="all" data-i18n="nav_overview">Overview</button>
+        <button class="nav-item" data-filter="drive" data-i18n="nav_drive">Drive Upload</button>
+        <button class="nav-item" data-filter="git" data-i18n="nav_git">Git Track</button>
+        <button class="nav-item" data-filter="delete" data-i18n="nav_delete">Delete Candidates</button>
+        <button class="nav-item" data-filter="protected" data-i18n="nav_protected">Protected</button>
+      </nav>
+
+      <section class="automation-stack">
+        <div class="section-label" data-i18n="automation_stack">Automation stack</div>
+        <div id="automationList" class="module-list"></div>
+      </section>
+
+      <section class="sidebar-card sidebar-note">
+        <div class="section-label" data-i18n="rules">Rules</div>
+        <p data-i18n="rules_text">Nada destrutivo acontece sozinho. O app classifica, prioriza e prepara a revisão humana.</p>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="hero">
+        <div class="hero-copy">
+          <div class="status-pill"><span></span> <span data-i18n="status_ready">Read-only audit ready</span></div>
+          <h2 data-i18n="hero_title">See the Mac like a control room, not a file browser.</h2>
+          <p class="hero-text" data-i18n="hero_text">Inventory, Git hygiene, duplicates, Drive candidates and protected zones in a single layout. The panel highlights what is safe, what is risky, and what should stay local.</p>
+          <div class="hero-actions">
+            <button class="primary" data-run="pipeline" data-i18n="action_run_audit">Run full audit</button>
+            <button class="secondary" data-action="refresh" data-i18n="action_refresh">Refresh panel</button>
+            <button class="secondary" data-open="report" data-i18n="action_open_report">Open report</button>
+            <button class="secondary" data-open="app" data-i18n="install_app">Open .app</button>
+          </div>
+        </div>
+        <div class="hero-metrics">
+          <div class="metric accent">
+            <span data-i18n="metric_items_label">Total analyzed</span>
+            <strong id="metricItems">0</strong>
+          </div>
+          <div class="metric">
+            <span data-i18n="metric_size_label">Disk footprint</span>
+            <strong id="metricSize">0 GB</strong>
+          </div>
+          <div class="metric">
+            <span data-i18n="metric_regenerable_label">Regenerable</span>
+            <strong id="metricRegenerable">0 GB</strong>
+          </div>
+          <div class="metric">
+            <span data-i18n="metric_reclaim_label">Potential reclaim</span>
+            <strong id="metricDelete">0 GB</strong>
+          </div>
+        </div>
+      </header>
+
+      <section class="command-bar">
+        <div class="search-wrap">
+          <input id="searchInput" type="search" data-i18n-placeholder="search_placeholder" placeholder="Search path, extension or note" />
+          <select id="sortSelect">
+            <option value="size_desc" data-i18n="sort_largest">Largest first</option>
+            <option value="size_asc" data-i18n="sort_smallest">Smallest first</option>
+            <option value="path_asc" data-i18n="sort_path">Path A-Z</option>
+            <option value="risk_desc" data-i18n="sort_risk">Risk first</option>
+          </select>
+          <select id="languageSelect" title="Language">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <div class="command-actions">
+          <button data-run="inventory" data-i18n="scan_inventory">Scan inventory</button>
+          <button data-run="applications" data-i18n="scan_apps">Scan apps</button>
+          <button data-run="git" data-i18n="audit_git">Audit Git</button>
+          <button data-run="duplicates" data-i18n="find_duplicates">Find duplicates</button>
+        </div>
+      </section>
+
+      <section class="summary-grid" id="summaryGrid"></section>
+
+      <section class="dashboard-grid macro-grid">
+        <article class="panel panel-wide">
+          <div class="panel-head">
+            <div>
+              <div class="section-label" data-i18n="macro_title">Macro folders</div>
+              <h3 data-i18n="macro_header">Group the workspace by project roots</h3>
+            </div>
+            <div class="macro-controls">
+              <label class="macro-control">
+                <span data-i18n="macro_depth">Macro depth</span>
+                <select id="macroDepthSelect">
+                  <option value="2">2</option>
+                  <option value="3" selected>3</option>
+                  <option value="4">4</option>
+                </select>
+              </label>
+              <span id="macroCount" class="panel-chip">0</span>
+            </div>
+          </div>
+          <div id="macroList" class="macro-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="section-label" data-i18n="macro_selected">Selected macro</div>
+              <h3 id="macroSelectedTitle" data-i18n="macro_selected_empty">Pick a folder to inspect its files</h3>
+            </div>
+          </div>
+          <div id="macroSelectedSummary" class="macro-summary"></div>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel panel-wide">
+          <div class="panel-head">
+            <div>
+              <div class="section-label" data-i18n="action_queue">Action queue</div>
+              <h3 data-i18n="queue_title">What the system thinks we should do next</h3>
+            </div>
+            <span id="resultCount" class="panel-chip">0 items</span>
+          </div>
+          <div id="queueList" class="queue-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="section-label" data-i18n="selected_item">Selected item</div>
+              <h3 data-i18n="inspector_title">Inspector</h3>
+            </div>
+          </div>
+          <div id="inspector" class="inspector">
+            <div class="empty-state" data-i18n="inspector_empty">Select a row to inspect its path, size, and suggested action.</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="dashboard-grid lower">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="section-label" data-i18n="top_heavy">Top heavy items</div>
+              <h3 data-i18n="top_heavy_title">Largest files and folders</h3>
+            </div>
+          </div>
+          <div id="topHeavy" class="table-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="section-label" data-i18n="risk_map">Risk map</div>
+              <h3 data-i18n="risk_title">Protected and sensitive zones</h3>
+            </div>
+          </div>
+          <div id="riskMap" class="risk-map"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="/ui/panel.js"></script>
+</body>
+</html>

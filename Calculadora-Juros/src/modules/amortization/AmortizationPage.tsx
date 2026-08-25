@@ -1,11 +1,12 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { ArrowDownCircle, Clock3, Percent } from "lucide-react";
 import { CurrencyField } from "../../components/forms/CurrencyField";
 import { NumberField } from "../../components/forms/NumberField";
 import { MetricCard } from "../../components/metrics/MetricCard";
+import { PageHeader } from "../../components/ui/PageHeader";
 import { SectionCard } from "../../components/ui/SectionCard";
 import { formatCurrency, parseCurrencyInput } from "../../utils/formatters";
-import { calculateSimpleAmortization } from "../../utils/finance";
+import { useAmortizationSimulation } from "../../hooks/useAmortizationSimulation";
 import { useLocalStorageState } from "../../hooks/useLocalStorageState";
 
 export function AmortizationPage() {
@@ -18,11 +19,18 @@ export function AmortizationPage() {
   const payment = parseCurrencyInput(paymentInput);
   const extra = parseCurrencyInput(extraPaymentInput);
 
-  const result = useMemo(() => calculateSimpleAmortization(balance, payment, extra, rate), [balance, payment, extra, rate]);
+  const result = useAmortizationSimulation(balance, payment, extra, rate);
 
   return (
     <div className="page-stack">
-      <SectionCard title="Amortização" subtitle="Veja o efeito de pagar a mais todo mês">
+      <PageHeader
+        kicker="Estratégia de dívida"
+        title="Amortização"
+        description="Compare prazo, juros e economia ao pagar um valor extra todo mês."
+        chips={["Prazo menor", "Juros menores", "Leitura rápida"]}
+      />
+
+      <SectionCard eyebrow="Entradas" title="Parâmetros" subtitle="Veja o efeito de pagar a mais todo mês">
         <div className="form-grid">
           <CurrencyField label="Saldo devedor" value={balanceInput} onChange={setBalanceInput} />
           <CurrencyField label="Parcela atual" value={paymentInput} onChange={setPaymentInput} />
@@ -31,7 +39,7 @@ export function AmortizationPage() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Impacto">
+      <SectionCard eyebrow="Saída" title="Impacto">
         <div className="hero-grid">
           <MetricCard label="Meses até quitar" value={`${result.months} meses`} icon={<Clock3 size={14} />} />
           <MetricCard label="Juros totais" value={formatCurrency(result.totalInterest)} tone="alert" icon={<Percent size={14} />} />

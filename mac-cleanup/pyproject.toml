@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mac-cleanup"
+version = "0.1.0"
+description = "Read-only Mac cleanup catalog pipeline"
+requires-python = ">=3.11"
+
+[project.scripts]
+mac-cleanup = "scripts.cli:main"
+mac-cleanup-check = "scripts.check_environment:main"
+mac-curator = "scripts.app_server:main"
+mac-curator-panel = "scripts.launch_panel:main"
+mac-curator-build = "scripts.build_app_bundle:main"
+mac-curator-dmg = "scripts.build_dmg:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.setuptools]
+packages = ["scripts"]

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { PageHeader } from "../../components/ui/PageHeader";
 import { SectionCard } from "../../components/ui/SectionCard";
 
 const simulations = [
@@ -11,7 +12,14 @@ const simulations = [
 export function SimulationHubPage() {
   return (
     <div className="page-stack">
-      <SectionCard title="Simulações" subtitle="Escolha o cenário que quer analisar">
+      <PageHeader
+        kicker="Mapa da aplicação"
+        title="Simulações"
+        description="Acesso curto aos principais cenários com navegação pensada para mobile."
+        chips={["Fluxo curto", "Categorias", "Acesso rápido"]}
+      />
+
+      <SectionCard eyebrow="Catálogo" title="Escolha o cenário que quer analisar">
         <div className="sim-list">
           {simulations.map((item) => (
             <Link key={item.to} to={item.to} className="sim-list__item">
@@ -24,4 +32,3 @@ export function SimulationHubPage() {
     </div>
   );
 }
-

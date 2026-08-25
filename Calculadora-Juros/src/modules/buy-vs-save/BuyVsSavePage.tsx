@@ -3,6 +3,7 @@ import { ArrowRightLeft, Clock3 } from "lucide-react";
 import { CurrencyField } from "../../components/forms/CurrencyField";
 import { NumberField } from "../../components/forms/NumberField";
 import { MetricCard } from "../../components/metrics/MetricCard";
+import { PageHeader } from "../../components/ui/PageHeader";
 import { SectionCard } from "../../components/ui/SectionCard";
 import { formatCurrency, parseCurrencyInput } from "../../utils/formatters";
 import { calculateCompoundGrowth } from "../../utils/finance";
@@ -24,7 +25,14 @@ export function BuyVsSavePage() {
 
   return (
     <div className="page-stack">
-      <SectionCard title="Comprar versus juntar" subtitle="Compare custo financeiro e disciplina de caixa">
+      <PageHeader
+        kicker="Custo de oportunidade"
+        title="Comprar versus juntar"
+        description="Compare a compra imediata com a disciplina de poupar até atingir o alvo."
+        chips={["Meta", "Reserva", "Custo de espera"]}
+      />
+
+      <SectionCard eyebrow="Entradas" title="Parâmetros" subtitle="Compare custo financeiro e disciplina de caixa">
         <div className="form-grid">
           <CurrencyField label="Preço alvo" value={priceInput} onChange={setPriceInput} />
           <CurrencyField label="Reserva mensal" value={monthlySaveInput} onChange={setMonthlySaveInput} />
@@ -33,7 +41,7 @@ export function BuyVsSavePage() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Comparação">
+      <SectionCard eyebrow="Saída" title="Comparação">
         <div className="hero-grid">
           <MetricCard label="Dinheiro acumulado" value={formatCurrency(futureSavings)} tone="positive" icon={<ArrowRightLeft size={14} />} />
           <MetricCard label="Preço alvo" value={formatCurrency(target)} icon={<Clock3 size={14} />} />

@@ -1,0 +1,253 @@
+{
+  "name": "[Util] Delay Aleatorio + Digitando",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Quando executado manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "p1",
+              "name": "instance_id",
+              "value": "={{ $input.first().json.instance_id || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "p2",
+              "name": "recipient_jid",
+              "value": "={{ $input.first().json.recipient_jid || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "p3",
+              "name": "delay_min",
+              "value": "={{ $input.first().json.delay_min || 2000 }}",
+              "type": "number"
+            },
+            {
+              "id": "p4",
+              "name": "delay_max",
+              "value": "={{ $input.first().json.delay_max || 8000 }}",
+              "type": "number"
+            },
+            {
+              "id": "p5",
+              "name": "use_typing",
+              "value": "={{ $input.first().json.use_typing !== false }}",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "id": "params",
+      "name": "Extrair Parâmetros",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const delayMin = Math.max(100, $json.delay_min || 2000);\nconst delayMax = Math.max(delayMin + 100, $json.delay_max || 8000);\nconst randomDelay = Math.floor(Math.random() * (delayMax - delayMin + 1)) + delayMin;\nconst typingDuration = Math.floor(randomDelay * 0.6);\n\nreturn {\n  random_delay_ms: randomDelay,\n  typing_duration_ms: typingDuration\n};"
+      },
+      "id": "calculate-delay",
+      "name": "Calcular Delay Aleatório",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "waitForm": {
+          "unit": "ms",
+          "value": "={{ $json.random_delay_ms }}"
+        }
+      },
+      "id": "wait-node",
+      "name": "Aguardar Delay",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "https://wpp-avraham.instantcode.com.br/presence/{{ $json.instance_id }}",
+        "authentication": "headerAuth",
+        "headerAuth": "Evolution API",
+        "contentType": "application/json",
+        "body": "{\n  \"jid\": \"{{ $json.recipient_jid }}\",\n  \"presence\": \"composing\"\n}"
+      },
+      "id": "http-typing",
+      "name": "PATCH presence: composing",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1050, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "waitForm": {
+          "unit": "ms",
+          "value": "={{ $json.typing_duration_ms }}"
+        }
+      },
+      "id": "wait-typing",
+      "name": "Aguardar Typing",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "https://wpp-avraham.instantcode.com.br/presence/{{ $json.instance_id }}",
+        "authentication": "headerAuth",
+        "headerAuth": "Evolution API",
+        "contentType": "application/json",
+        "body": "{\n  \"jid\": \"{{ $json.recipient_jid }}\",\n  \"presence\": \"paused\"\n}"
+      },
+      "id": "http-paused",
+      "name": "PATCH presence: paused",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1450, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "r1",
+              "name": "delay_applied_ms",
+              "value": "={{ $json.random_delay_ms }}",
+              "type": "number"
+            },
+            {
+              "id": "r2",
+              "name": "typing_simulated",
+              "value": "={{ $json.use_typing }}",
+              "type": "boolean"
+            },
+            {
+              "id": "r3",
+              "name": "ready_to_send",
+              "value": "=true",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "id": "output-final",
+      "name": "Output Final",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [1650, 300]
+    }
+  ],
+  "connections": {
+    "Quando executado manualmente": {
+      "main": [
+        [
+          {
+            "node": "Extrair Parâmetros",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair Parâmetros": {
+      "main": [
+        [
+          {
+            "node": "Calcular Delay Aleatório",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calcular Delay Aleatório": {
+      "main": [
+        [
+          {
+            "node": "Aguardar Delay",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardar Delay": {
+      "main": [
+        [
+          {
+            "node": "PATCH presence: composing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PATCH presence: composing": {
+      "main": [
+        [
+          {
+            "node": "Aguardar Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardar Typing": {
+      "main": [
+        [
+          {
+            "node": "PATCH presence: paused",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PATCH presence: paused": {
+      "main": [
+        [
+          {
+            "node": "Output Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionOrder": "v1"
+  },
+  "versionId": "6a7b8c9d-0e1f-2g3h-4i5j-k6l7m8n9o0p",
+  "meta": {
+    "instanceId": "00c27b5dd51c4bda",
+    "templateId": null
+  },
+  "pinData": null,
+  "tags": [
+    "Evolution API",
+    "Utilitários",
+    "Delay",
+    "Typing"
+  ],
+  "description": "Sub-workflow: Aplica delay aleatório e simula digitação (presence: composing) antes de retornar controle. Chamado por workflows de envio para humanizar o comportamento."
+}

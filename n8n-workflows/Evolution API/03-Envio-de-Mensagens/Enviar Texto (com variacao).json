@@ -1,0 +1,111 @@
+{
+  "name": "Enviar Texto (com variacao)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Quando executado manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "content": "Envia mensagem de texto com suporte a spintax, variáveis, delay aleatório e simulação de digitação.\n\n**Parâmetros obrigatórios:**\n- instance_id: ID da instância (ex: \"promo-q4\")\n- recipient_jid: Número no formato 5511999999999@c.us ou JID de grupo\n- message_text: Texto com spintax {opção1|opção2} ou variáveis {{ var }}\n\n**Opcionais:**\n- delay_min: 2000 (ms)\n- delay_max: 8000 (ms)\n- use_typing: true\n- variables: { \"nome\": \"João\", ... }\n\n**Formato de JID:**\n- Contato: 5511999999999@c.us (WhatsApp Brasil)\n- Grupo: 5511999999999-1234567890@g.us",
+        "height": 350
+      },
+      "id": "input-note",
+      "name": "Input Note",
+      "type": "n8n-nodes-base.noteDocumentation",
+      "typeVersion": 1,
+      "position": [450, 50]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "p1",
+              "name": "instance_id",
+              "value": "={{ $input.first().json.instance_id || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "p2",
+              "name": "recipient_jid",
+              "value": "={{ $input.first().json.recipient_jid || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "p3",
+              "name": "message_text",
+              "value": "={{ $input.first().json.message_text || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "p4",
+              "name": "delay_min",
+              "value": "={{ $input.first().json.delay_min || 2000 }}",
+              "type": "number"
+            },
+            {
+              "id": "p5",
+              "name": "delay_max",
+              "value": "={{ $input.first().json.delay_max || 8000 }}",
+              "type": "number"
+            },
+            {
+              "id": "p6",
+              "name": "use_typing",
+              "value": "={{ $input.first().json.use_typing !== false }}",
+              "type": "boolean"
+            },
+            {
+              "id": "p7",
+              "name": "variables",
+              "value": "={{ $input.first().json.variables || {} }}",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "id": "params",
+      "name": "Extrair Parâmetros",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "workflowId": "{{ workflow.id }}"
+      },
+      "id": "execute-spintax",
+      "name": "Executar: Rotacao de Copy (Spintax)",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [650, 200],
+      "note": "Se o workflow Spintax está no mesmo project, use 'Execute Workflow'. Se estiver em outro arquivo, use HTTP Request para chamar. Para agora, comentado."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Fallback simples de spintax se o workflow não estiver disponível\nconst text = $json.message_text || '';\n\nfunction resolveSpintax(str) {\n  while (str.includes('{')) {\n    const match = str.match(/\\{([^{}]+)\\}/);\n    if (!match) break;\n    const options = match[1].split('|').map(o => o.trim());\n    const selected = options[Math.floor(Math.random() * options.length)];\n    str = str.replace(match[0], selected);\n  }\n  return str;\n}\n\nconst resolved = resolveSpintax(text);\n\nreturn {\n  message_text: resolved\n};"
+      },
+      "id": "process-spintax-fallback",
+      "name": "Resolver Spintax (Fallback)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Injeta variáveis\nconst text = $json.message_text || '';\nconst vars = $json.variables || {};\n\nlet result = text;\nfor (const [key, value] of Object.entries(vars)) {\n  const pattern = new RegExp(`{{\\s*${key}\\s*}}`, 'g');\n  result = result.replace(pattern, String(value));\n}\n\nreturn {\n  message_text: result\n};"
+      },
+      "id": "inject-variables",
+      "name": "Injetar Variáveis",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "waitForm": {\n          "unit": "ms",\n          "value": "={{ Math.random() * ($json.delay_max - $json.delay_min) + $json.delay_min }}\"\n        }\n      },\n      "id": "wait-delay",\n      "name": "Aguardar Delay Aleatório",\n      "type": "n8n-nodes-base.wait",\n      "typeVersion": 1,\n      "position": [1050, 300]\n    },\n    {\n      "parameters": {\n        "method\": \"POST\",\n        \"url\": \"https://wpp-avraham.instantcode.com.br/message/sendText/{{ $json.instance_id }}\",\n        \"authentication\": \"headerAuth\",\n        \"headerAuth\": \"Evolution API\",\n        \"contentType\": \"application/json\",\n        \"body\": \"{\\n  \\\"number\\\": \\\"{{ $json.recipient_jid }}\\\",\\n  \\\"text\\\": \\\"{{ $json.message_text }}\\\"\\n}\"\n      },\n      \"id\": \"http-send\",\n      \"name\": \"POST /message/sendText\",\n      \"type\": \"n8n-nodes-base.httpRequest\",\n      \"typeVersion\": 3,\n      \"position\": [1250, 300],\n      \"continueOnFail\": true\n    },\n    {\n      \"parameters\": {\n        \"assignments\": {\n          \"assignments\": [\n            {\n              \"id\": \"r1\",\n              \"name\": \"success\",\n              \"value\": \"={{ $response?.statusCode >= 200 && $response?.statusCode < 300 }}\",\n              \"type\": \"boolean\"\n            },\n            {\n              \"id\": \"r2\",\n              \"name\": \"message_id\",\n              \"value\": \"={{ $response?.body?.data?.messageId || $response?.body?.messageId || '' }}\",\n              \"type\": \"string\"\n            },\n            {\n              \"id\": \"r3\",\n              \"name\": \"message_text_sent\",\n              \"value\": \"={{ $json.message_text }}\",\n              \"type\": \"string\"\n            },\n            {\n              \"id\": \"r4\",\n              \"name\": \"recipient\",\n              \"value\": \"={{ $json.recipient_jid }}\",\n              \"type\": \"string\"\n            },\n            {\n              \"id\": \"r5\",\n              \"name\": \"timestamp\",\n              \"value\": \"={{ new Date().toISOString() }}\",\n              \"type\": \"string\"\n            },\n            {\n              \"id\": \"r6\",\n              \"name\": \"message\",\n              \"value\": \"={{ $response?.statusCode >= 200 && $response?.statusCode < 300 ? 'Mensagem enviada com sucesso!' : 'Erro ao enviar mensagem' }}\",\n              \"type\": \"string\"\n            }\n          ]\n        }\n      },\n      \"id\": \"output-final\",\n      \"name\": \"Output Final\",\n      \"type\": \"n8n-nodes-base.set\",\n      \"typeVersion\": 3,\n      \"position\": [1450, 300]\n    }\n  ],\n  \"connections\": {\n    \"Quando executado manualmente\": {\n      \"main\": [\n        [\n          {\n            \"node\": \"Extrair Parâmetros\",\n            \"type\": \"main\",\n            \"index\": 0\n          }\n        ]\n      ]\n    },\n    \"Extrair Parâmetros\": {\n      \"main\": [\n        [\n          {\n            \"node\": \"Resolver Spintax (Fallback)\",\n            \"type\": \"main\",\n            \"index\": 0\n          }\n        ]\n      ]\n    },\n    \"Resolver Spintax (Fallback)\": {\n      \"main\": [\n        [\n          {\n            \"node\": \"Injetar Variáveis\",\n            \"type\": \"main\",\n            \"index\": 0\n          }\n        ]\n      ]\n    },\n    \"Injetar Variáveis\": {\n      \"main\": [\n        [\n          {\n            \"node\": \"Aguardar Delay Aleatório\",\n            \"type\": \"main\",\n            \"index\": 0\n          }\n        ]\n      ]\n    },\n    \"Aguardar Delay Aleatório\": {\n      \"main\": [\n        [\n          {\n            \"node\": \"POST /message/sendText\",\n            \"type\": \"main\",\n            \"index\": 0\n          }\n        ]\n      ]\n    },\n    \"POST /message/sendText\": {\n      \"main\": [\n        [\n          {\n            \"node\": \"Output Final\",\n            \"type\": \"main\",\n            \"index\": 0\n          }\n        ]\n      ]\n    }\n  },\n  \"active\": false,\n  \"settings\": {\n    \"saveDataErrorExecution\": \"all\",\n    \"saveDataSuccessExecution\": \"all\",\n    \"executionOrder\": \"v1\"\n  },\n  \"versionId\": \"9a0b1c2d-3e4f-5g6h-7i8j-k9l0m1n2o3p\",\n  \"meta\": {\n    \"instanceId\": \"00c27b5dd51c4bda\",\n    \"templateId\": null\n  },\n  \"pinData\": null,\n  \"tags\": [\n    \"Evolution API\",\n    \"Envio de Mensagens\",\n    \"Texto\"\n  ],\n  \"description\": \"Envia mensagem de texto com suporte a spintax, variáveis, delay aleatório e simulação de digitação. Motor principal para disparos personalizados.\"\n}\n"

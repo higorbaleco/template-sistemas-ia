@@ -1,0 +1,105 @@
+{
+  "name": "Listar Instancias",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Quando executado manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://wpp-avraham.instantcode.com.br/instance/fetchInstances",
+        "authentication": "headerAuth",
+        "headerAuth": "Evolution API"
+      },
+      "id": "http-list",
+      "name": "GET /instance/fetchInstances",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [450, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "r1",
+              "name": "success",
+              "value": "={{ $response?.statusCode === 200 }}",
+              "type": "boolean"
+            },
+            {
+              "id": "r2",
+              "name": "instances",
+              "value": "={{ $response?.body?.data || {} }}",
+              "type": "object"
+            },
+            {
+              "id": "r3",
+              "name": "count",
+              "value": "={{ Object.keys($response?.body?.data || {}).length }}",
+              "type": "number"
+            },
+            {
+              "id": "r4",
+              "name": "status_code",
+              "value": "={{ $response?.statusCode }}",
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "id": "output-response",
+      "name": "Processar Resposta",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Quando executado manualmente": {
+      "main": [
+        [
+          {
+            "node": "GET /instance/fetchInstances",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET /instance/fetchInstances": {
+      "main": [
+        [
+          {
+            "node": "Processar Resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionOrder": "v1"
+  },
+  "versionId": "3a4b5c6d-7e8f-9g0h-1i2j-k3l4m5n6o7p",
+  "meta": {
+    "instanceId": "00c27b5dd51c4bda",
+    "templateId": null
+  },
+  "pinData": null,
+  "tags": [
+    "Evolution API",
+    "Gestão de Instâncias"
+  ],
+  "description": "Lista todas as instâncias WhatsApp criadas. Mostra ID, status de conexão, etc."
+}

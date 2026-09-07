@@ -1,0 +1,142 @@
+{
+  "name": "Verificar Status da Instancia",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Quando executado manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "p1",
+              "name": "instance_id",
+              "value": "={{ $input.first().json.instance_id || '' }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "params",
+      "name": "Extrair Parâmetros",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://wpp-avraham.instantcode.com.br/instance/status/{{ $json.instance_id }}",
+        "authentication": "headerAuth",
+        "headerAuth": "Evolution API"
+      },
+      "id": "http-status",
+      "name": "GET /instance/status/:id",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [650, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "r1",
+              "name": "success",
+              "value": "={{ $response?.statusCode === 200 }}",
+              "type": "boolean"
+            },
+            {
+              "id": "r2",
+              "name": "instance_id",
+              "value": "={{ $response?.body?.data?.instance || $json.instance_id }}",
+              "type": "string"
+            },
+            {
+              "id": "r3",
+              "name": "status",
+              "value": "={{ $response?.body?.data?.status || $response?.body?.status || 'unknown' }}",
+              "type": "string"
+            },
+            {
+              "id": "r4",
+              "name": "connected",
+              "value": "={{ $response?.body?.data?.status === 'connected' || $response?.body?.connected || false }}",
+              "type": "boolean"
+            },
+            {
+              "id": "r5",
+              "name": "message",
+              "value": "={{ $response?.statusCode === 200 ? ('Instância ' + ($response?.body?.data?.status || 'unknown')) : 'Erro ao verificar status' }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "output-response",
+      "name": "Processar Resposta",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Quando executado manualmente": {
+      "main": [
+        [
+          {
+            "node": "Extrair Parâmetros",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair Parâmetros": {
+      "main": [
+        [
+          {
+            "node": "GET /instance/status/:id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET /instance/status/:id": {
+      "main": [
+        [
+          {
+            "node": "Processar Resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionOrder": "v1"
+  },
+  "versionId": "4a5b6c7d-8e9f-0g1h-2i3j-k4l5m6n7o8p",
+  "meta": {
+    "instanceId": "00c27b5dd51c4bda",
+    "templateId": null
+  },
+  "pinData": null,
+  "tags": [
+    "Evolution API",
+    "Gestão de Instâncias",
+    "Status"
+  ],
+  "description": "Verifica o status de conexão de uma instância específica (connected/disconnected)."
+}

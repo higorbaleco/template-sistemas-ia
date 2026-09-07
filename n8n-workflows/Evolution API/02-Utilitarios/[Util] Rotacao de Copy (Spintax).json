@@ -1,0 +1,126 @@
+{
+  "name": "[Util] Rotacao de Copy (Spintax)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Quando executado manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "content": "Resolve spintax no formato {opção1|opção2|opção3} escolhendo uma aleatoriamente.\n\nExemplos:\n- \"Opa {ei|opa|e aí} de novo!\" → \"Opa ei de novo!\" ou \"Opa opa de novo!\" ou \"Opa e aí de novo!\"\n- \"Desconto {imperdível|exclusivo|limitado}\" → \"Desconto imperdível\" etc.\n\nPassa \"message_text\" como parâmetro.",
+        "height": 250
+      },
+      "id": "input-note",
+      "name": "Input Note",
+      "type": "n8n-nodes-base.noteDocumentation",
+      "typeVersion": 1,
+      "position": [450, 50]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "p1",
+              "name": "message_text",
+              "value": "={{ $input.first().json.message_text || '' }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "params",
+      "name": "Extrair Parâmetros",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.message_text || '';\n\n// Processa padrão {opção1|opção2|opção3} recursivamente\nfunction resolveSpintax(str) {\n  while (str.includes('{')) {\n    const match = str.match(/\\{([^{}]+)\\}/);\n    if (!match) break;\n    \n    const options = match[1].split('|').map(o => o.trim());\n    const selected = options[Math.floor(Math.random() * options.length)];\n    str = str.replace(match[0], selected);\n  }\n  return str;\n}\n\nconst resolved = resolveSpintax(text);\n\nreturn {\n  original_text: text,\n  resolved_text: resolved,\n  has_spintax: text !== resolved\n};"
+      },
+      "id": "process-spintax",
+      "name": "Resolver Spintax",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "r1",
+              "name": "message_text",
+              "value": "={{ $json.resolved_text }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "output-final",
+      "name": "Output Final",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Quando executado manualmente": {
+      "main": [
+        [
+          {
+            "node": "Extrair Parâmetros",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair Parâmetros": {
+      "main": [
+        [
+          {
+            "node": "Resolver Spintax",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resolver Spintax": {
+      "main": [
+        [
+          {
+            "node": "Output Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionOrder": "v1"
+  },
+  "versionId": "7a8b9c0d-1e2f-3g4h-5i6j-k7l8m9n0o1p",
+  "meta": {
+    "instanceId": "00c27b5dd51c4bda",
+    "templateId": null
+  },
+  "pinData": null,
+  "tags": [
+    "Evolution API",
+    "Utilitários",
+    "Spintax",
+    "Copy Rotation"
+  ],
+  "description": "Sub-workflow: Resolve variações de copy no formato spintax {opção1|opção2|opção3} escolhendo uma opção aleatoriamente."
+}

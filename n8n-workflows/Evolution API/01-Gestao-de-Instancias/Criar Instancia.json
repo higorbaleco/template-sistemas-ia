@@ -1,0 +1,168 @@
+{
+  "name": "Criar Instancia",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        }
+      },
+      "id": "trigger-manual",
+      "name": "Quando executado manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "content": "Entre com os dados para criar uma nova instância:\n\n**instance_name**: nome único da instância (ex: promo-q4, client-xyz)\n**token**: (opcional) token customizado; se deixar vazio, será auto-gerado",
+        "height": 200
+      },
+      "id": "input-note",
+      "name": "Input Note",
+      "type": "n8n-nodes-base.noteDocumentation",
+      "typeVersion": 1,
+      "position": [450, 50]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "p1",
+              "name": "instance_name",
+              "value": "={{ $input.first().json.instance_name || 'instancia-' + Date.now() }}",
+              "type": "string"
+            },
+            {
+              "id": "p2",
+              "name": "token",
+              "value": "={{ $input.first().json.token || '' }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "params",
+      "name": "Extrair Parâmetros",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://wpp-avraham.instantcode.com.br/instance/create",
+        "authentication": "headerAuth",
+        "headerAuth": "Evolution API",
+        "contentType": "application/json",
+        "body": "{\n  \"instanceName\": \"{{ $json.instance_name }}\",\n  \"token\": \"{{ $json.token }}\"\n}"
+      },
+      "id": "http-create",
+      "name": "POST /instance/create",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [650, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "r1",
+              "name": "success",
+              "value": "={{ $response?.statusCode >= 200 && $response?.statusCode < 300 }}",
+              "type": "boolean"
+            },
+            {
+              "id": "r2",
+              "name": "instance_id",
+              "value": "={{ $response?.body?.data?.instanceId || $response?.body?.instanceId }}",
+              "type": "string"
+            },
+            {
+              "id": "r3",
+              "name": "instance_name",
+              "value": "={{ $response?.body?.data?.instanceName || $json.instance_name }}",
+              "type": "string"
+            },
+            {
+              "id": "r4",
+              "name": "status_code",
+              "value": "={{ $response?.statusCode }}",
+              "type": "number"
+            },
+            {
+              "id": "r5",
+              "name": "message",
+              "value": "={{ $response?.statusCode >= 200 && $response?.statusCode < 300 ? 'Instância criada com sucesso!' : $response?.body?.message || 'Erro ao criar instância' }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "output-response",
+      "name": "Processar Resposta",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Quando executado manualmente": {
+      "main": [
+        [
+          {
+            "node": "Extrair Parâmetros",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair Parâmetros": {
+      "main": [
+        [
+          {
+            "node": "POST /instance/create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "POST /instance/create": {
+      "main": [
+        [
+          {
+            "node": "Processar Resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionOrder": "v1"
+  },
+  "versionId": "1a2b3c4d-5e6f-7g8h-9i0j-k1l2m3n4o5p",
+  "meta": {
+    "instanceId": "00c27b5dd51c4bda",
+    "templateId": null
+  },
+  "pinData": null,
+  "tags": [
+    "Evolution API",
+    "Gestão de Instâncias"
+  ],
+  "description": "Cria uma nova instância WhatsApp na Evolution API. Retorna instance_id necessário para conectar e enviar mensagens."
+}

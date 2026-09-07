@@ -1,0 +1,132 @@
+{
+  "name": "[Util] Rotacao de Variaveis",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Quando executado manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "content": "Injeta variáveis customizadas no texto usando sintaxe {{ variable_name }}.\n\nExemplos:\n- Entrada: \"Opa {{ nome }}, desconto de {{ percentual }}% esperando!\"\n- Variáveis: { \"nome\": \"João\", \"percentual\": \"50\" }\n- Saída: \"Opa João, desconto de 50% esperando!\"\n\nPassa \"message_text\" e \"variables\" (JSON object) como parâmetros.",
+        "height": 250
+      },
+      "id": "input-note",
+      "name": "Input Note",
+      "type": "n8n-nodes-base.noteDocumentation",
+      "typeVersion": 1,
+      "position": [450, 50]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "p1",
+              "name": "message_text",
+              "value": "={{ $input.first().json.message_text || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "p2",
+              "name": "variables",
+              "value": "={{ $input.first().json.variables || {} }}",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "id": "params",
+      "name": "Extrair Parâmetros",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.message_text || '';\nconst vars = $json.variables || {};\n\nlet result = text;\n\n// Substitui {{ variavel }} por valor correspondente\nfor (const [key, value] of Object.entries(vars)) {\n  const pattern = new RegExp(`{{\\s*${key}\\s*}}`, 'g');\n  result = result.replace(pattern, String(value));\n}\n\nreturn {\n  original_text: text,\n  injected_text: result,\n  variables_applied: Object.keys(vars)\n};"
+      },
+      "id": "inject-variables",
+      "name": "Injetar Variáveis",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "r1",
+              "name": "message_text",
+              "value": "={{ $json.injected_text }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "output-final",
+      "name": "Output Final",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Quando executado manualmente": {
+      "main": [
+        [
+          {
+            "node": "Extrair Parâmetros",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair Parâmetros": {
+      "main": [
+        [
+          {
+            "node": "Injetar Variáveis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Injetar Variáveis": {
+      "main": [
+        [
+          {
+            "node": "Output Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionOrder": "v1"
+  },
+  "versionId": "8a9b0c1d-2e3f-4g5h-6i7j-k8l9m0n1o2p",
+  "meta": {
+    "instanceId": "00c27b5dd51c4bda",
+    "templateId": null
+  },
+  "pinData": null,
+  "tags": [
+    "Evolution API",
+    "Utilitários",
+    "Variables",
+    "Personalization"
+  ],
+  "description": "Sub-workflow: Injeta variáveis customizadas (nome, link, percentual, etc) no texto usando {{ variable_name }}."
+}

@@ -1,0 +1,106 @@
+{
+  "name": "Verificar Conexão Evolution API",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "start-node",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://wpp-avraham.instantcode.com.br/instance/fetchInstances",
+        "authentication": "headerAuth",
+        "headerAuth": "Evolution API"
+      },
+      "id": "http-request",
+      "name": "GET /instance/fetchInstances",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [450, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "status_code",
+              "value": "={{ $response?.statusCode }}",
+              "type": "string"
+            },
+            {
+              "id": "a2",
+              "name": "response_body",
+              "value": "={{ $response?.body }}",
+              "type": "string"
+            },
+            {
+              "id": "a3",
+              "name": "instances_count",
+              "value": "={{ Object.keys($response?.body?.data || {}).length }}",
+              "type": "number"
+            },
+            {
+              "id": "a4",
+              "name": "success",
+              "value": "={{ $response?.statusCode === 200 }}",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "id": "set-output",
+      "name": "Processar Resposta",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "GET /instance/fetchInstances",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET /instance/fetchInstances": {
+      "main": [
+        [
+          {
+            "node": "Processar Resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionOrder": "v1"
+  },
+  "versionId": "f8b0c1d2-e3f4-5g6h-7i8j-9k0l1m2n3o4p",
+  "meta": {
+    "instanceId": "00c27b5dd51c4bda",
+    "templateId": null
+  },
+  "pinData": null,
+  "tags": [
+    "Evolution API",
+    "Setup",
+    "Healthcheck"
+  ],
+  "description": "Testa conectividade com a Evolution API. Faz um GET para /instance/fetchInstances e retorna status (200 = OK, credencial funcionando)."
+}

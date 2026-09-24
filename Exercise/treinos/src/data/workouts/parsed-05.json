@@ -1,0 +1,1034 @@
+[
+  {
+    "id": "05-01",
+    "nome": "Peito + Tríceps --- Rápido",
+    "descricao": "Treino de Peito + Tríceps --- Rápido com intensidade média",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "halteres",
+      "corda"
+    ],
+    "objetivo": "Rápido - 30-40 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "supino-reto",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino-inclinado-com-halteres",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "crossover",
+        "series": 3,
+        "repeticoes": "10-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "trceps-corda",
+        "series": 3,
+        "repeticoes": "10-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "trceps-francs",
+        "series": 3,
+        "repeticoes": "10-12",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-02",
+    "nome": "Peito + Tríceps --- Pesado",
+    "descricao": "Treino de Peito + Tríceps --- Pesado com intensidade alta",
+    "categoria": "academia",
+    "nivel": "avançado",
+    "duracao_min": 60,
+    "duracao_max": 75,
+    "equipamentos": [
+      "halteres",
+      "corda"
+    ],
+    "objetivo": "Pesado - 60-75 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "supino-reto",
+        "series": 4,
+        "repeticoes": "6-10",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "supino-inclinado-com-halteres",
+        "series": 4,
+        "repeticoes": "8-10",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "crucifixo-inclinado",
+        "series": 3,
+        "repeticoes": "10-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "crossover",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "flexo",
+        "series": 3,
+        "repeticoes": "máximo técnico",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "trceps-testa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "trceps-corda",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "90-120s"
+      }
+    ]
+  },
+  {
+    "id": "05-03",
+    "nome": "Costas + Bíceps --- Rápido",
+    "descricao": "Treino de Costas + Bíceps --- Rápido com intensidade média",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "halteres"
+    ],
+    "objetivo": "Rápido - 30-40 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "puxador-frontal",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-baixa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-unilateral-com-halter",
+        "series": 3,
+        "repeticoes": "8-12/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "rosca-direta",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "rosca-martelo",
+        "series": 3,
+        "repeticoes": "10-12",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-04",
+    "nome": "Costas + Bíceps --- Pesado",
+    "descricao": "Treino de Costas + Bíceps --- Pesado com intensidade alta",
+    "categoria": "academia",
+    "nivel": "avançado",
+    "duracao_min": 60,
+    "duracao_max": 75,
+    "equipamentos": [
+      "barra"
+    ],
+    "objetivo": "Pesado - 60-75 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "puxador-frontal",
+        "series": 4,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "remada-curvada-com-barra",
+        "series": 4,
+        "repeticoes": "6-10",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "remada-baixa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "remada-unilateral",
+        "series": 3,
+        "repeticoes": "8-12/cada",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "pulldown-braos-estendidos",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "rosca-direta",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "rosca-martelo",
+        "series": 3,
+        "repeticoes": "10-12",
+        "descanso": "90-120s"
+      }
+    ]
+  },
+  {
+    "id": "05-05",
+    "nome": "Pernas --- Rápido",
+    "descricao": "Treino de Pernas --- Rápido com intensidade média",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "máquina"
+    ],
+    "objetivo": "Rápido - 30-40 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "leg-press",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "mesa-flexora",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "cadeira-extensora",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "panturrilha",
+        "series": 3,
+        "repeticoes": "15-20",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-06",
+    "nome": "Pernas --- Pesado Completo",
+    "descricao": "Treino de Pernas --- Pesado Completo com intensidade alta",
+    "categoria": "academia",
+    "nivel": "avançado",
+    "duracao_min": 70,
+    "duracao_max": 90,
+    "equipamentos": [
+      "máquina"
+    ],
+    "objetivo": "Pesado Completo - 70-90 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 4,
+        "repeticoes": "6-10",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "leg-press",
+        "series": 4,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "afundo-blgaro",
+        "series": 3,
+        "repeticoes": "8-12/cada",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "stiff",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "mesa-flexora",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "cadeira-extensora",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "panturrilha",
+        "series": 4,
+        "repeticoes": "15-20",
+        "descanso": "90-120s"
+      }
+    ]
+  },
+  {
+    "id": "05-07",
+    "nome": "Posterior + Glúteos",
+    "descricao": "Treino de Posterior + Glúteos com intensidade média/alta",
+    "categoria": "academia",
+    "nivel": "avançado",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "máquina"
+    ],
+    "objetivo": "Posterior + Glúteos - 45-60 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "stiff",
+        "series": 4,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "afundo-blgaro",
+        "series": 3,
+        "repeticoes": "8-12/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "mesa-flexora",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "glteo-na-polia",
+        "series": 3,
+        "repeticoes": "10-15/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "abdutora",
+        "series": 3,
+        "repeticoes": "12-20",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "panturrilha",
+        "series": 4,
+        "repeticoes": "15-20",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-08",
+    "nome": "Quadríceps + Panturrilha",
+    "descricao": "Treino de Quadríceps + Panturrilha com intensidade média/alta",
+    "categoria": "academia",
+    "nivel": "avançado",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "máquina"
+    ],
+    "objetivo": "Quadríceps + Panturrilha - 45-60 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 4,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "leg-press",
+        "series": 4,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "afundo",
+        "series": 3,
+        "repeticoes": "10/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "cadeira-extensora",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "panturrilha-em-p",
+        "series": 4,
+        "repeticoes": "15-20",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-09",
+    "nome": "Ombros + Abdômen",
+    "descricao": "Treino de Ombros + Abdômen com intensidade média",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 40,
+    "duracao_max": 50,
+    "equipamentos": [
+      "halteres",
+      "corda"
+    ],
+    "objetivo": "Ombros + Abdômen - 40-50 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "desenvolvimento-com-halteres",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "elevao-lateral",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "crucifixo-invertido",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "elevao-frontal",
+        "series": 2,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "abdominal-na-corda",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "prancha",
+        "series": 3,
+        "repeticoes": "30-60 s",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-10",
+    "nome": "Upper Body --- Corpo Superior",
+    "descricao": "Treino de Upper Body --- Corpo Superior com intensidade média",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 50,
+    "duracao_max": 65,
+    "equipamentos": [
+      "corda"
+    ],
+    "objetivo": "Corpo Superior - 50-65 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "supino-reto",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "puxador-frontal",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "remada-baixa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "desenvolvimento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "elevao-lateral",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "rosca-martelo",
+        "series": 2,
+        "repeticoes": "10-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "trceps-corda",
+        "series": 2,
+        "repeticoes": "10-12",
+        "descanso": "90-120s"
+      }
+    ]
+  },
+  {
+    "id": "05-11",
+    "nome": "Full Body --- 30 Minutos",
+    "descricao": "Treino de Full Body --- 30 Minutos com intensidade média",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 30,
+    "equipamentos": [],
+    "objetivo": "30 Minutos - 30-30 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino-reto",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-baixa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "desenvolvimento",
+        "series": 2,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "prancha",
+        "series": 3,
+        "repeticoes": "30-45 s",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-12",
+    "nome": "Full Body --- Completo",
+    "descricao": "Treino de Full Body --- Completo com intensidade média/alta",
+    "categoria": "academia",
+    "nivel": "avançado",
+    "duracao_min": 60,
+    "duracao_max": 75,
+    "equipamentos": [],
+    "objetivo": "Completo - 60-75 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "stiff",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "supino-reto",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "puxador-frontal",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "remada-baixa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "desenvolvimento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "farmers-walk",
+        "series": 3,
+        "repeticoes": "30-60 s",
+        "descanso": "90-120s"
+      }
+    ]
+  },
+  {
+    "id": "05-13",
+    "nome": "Full Body --- Dia de Preguiça",
+    "descricao": "Treino de Full Body --- Dia de Preguiça com intensidade leve",
+    "categoria": "academia",
+    "nivel": "iniciante",
+    "duracao_min": 25,
+    "duracao_max": 35,
+    "equipamentos": [
+      "máquina"
+    ],
+    "objetivo": "Dia de Preguiça - 25-35 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "leg-press",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino-mquina",
+        "series": 3,
+        "repeticoes": "10-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "puxador-frontal",
+        "series": 3,
+        "repeticoes": "10-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-baixa",
+        "series": 2,
+        "repeticoes": "10-12",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-14",
+    "nome": "Força Funcional",
+    "descricao": "Treino de Força Funcional com intensidade alta",
+    "categoria": "forca",
+    "nivel": "avançado",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "halteres"
+    ],
+    "objetivo": "Força Funcional - 45-60 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 4,
+        "repeticoes": "6-8",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "stiff",
+        "series": 3,
+        "repeticoes": "8-10",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexo",
+        "series": 3,
+        "repeticoes": "máximo técnico",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-com-halter",
+        "series": 3,
+        "repeticoes": "8-12/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "farmers-walk",
+        "series": 4,
+        "repeticoes": "30-60 s",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "prancha",
+        "series": 3,
+        "repeticoes": "45-60 s",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-15",
+    "nome": "Militar / Peso Corporal",
+    "descricao": "Treino de Militar / Peso Corporal com intensidade variável",
+    "categoria": "forca",
+    "nivel": "intermediário",
+    "duracao_min": 35,
+    "duracao_max": 50,
+    "equipamentos": [
+      "barra",
+      "peso corporal"
+    ],
+    "objetivo": "Militar / Peso Corporal - 35-50 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "flexo",
+        "series": 4,
+        "repeticoes": "máximo técnico",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "agachamento-livre-sem-carga",
+        "series": 4,
+        "repeticoes": "15-20",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "afundo",
+        "series": 3,
+        "repeticoes": "10-15/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "barra-fixa-assistida-ou-puxador",
+        "series": 4,
+        "repeticoes": "6-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "prancha",
+        "series": 3,
+        "repeticoes": "45-60 s",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-16",
+    "nome": "Força para a Vida Real",
+    "descricao": "Treino de Força para a Vida Real com intensidade média/alta",
+    "categoria": "forca",
+    "nivel": "avançado",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "halteres"
+    ],
+    "objetivo": "Força para a Vida Real - 45-60 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento-goblet",
+        "series": 4,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "levantamento-stiff-com-halteres",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "farmers-walk",
+        "series": 4,
+        "repeticoes": "30-60 s",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-unilateral",
+        "series": 3,
+        "repeticoes": "10/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexo",
+        "series": 3,
+        "repeticoes": "máximo técnico",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "carregada-unilateral-de-halter",
+        "series": 3,
+        "repeticoes": "30-45 s/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "prancha",
+        "series": 3,
+        "repeticoes": "45 s",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-17",
+    "nome": "Push --- Empurrar",
+    "descricao": "Treino de Push --- Empurrar com intensidade média",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corda"
+    ],
+    "objetivo": "Empurrar - 45-60 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "supino-reto",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino-inclinado",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "desenvolvimento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "elevao-lateral",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "trceps-corda",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexo",
+        "series": 2,
+        "repeticoes": "máximo técnico",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-18",
+    "nome": "Pull --- Puxar",
+    "descricao": "Treino de Pull --- Puxar com intensidade média",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [],
+    "objetivo": "Puxar - 45-60 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "puxador-frontal",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-baixa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-unilateral",
+        "series": 3,
+        "repeticoes": "8-12/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "crucifixo-invertido",
+        "series": 3,
+        "repeticoes": "10-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "rosca-direta",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "rosca-martelo",
+        "series": 3,
+        "repeticoes": "10-12",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-19",
+    "nome": "Metabólico + Cardio",
+    "descricao": "Treino de Metabólico + Cardio com intensidade média/alta",
+    "categoria": "condicionamento",
+    "nivel": "avançado",
+    "duracao_min": 30,
+    "duracao_max": 45,
+    "equipamentos": [
+      "halteres"
+    ],
+    "objetivo": "Metabólico + Cardio - 30-45 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento-goblet",
+        "series": 3,
+        "repeticoes": "12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexo",
+        "series": 3,
+        "repeticoes": "8-15",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-baixa",
+        "series": 3,
+        "repeticoes": "12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "afundo",
+        "series": 3,
+        "repeticoes": "10/cada",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "desenvolvimento-com-halteres",
+        "series": 3,
+        "repeticoes": "10",
+        "descanso": "60-90s"
+      }
+    ]
+  },
+  {
+    "id": "05-20",
+    "nome": "Treinão Brabo",
+    "descricao": "Treino de Treinão Brabo com intensidade alta",
+    "categoria": "academia",
+    "nivel": "avançado",
+    "duracao_min": 75,
+    "duracao_max": 90,
+    "equipamentos": [
+      "corda"
+    ],
+    "objetivo": "Treinão Brabo - 75-90 minutos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 4,
+        "repeticoes": "6-10",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "supino-reto",
+        "series": 4,
+        "repeticoes": "6-10",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "puxador-frontal",
+        "series": 4,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "stiff",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "remada-baixa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "desenvolvimento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "farmers-walk",
+        "series": 3,
+        "repeticoes": "45-60 s",
+        "descanso": "90-120s"
+      },
+      {
+        "exercise_id": "abdominal-na-corda",
+        "series": 3,
+        "repeticoes": "12-15",
+        "descanso": "90-120s"
+      }
+    ]
+  }
+]

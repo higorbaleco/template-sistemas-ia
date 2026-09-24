@@ -22,21 +22,20 @@ test.describe('Catálogo de Treinos - E2E Flow Tests', () => {
     await expect(page.locator('text=Olá, Higor')).toBeVisible()
     await expect(page.locator('text=O que vamos treinar hoje?')).toBeVisible()
 
-    // 6. Verify at least one category is displayed
-    const categories = page.locator('[style*="backgroundColor"]').filter({ hasNot: page.locator('text=Trocar perfil') })
-    const categoryCount = await categories.count()
-    expect(categoryCount).toBeGreaterThan(0)
+    // 6. Verify at least one category is displayed by checking for known category names
+    await expect(page.locator('h3:has-text("Academia")')).toBeVisible()
+    await expect(page.locator('h3:has-text("Força")').first()).toBeVisible()
 
     // 7. Verify "Trocar perfil" button is present
     await expect(page.locator('button:has-text("Trocar perfil")')).toBeVisible()
 
-    // 8. Click on first category to navigate
-    const firstCategory = page.locator('div').filter({ has: page.locator('text=Academia') }).first()
-    if (await firstCategory.isVisible()) {
-      await firstCategory.click()
-      // Should navigate to categoria route
-      await expect(page).toHaveURL(/\/categoria\//)
-    }
+    // 8. Click on first category (Academia) to navigate
+    const academiaCategory = page.locator('div').filter({ hasText: /Academia/ }).first()
+    await expect(academiaCategory).toBeVisible()
+    await academiaCategory.click()
+
+    // Should navigate to categoria route
+    await expect(page).toHaveURL(/\/categoria\//)
   })
 
   test('Test 2: Exercise Library Search and Filtering', async ({ page }) => {
@@ -129,17 +128,16 @@ test.describe('Catálogo de Treinos - E2E Flow Tests', () => {
     await page.waitForTimeout(300)
 
     // 11. Verify at least one category is visible
-    const categoryCount = await page.locator('div').filter({ hasText: /descricao/ }).count()
-    expect(categoryCount).toBeGreaterThan(0)
+    await expect(page.locator('h3:has-text("Academia")')).toBeVisible()
+    await expect(page.locator('h3:has-text("Força")').first()).toBeVisible()
 
     // 12. Test navigation works on mobile
-    const firstCategory = page.locator('div').filter({ hasText: /descricao/ }).first()
-    if (await firstCategory.isVisible()) {
-      await firstCategory.click()
-      // Verify navigation happened
-      await page.waitForTimeout(500)
-      const url = page.url()
-      expect(url).toContain('/categoria/')
-    }
+    const firstCategory = page.locator('div').filter({ hasText: /Academia/ }).first()
+    await expect(firstCategory).toBeVisible()
+    await firstCategory.click()
+    // Verify navigation happened
+    await page.waitForTimeout(500)
+    const url = page.url()
+    expect(url).toContain('/categoria/')
   })
 })

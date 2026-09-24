@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastrar oportunidade · Avraham</title>
+  <link rel="stylesheet" href="../materials.css"><script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+</head>
+<body class="material-page grid-bg glow-bg" data-theme="light" data-theme-fixed="true">
+  <main class="materials-app">
+    <nav class="topbar"><a class="brand-lockup" href="../index.html">Avraham · Carteira e oportunidades</a><div class="topbar-actions"><a class="button button-ghost" href="carteira-de-oportunidades.html"><i data-lucide="kanban"></i>Ver carteira</a></div></nav>
+
+    <section class="material-hero">
+      <div><div class="eyebrow">CADASTRO DE OPORTUNIDADE</div><h1 class="h1">Registre o contexto que ajuda a oportunidade a avançar.</h1><p class="body-lg">A origem, o relacionamento, a dor, a autorização e a próxima ação ficam no mesmo registro. O formulário não exige uma categoria de Partner.</p></div>
+      <div class="hero-side"><div class="hero-metric"><span>Saída</span><strong>Identificador + prioridade</strong></div><div class="hero-metric"><span>Uso</span><strong>Marketing · Comercial · Operação</strong></div></div>
+    </section>
+
+    <section class="form-shell">
+      <form class="form-panel" id="opportunity-form">
+        <div class="eyebrow">01 · ORIGEM E RELAÇÃO</div><h2 class="h2" style="margin-top:10px">Quem trouxe e como conhece a empresa?</h2>
+        <div class="form-grid" style="margin-top:20px">
+          <div class="field"><label for="origin-name">Pessoa ou empresa de origem</label><input id="origin-name" name="originName" required placeholder="Nome do Partner, colaborador ou canal"></div>
+          <div class="field"><label for="origin-contact">Contato da origem</label><input id="origin-contact" name="originContact" required placeholder="E-mail ou WhatsApp"></div>
+          <div class="field"><label for="relationship">Relação com a conta</label><select id="relationship" name="relationship" required><option value="">Selecione</option><option value="decision_maker">Conhece diretamente o decisor</option><option value="current_client">É cliente atual da origem</option><option value="network_member">Faz parte da rede ou associação</option><option value="platform_user">Usa o produto ou plataforma</option><option value="warm_referral">Recebeu uma apresentação qualificada</option><option value="inbound">Chegou por conteúdo ou campanha</option><option value="prospecting">Foi identificada por prospecção</option></select></div>
+          <div class="field"><label for="owner">Responsável na Avraham</label><input id="owner" name="owner" required placeholder="Quem conduz a próxima ação"></div>
+          <div class="field"><label for="introduction">A apresentação já aconteceu?</label><select id="introduction" name="introduction" required><option value="">Selecione</option><option value="yes">Sim, com contexto</option><option value="scheduled">Está agendada</option><option value="permission">Há autorização para apresentar</option><option value="no">Ainda não</option></select></div>
+          <div class="field"><label for="permission">Podemos entrar em contato?</label><select id="permission" name="permission" required><option value="">Selecione</option><option value="yes">Sim, autorizado</option><option value="partner_first">A origem fará o primeiro contato</option><option value="pending">Autorização pendente</option></select></div>
+        </div>
+
+        <div class="eyebrow" style="margin-top:30px">02 · EMPRESA E ICP</div><h2 class="h2" style="margin-top:10px">Qual operação estamos avaliando?</h2>
+        <div class="form-grid" style="margin-top:20px">
+          <div class="field"><label for="client-company">Empresa</label><input id="client-company" name="clientCompany" required placeholder="Nome da empresa"></div>
+          <div class="field"><label for="client-site">Site ou perfil</label><input id="client-site" name="clientSite" placeholder="https://"></div>
+          <div class="field"><label for="client-contact">Contato principal</label><input id="client-contact" name="clientContact" required placeholder="Nome e cargo"></div>
+          <div class="field"><label for="client-channel">E-mail ou WhatsApp</label><input id="client-channel" name="clientChannel" required placeholder="Contato profissional"></div>
+          <div class="field"><label for="client-icp">Perfil de cliente</label><select id="client-icp" name="clientIcp" required><option value="">Selecione</option><option>Tecnologia e software house</option><option>Clínica, hospital ou saúde</option><option>Imobiliária ou rede de corretores</option><option>Concessionária, autopeças ou oficina</option><option>Restaurante, hotel ou hospitalidade</option><option>E-commerce ou varejo</option><option>Franquia, rede ou associação</option><option>Operação regulada ou iGaming</option><option>Outro B2B</option></select></div>
+          <div class="field"><label for="company-size">Tamanho aproximado</label><select id="company-size" name="companySize" required><option value="">Selecione</option><option value="micro">Até 10 pessoas</option><option value="small">11 a 50</option><option value="medium">51 a 200</option><option value="large">201 a 1.000</option><option value="enterprise">Mais de 1.000 ou rede</option></select></div>
+        </div>
+
+        <div class="eyebrow" style="margin-top:30px">03 · DOR E ESCOPO INICIAL</div><h2 class="h2" style="margin-top:10px">O que precisa mudar?</h2>
+        <div class="field" style="margin-top:20px"><label for="current-situation">Situação atual</label><textarea id="current-situation" name="currentSituation" required placeholder="Descreva o processo atual, volume, canais, gargalo e consequência."></textarea></div>
+        <div class="choice-grid" style="margin-top:14px">
+          <label class="choice-card"><input type="checkbox" name="needs" value="service"><strong>Atendimento e suporte</strong><span>Resposta, triagem, disponibilidade e filas.</span></label>
+          <label class="choice-card"><input type="checkbox" name="needs" value="sales"><strong>Vendas e qualificação</strong><span>Leads, contexto, follow-up e encaminhamento.</span></label>
+          <label class="choice-card"><input type="checkbox" name="needs" value="campaigns"><strong>Campanhas e reativação</strong><span>Base parada, cadência, retorno e governança.</span></label>
+          <label class="choice-card"><input type="checkbox" name="needs" value="integration"><strong>Integração e infraestrutura</strong><span>CRM, ERP, dados, números e continuidade.</span></label>
+        </div>
+        <div class="form-grid" style="margin-top:14px">
+          <div class="field"><label for="monthly-volume">Volume mensal aproximado</label><select id="monthly-volume" name="monthlyVolume" required><option value="">Selecione</option><option value="1000">Até 1.000 interações</option><option value="2500">1.001 a 2.500</option><option value="7500">2.501 a 7.500</option><option value="15000">7.501 a 15.000</option><option value="30000">Mais de 15.000</option><option value="unknown">Ainda não sabemos</option></select></div>
+          <div class="field"><label for="systems">Sistemas envolvidos</label><input id="systems" name="systems" placeholder="Ex.: WhatsApp, CRM, ERP, agenda"></div>
+          <div class="field"><label for="urgency">Momento da decisão</label><select id="urgency" name="urgency" required><option value="">Selecione</option><option value="now">Problema ativo, decisão em até 30 dias</option><option value="quarter">Quer resolver em 31 a 90 dias</option><option value="exploring">Está avaliando possibilidades</option><option value="future">Sem prioridade definida</option></select></div>
+          <div class="field"><label for="budget">Faixa de investimento conhecida?</label><select id="budget" name="budget" required><option value="">Selecione</option><option value="aligned">Sim, compatível com projeto estruturado</option><option value="discussion">Precisa construir a justificativa</option><option value="unknown">Ainda não foi discutida</option><option value="restricted">Existe forte restrição</option></select></div>
+        </div>
+
+        <div class="eyebrow" style="margin-top:30px">04 · PRÓXIMA AÇÃO</div><h2 class="h2" style="margin-top:10px">O que precisa acontecer agora?</h2>
+        <div class="form-grid" style="margin-top:20px">
+          <div class="field"><label for="next-action">Próxima ação combinada</label><input id="next-action" name="nextAction" required placeholder="Ex.: diagnóstico com decisor em 25/09"></div>
+          <div class="field"><label for="next-date">Data prevista</label><input id="next-date" name="nextDate" type="date" required></div>
+        </div>
+        <div class="field" style="margin-top:14px"><label for="notes">Contexto adicional</label><textarea id="notes" name="notes" placeholder="Objeções, riscos, participantes e informações que não podem se perder."></textarea></div>
+        <label style="display:flex;gap:9px;align-items:flex-start;margin-top:18px;color:var(--t3);font-size:12px"><input name="consent" type="checkbox" required style="margin-top:2px">Confirmo que estes dados podem ser usados pela Avraham para conduzir esta oportunidade.</label>
+        <button class="button button-primary" type="submit" style="margin-top:20px"><i data-lucide="shield-plus"></i>Cadastrar oportunidade</button>
+        <div class="form-status" id="form-status" role="status"></div>
+      </form>
+
+      <aside class="form-panel">
+        <div class="eyebrow">LEITURA COMERCIAL</div><h2 class="h2" style="margin-top:10px">O registro prepara a decisão.</h2><p class="body" style="margin-top:14px">A prioridade é calculada com autorização, apresentação, dor, momento e orçamento. Plano e preço só entram depois do diagnóstico.</p>
+        <div class="flow" style="margin-top:22px"><div class="flow-step">Origem e relação preservadas</div><div class="flow-step">ICP e operação identificados</div><div class="flow-step">Dor e volume documentados</div><div class="flow-step">Próxima ação com responsável</div><div class="flow-step">Qualificação pelo time</div></div>
+        <div class="route-result" id="qualification-result" hidden style="margin-top:20px"><div class="eyebrow">RESULTADO DO REGISTRO</div><h3 data-result-title></h3><p data-result-copy></p><div class="route-tags" data-result-tags></div><a class="button button-primary" href="carteira-de-oportunidades.html">Abrir carteira<i data-lucide="arrow-up-right"></i></a></div>
+        <div class="light-callout" style="margin-top:20px"><strong>Proteção é uma regra operacional</strong><p style="margin-top:8px">Ela depende de origem verificável, autorização, atividade e histórico. O prazo inicial continua como hipótese até validação contratual.</p></div>
+      </aside>
+    </section>
+    <footer class="footer-note"><span>Carteira e oportunidades · Cadastro v2</span><a href="../04%20-%20VENDA%20AO%20CLIENTE%20FINAL/ficha-de-negociacao.md">Abrir ficha de negociação</a></footer>
+  </main>
+  <script src="../materials.js"></script>
+  <script>
+    (() => {
+      const form = document.getElementById("opportunity-form");
+      const status = document.getElementById("form-status");
+      const result = document.getElementById("qualification-result");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const checkedNeeds = [...form.querySelectorAll('input[name="needs"]:checked')];
+        if (!checkedNeeds.length) {
+          status.classList.add("is-visible");
+          status.innerHTML = "<strong>Selecione ao menos uma necessidade.</strong>Isso ajuda a preparar o diagnóstico.";
+          return;
+        }
+        const data = Object.fromEntries(new FormData(form).entries());
+        data.needs = checkedNeeds.map((field) => field.value);
+        let score = 0;
+        if (data.permission === "yes" || data.permission === "partner_first") score += 2;
+        if (data.introduction === "yes" || data.introduction === "scheduled") score += 2;
+        if (data.urgency === "now") score += 3;
+        if (data.urgency === "quarter") score += 2;
+        if (data.budget === "aligned") score += 3;
+        if (data.budget === "discussion") score += 1;
+        if (data.currentSituation.length >= 80) score += 1;
+        const priority = score >= 8 ? "Alta" : score >= 5 ? "Média" : "Em validação";
+        const id = `AVR-${new Date().getFullYear()}-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
+        const opportunity = { id, ...data, priority, stage: "registered", protectionStatus: "pending_validation", createdAt: new Date().toISOString() };
+        const opportunities = JSON.parse(localStorage.getItem("avrahamOpportunities") || "[]");
+        opportunities.push(opportunity);
+        localStorage.setItem("avrahamOpportunities", JSON.stringify(opportunities));
+        result.hidden = false;
+        result.querySelector("[data-result-title]").textContent = `Prioridade ${priority.toLowerCase()}`;
+        result.querySelector("[data-result-copy]").textContent = priority === "Alta" ? "Há autorização, contexto e sinais de decisão. O próximo passo é confirmar o diagnóstico com os participantes certos." : priority === "Média" ? "Existe contexto suficiente para avançar, mas uma variável comercial ainda precisa ser validada." : "A conta foi preservada, mas a origem, autorização ou momento precisam ser fortalecidos antes de uma proposta.";
+        result.querySelector("[data-result-tags]").innerHTML = [`ID ${id}`, data.clientIcp, `Próxima ação: ${data.nextDate}`].map((tag) => `<span class="route-tag">${tag}</span>`).join("");
+        status.classList.add("is-visible");
+        status.innerHTML = `<strong>${id} cadastrado.</strong>A oportunidade entrou na carteira em “Registrada” e aguarda validação da proteção.`;
+        result.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (window.lucide) window.lucide.createIcons();
+      });
+    })();
+  </script>
+</body>
+</html>

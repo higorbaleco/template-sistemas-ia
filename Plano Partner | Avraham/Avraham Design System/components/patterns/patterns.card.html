@@ -1,0 +1,39 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Patterns" subtitle="Solution, phase, checklist, chat, deal and achievement blocks" -->
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{background:var(--bg-page);padding:20px;font-family:var(--font-body)}#root{display:block}</style></head><body><div id="root"></div><script type="text/babel">
+const NS=window.AvrahamDesignSystem_609133;
+const {SolutionCard,NumberedCard,ChecklistItem,ChatMessage,KanbanCard,AchievementBadge,SidebarNav,Card}=NS;
+function Demo(){return(<div style={{display:'flex',flexDirection:'column',gap:16}}>
+  <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:12}}>
+    <SolutionCard icon="bot" title="AI Agents" body="Atenda, qualifique e direcione oportunidades no WhatsApp com contexto operacional."/>
+    <NumberedCard number="01" icon="clipboard" title="Diagnóstico" body="Mapeamos gargalos comerciais, técnicos e operacionais." bullets={['Volume atual vs. capacidade','Tempo de resposta e filas']}/>
+    <NumberedCard number="03" icon="server" tone="lavender" title="Infraestrutura" body="Números, rotas e contingência." bullets={['Estrutura multi-número','Monitoramento contínuo']}/>
+  </div>
+  <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+    <Card pad={20}>
+      <ChecklistItem state="no" divider>Leads chegam e ficam tempo demais sem resposta</ChecklistItem>
+      <ChecklistItem state="yes">Leads chegam mais qualificados para o time comercial</ChecklistItem>
+    </Card>
+    <Card pad={20} style={{display:'flex',flexDirection:'column',gap:10}}>
+      <ChatMessage from="contact" author="Rafael" time="14:32">Como funciona na prática?</ChatMessage>
+      <ChatMessage from="agent" agent time="14:32" status="read">O Agente Avraham qualifica leads 24h e move no CRM.</ChatMessage>
+    </Card>
+  </div>
+  <div style={{display:'grid',gridTemplateColumns:'260px 1fr 1fr',gap:12,alignItems:'start'}}>
+    <KanbanCard title="Rafael M." company="B2B Industrial" value="R$ 48.000" score={91} owner="Ana Lima" tags={['Reativação','iGaming']} age="3d"/>
+    <div style={{display:'flex',flexDirection:'column',gap:10}}>
+      <AchievementBadge icon="zap" title="Resposta em 60s" detail="30 dias sem estourar o SLA"/>
+      <AchievementBadge title="Reativador" detail="Recuperar 100 contatos frios" state="locked" progress={62}/>
+    </div>
+    <Card pad={0} style={{overflow:'hidden'}}><div style={{height:220}}><SidebarNav style={{border:'none'}} value="inbox" items={[{section:'Operação'},{value:'dash',label:'Dashboard',icon:'layout-dashboard'},{value:'inbox',label:'Inbox',icon:'message-square',count:23},{value:'pipe',label:'Pipeline',icon:'kanban',count:41},{section:'Base'},{value:'org',label:'Organizações',icon:'building-2'}]}/></div></Card>
+  </div>
+</div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+requestAnimationFrame(()=>window.lucide&&window.lucide.createIcons());
+setTimeout(()=>window.lucide&&window.lucide.createIcons(),120);
+</script></body></html>

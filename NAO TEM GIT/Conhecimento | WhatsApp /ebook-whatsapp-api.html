@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhatsApp Oficial e Não Oficial - Manual de Boas Práticas</title>
+  <meta name="description" content="Manual visual sobre WhatsApp Oficial, Não Oficial, contingência, governança e operação segura." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #171927;
+      --body: #34384a;
+      --muted: #85899a;
+      --line: #dfe1e7;
+      --soft: #f6f6f8;
+      --panel: #f4f5f7;
+      --green: #00a884;
+      --green-2: #16cfb2;
+      --teal: #078da2;
+      --purple: #5b2b86;
+      --red: #ff5d66;
+      --shadow: 0 12px 36px rgba(23, 25, 39, 0.08);
+      --font: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #e9ebef;
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      background: rgba(233, 235, 239, 0.88);
+      border-bottom: 1px solid rgba(23, 25, 39, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 8px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    button.primary {
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+    }
+
+    button:focus-visible {
+      outline: 3px solid rgba(0, 168, 132, 0.28);
+      outline-offset: 2px;
+    }
+
+    .document {
+      width: 1120px;
+      margin: 22px auto 56px;
+    }
+
+    .page {
+      position: relative;
+      min-height: 1586px;
+      margin-bottom: 22px;
+      padding: 78px 72px 76px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .doc-head,
+    .doc-foot {
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      color: #9a9eac;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .doc-head {
+      top: 0;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .doc-foot {
+      bottom: 0;
+      padding: 8px 0;
+      border-top: 1px solid var(--line);
+      letter-spacing: 0.03em;
+      text-transform: none;
+    }
+
+    .kicker {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 780px;
+      margin-bottom: 10px;
+      font-size: 34px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 25px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 15px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: var(--body);
+      margin-bottom: 14px;
+    }
+
+    strong { color: var(--ink); }
+
+    .lead {
+      max-width: 980px;
+      color: #525568;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .section { margin-top: 40px; }
+
+    .num {
+      min-width: 24px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .summary {
+      margin-top: 28px;
+      padding: 28px 32px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--green);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .summary-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .mini-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    .flow-stack {
+      display: grid;
+      gap: 14px;
+      margin: 34px 0 32px;
+    }
+
+    .flow-item {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 18px;
+      align-items: center;
+      min-height: 92px;
+      padding: 18px 26px;
+      border-radius: 14px;
+      color: #07131d;
+    }
+
+    .flow-item .tile-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.22);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .flow-item h3 {
+      margin: 0 0 4px;
+      color: inherit;
+      font-size: 16px;
+    }
+
+    .flow-item p {
+      margin: 0;
+      color: inherit;
+      font-size: 12px;
+    }
+
+    .flow-item:nth-child(1) {
+      color: #fff;
+      background: linear-gradient(90deg, #52dccb, #03d9bd);
+    }
+
+    .flow-item:nth-child(2) {
+      background: linear-gradient(90deg, #00b6a5, #0899ac);
+    }
+
+    .flow-item:nth-child(3) {
+      background: linear-gradient(90deg, #098da1, #1687a8);
+    }
+
+    .flow-item:nth-child(4) {
+      background: linear-gradient(90deg, #5b2b86, #6d3f9e);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .card {
+      min-height: 92px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+    }
+
+    .card-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .card p:last-child,
+    .split-card p:last-child { margin-bottom: 0; }
+
+    .tier-row {
+      display: grid;
+      grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr;
+      align-items: center;
+      gap: 10px;
+      margin: 28px 0 18px;
+    }
+
+    .tier {
+      min-height: 64px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      text-align: center;
+    }
+
+    .tier strong {
+      display: block;
+      color: var(--green);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .tier span {
+      display: block;
+      margin-top: 6px;
+      color: #767b8c;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .arrow {
+      color: #b7bac6;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .note {
+      margin: 20px 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+    }
+
+    .note .card-label { margin-bottom: 6px; }
+
+    .split-card {
+      padding: 24px 28px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .split-card.good { border-left: 5px solid var(--green); }
+    .split-card.bad { border-left: 5px solid var(--red); }
+
+    .split-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .split-card.good .split-title { color: var(--green); }
+    .split-card.bad .split-title { color: var(--red); }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      margin-bottom: 9px;
+      padding-left: 14px;
+      color: var(--body);
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .bad li::before { background: var(--red); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      color: var(--body);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    th {
+      color: var(--ink);
+      background: var(--panel);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .toc a {
+      display: flex;
+      gap: 10px;
+      min-height: 62px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .toc span:first-child {
+      color: var(--green);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    @media (max-width: 1180px) {
+      .document { width: min(100% - 24px, 1120px); }
+      .page { min-height: auto; }
+    }
+
+    @media (max-width: 760px) {
+      body { background: #fff; }
+      .toolbar {
+        position: static;
+        flex-direction: column;
+      }
+
+      button { width: 100%; }
+
+      .document {
+        width: 100%;
+        margin: 0;
+      }
+
+      .page {
+        margin: 0;
+        padding: 56px 20px 52px;
+        border-left: 0;
+        border-right: 0;
+        box-shadow: none;
+      }
+
+      h1 { font-size: 30px; }
+      h2 { font-size: 22px; }
+
+      .grid-2,
+      .grid-3,
+      .toc { grid-template-columns: 1fr; }
+
+      .tier-row { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); }
+
+      .flow-item {
+        grid-template-columns: 42px 1fr;
+        padding: 16px;
+      }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .toolbar { display: none; }
+
+      .document {
+        width: 100%;
+        margin: 0;
+      }
+
+      .page {
+        width: 210mm;
+        height: 297mm;
+        min-height: 0;
+        margin: 0;
+        padding: 16mm 15mm 14mm;
+        border: 0;
+        box-shadow: none;
+        overflow: hidden;
+        page-break-after: always;
+      }
+
+      .page:last-child { page-break-after: auto; }
+
+      .section,
+      .summary,
+      .card,
+      .split-card,
+      .note,
+      table { break-inside: avoid; }
+
+      .section { margin-top: 26px; }
+      .summary { margin-top: 22px; padding: 22px 26px; }
+      .card { padding: 15px; min-height: 78px; }
+      .split-card { padding: 20px 24px; }
+      .grid-2 { grid-template-columns: 1fr 1fr; gap: 18px; }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .toc { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .toc a { min-height: 54px; padding: 12px; }
+      .tier-row { grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr; }
+      .arrow { transform: none; }
+      .flow-stack { gap: 12px; margin: 26px 0 24px; }
+      .flow-item { min-height: 78px; padding: 14px 20px; }
+      .footer-note { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button type="button" id="reading">Modo leitura</button>
+    <button type="button" class="primary" id="download">Baixar PDF</button>
+  </div>
+
+  <main class="document">
+    <section class="page" id="cover">
+      <div class="doc-head"><span>AVRAHAM DIGITAL</span><span>WHATSAPP OFICIAL E NÃO OFICIAL: MANUAL DE BOAS PRÁTICAS</span></div>
+      <div class="doc-foot"><span>Material de conscientização para clientes · Agosto/2026 · Confidencial</span><span>01</span></div>
+
+      <p class="kicker">Manual de boas práticas · Agosto/2026</p>
+      <h1>WhatsApp Oficial e Não Oficial</h1>
+      <p class="lead">
+        O que existe por trás de uma operação de WhatsApp, quando usar API Oficial,
+        por que operações não oficiais parecem baratas, quanto a estrutura realmente aguenta
+        e por que contingência deixou de ser opcional.
+      </p>
+
+      <div class="summary">
+        <div class="summary-title"><span class="mini-icon">i</span> Resumo executivo</div>
+        <p><strong>Quem depende do WhatsApp para vender ou atender não pode depender de uma única estrutura.</strong></p>
+        <p>Existe uma infraestrutura por trás do número: empresa, Business Portfolio, WABA, número, templates, qualidade, limites e integrações. Cada parte tem uma função e também um risco.</p>
+        <p>A API Oficial é o caminho indicado para operações institucionais, recorrentes e críticas. A rota não oficial deve ser entendida como risco operacional: pode parecer mais barata, mas tende a cobrar seu preço em instabilidade, suporte, perda de previsibilidade e dependência de terceiros.</p>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">01</span> Mapa do material</h2>
+        <nav class="toc">
+          <a href="#estrutura"><span>02</span><span>Estrutura oficial: BM, WABA e número</span></a>
+          <a href="#qualidade"><span>03</span><span>Verificação, limites e qualidade</span></a>
+          <a href="#politicas"><span>04</span><span>Políticas, opt-in e segmentos sensíveis</span></a>
+          <a href="#nao-oficial"><span>05</span><span>Não oficial: custo aparente e risco real</span></a>
+          <a href="#comparativo"><span>06</span><span>Comparativo de decisão</span></a>
+          <a href="#contingencia"><span>07</span><span>Contingência, governança e oferta</span></a>
+        </nav>
+      </div>
+
+      <p class="footer-note">
+        Este material tem finalidade educativa e estratégica. Ele não substitui revisão jurídica,
+        validação direta nas políticas da Meta/WhatsApp ou análise de conformidade por segmento.
+      </p>
+    </section>
+
+    <section class="page" id="estrutura">
+      <div class="doc-head"><span>AVRAHAM DIGITAL</span><span>WHATSAPP OFICIAL E NÃO OFICIAL: MANUAL DE BOAS PRÁTICAS</span></div>
+      <div class="doc-foot"><span>Material de conscientização para clientes · Agosto/2026 · Confidencial</span><span>02</span></div>
+
+      <div class="section" style="margin-top:0">
+        <h2><span class="num">02</span> O que existe por trás do WhatsApp oficial</h2>
+        <p>No mercado, "BM" virou apelido para o Meta Business Portfolio: o ambiente empresarial da Meta onde ficam organizados ativos, administradores, segurança, domínios, páginas, contas e a estrutura de WhatsApp.</p>
+        <p>A BM não é o número de WhatsApp e não é a mensagem em si. Ela é a casa onde a operação vive.</p>
+
+        <div class="flow-stack">
+          <div class="flow-item">
+            <div class="tile-icon">E</div>
+            <div><h3>Empresa</h3><p>CNPJ, site e e-mail corporativo: a identidade que a Meta precisa reconhecer.</p></div>
+          </div>
+          <div class="flow-item">
+            <div class="tile-icon">B</div>
+            <div><h3>Business Portfolio (BM)</h3><p>Ambiente empresarial na Meta: administradores, segurança, ativos e parceiros.</p></div>
+          </div>
+          <div class="flow-item">
+            <div class="tile-icon">W</div>
+            <div><h3>WABA</h3><p>A conta de WhatsApp Business dentro da BM: números, qualidade, limites e templates.</p></div>
+          </div>
+          <div class="flow-item">
+            <div class="tile-icon">N</div>
+            <div><h3>Número, templates e mensageria</h3><p>O que efetivamente chega ao cliente pelo WhatsApp, integrado ao atendimento ou CRM.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">03</span> O que e WABA</h2>
+        <p>WABA significa <strong>WhatsApp Business Account</strong>. É nela que ficam registrados o número, o nome de exibição, os templates aprovados, a qualidade da conta e os limites de mensageria.</p>
+        <p>Uma BM pode estar perfeita e, ainda assim, a WABA dentro dela pode ter qualidade ruim, templates pausados ou limite reduzido. São análises diferentes, e as duas importam.</p>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">04</span> Verificação, selo e o que cada coisa significa</h2>
+        <p>É comum confundir estes quatro conceitos. Eles são independentes: ter um não garante os outros.</p>
+        <div class="grid-2">
+          <div class="card"><span class="card-label">Empresa verificada</span><p>A Meta confirmou que a BM pertence a uma organização legítima.</p></div>
+          <div class="card"><span class="card-label">WABA funcional</span><p>Existe uma conta de WhatsApp Business Platform capaz de operar.</p></div>
+          <div class="card"><span class="card-label">Nome de exibição aprovado</span><p>O nome apresentado ao usuário passou pela análise da Meta.</p></div>
+          <div class="card"><span class="card-label">Selo oficial (OBA)</span><p>Classificação adicional, ligada à notoriedade da empresa. Não é automática.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="qualidade">
+      <div class="doc-head"><span>AVRAHAM DIGITAL</span><span>WHATSAPP OFICIAL E NÃO OFICIAL: MANUAL DE BOAS PRÁTICAS</span></div>
+      <div class="doc-foot"><span>Material de conscientização para clientes · Agosto/2026 · Confidencial</span><span>03</span></div>
+
+      <div class="section" style="margin-top:0">
+        <h2><span class="num">05</span> Como funciona o tier de uma WABA e como ele sobe</h2>
+        <p>Toda WABA evolui conforme demonstra qualidade sustentada. A progressão é medida por usuários únicos alcançados dentro de uma janela de 24 horas.</p>
+
+        <div class="tier-row">
+          <div class="tier"><div><strong>1.000</strong><span>Teste</span></div></div>
+          <div class="arrow">→</div>
+          <div class="tier"><div><strong>10.000</strong><span>Tier 2</span></div></div>
+          <div class="arrow">→</div>
+          <div class="tier"><div><strong>100.000</strong><span>Tier 3</span></div></div>
+          <div class="arrow">→</div>
+          <div class="tier"><div><strong>Ilimitado</strong><span>Tier 4</span></div></div>
+        </div>
+
+        <p>A subida de tier não acontece apenas pelo tempo de conta. Ela depende do comportamento observado: baixa taxa de bloqueio e denúncia, boa resposta dos usuários, templates aprovados e usados no propósito correto, mensagens esperadas e estabilidade ao longo do tempo.</p>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">06</span> Quanto da capacidade anunciada considerar</h2>
+        <p>Uma estrutura apresentada como determinado tier não deve ser operada no limite desde o primeiro dia. Para operações novas, a postura mais prudente é usar uma margem inicial conservadora e subir gradualmente conforme o histórico provar estabilidade.</p>
+        <div class="note">
+          <span class="card-label">Exemplo pratico</span>
+          <p>Uma estrutura apresentada como 10.000 pode começar operando uma fração desse volume, observando qualidade, respostas, bloqueios, entregas e comportamento antes de subir de forma gradual.</p>
+        </div>
+        <p>Essa margem não é uma regra oficial da Meta. É uma prática de gestão para reduzir risco e impedir que uma operação nova queime uma estrutura por excesso de volume logo no início.</p>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">07</span> Como conferir capacidade real</h2>
+        <div class="grid-2">
+          <div class="card"><span class="card-label">Nunca confiar só no nome</span><p>Conferir diretamente na plataforma: Business Portfolio ID, WABA ID, Phone Number ID, status, limite atual e qualidade.</p></div>
+          <div class="card"><span class="card-label">Capacidade não é permanente</span><p>Bloqueios, denúncias, templates e comportamento dos usuários podem reduzir limites a qualquer momento.</p></div>
+        </div>
+        <p>O objetivo não é descobrir o quanto dá para enviar antes de cair. É descobrir o quanto dá para sustentar com qualidade.</p>
+      </div>
+    </section>
+
+    <section class="page" id="politicas">
+      <div class="doc-head"><span>AVRAHAM DIGITAL</span><span>WHATSAPP OFICIAL E NÃO OFICIAL: MANUAL DE BOAS PRÁTICAS</span></div>
+      <div class="doc-foot"><span>Material de conscientização para clientes · Agosto/2026 · Confidencial</span><span>04</span></div>
+
+      <div class="section" style="margin-top:0">
+        <h2><span class="num">08</span> O que pode e o que não pode: nichos e segmentos</h2>
+        <p>A elegibilidade de cada uso deve sempre ser validada contra as políticas vigentes da Meta antes de iniciar uma campanha. O cenário abaixo é uma leitura geral.</p>
+
+        <div class="grid-2">
+          <div class="split-card good">
+            <div class="split-title"><span class="mini-icon">✓</span> Geralmente permitido</div>
+            <ul>
+              <li>Atendimento, suporte e agendamentos</li>
+              <li>Notificações e confirmações</li>
+              <li>Recuperação e reativação de clientes</li>
+              <li>Vendas e relacionamento comercial</li>
+              <li>Agentes de IA e automação com escalonamento humano</li>
+              <li>Integrações com CRM e ERP</li>
+            </ul>
+          </div>
+
+          <div class="split-card bad">
+            <div class="split-title"><span class="mini-icon">×</span> Proibido ou muito restrito</div>
+            <ul>
+              <li>Armas, tabaco e drogas</li>
+              <li>Saúde sensível, materiais perigosos e espécies protegidas</li>
+              <li>Apostas e jogos com dinheiro, conforme regras regionais</li>
+              <li>Produtos fraudulentos e conteudo adulto</li>
+              <li>Encontros e marketing multinivel</li>
+              <li>Cobrança de dívida, crédito de alto risco e fiança judicial</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="footer-note">Mesmo em usos permitidos, a operação depende de opt-in, templates aprovados, opt-out funcional e cumprimento da LGPD.</p>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">09</span> O que impacta bloqueios e restrições na Meta</h2>
+        <ul>
+          <li>Alto volume de bloqueios feitos pelos próprios usuários</li>
+          <li>Denúncias de spam e baixa taxa de resposta</li>
+          <li>Templates rejeitados ou usados fora do propósito aprovado</li>
+          <li>Mensagens enviadas sem opt-in ou para números que nunca interagiram com a empresa</li>
+          <li>Inconsistência entre empresa verificada, nome de exibição e site apresentado</li>
+          <li>Uso de aplicativos, integrações ou automações não autorizadas pela Meta</li>
+          <li>Aumento brusco de volume sem histórico de qualidade que sustente o salto</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">10</span> Opt-in, opt-out e templates</h2>
+        <div class="grid-3">
+          <div class="card"><span class="card-label">Opt-in</span><p>Registrar origem do consentimento e explicar o tipo de mensagem que será enviada.</p></div>
+          <div class="card"><span class="card-label">Opt-out</span><p>Permitir descadastro claro, registrar contatos removidos e impedir novo envio indevido.</p></div>
+          <div class="card"><span class="card-label">Templates</span><p>Usar mensagens aprovadas dentro do propósito correto e monitorar rejeições ou pausas.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="nao-oficial">
+      <div class="doc-head"><span>AVRAHAM DIGITAL</span><span>WHATSAPP OFICIAL E NÃO OFICIAL: MANUAL DE BOAS PRÁTICAS</span></div>
+      <div class="doc-foot"><span>Material de conscientização para clientes · Agosto/2026 · Confidencial</span><span>05</span></div>
+
+      <div class="section" style="margin-top:0">
+        <h2><span class="num">11</span> O que o mercado chama de Não Oficial</h2>
+        <p>O termo "não oficial" costuma ser usado para operações fora da rota institucional da WhatsApp Business Platform. Ele aparece quando a prioridade é preço baixo, ativação rápida, flexibilidade de segmento ou campanha pontual.</p>
+        <p>Para um material sério, essa categoria precisa ser tratada como leitura de risco, não como recomendação operacional.</p>
+
+        <div class="grid-2">
+          <div class="split-card good">
+            <div class="split-title"><span class="mini-icon">i</span> Por que parece atraente</div>
+            <ul>
+              <li>Menor custo aparente por envio</li>
+              <li>Contratação rápida</li>
+              <li>Menos exigência documental</li>
+              <li>Uso em demandas pontuais</li>
+              <li>Fornecedor resolve parte da operação</li>
+            </ul>
+          </div>
+          <div class="split-card bad">
+            <div class="split-title"><span class="mini-icon">!</span> O custo escondido</div>
+            <ul>
+              <li>Instabilidade e interrupcao</li>
+              <li>Dependência de fornecedor</li>
+              <li>Baixa rastreabilidade</li>
+              <li>Retrabalho e suporte maior</li>
+              <li>Risco de reputacao e continuidade</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">12</span> Custos e fornecedores citados nas notas</h2>
+        <p>Os valores abaixo vieram das anotações internas e devem ser revisados antes de qualquer proposta. Eles servem para leitura de margem, não como tabela comercial definitiva.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Fornecedor</th>
+              <th>Tipo citado</th>
+              <th>Capacidade/SLA citado</th>
+              <th>Custo citado</th>
+              <th>Observação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GrowSoft.io</td>
+              <td>Não oficial</td>
+              <td>Ate 24h; maior volume em horario comercial</td>
+              <td>R$ 0,25</td>
+              <td>Perfil mais restritivo em segmento</td>
+            </tr>
+            <tr>
+              <td>Guilherme Sisbratel</td>
+              <td>Não oficial</td>
+              <td>Escala rápida e muitos números</td>
+              <td>R$ 0,25</td>
+              <td>Citado como instavel e dificil de lidar</td>
+            </tr>
+            <tr>
+              <td>Vinicius Nascimento</td>
+              <td>Oficial e não oficial</td>
+              <td>15 a 20 mil/dia</td>
+              <td>R$ 0,22 acima de 5.000</td>
+              <td>Brasil e internacional</td>
+            </tr>
+            <tr>
+              <td>Deivid</td>
+              <td>Oficial robusta</td>
+              <td>Disponivel fora do horario</td>
+              <td>R$ 0,56</td>
+              <td>Estrutura robusta e pronta para rodar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="page" id="comparativo">
+      <div class="doc-head"><span>AVRAHAM DIGITAL</span><span>WHATSAPP OFICIAL E NÃO OFICIAL: MANUAL DE BOAS PRÁTICAS</span></div>
+      <div class="doc-foot"><span>Material de conscientização para clientes · Agosto/2026 · Confidencial</span><span>06</span></div>
+
+      <div class="section" style="margin-top:0">
+        <h2><span class="num">13</span> Comparativo de decisão</h2>
+        <p>A pergunta não é apenas quanto custa enviar. A pergunta é quanto custa sustentar atendimento, resposta, reputação e continuidade.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Critério</th>
+              <th>API Oficial</th>
+              <th>Não Oficial</th>
+              <th>Leitura executiva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Uso ideal</td>
+              <td>Institucional, recorrente e crítico</td>
+              <td>Pontual, experimental ou de alto risco</td>
+              <td>Canal critico pede rota oficial</td>
+            </tr>
+            <tr>
+              <td>Governanca</td>
+              <td>Ativos, permissões e rastreabilidade</td>
+              <td>Dependencia de arranjos e fornecedores</td>
+              <td>Sem controle, o custo real sobe</td>
+            </tr>
+            <tr>
+              <td>Escala</td>
+              <td>Cresce com qualidade e histórico</td>
+              <td>Cresce com mais fragilidade</td>
+              <td>Escala sustentada vale mais que pico</td>
+            </tr>
+            <tr>
+              <td>Compliance</td>
+              <td>Depende de opt-in, templates e políticas</td>
+              <td>Maior chance de conflito com regras</td>
+              <td>Risco precisa entrar no preço</td>
+            </tr>
+            <tr>
+              <td>Relatorio</td>
+              <td>Mais estruturavel</td>
+              <td>Varia conforme ferramenta/fornecedor</td>
+              <td>Sem dado, decisão vira narrativa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section" id="contingencia">
+        <h2><span class="num">14</span> Por que a contingência é necessária</h2>
+        <p>Uma operação de mensageria pode parar. Quando para, o impacto raramente é só técnico: é comercial, com campanhas interrompidas, atendimento fora do ar, timing perdido e conversão em queda.</p>
+        <div class="grid-2">
+          <div class="split-card bad">
+            <div class="split-title"><span class="mini-icon">×</span> Sem contingência</div>
+            <ul>
+              <li>Uma única estrutura sustenta toda a operação</li>
+              <li>Uma restrição paralisa disparo e atendimento</li>
+              <li>Impacto direto e imediato no faturamento</li>
+            </ul>
+          </div>
+          <div class="split-card good">
+            <div class="split-title"><span class="mini-icon">✓</span> Com contingência</div>
+            <ul>
+              <li>Mais de uma estrutura e mais de uma rota</li>
+              <li>Uma restrição é absorvida sem paralisar tudo</li>
+              <li>Mais previsibilidade para crescer</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">15</span> Modelo comercial recomendado</h2>
+        <div class="grid-2">
+          <div class="card"><span class="card-label">Diagnóstico</span><p>Leitura da estrutura atual, riscos, base, objetivo comercial e recomendação de rota.</p></div>
+          <div class="card"><span class="card-label">Operação de campanha</span><p>Definição de rota, preparação, acompanhamento, relatório e recomendação pós-campanha.</p></div>
+          <div class="card"><span class="card-label">Infraestrutura gerenciada</span><p>Governança de ativos, templates, monitoramento, contingência e integração.</p></div>
+          <div class="card"><span class="card-label">Estrutura dedicada</span><p>Capacidade reservada para cliente com volume relevante, recorrência e necessidade de SLA.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page">
+      <div class="doc-head"><span>AVRAHAM DIGITAL</span><span>WHATSAPP OFICIAL E NÃO OFICIAL: MANUAL DE BOAS PRÁTICAS</span></div>
+      <div class="doc-foot"><span>Material de conscientização para clientes · Agosto/2026 · Confidencial</span><span>07</span></div>
+
+      <div class="section" style="margin-top:0">
+        <h2><span class="num">16</span> Boas práticas de mercado</h2>
+        <ul>
+          <li>Manter dados empresariais consistentes entre CNPJ, site, BM e e-mail de contato.</li>
+          <li>Usar e-mail corporativo no domínio da empresa em vez de e-mails públicos.</li>
+          <li>Manter site ativo, com politica de privacidade e identificacao clara da empresa.</li>
+          <li>Ativar autenticacao de dois fatores e revisar administradores periodicamente.</li>
+          <li>Documentar opt-in: quem aceitou, quando, onde e para qual finalidade.</li>
+          <li>Respeitar pedidos de opt-out imediatamente, dentro ou fora do WhatsApp.</li>
+          <li>Manter templates dentro do propósito para o qual foram aprovados.</li>
+          <li>Nunca comprar ou vender capacidade apenas pelo nome comercial informado pelo fornecedor.</li>
+          <li>Sempre conferir Business Portfolio ID, WABA ID e Phone Number ID diretamente na plataforma antes de assumir qualquer estrutura.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">17</span> KPIs mínimos para não operar no escuro</h2>
+        <div class="grid-3">
+          <div class="card"><span class="card-label">Campanha</span><p>Enviadas, entregues, falhas, respostas, cliques, conversas uteis e agendamentos.</p></div>
+          <div class="card"><span class="card-label">Qualidade</span><p>Bloqueios, denúncias, opt-out, templates rejeitados, qualidade e limite atual.</p></div>
+          <div class="card"><span class="card-label">Financeiro</span><p>Custo de fornecedor, preço de venda, margem, retrabalho, suporte e recorrência.</p></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">18</span> Mensagem final ao cliente</h2>
+        <div class="summary">
+          <div class="summary-title"><span class="mini-icon">i</span> Posicionamento</div>
+          <p><strong>A gente não vende apenas envio. A gente estrutura o canal para que a campanha não dependa de sorte, improviso ou uma única rota.</strong></p>
+          <p>WhatsApp precisa ser tratado como infraestrutura de negócio. Quanto mais importante ele é para vender, atender ou reativar clientes, mais ele precisa de governança, qualidade e contingência.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const download = document.getElementById("download");
+    const reading = document.getElementById("reading");
+    let compact = false;
+
+    download.addEventListener("click", () => {
+      document.title = "WhatsApp Oficial e Não Oficial - Manual de Boas Práticas";
+      window.print();
+    });
+
+    reading.addEventListener("click", () => {
+      compact = !compact;
+      document.body.style.background = compact ? "#fff" : "";
+      document.querySelectorAll(".page").forEach((page) => {
+        page.style.boxShadow = compact ? "none" : "";
+        page.style.borderColor = compact ? "#fff" : "";
+      });
+      reading.textContent = compact ? "Modo normal" : "Modo leitura";
+    });
+  </script>
+</body>
+</html>

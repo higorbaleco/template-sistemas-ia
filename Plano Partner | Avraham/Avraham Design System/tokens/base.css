@@ -1,0 +1,64 @@
+/* Avraham base layer (light-first): reset, optional grid, mint glow, type + glass.
+   Every value here comes from a token. */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{margin:0;background:var(--bg);color:var(--t1);font-family:var(--font-ui);font-size:var(--fs-body);line-height:var(--lh-body);font-weight:var(--fw-regular)}
+
+/* 60px grid is an OPT-IN command-center motif (add class .grid-bg). The public brand
+   uses soft mint/lavender radial glows instead (.glow-bg). */
+.glow-bg{position:relative}
+.glow-bg::before,body.glow-bg::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:var(--grad-command)}
+.grid-bg{position:relative}
+.grid-bg::before,body.grid-bg::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:var(--grid-size) var(--grid-size)}
+
+a{color:var(--text-link);text-decoration:none;transition:color var(--t-hover)}
+a:hover{color:var(--text-link-hover)}
+
+.display{font-family:var(--font-display);font-size:var(--fs-display);line-height:var(--lh-display);letter-spacing:var(--ls-display);font-weight:800;margin:0}
+.h1{font-size:var(--fs-h1);line-height:var(--lh-heading);letter-spacing:var(--ls-heading);font-weight:var(--fw-bold);margin:0}
+.h2{font-size:var(--fs-h2);line-height:var(--lh-heading);letter-spacing:var(--ls-heading);font-weight:var(--fw-bold);margin:0}
+.h3{font-size:var(--fs-h3);line-height:var(--lh-tight);font-weight:var(--fw-semibold);margin:0}
+.body-lg{font-size:var(--fs-body-lg);line-height:var(--lh-body-lg);font-weight:var(--fw-medium);color:var(--t2);margin:0}
+.body{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--t2);margin:0}
+.label{font-size:var(--fs-label);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:var(--ls-label)}
+.eyebrow{font-size:var(--fs-eyebrow);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:var(--ls-eyebrow);color:var(--cyan)}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
+.glass{background:var(--gb);border:1px solid var(--gbo);border-radius:var(--rc);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);transition:transform var(--t-hover),border-color var(--t-hover),background var(--t-hover)}
+.glass-hover:hover{transform:translateY(var(--lift-card));border-color:var(--gho);background:var(--ghb)}
+
+/* Bracket accent: floating pill bar, never a straight border-left. */
+.bracket{position:relative}
+.bracket::before{content:"";position:absolute;left:0;top:var(--bracket-inset);bottom:var(--bracket-inset);width:var(--bracket-width);border-radius:var(--bracket-radius);background:var(--cyan)}
+.bracket-green::before{background:var(--green)}
+.bracket-coral::before{background:var(--coral)}
+.bracket-purp::before{background:var(--purp)}
+
+.glow-line{height:1px;border:0;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.5}
+
+.material-symbols-rounded{font-family:var(--font-icon);font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24}
+
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.82)}}
+.pulse{animation:pulse-dot 2.5s var(--ease-out) infinite}
+@keyframes glow-sweep{0%{opacity:.2}50%{opacity:.8}100%{opacity:.2}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+
+/* ---- Documented scale aliases (published spec class names) ---- */
+.h-disp{font-family:var(--font-display);font-size:var(--fs-display);line-height:var(--lh-display);letter-spacing:var(--ls-display);font-weight:800;margin:0}
+.body-md{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--t2);margin:0}
+
+/* ---- Material Symbols shorthand (.mat) ---- */
+.mat{font-family:var(--font-icon);font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;font-variation-settings:"FILL" 0,"wght" 400,"GRAD" 0,"opsz" 24;vertical-align:middle}
+.mat.fill{font-variation-settings:"FILL" 1,"wght" 500,"GRAD" 0,"opsz" 24}
+
+/* ---- Gradient utility fills (.g-cyan .g-teal .g-purp .g-green .g-coral) ---- */
+.g-cyan{background:var(--grad-step-1)}
+.g-teal{background:var(--grad-step-2)}
+.g-petrol{background:var(--grad-step-4)}
+.g-purp{background:var(--grad-step-5)}
+.g-green{background:linear-gradient(135deg,var(--green-light),var(--green))}
+.g-coral{background:linear-gradient(135deg,#FF9A9A,var(--coral))}
+.g-flow{background:var(--grad-flow)}

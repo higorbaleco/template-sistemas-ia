@@ -1,0 +1,7 @@
+:root{
+  --rc:20px;      /* cards, panels, containers */
+  --rb:12px;      /* buttons, inputs, badges */
+  --r-xs:6px;     /* small elements */
+  --r-pill:999px; /* chips, tags, round buttons */
+  --bracket-radius:12px 0 0 12px; /* @kind radius */
+}

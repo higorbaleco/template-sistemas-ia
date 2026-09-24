@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proposta — Agentes de IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,400..700&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0BBCA2;--mint:#00eed0;--purple:#4b227a;--lav:#7C5C9E;--ink:#111114;--gray:#6E6F76;--line:#E7E5E2;--off:#F7F6F5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#000}
+deck-stage{display:block;width:100%;height:100vh}
+section{position:absolute;inset:0;padding:90px 100px 70px;font-family:inherit;display:flex;flex-direction:column}
+.eyebrow{font-size:22px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px}
+.eyebrow-dark{font-size:22px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:3px}
+.chip-x{width:32px;height:32px;border-radius:50%;background:#F0555B;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chip-check{width:32px;height:32px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+</style>
+</head>
+<body>
+<script src="../../templates/proposta-agentes-ia-generico/deck-stage.js"></script>
+<deck-stage width="1920" height="1080">
+
+<!-- CAPA -->
+<section data-screen-label="01" style="background:#000;display:grid;grid-template-columns:1.1fr 1fr;gap:60px">
+<div style="display:flex;flex-direction:column;justify-content:space-between">
+<div>
+<div class="eyebrow-dark">Agentes de IA — Atendimento Automatizado</div>
+<div style="font-size:18px;color:rgba(255,255,255,0.4);margin-top:16px">[Cliente] · Proposta Comercial · [Mês] [Ano]</div>
+</div>
+<div>
+<div style="font-size:80px;font-weight:800;color:white;line-height:1.05;letter-spacing:-2px">Atendimento<br>automático</div>
+<div style="font-size:44px;font-weight:700;color:var(--teal);margin-top:12px;letter-spacing:-1px">para [Cliente].</div>
+<div style="font-size:22px;color:rgba(255,255,255,0.6);line-height:1.6;margin-top:32px;max-width:520px">Três agentes de IA que [valor principal]. Funcionam 24 horas por dia, sem depender da equipe para cada mensagem.</div>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<span style="font-size:20px;font-weight:600;color:white">ver proposta</span>
+<span style="color:var(--teal);font-size:24px">→</span>
+</div>
+</div>
+<div style="background:#0B0D12;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;justify-content:center">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:10px;height:10px;border-radius:50%;background:var(--teal)"></div>
+<span style="font-size:14px;color:var(--teal);font-weight:700;letter-spacing:2px">AGENTE EM OPERAÇÃO</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.3);margin-left:auto">[Horário]</span>
+</div>
+<div style="background:#1A1D24;border-radius:16px 16px 16px 4px;padding:16px 20px;max-width:80%;font-size:17px;color:white">[Mensagem do agente]</div>
+<div style="background:var(--teal);border-radius:16px 16px 4px 16px;padding:16px 20px;max-width:75%;align-self:flex-end;font-size:17px;color:black">[Resposta do cliente]</div>
+<div style="background:#1A1D24;border-radius:16px 16px 16px 4px;padding:16px 20px;max-width:85%;font-size:17px;color:white">[Resposta do agente com opções]</div>
+</div>
+</section>
+
+<!-- RESUMO EXECUTIVO -->
+<section data-screen-label="02" style="background:#fff;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center">
+<div>
+<div style="font-size:60px;font-weight:800;color:var(--ink);line-height:1.1;letter-spacing:-2px">[Problema identificado].</div>
+<div style="font-size:40px;font-weight:600;color:var(--teal);margin-top:16px">Resumo do projeto.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="background:#000;border-radius:16px;padding:28px;border-left:4px solid #F0555B">
+<div style="font-size:14px;font-weight:700;color:#F0555B;letter-spacing:2px;text-transform:uppercase">Problema identificado</div>
+<div style="font-size:18px;color:rgba(255,255,255,0.75);margin-top:8px;line-height:1.6">[Descrição do problema]</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div style="background:var(--off);border-radius:16px;padding:24px">
+<div style="font-size:44px;font-weight:800;color:var(--teal)">30</div>
+<div style="font-size:15px;color:var(--gray);font-weight:600">dias de implementação</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:24px">
+<div style="font-size:44px;font-weight:800;color:var(--purple)">60</div>
+<div style="font-size:15px;color:var(--gray);font-weight:600">dias de acompanhamento</div>
+</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:24px">
+<div style="font-size:14px;font-weight:700;color:var(--ink);letter-spacing:2px;text-transform:uppercase">Solução proposta</div>
+<div style="font-size:17px;color:var(--gray);margin-top:8px;line-height:1.6">[Descrição da solução]</div>
+</div>
+</div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section data-screen-label="03" style="background:#000;justify-content:flex-start;gap:44px">
+<div>
+<div style="font-size:60px;font-weight:800;color:white;letter-spacing:-2px">Diagnóstico e <span style="color:var(--teal)">impacto.</span></div>
+<div style="font-size:19px;color:var(--gray);margin-top:24px">Cada situação atual é uma oportunidade perdida.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:1">
+<div style="background:#0B0D12;border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:20px">
+<div style="font-size:18px;font-weight:700;color:white;letter-spacing:1px;text-transform:uppercase">Hoje</div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">[Problema 1]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">[Problema 2]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">[Problema 3]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">[Problema 4]</span></div>
+</div>
+<div style="background:#0B2E2B;border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:20px">
+<div style="font-size:18px;font-weight:700;color:white;letter-spacing:1px;text-transform:uppercase">Com os agentes</div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">[Solução 1]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">[Solução 2]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">[Solução 3]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">[Solução 4]</span></div>
+</div>
+</div>
+</section>
+
+<!-- IMPACTO 5 CAMADAS -->
+<section data-screen-label="04" style="background:#000;justify-content:flex-start;gap:44px">
+<div>
+<div style="font-size:60px;font-weight:800;color:white;letter-spacing:-2px">Onde o problema impacta</div>
+<div style="font-size:40px;font-weight:700;color:var(--teal);margin-top:8px">a operação.</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;flex:1">
+<div style="background:linear-gradient(160deg,#0BBCA2,#00A88F);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">GESTÃO</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">[Impacto na gestão]</div>
+</div>
+<div style="background:linear-gradient(160deg,#0BBCA2,#088A78);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">OPERACIONAL</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">[Impacto operacional]</div>
+</div>
+<div style="background:linear-gradient(160deg,#088A78,#0A6E62);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">CLIENTE FINAL</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">[Impacto no cliente final]</div>
+</div>
+<div style="background:linear-gradient(160deg,#0A6E62,#4b227a);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">MERCADO</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">[Impacto no mercado]</div>
+</div>
+<div style="background:linear-gradient(160deg,#4b227a,#2E1650);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">FINANCEIRO</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">[Impacto financeiro]</div>
+<div style="font-size:12px;font-weight:700;letter-spacing:1px;opacity:0.7;margin-top:auto">CALCULADO APÓS BRIEFING</div>
+</div>
+</div>
+</section>
+
+<!-- ARQUITETURA -->
+<section data-screen-label="05" style="background:#fff;display:grid;grid-template-columns:1fr 1.1fr;gap:60px">
+<div style="display:flex;flex-direction:column;gap:32px;justify-content:center">
+<div>
+<div style="font-size:60px;font-weight:800;color:var(--ink);letter-spacing:-2px">Arquitetura</div>
+<div style="font-size:40px;font-weight:700;color:var(--teal)">da solução.</div>
+</div>
+<div style="font-size:16px;font-weight:700;color:var(--gray);letter-spacing:2px;text-transform:uppercase">Fluxo de atendimento</div>
+<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:18px;font-weight:600;color:var(--ink)">
+<span style="background:var(--off);padding:12px 20px;border-radius:10px">Cliente</span><span style="color:var(--teal)">→</span>
+<span style="background:var(--off);padding:12px 20px;border-radius:10px">Agente IA</span><span style="color:var(--teal)">→</span>
+<span style="background:var(--off);padding:12px 20px;border-radius:10px">Base de conhecimento</span><span style="color:var(--teal)">→</span>
+<span style="background:var(--off);padding:12px 20px;border-radius:10px">[Canal]</span>
+</div>
+</div>
+<div style="background:#000;border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:24px;justify-content:center">
+<div style="display:flex;gap:20px;align-items:flex-start">
+<div style="font-size:32px;font-weight:800;color:var(--teal);flex-shrink:0">01</div>
+<div><div style="font-size:20px;font-weight:700;color:white">[Agente 1]</div><div style="font-size:16px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.6">[Descrição do agente 1]</div></div>
+</div>
+<div style="display:flex;gap:20px;align-items:flex-start">
+<div style="font-size:32px;font-weight:800;color:var(--teal);flex-shrink:0">02</div>
+<div><div style="font-size:20px;font-weight:700;color:white">[Agente 2]</div><div style="font-size:16px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.6">[Descrição do agente 2]</div></div>
+</div>
+<div style="display:flex;gap:20px;align-items:flex-start">
+<div style="font-size:32px;font-weight:800;color:var(--teal);flex-shrink:0">03</div>
+<div><div style="font-size:20px;font-weight:700;color:white">[Agente 3]</div><div style="font-size:16px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.6">[Descrição do agente 3]</div></div>
+</div>
+</div>
+</section>
+
+<!-- O QUE ESTÁ INCLUSO -->
+<section data-screen-label="06" style="background:#fff;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center">
+<div>
+<div style="font-size:60px;font-weight:800;color:var(--ink);letter-spacing:-2px">O que está</div>
+<div style="font-size:40px;font-weight:700;color:var(--teal)">incluso.</div>
+<div style="font-size:19px;color:var(--gray);line-height:1.7;margin-top:24px">[Descrição geral do escopo]</div>
+</div>
+<div style="background:#000;border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">[Entrega 1]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">[Entrega 2]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">[Entrega 3]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">[Entrega 4]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">[Entrega 5]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">[Entrega 6]</span></div>
+</div>
+</section>
+
+<!-- LIMITES -->
+<section data-screen-label="07" style="background:#fff;justify-content:flex-start;gap:44px">
+<div>
+<div style="font-size:60px;font-weight:800;color:var(--ink);letter-spacing:-2px">Limites e</div>
+<div style="font-size:40px;font-weight:700;color:var(--teal)">responsabilidades.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:1">
+<div style="background:#000;border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:18px">
+<div style="font-size:18px;font-weight:700;color:white;letter-spacing:1px;text-transform:uppercase">Fora do escopo</div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">[Limite 1]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">[Limite 2]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">[Limite 3]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">[Limite 4]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">[Limite 5]</span></div>
+</div>
+<div style="background:var(--off);border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:18px">
+<div style="font-size:18px;font-weight:700;color:var(--ink);letter-spacing:1px;text-transform:uppercase">[Cliente] providencia</div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:17px;color:var(--ink)">ℹ️ [Responsabilidade 1]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:17px;color:var(--ink)">ℹ️ [Responsabilidade 2]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:17px;color:var(--ink)">ℹ️ [Responsabilidade 3]</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:17px;color:var(--ink)">ℹ️ [Responsabilidade 4]</span></div>
+</div>
+</div>
+</section>
+
+<!-- RISCOS -->
+<section data-screen-label="08" style="background:#000;justify-content:flex-start;gap:44px">
+<div>
+<div style="font-size:60px;font-weight:800;color:white;letter-spacing:-2px">O que pode acontecer</div>
+<div style="font-size:40px;font-weight:700;color:var(--teal);margin-top:8px">e como lidamos.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1">
+<div style="background:#0B0D12;border-radius:16px;padding:36px;border-left:4px solid var(--teal);display:flex;flex-direction:column;gap:16px">
+<div style="font-size:20px;font-weight:700;color:white">[Risco 1]</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:#F0555B">Risco:</b> [Descrição do risco 1]</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:var(--teal)">Mitigação:</b> [Descrição da mitigação 1]</div>
+</div>
+<div style="background:#0B0D12;border-radius:16px;padding:36px;border-left:4px solid var(--purple);display:flex;flex-direction:column;gap:16px">
+<div style="font-size:20px;font-weight:700;color:white">[Risco 2]</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:#F0555B">Risco:</b> [Descrição do risco 2]</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:var(--teal)">Mitigação:</b> [Descrição da mitigação 2]</div>
+</div>
+<div style="background:#0B0D12;border-radius:16px;padding:36px;border-left:4px solid var(--lav);display:flex;flex-direction:column;gap:16px">
+<div style="font-size:20px;font-weight:700;color:white">[Risco 3]</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:#F0555B">Risco:</b> [Descrição do risco 3]</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:var(--teal)">Mitigação:</b> [Descrição da mitigação 3]</div>
+</div>
+</div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section data-screen-label="09" style="background:#fff;justify-content:flex-start;gap:44px">
+<div>
+<div style="font-size:60px;font-weight:800;color:var(--ink);letter-spacing:-2px">90 dias de projeto</div>
+<div style="font-size:20px;color:var(--gray);margin-top:8px">Cronograma: 30 dias do kickoff ao projeto consolidado</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;flex:1">
+<div style="background:var(--off);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:var(--teal);color:white;display:flex;align-items:center;justify-content:center;font-weight:700">S1</div>
+<div style="font-size:16px;font-weight:700;color:var(--ink)">[Semana 1]</div>
+<div style="font-size:14px;color:var(--gray);line-height:1.6">[Descrição da semana 1]</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:var(--teal);color:white;display:flex;align-items:center;justify-content:center;font-weight:700">S2</div>
+<div style="font-size:16px;font-weight:700;color:var(--ink)">[Semana 2]</div>
+<div style="font-size:14px;color:var(--gray);line-height:1.6">[Descrição da semana 2]</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-weight:700">S3</div>
+<div style="font-size:16px;font-weight:700;color:var(--ink)">[Semana 3]</div>
+<div style="font-size:14px;color:var(--gray);line-height:1.6">[Descrição da semana 3]</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-weight:700">S4</div>
+<div style="font-size:16px;font-weight:700;color:var(--ink)">[Semana 4]</div>
+<div style="font-size:14px;color:var(--gray);line-height:1.6">[Descrição da semana 4]</div>
+</div>
+<div style="background:#000;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:white;color:black;display:flex;align-items:center;justify-content:center;font-weight:700">60d</div>
+<div style="font-size:16px;font-weight:700;color:white">Acompanhamento</div>
+<div style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6">[Descrição do acompanhamento]</div>
+</div>
+</div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section data-screen-label="10" style="background:#fff;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center">
+<div>
+<div style="font-size:60px;font-weight:800;color:var(--ink);letter-spacing:-2px">Investimento</div>
+<div style="font-size:40px;font-weight:700;color:var(--teal);margin-bottom:24px">do projeto.</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;gap:12px;align-items:center;font-size:18px;color:var(--ink)"><div class="chip-check" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>[Entrega ou benefício 1]</div>
+<div style="display:flex;gap:12px;align-items:center;font-size:18px;color:var(--ink)"><div class="chip-check" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>[Entrega ou benefício 2]</div>
+<div style="display:flex;gap:12px;align-items:center;font-size:18px;color:var(--ink)"><div class="chip-check" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>[Entrega ou benefício 3]</div>
+<div style="display:flex;gap:12px;align-items:center;font-size:18px;color:var(--ink)"><div class="chip-check" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>[Entrega ou benefício 4]</div>
+</div>
+</div>
+<div style="background:#000;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:24px">
+<div style="font-size:15px;font-weight:700;color:var(--teal);letter-spacing:2px;text-transform:uppercase">Investimento Avraham Digital</div>
+<div style="font-size:64px;font-weight:800;color:white;letter-spacing:-1px">R$ [valor]</div>
+<div style="font-size:16px;color:rgba(255,255,255,0.6);line-height:1.6">[Descrição do investimento]</div>
+<div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px">
+<div style="font-size:14px;font-weight:700;color:white;letter-spacing:1px;text-transform:uppercase">Custos de ferramentas (pagos direto pelo cliente)</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);margin-top:10px;line-height:1.7">[Ferramenta 1]: [Custo aproximado]<br>[Ferramenta 2]: [Custo aproximado]</div>
+</div>
+</div>
+</section>
+
+<!-- CONDIÇÕES PAGAMENTO -->
+<section data-screen-label="11" style="background:#fff;justify-content:flex-start;gap:44px">
+<div>
+<div style="font-size:60px;font-weight:800;color:var(--ink);letter-spacing:-2px">Condições</div>
+<div style="font-size:40px;font-weight:700;color:var(--teal)">de pagamento.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:1">
+<div style="background:#000;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:16px">
+<div style="font-size:18px;font-weight:700;color:var(--teal)">Parcela 01 — 50%</div>
+<div style="font-size:40px;font-weight:800;color:white">R$ [valor]</div>
+<div style="font-size:16px;color:rgba(255,255,255,0.6);line-height:1.6">[Descrição da parcela 1]</div>
+</div>
+<div style="background:#000;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:16px">
+<div style="font-size:18px;font-weight:700;color:var(--teal)">Parcela 02 — 50%</div>
+<div style="font-size:40px;font-weight:800;color:white">R$ [valor]</div>
+<div style="font-size:16px;color:rgba(255,255,255,0.6);line-height:1.6">[Descrição da parcela 2]</div>
+</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+<div style="font-size:18px;color:var(--ink)"><b>Total:</b> R$ [valor] · <b>Validade:</b> 30 dias · <b>Pagamento:</b> Pix ou transferência</div>
+</div>
+</section>
+
+<!-- PRÓXIMOS PASSOS -->
+<section data-screen-label="12" style="background:var(--teal);justify-content:flex-start;gap:44px">
+<div>
+<div style="font-size:60px;font-weight:800;color:white;letter-spacing:-2px">Como</div>
+<div style="font-size:40px;font-weight:700;color:#000">começamos.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:24px;flex:1;justify-content:center;max-width:1100px">
+<div style="display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start">
+<div style="width:76px;height:76px;border-radius:50%;background:#000;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;flex-shrink:0">01</div>
+<div style="padding-top:12px"><div style="font-size:22px;font-weight:700;color:white">[Passo 1]</div><div style="font-size:17px;color:rgba(0,0,0,0.6);margin-top:4px">[Descrição do passo 1]</div></div>
+</div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start">
+<div style="width:76px;height:76px;border-radius:50%;background:#000;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;flex-shrink:0">02</div>
+<div style="padding-top:12px"><div style="font-size:22px;font-weight:700;color:white">[Passo 2]</div><div style="font-size:17px;color:rgba(0,0,0,0.6);margin-top:4px">[Descrição do passo 2]</div></div>
+</div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start">
+<div style="width:76px;height:76px;border-radius:50%;background:#000;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;flex-shrink:0">03</div>
+<div style="padding-top:12px"><div style="font-size:22px;font-weight:700;color:white">[Passo 3]</div><div style="font-size:17px;color:rgba(0,0,0,0.6);margin-top:4px">[Descrição do passo 3]</div></div>
+</div>
+</div>
+</section>
+
+<!-- CLOSING -->
+<section data-screen-label="13" style="background:#000;justify-content:center;align-items:center;text-align:center;gap:40px">
+<div>
+<div style="font-size:60px;font-weight:800;color:white;letter-spacing:-2px">Pronto para</div>
+<div style="font-size:60px;font-weight:800;color:var(--teal);letter-spacing:-2px">começarmos?</div>
+</div>
+<div style="font-size:20px;color:rgba(255,255,255,0.6);max-width:600px;line-height:1.7">Esta proposta é válida por 30 dias. [Timeline do projeto]. [Acompanhamento inclusos].</div>
+<a href="#" style="background:var(--teal);color:#000;padding:20px 44px;border-radius:12px;font-weight:700;font-size:19px;text-decoration:none;margin-top:8px">aceitar e iniciar pelo WhatsApp</a>
+<div style="margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column;gap:6px">
+<div style="font-size:16px;color:white;font-weight:600">Avraham Digital</div>
+<div style="font-size:14px;color:rgba(255,255,255,0.4)">Responsável comercial: [Nome]</div>
+</div>
+</section>
+
+</deck-stage>
+</body>
+</html>

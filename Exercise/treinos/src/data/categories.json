@@ -1,0 +1,56 @@
+[
+  {
+    "id": "academia",
+    "nome": "Academia",
+    "descricao": "Máquinas, halteres e musculação.",
+    "ordem": 1
+  },
+  {
+    "id": "forca",
+    "nome": "Força",
+    "descricao": "Treinos focados em ficar mais forte.",
+    "ordem": 2
+  },
+  {
+    "id": "forca-util",
+    "nome": "Força Útil",
+    "descricao": "Levantar, carregar, empurrar e sustentar peso.",
+    "ordem": 3
+  },
+  {
+    "id": "militar",
+    "nome": "Militar",
+    "descricao": "Força, resistência e condicionamento.",
+    "ordem": 4
+  },
+  {
+    "id": "corpo-livre",
+    "nome": "Corpo Livre",
+    "descricao": "Treinos usando o próprio corpo.",
+    "ordem": 5
+  },
+  {
+    "id": "corrida",
+    "nome": "Corrida",
+    "descricao": "Corrida, caminhada e condicionamento.",
+    "ordem": 6
+  },
+  {
+    "id": "condicionamento",
+    "nome": "Condicionamento",
+    "descricao": "Resistência e circuitos.",
+    "ordem": 7
+  },
+  {
+    "id": "mobilidade",
+    "nome": "Mobilidade",
+    "descricao": "Mobilidade, alongamento e recuperação.",
+    "ordem": 8
+  },
+  {
+    "id": "rapido",
+    "nome": "Treino Rápido",
+    "descricao": "Treinos para quando houver pouco tempo.",
+    "ordem": 9
+  }
+]

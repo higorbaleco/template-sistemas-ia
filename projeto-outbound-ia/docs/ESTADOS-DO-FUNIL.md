@@ -1,0 +1,60 @@
+# Estados do Funil
+
+## Prospecção
+
+```text
+NOVO_LEAD
+ICP_ANALISANDO
+ICP_APROVADO
+ICP_REPROVADO
+```
+
+## Diagnóstico
+
+```text
+TESTE_PENDENTE
+TESTE_ENVIADO
+AGUARDANDO_RESPOSTA
+EM_ANALISE_DE_ATENDIMENTO
+ANALISE_CONCLUIDA
+```
+
+## Oportunidade
+
+```text
+SEM_OPORTUNIDADE
+PRIORIDADE_C
+PRIORIDADE_B
+PRIORIDADE_A
+```
+
+## Outbound
+
+```text
+ABORDAGEM_PENDENTE
+ABORDAGEM_ENVIADA
+SEM_RESPOSTA
+RESPONDEU
+INTERESSADO
+NAO_INTERESSADO
+FOLLOWUP
+```
+
+## Vendas
+
+```text
+REUNIAO_AGENDADA
+REUNIAO_REALIZADA
+NO_SHOW
+PROPOSTA
+NEGOCIACAO
+GANHO
+PERDIDO
+NUTRICAO
+```
+
+# Regra
+
+Nenhum lead deve ficar sem status.
+
+Toda mudança de status deve acontecer por evento registrado.

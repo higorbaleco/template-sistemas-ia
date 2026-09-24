@@ -1,0 +1,10 @@
+:root{
+  --ease-out:cubic-bezier(.22,1,.36,1); /* @kind other */
+  --dur-fast:200ms; /* @kind other */
+  --dur-base:220ms; /* @kind other */
+  --dur-med:300ms; /* @kind other */
+  --dur-slow:700ms; /* @kind other */
+  --t-hover:var(--dur-base) var(--ease-out); /* @kind other */
+  --lift-card:-4px; /* @kind spacing */
+  --lift-card-sm:-2px; /* @kind spacing */
+}

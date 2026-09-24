@@ -1,0 +1,15 @@
+<!-- @dsCard group="Colors" viewport="700x210" name="Glass & Status" subtitle="White acrylic surfaces, semantic status dots" -->
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;background:var(--bg);padding:22px;color:var(--t1);font-family:var(--font-ui)}
+.sw{display:flex;flex-direction:column;gap:8px}.row{display:flex;gap:12px;flex-wrap:wrap}
+.chip{border-radius:14px;border:1px solid var(--gbo);overflow:hidden;min-width:150px;flex:1;background:var(--surface-card);box-shadow:var(--shadow-card)}
+.chip .cap{height:66px}.chip .meta{padding:9px 12px;display:flex;flex-direction:column;gap:2px}
+.hex{font-size:12px;color:var(--t3);font-variant-numeric:tabular-nums}
+.nm{font-size:12px;font-weight:700;color:var(--t1)}
+.tk{font-size:11px;color:var(--t2)}</style></head><body>
+<div class="row">
+<div class="glass" style="flex:1;min-width:150px;padding:16px;border-radius:16px"><div class="nm">Glass surface</div><div class="tk" style="margin-top:6px">var(--gb) white fill<br>var(--gbo) hairline<br>blur(12px)</div></div>
+<div class="glass glass-hover" style="flex:1;min-width:150px;padding:16px;border-radius:16px;border-color:var(--gho);background:var(--ghb)"><div class="nm" style="color:var(--emerald-700)">Glass hover</div><div class="tk" style="margin-top:6px">var(--ghb) fill<br>var(--gho) border</div></div>
+<div style="flex:1;min-width:150px;padding:16px;border-radius:16px;background:var(--surface-card);border:1px solid var(--gbo);display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-card)">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#0BBCA2"></span><span class="tk">live</span></div><div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#E8A13A"></span><span class="tk">warn</span></div><div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#F0555B"></span><span class="tk">danger</span></div><div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#7C5C9E"></span><span class="tk">info</span></div>
+</div></div></body></html>

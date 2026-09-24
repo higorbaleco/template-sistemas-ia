@@ -1,5 +1,0 @@
-afterEach(() => {
-  jest.clearAllMocks();
-});
-
-export {};

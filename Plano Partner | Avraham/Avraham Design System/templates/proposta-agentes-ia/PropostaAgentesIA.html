@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proposta — Agentes de IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,400..700&display=swap" rel="stylesheet">
+<link href="../../styles.css" rel="stylesheet">
+<style>
+:root{--type-title:60px;--type-subtitle:40px;--type-body:26px;--type-small:22px;--pad-top:90px;--pad-bottom:70px;--pad-x:100px;--gap-title:44px;--gap-item:24px;--teal:var(--cyan-500);--mint:var(--cyan-bright);--purple:var(--purple);--lav:var(--lavender-500);--ink:var(--t1);--gray:var(--t3);--line:var(--n-200);--off:var(--bg)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#000}
+deck-stage{display:block;width:100%;height:100vh}
+section{position:absolute;inset:0;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);font-family:inherit;display:flex;flex-direction:column}
+.eyebrow{font-size:var(--type-small);font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:3px}
+.eyebrow-dark{font-size:var(--type-small);font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:3px}
+.chip-x{width:32px;height:32px;border-radius:50%;background:#F0555B;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chip-check{width:32px;height:32px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+</style>
+</head>
+<body>
+<script src="../../templates/proposta-agentes-ia/deck-stage.js"></script>
+<deck-stage width="1920" height="1080">
+
+<!-- 01 CAPA -->
+<section data-screen-label="01" style="background:#000000;display:grid;grid-template-columns:1.1fr 1fr;gap:60px">
+<div style="display:flex;flex-direction:column;justify-content:space-between">
+<div>
+<div class="eyebrow-dark">Agentes de IA — Atendimento Automatizado</div>
+<div style="font-size:18px;color:rgba(255,255,255,0.4);margin-top:16px">Pizza do Gordo · Proposta Comercial · Maio 2026</div>
+</div>
+<div>
+<div style="font-size:80px;font-weight:800;color:white;line-height:1.05;letter-spacing:-2px">Atendimento<br>automático</div>
+<div style="font-size:44px;font-weight:700;color:var(--teal);margin-top:12px;letter-spacing:-1px">para a Pizza do Gordo.</div>
+<div style="font-size:22px;color:rgba(255,255,255,0.6);line-height:1.6;margin-top:32px;max-width:520px">Três agentes de IA que respondem pedidos, dúvidas e informações em segundos. Funcionam 24 horas por dia, sem depender da equipe para cada mensagem.</div>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<span style="font-size:20px;font-weight:600;color:white">ver proposta</span>
+<span style="color:var(--teal);font-size:24px">→</span>
+</div>
+</div>
+<div style="background:#0B0D12;border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;justify-content:center">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:10px;height:10px;border-radius:50%;background:var(--teal)"></div>
+<span style="font-size:14px;color:var(--teal);font-weight:700;letter-spacing:2px">AGENTE EM OPERAÇÃO</span>
+<span style="font-size:13px;color:rgba(255,255,255,0.3);margin-left:auto">14:32</span>
+</div>
+<div style="background:#1A1D24;border-radius:16px 16px 16px 4px;padding:16px 20px;max-width:80%;font-size:17px;color:white">Boa noite! Aqui é o atendimento da Pizza do Gordo 🍕 Como posso ajudar?</div>
+<div style="background:var(--teal);border-radius:16px 16px 4px 16px;padding:16px 20px;max-width:75%;align-self:flex-end;font-size:17px;color:black">Quero 2 pizzas grandes, uma calabresa e uma margherita</div>
+<div style="background:#1A1D24;border-radius:16px 16px 16px 4px;padding:16px 20px;max-width:85%;font-size:17px;color:white">Perfeito! 2 pizzas grandes — Calabresa e Margherita. Deseja bebida?<br><br>1️⃣ Refrigerante 2L<br>2️⃣ Suco natural<br>3️⃣ Não, obrigado</div>
+</div>
+</section>
+
+<!-- 02 RESUMO EXECUTIVO -->
+<section data-screen-label="02" style="background:#FFFFFF;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:var(--ink);line-height:1.1;letter-spacing:-2px">Atendimento sobrecarregado com pedidos e dúvidas repetidas.</div>
+<div style="font-size:var(--type-subtitle);font-weight:600;color:var(--teal);margin-top:16px">Resumo do projeto.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="background:#000000;border-radius:16px;padding:28px;border-left:4px solid #F0555B">
+<div style="font-size:14px;font-weight:700;color:#F0555B;letter-spacing:2px;text-transform:uppercase">Problema identificado</div>
+<div style="font-size:18px;color:rgba(255,255,255,0.75);margin-top:8px;line-height:1.6">Equipe responde manualmente pedidos, cardápio e horários — perde tempo e perde clientes fora do horário.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div style="background:var(--off);border-radius:16px;padding:24px">
+<div style="font-size:44px;font-weight:800;color:var(--teal)">30</div>
+<div style="font-size:15px;color:var(--gray);font-weight:600">dias de implementação</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:24px">
+<div style="font-size:44px;font-weight:800;color:var(--purple)">60</div>
+<div style="font-size:15px;color:var(--gray);font-weight:600">dias de acompanhamento</div>
+</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:24px">
+<div style="font-size:14px;font-weight:700;color:var(--ink);letter-spacing:2px;text-transform:uppercase">Solução proposta</div>
+<div style="font-size:17px;color:var(--gray);margin-top:8px;line-height:1.6">3 agentes de IA configurados para pedidos, eventos e canal B2B. 30 dias de implementação. 60 dias de acompanhamento.</div>
+</div>
+</div>
+</section>
+
+<!-- 03 DIAGNÓSTICO -->
+<section data-screen-label="03" style="background:#FFFFFF;justify-content:flex-start;gap:var(--gap-title)">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:var(--ink);letter-spacing:-2px">Cada mensagem respondida</div>
+<div style="font-size:var(--type-subtitle);font-weight:700;color:var(--teal);margin-top:8px">manualmente é uma oportunidade perdida.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:1">
+<div style="background:#000000;border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:20px">
+<div style="font-size:18px;font-weight:700;color:white;letter-spacing:1px;text-transform:uppercase">Hoje</div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">Clientes esperam horas por resposta fora do horário comercial</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">Equipe repete as mesmas respostas sobre cardápio e horários</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">Pedidos B2B e de consumidor final se misturam no mesmo canal</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:19px;color:rgba(255,255,255,0.8);padding-top:2px">Sem dados sobre perguntas perdidas ou clientes que desistem</span></div>
+</div>
+<div style="background:var(--off);border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:20px">
+<div style="font-size:18px;font-weight:700;color:var(--ink);letter-spacing:1px;text-transform:uppercase">Com os agentes</div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:19px;color:var(--ink);padding-top:2px">Resposta em segundos, 24 horas por dia, todos os dias</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:19px;color:var(--ink);padding-top:2px">Perguntas repetitivas eliminadas da rotina da equipe</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:19px;color:var(--ink);padding-top:2px">Agente dedicado separa fluxo B2B do consumidor final</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:19px;color:var(--ink);padding-top:2px">Dados de conversas disponíveis para decisões de gestão</span></div>
+</div>
+</div>
+</section>
+
+<!-- 04 IMPACTO EM 5 CAMADAS -->
+<section data-screen-label="04" style="background:#000000;justify-content:flex-start;gap:var(--gap-title)">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:white;letter-spacing:-2px">Onde o problema impacta</div>
+<div style="font-size:var(--type-subtitle);font-weight:700;color:var(--teal);margin-top:8px">a operação da Pizza do Gordo.</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;flex:1">
+<div style="background:linear-gradient(160deg,#0BBCA2,#00A88F);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">GESTÃO</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">Sem visibilidade sobre perguntas perdidas e clientes que desistem sem resposta.</div>
+</div>
+<div style="background:linear-gradient(160deg,#0BBCA2,#088A78);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">OPERACIONAL</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">Equipe gasta horas respondendo as mesmas dúvidas em vez de focar na cozinha.</div>
+</div>
+<div style="background:linear-gradient(160deg,#088A78,#0A6E62);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">CLIENTE FINAL</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">Clientes sem resposta rápida migram para concorrentes.</div>
+</div>
+<div style="background:linear-gradient(160deg,#0A6E62,#4b227a);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">MERCADO</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">Concorrentes com atendimento automático respondem em segundos.</div>
+</div>
+<div style="background:linear-gradient(160deg,#4b227a,#2E1650);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px;color:white">
+<div style="font-size:15px;font-weight:700;letter-spacing:1px">FINANCEIRO</div>
+<div style="font-size:15px;line-height:1.6;opacity:0.95">Pedidos sem retorno, ticket médio baixo.</div>
+<div style="font-size:12px;font-weight:700;letter-spacing:1px;opacity:0.7;margin-top:auto">CALCULADO APÓS BRIEFING</div>
+</div>
+</div>
+</section>
+
+<!-- 05 ARQUITETURA -->
+<section data-screen-label="05" style="background:#FFFFFF;display:grid;grid-template-columns:1fr 1.1fr;gap:60px">
+<div style="display:flex;flex-direction:column;gap:32px;justify-content:center">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:var(--ink);letter-spacing:-2px">Arquitetura</div>
+<div style="font-size:var(--type-subtitle);font-weight:700;color:var(--teal)">da solução.</div>
+</div>
+<div style="font-size:16px;font-weight:700;color:var(--gray);letter-spacing:2px;text-transform:uppercase">Fluxo de atendimento</div>
+<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:18px;font-weight:600;color:var(--ink)">
+<span style="background:var(--off);padding:12px 20px;border-radius:10px">Cliente</span><span style="color:var(--teal)">→</span>
+<span style="background:var(--off);padding:12px 20px;border-radius:10px">Agente IA</span><span style="color:var(--teal)">→</span>
+<span style="background:var(--off);padding:12px 20px;border-radius:10px">Base de conhecimento</span><span style="color:var(--teal)">→</span>
+<span style="background:var(--off);padding:12px 20px;border-radius:10px">WhatsApp</span>
+</div>
+<div>
+<div style="font-size:16px;font-weight:700;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">Canais conectados</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:12px;align-items:center;font-size:17px;color:var(--ink)"><div class="chip-check" style="width:24px;height:24px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>WhatsApp</div>
+<div style="display:flex;gap:12px;align-items:center;font-size:17px;color:var(--ink)"><div class="chip-check" style="width:24px;height:24px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>Instagram</div>
+<div style="display:flex;gap:12px;align-items:center;font-size:17px;color:var(--ink)"><div class="chip-check" style="width:24px;height:24px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>Site</div>
+</div>
+</div>
+</div>
+<div style="background:#000000;border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:24px;justify-content:center">
+<div style="display:flex;gap:20px;align-items:flex-start">
+<div style="font-size:32px;font-weight:800;color:var(--teal);flex-shrink:0">01</div>
+<div><div style="font-size:20px;font-weight:700;color:white">Agente de Pedidos e Cardápio</div><div style="font-size:16px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.6">Responde sabores, tamanhos e valores. Orienta o cliente e encaminha o pedido ao WhatsApp com contexto completo.</div></div>
+</div>
+<div style="display:flex;gap:20px;align-items:flex-start">
+<div style="font-size:32px;font-weight:800;color:var(--teal);flex-shrink:0">02</div>
+<div><div style="font-size:20px;font-weight:700;color:white">Agente de Eventos e Informações</div><div style="font-size:16px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.6">Responde horários, funcionamento, reservas e eventos. Elimina perguntas repetitivas antes do contato humano.</div></div>
+</div>
+<div style="display:flex;gap:20px;align-items:flex-start">
+<div style="font-size:32px;font-weight:800;color:var(--teal);flex-shrink:0">03</div>
+<div><div style="font-size:20px;font-weight:700;color:white">Agente de Congelados e B2B</div><div style="font-size:16px;color:rgba(255,255,255,0.65);margin-top:6px;line-height:1.6">Atende interessados em congelados e distribuição. Qualifica compradores B2B separando do consumidor final.</div></div>
+</div>
+</div>
+</section>
+
+<!-- 06 O QUE ESTÁ INCLUSO -->
+<section data-screen-label="06" style="background:#FFFFFF;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:var(--ink);letter-spacing:-2px">O que está</div>
+<div style="font-size:var(--type-subtitle);font-weight:700;color:var(--teal)">incluso.</div>
+<div style="font-size:19px;color:var(--gray);line-height:1.7;margin-top:24px">Tudo que você precisa para automatizar o pré-atendimento e organizar o fluxo de pedidos da Pizza do Gordo.</div>
+</div>
+<div style="background:#000000;border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">Briefing completo: cardápio, horários, regras, eventos e FAQ</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">Base de conhecimento estruturada para os 3 agentes</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">Criação e configuração de 3 agentes de IA independentes</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">Configuração nos canais disponíveis na plataforma contratada</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">Teste de estresse na semana 3 com a equipe</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span style="font-size:18px;color:white;padding-top:2px">60 dias de acompanhamento após a entrega funcional</span></div>
+</div>
+</section>
+
+<!-- 07 LIMITES -->
+<section data-screen-label="07" style="background:#FFFFFF;justify-content:flex-start;gap:var(--gap-title)">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:var(--ink);letter-spacing:-2px">Limites e</div>
+<div style="font-size:var(--type-subtitle);font-weight:700;color:var(--teal)">responsabilidades.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:1">
+<div style="background:#000000;border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:18px">
+<div style="font-size:18px;font-weight:700;color:white;letter-spacing:1px;text-transform:uppercase">Fora do escopo</div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">Novos agentes além dos 3 previstos no projeto</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">Integração com sistema de cozinha, PDV, ERP ou delivery</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">Pagamento de plataformas, créditos, instâncias ou canais</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">Suporte técnico de plataformas terceiras</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><div class="chip-x" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div><span style="font-size:17px;color:rgba(255,255,255,0.75)">Campanhas de marketing ou identidade visual</span></div>
+</div>
+<div style="background:var(--off);border-radius:20px;padding:44px;display:flex;flex-direction:column;gap:18px">
+<div style="font-size:18px;font-weight:700;color:var(--ink);letter-spacing:1px;text-transform:uppercase">Pizza do Gordo providencia</div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:17px;color:var(--ink)">ℹ️ Cardápio: sabores, tamanhos, valores, horários e regras</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:17px;color:var(--ink)">ℹ️ Contratação e manutenção da plataforma de IA e créditos</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:17px;color:var(--ink)">ℹ️ Disponibilidade para teste de estresse na semana 3</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="font-size:17px;color:var(--ink)">ℹ️ Atendimento humano para receber pedidos e levar à cozinha</span></div>
+</div>
+</div>
+</section>
+
+<!-- 08 TABELA RESPONSABILIDADES -->
+<section data-screen-label="08" style="background:#FFFFFF;justify-content:flex-start;gap:var(--gap-title)">
+<div class="eyebrow">Matriz de Responsabilidades</div>
+<div style="flex:1;display:flex;flex-direction:column">
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;background:#000000;border-radius:12px 12px 0 0;padding:20px 24px">
+<div style="font-size:15px;font-weight:700;color:white;letter-spacing:1px">ITEM</div>
+<div style="font-size:15px;font-weight:700;color:var(--teal);letter-spacing:1px">AVRAHAM DIGITAL</div>
+<div style="font-size:15px;font-weight:700;color:white;letter-spacing:1px">PIZZA DO GORDO</div>
+<div style="font-size:15px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:1px">TERCEIROS</div>
+</div>
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid var(--line);align-items:center">
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Briefing e base</div><div style="font-size:15px;color:var(--gray)">Condução e estruturação</div><div style="font-size:15px;color:var(--gray)">Fornece e valida</div><div style="font-size:15px;color:var(--gray)">Não se aplica</div>
+</div>
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid var(--line);align-items:center;background:var(--off)">
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Plataforma de IA</div><div style="font-size:15px;color:var(--gray)">Orienta a escolha</div><div style="font-size:15px;color:var(--gray)">Contratação e pagamento</div><div style="font-size:15px;color:var(--gray)">Fornece os recursos</div>
+</div>
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid var(--line);align-items:center">
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Criação dos 3 agentes</div><div style="font-size:15px;color:var(--gray)">Responsável por todo o escopo</div><div style="font-size:15px;color:var(--gray)">Acessos e validação</div><div style="font-size:15px;color:var(--gray)">Apoio técnico</div>
+</div>
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid var(--line);align-items:center;background:var(--off)">
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Cardápio e conteúdo</div><div style="font-size:15px;color:var(--gray)">Organiza na base</div><div style="font-size:15px;color:var(--gray)">Fornece e mantém</div><div style="font-size:15px;color:var(--gray)">Não se aplica</div>
+</div>
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid var(--line);align-items:center">
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Recepção dos pedidos</div><div style="font-size:15px;color:var(--gray)">Agente direciona, não fecha</div><div style="font-size:15px;color:var(--gray)">Atendimento e cozinha</div><div style="font-size:15px;color:var(--gray)">Não se aplica</div>
+</div>
+<div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:18px 24px;align-items:center;background:var(--off);border-radius:0 0 12px 12px">
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Suporte da plataforma</div><div style="font-size:15px;color:var(--gray)">Apoio na configuração</div><div style="font-size:15px;color:var(--gray)">Aciona o fornecedor</div><div style="font-size:15px;color:var(--gray)">Responsável pelo suporte</div>
+</div>
+</div>
+</section>
+
+<!-- 09 RISCOS -->
+<section data-screen-label="09" style="background:#000000;justify-content:flex-start;gap:var(--gap-title)">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:white;letter-spacing:-2px">O que pode acontecer</div>
+<div style="font-size:var(--type-subtitle);font-weight:700;color:var(--teal);margin-top:8px">e como lidamos.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1">
+<div style="background:#0B0D12;border-radius:16px;padding:36px;border-left:4px solid var(--teal);display:flex;flex-direction:column;gap:16px">
+<div style="font-size:20px;font-weight:700;color:white">Base de conhecimento incompleta</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:#F0555B">Risco:</b> Sem cardápio, horários e regras completos, o agente responde com lacunas.</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:var(--teal)">Mitigação:</b> Briefing estruturado na semana 1 com formulário guiado.</div>
+</div>
+<div style="background:#0B0D12;border-radius:16px;padding:36px;border-left:4px solid var(--purple);display:flex;flex-direction:column;gap:16px">
+<div style="font-size:20px;font-weight:700;color:white">Interrupção por falta de crédito</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:#F0555B">Risco:</b> Se créditos da plataforma vencerem, o agente para imediatamente.</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:var(--teal)">Mitigação:</b> Orientação sobre créditos mínimos e alertas configurados.</div>
+</div>
+<div style="background:#0B0D12;border-radius:16px;padding:36px;border-left:4px solid var(--lav);display:flex;flex-direction:column;gap:16px">
+<div style="font-size:20px;font-weight:700;color:white">Expectativa de substituição total</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:#F0555B">Risco:</b> O agente automatiza o pré-atendimento — não substitui a operação humana.</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);line-height:1.6"><b style="color:var(--teal)">Mitigação:</b> Alinhamento explícito no briefing: agente direciona, equipe fecha.</div>
+</div>
+</div>
+</section>
+
+<!-- 10 CRONOGRAMA -->
+<section data-screen-label="10" style="background:#FFFFFF;justify-content:flex-start;gap:var(--gap-title)">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:var(--ink);letter-spacing:-2px">90 dias de projeto</div>
+<div style="font-size:20px;color:var(--gray);margin-top:8px">Cronograma: 30 dias do kickoff ao projeto consolidado</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:16px;flex:1">
+<div style="background:var(--off);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:var(--teal);color:white;display:flex;align-items:center;justify-content:center;font-weight:700">S1</div>
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Briefing</div>
+<div style="font-size:14px;color:var(--gray);line-height:1.6">Contrato em 24h. Kickoff para coleta de cardápio, horários e regras.</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:var(--teal);color:white;display:flex;align-items:center;justify-content:center;font-weight:700">S2</div>
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Build</div>
+<div style="font-size:14px;color:var(--gray);line-height:1.6">Base de conhecimento criada. 3 agentes configurados internamente.</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-weight:700">S3</div>
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Teste de estresse</div>
+<div style="font-size:14px;color:var(--gray);line-height:1.6">Cliente simula pedidos e reservas. Ajustes de linguagem.</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-weight:700">S4</div>
+<div style="font-size:16px;font-weight:700;color:var(--ink)">Go-Live</div>
+<div style="font-size:14px;color:var(--gray);line-height:1.6">Conexão aos canais oficiais e primeiros atendimentos reais.</div>
+</div>
+<div style="background:#000000;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="width:44px;height:44px;border-radius:50%;background:white;color:black;display:flex;align-items:center;justify-content:center;font-weight:700">60d</div>
+<div style="font-size:16px;font-weight:700;color:white">Acompanhamento</div>
+<div style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6">Refinamento, ajustes de comportamento e correção de falhas em produção.</div>
+</div>
+</div>
+</section>
+
+<!-- 11 INVESTIMENTO -->
+<section data-screen-label="11" style="background:#FFFFFF;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:var(--ink);letter-spacing:-2px">Investimento</div>
+<div style="font-size:var(--type-subtitle);font-weight:700;color:var(--teal);margin-bottom:24px">do projeto.</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;gap:12px;align-items:center;font-size:18px;color:var(--ink)"><div class="chip-check" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>Briefing estruturado</div>
+<div style="display:flex;gap:12px;align-items:center;font-size:18px;color:var(--ink)"><div class="chip-check" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>3 agentes configurados</div>
+<div style="display:flex;gap:12px;align-items:center;font-size:18px;color:var(--ink)"><div class="chip-check" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>Teste de estresse</div>
+<div style="display:flex;gap:12px;align-items:center;font-size:18px;color:var(--ink)"><div class="chip-check" style="width:26px;height:26px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>60 dias de acompanhamento</div>
+</div>
+</div>
+<div style="background:#000000;border-radius:20px;padding:48px;display:flex;flex-direction:column;gap:24px">
+<div style="font-size:15px;font-weight:700;color:var(--teal);letter-spacing:2px;text-transform:uppercase">Investimento Avraham Digital</div>
+<div style="font-size:64px;font-weight:800;color:white;letter-spacing:-1px">R$ 12.900</div>
+<div style="font-size:16px;color:rgba(255,255,255,0.6);line-height:1.6">Criação, configuração, 30 dias de implementação e 60 dias de acompanhamento</div>
+<div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px">
+<div style="font-size:14px;font-weight:700;color:white;letter-spacing:1px;text-transform:uppercase">Custos de ferramentas (pagos direto pelo cliente)</div>
+<div style="font-size:15px;color:rgba(255,255,255,0.6);margin-top:10px;line-height:1.7">WhatsApp Business: ~R$97/mês<br>Plataforma de agentes de IA: Plano + Créditos</div>
+</div>
+</div>
+</section>
+
+<!-- 12 CONDIÇÕES PAGAMENTO -->
+<section data-screen-label="12" style="background:#FFFFFF;justify-content:flex-start;gap:var(--gap-title)">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:var(--ink);letter-spacing:-2px">Condições</div>
+<div style="font-size:var(--type-subtitle);font-weight:700;color:var(--teal)">de pagamento.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:1">
+<div style="background:#000000;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:16px">
+<div style="font-size:18px;font-weight:700;color:var(--teal)">Parcela 01 — 50%</div>
+<div style="font-size:40px;font-weight:800;color:white">R$ 6.450</div>
+<div style="font-size:16px;color:rgba(255,255,255,0.6);line-height:1.6">Na assinatura do contrato. Início imediato do briefing e coleta de informações da operação.</div>
+</div>
+<div style="background:#000000;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:16px">
+<div style="font-size:18px;font-weight:700;color:var(--teal)">Parcela 02 — 50%</div>
+<div style="font-size:40px;font-weight:800;color:white">R$ 6.450</div>
+<div style="font-size:16px;color:rgba(255,255,255,0.6);line-height:1.6">Na primeira entrega funcional. Agentes criados e prontos para teste.</div>
+</div>
+</div>
+<div style="background:var(--off);border-radius:16px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+<div style="font-size:18px;color:var(--ink)"><b>Total:</b> R$ 12.900 · <b>Validade:</b> 30 dias · <b>Pagamento:</b> Pix ou transferência</div>
+</div>
+</section>
+
+<!-- 13 COMO COMEÇAMOS -->
+<section data-screen-label="13" style="background:#0BBCA2;justify-content:flex-start;gap:var(--gap-title)">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:white;letter-spacing:-2px">Como</div>
+<div style="font-size:var(--type-subtitle);font-weight:700;color:#000000">começamos.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:24px;flex:1;justify-content:center;max-width:1100px">
+<div style="display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start">
+<div style="width:76px;height:76px;border-radius:50%;background:#000000;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;flex-shrink:0">01</div>
+<div style="padding-top:12px"><div style="font-size:22px;font-weight:700;color:white">Assinatura e Kickoff</div><div style="font-size:17px;color:rgba(0,0,0,0.6);margin-top:4px">Contrato enviado em até 24h. Reunião para coleta de cardápio, horários, regras e objetivos.</div></div>
+</div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start">
+<div style="width:76px;height:76px;border-radius:50%;background:#000000;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;flex-shrink:0">02</div>
+<div style="padding-top:12px"><div style="font-size:22px;font-weight:700;color:white">Escolha da plataforma</div><div style="font-size:17px;color:rgba(0,0,0,0.6);margin-top:4px">Avraham indica as melhores opções. A Pizza do Gordo contrata e ativa antes da semana 2.</div></div>
+</div>
+<div style="display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start">
+<div style="width:76px;height:76px;border-radius:50%;background:#000000;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;flex-shrink:0">03</div>
+<div style="padding-top:12px"><div style="font-size:22px;font-weight:700;color:white">Agentes no ar</div><div style="font-size:17px;color:rgba(0,0,0,0.6);margin-top:4px">Ao final da semana 4, os 3 agentes estão testados e ativos, com 60 dias de acompanhamento.</div></div>
+</div>
+</div>
+</section>
+
+<!-- 14 CLOSING -->
+<section data-screen-label="14" style="background:#000000;justify-content:center;align-items:center;text-align:center;gap:40px">
+<div>
+<div style="font-size:var(--type-title);font-weight:800;color:white;letter-spacing:-2px">Pronto para</div>
+<div style="font-size:var(--type-title);font-weight:800;color:var(--teal);letter-spacing:-2px">começarmos?</div>
+</div>
+<div style="font-size:20px;color:rgba(255,255,255,0.6);max-width:600px;line-height:1.7">Esta proposta é válida por 30 dias. Os agentes entram no ar em 30 dias, com 60 dias de acompanhamento inclusos.</div>
+<a href="#" style="background:var(--teal);color:#000000;padding:20px 44px;border-radius:12px;font-weight:700;font-size:19px;text-decoration:none;margin-top:8px">aceitar e iniciar pelo WhatsApp</a>
+<div style="margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column;gap:6px">
+<div style="font-size:16px;color:white;font-weight:600">Avraham Digital</div>
+<div style="font-size:14px;color:rgba(255,255,255,0.4)">Responsável comercial: Higor</div>
+</div>
+</section>
+
+</deck-stage>
+</body>
+</html>

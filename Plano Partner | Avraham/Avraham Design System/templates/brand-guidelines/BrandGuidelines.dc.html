@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Brand Guidelines" description="Manual de identidade visual completo — logotipo, cores, tipografia, usos e aplicações" -->
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,400..700&display=swap" rel="stylesheet">
+<style>
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<!-- SLIDE 01 — CAPA -->
+<section data-screen-label="01" style="background:#000000;display:flex;flex-direction:column;justify-content:space-between;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif">
+<div></div>
+<div>
+<div style="font-size:148px;font-weight:800;line-height:0.92;color:#0BBCA2;letter-spacing:-4px">Brand</div>
+<div style="font-size:148px;font-weight:800;line-height:0.92;color:#0BBCA2;letter-spacing:-4px">Guidelines</div>
+<div style="margin-top:32px;font-size:28px;font-weight:400;color:rgba(255,255,255,0.6);line-height:1.5;max-width:560px">Guia de uso da identidade visual<br>da marca Avraham Digital</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;width:100%">
+<img src="../../uploads/logo-branca.svg" style="height:52px;opacity:0.9" alt="Avraham logo">
+<div style="font-size:22px;color:rgba(255,255,255,0.4);font-weight:500">2026</div>
+</div>
+</section>
+
+<!-- SLIDE 02 — SUMÁRIO -->
+<section data-screen-label="02" style="background:#FFFFFF;display:flex;flex-direction:column;justify-content:center;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif">
+<div style="display:flex;gap:16px;align-items:baseline;margin-bottom:80px">
+<span style="font-size:18px;color:#0BBCA2;font-weight:600">Brand Guidelines</span>
+<span style="font-size:18px;color:#111114;font-weight:600">Avraham Digital</span>
+<span style="font-size:18px;color:#6E6F76;font-weight:400">2026</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px 160px;max-width:1100px;margin:0 auto">
+<div style="display:flex;align-items:baseline;gap:20px">
+<span style="font-size:72px;font-weight:800;color:#0BBCA2;line-height:1">01</span>
+<span style="font-size:22px;font-weight:700;color:#111114">Logotipo</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px">
+<span style="font-size:72px;font-weight:800;color:#0BBCA2;line-height:1">05</span>
+<div><div style="font-size:22px;font-weight:700;color:#111114">Tipografia &amp; Hierarquia</div><div style="font-size:16px;color:#6E6F76;margin-top:2px">dos caracteres</div></div>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px">
+<span style="font-size:72px;font-weight:800;color:#0BBCA2;line-height:1">02</span>
+<div><div style="font-size:22px;font-weight:700;color:#111114">Variantes</div><div style="font-size:16px;color:#6E6F76;margin-top:2px">do logotipo</div></div>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px">
+<span style="font-size:72px;font-weight:800;color:#0BBCA2;line-height:1">06</span>
+<div><div style="font-size:22px;font-weight:700;color:#111114">Ícone &amp; Símbolo</div></div>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px">
+<span style="font-size:72px;font-weight:800;color:#0BBCA2;line-height:1">03</span>
+<div><div style="font-size:22px;font-weight:700;color:#111114">Usos incorretos</div><div style="font-size:16px;color:#6E6F76;margin-top:2px">do logotipo</div></div>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px">
+<span style="font-size:72px;font-weight:800;color:#0BBCA2;line-height:1">07</span>
+<span style="font-size:22px;font-weight:700;color:#111114">Aplicações</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px">
+<span style="font-size:72px;font-weight:800;color:#0BBCA2;line-height:1">04</span>
+<span style="font-size:22px;font-weight:700;color:#111114">Paleta de cores</span>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 03 — SOBRE A MARCA -->
+<section data-screen-label="03" style="background:#0BBCA2;display:grid;grid-template-columns:1fr 1fr;font-family:'Plus Jakarta Sans',sans-serif;position:relative">
+<div style="background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;padding:60px">
+<img src="../../uploads/icon-degrade.svg" style="width:360px;height:360px;object-fit:contain" alt="Avraham icon">
+</div>
+<div style="display:flex;flex-direction:column;justify-content:center;padding:80px">
+<div style="background:#000000;border-radius:4px;padding:56px;color:white;font-size:21px;line-height:1.7;font-weight:400">
+Avraham Digital é uma empresa de tecnologia especializada em automação inteligente via WhatsApp e IA. A promessa é simples: transformar a comunicação digital do seu negócio em resultados reais.<br><br>Todo o sistema visual serve para tornar essa promessa crível e reconhecível. A identidade deve expressar duas coisas ao mesmo tempo: expertise técnica de ponta e proximidade humana acessível. Cada escolha a seguir decorre dessa tensão entre tecnologia e humanidade.
+</div>
+</div>
+<div style="position:absolute;bottom:28px;right:40px;font-size:15px;color:rgba(255,255,255,0.7);font-weight:500">Designed by Avraham</div>
+<div style="position:absolute;top:28px;right:40px;display:flex;gap:32px;font-size:15px">
+<span style="color:rgba(255,255,255,0.7)">Brand Guidelines</span>
+<span style="color:white;font-weight:600">Avraham Digital</span>
+<span style="color:rgba(255,255,255,0.7)">2026</span>
+</div>
+</section>
+
+<!-- SLIDE 04 — SEÇÃO 01: LOGOTIPO -->
+<section data-screen-label="04" style="background:#000000;display:flex;align-items:flex-end;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;position:relative;overflow:hidden">
+<div style="position:absolute;top:-80px;left:-40px;font-size:580px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.08);pointer-events:none;letter-spacing:-20px">01</div>
+<div style="position:relative;z-index:1">
+<div style="font-size:80px;font-weight:800;color:white;letter-spacing:-1px">01</div>
+<div style="font-size:52px;font-weight:800;color:#0BBCA2;text-transform:uppercase;letter-spacing:4px">Logotipo</div>
+</div>
+</section>
+
+<!-- SLIDE 05 — LOGO PRINCIPAL -->
+<section data-screen-label="05" style="background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:48px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Logotipo Principal</div>
+<div style="background:#000000;border-radius:20px;padding:64px 120px;display:flex;align-items:center;justify-content:center">
+<img src="../../uploads/logo-branca.svg" style="height:120px" alt="Avraham logo white">
+</div>
+<div style="font-size:17px;color:#6E6F76;max-width:680px;text-align:center;line-height:1.6">O logotipo Avraham combina o ícone (símbolo de proteção e inteligência) com a wordmark. Deve ser usado preferencialmente na versão branca sobre fundo escuro.</div>
+</section>
+
+<!-- SLIDE 06 — LOGO EM CONTEXTO CLARO -->
+<section data-screen-label="06" style="background:#F7F6F5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:48px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Versão sobre fundo claro</div>
+<div style="background:#FFFFFF;border-radius:20px;padding:64px 120px;display:flex;align-items:center;justify-content:center;border:1px solid #E7E5E2">
+<img src="../../uploads/03 fundo branco letra preta.png" style="height:120px;object-fit:contain" alt="Avraham logo black">
+</div>
+<div style="font-size:17px;color:#6E6F76;max-width:680px;text-align:center;line-height:1.6">Para aplicações sobre fundos claros, utilizar a versão com tipografia preta. O ícone mantém as cores originais do degradê.</div>
+</section>
+
+<!-- SLIDE 07 — SEÇÃO 02: VARIANTES -->
+<section data-screen-label="07" style="background:#000000;display:flex;align-items:flex-end;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;position:relative;overflow:hidden">
+<div style="position:absolute;top:-80px;left:-40px;font-size:580px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.08);pointer-events:none;letter-spacing:-20px">02</div>
+<div style="position:relative;z-index:1">
+<div style="font-size:80px;font-weight:800;color:white;letter-spacing:-1px">02</div>
+<div style="font-size:44px;font-weight:800;color:white;text-transform:uppercase;letter-spacing:4px">Variantes</div>
+<div style="font-size:52px;font-weight:800;color:#0BBCA2;text-transform:uppercase;letter-spacing:4px">Logotipo</div>
+</div>
+</section>
+
+<!-- SLIDE 08 — VARIANTES DO LOGO -->
+<section data-screen-label="08" style="background:#FFFFFF;display:flex;flex-direction:column;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:40px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Variantes do Logotipo</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1">
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="font-size:15px;font-weight:600;color:#111114">Branca sobre escuro</div>
+<div style="background:#000000;border-radius:16px;flex:1;display:flex;align-items:center;justify-content:center;padding:40px">
+<img src="../../uploads/01.png" style="max-width:100%;max-height:160px;object-fit:contain" alt="Logo white on dark">
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="font-size:15px;font-weight:600;color:#111114">Preta sobre claro</div>
+<div style="background:#FFFFFF;border-radius:16px;flex:1;display:flex;align-items:center;justify-content:center;padding:40px;border:1px solid #E7E5E2">
+<img src="../../uploads/03 fundo branco letra preta.png" style="max-width:100%;max-height:160px;object-fit:contain" alt="Logo black on light">
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="font-size:15px;font-weight:600;color:#111114">Cyan degradê</div>
+<div style="background:#000000;border-radius:16px;flex:1;display:flex;align-items:center;justify-content:center;padding:40px">
+<img src="../../uploads/04 fundo branco letra verde.png" style="max-width:100%;max-height:160px;object-fit:contain" alt="Logo cyan gradient">
+</div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 09 — ÍCONE / SÍMBOLO VARIANTES -->
+<section data-screen-label="09" style="background:#FFFFFF;display:flex;flex-direction:column;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:40px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Ícone — Variantes de cor</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px;flex:1">
+<div style="background:#0BBCA2;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:32px">
+<img src="../../uploads/icon-bg-branco.svg" style="width:160px;height:160px;filter:brightness(0) invert(1)" alt="Icon white on emerald">
+</div>
+<div style="background:#000000;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:32px">
+<img src="../../uploads/icon-bg-branco.svg" style="width:160px;height:160px;filter:brightness(0) invert(1)" alt="Icon white on black">
+</div>
+<div style="background:#4b227a;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:32px">
+<img src="../../uploads/icon-bg-branco.svg" style="width:160px;height:160px;filter:brightness(0) invert(1)" alt="Icon white on purple">
+</div>
+<div style="background:#7C5C9E;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:32px">
+<img src="../../uploads/icon-bg-branco.svg" style="width:160px;height:160px;filter:brightness(0) invert(1)" alt="Icon white on lavender">
+</div>
+<div style="background:#111114;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:32px">
+<img src="../../uploads/icon-degrade.svg" style="width:160px;height:160px" alt="Icon gradient on dark">
+</div>
+<div style="background:#00eed0;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:32px">
+<img src="../../uploads/icon-bg-branco.svg" style="width:160px;height:160px" alt="Icon dark on mint">
+</div>
+<div style="background:#F7F6F5;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:32px;border:1px solid #E7E5E2">
+<img src="../../uploads/icon-bg-branco.svg" style="width:160px;height:160px" alt="Icon dark on light">
+</div>
+<div style="background:#FFFFFF;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:32px;border:1px solid #E7E5E2">
+<img src="../../uploads/icon-degrade.svg" style="width:160px;height:160px" alt="Icon gradient on white">
+</div>
+</div>
+</section>
+
+<!-- SLIDE 10 — SEÇÃO 03: USOS INCORRETOS -->
+<section data-screen-label="10" style="background:#000000;display:flex;align-items:flex-end;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;position:relative;overflow:hidden">
+<div style="position:absolute;top:-80px;left:-40px;font-size:580px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.08);pointer-events:none;letter-spacing:-20px">03</div>
+<div style="position:relative;z-index:1">
+<div style="font-size:80px;font-weight:800;color:white;letter-spacing:-1px">03</div>
+<div style="font-size:44px;font-weight:800;color:white;text-transform:uppercase;letter-spacing:4px">Usos Incorretos</div>
+<div style="font-size:52px;font-weight:800;color:#0BBCA2;text-transform:uppercase;letter-spacing:4px">Logotipo</div>
+</div>
+</section>
+
+<!-- SLIDE 11 — REGRAS DE USO -->
+<section data-screen-label="11" style="background:#FFFFFF;display:flex;flex-direction:column;padding:60px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:32px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Regras de uso do logotipo</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px 64px;flex:1">
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:28px;height:28px;border-radius:50%;background:#0BBCA2;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+<span style="font-size:16px;font-weight:600;color:#111114">Logotipo principal</span>
+</div>
+<div style="background:#000000;border-radius:12px;padding:36px;display:flex;align-items:center;justify-content:center;flex:1">
+<img src="../../uploads/logo-branca.svg" style="height:56px" alt="Correct usage">
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:28px;height:28px;border-radius:50%;background:#F0555B;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>
+<span style="font-size:16px;font-weight:600;color:#111114">Não alterar a tipografia</span>
+</div>
+<div style="background:#000000;border-radius:12px;padding:36px;display:flex;align-items:center;justify-content:center;flex:1;position:relative">
+<img src="../../uploads/logo-branca.svg" style="height:56px;opacity:0.15" alt="Wrong font">
+<span style="position:absolute;font-family:Georgia,serif;font-size:36px;font-weight:700;color:white;letter-spacing:4px">AVRAHAM</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:28px;height:28px;border-radius:50%;background:#F0555B;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>
+<span style="font-size:16px;font-weight:600;color:#111114">Não modificar as cores</span>
+</div>
+<div style="background:#000000;border-radius:12px;padding:36px;display:flex;align-items:center;justify-content:center;flex:1">
+<img src="../../uploads/logo-branca.svg" style="height:56px;filter:hue-rotate(120deg) saturate(2) brightness(1.2)" alt="Wrong colors">
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:28px;height:28px;border-radius:50%;background:#F0555B;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>
+<span style="font-size:16px;font-weight:600;color:#111114">Não rotacionar o logotipo</span>
+</div>
+<div style="background:#000000;border-radius:12px;padding:36px;display:flex;align-items:center;justify-content:center;flex:1">
+<img src="../../uploads/logo-branca.svg" style="height:56px;transform:rotate(-15deg)" alt="Wrong rotation">
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="width:28px;height:28px;border-radius:50%;background:#F0555B;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>
+<span style="font-size:16px;font-weight:600;color:#111114">Não esticar o logotipo</span>
+</div>
+<div style="background:#000000;border-radius:12px;padding:36px;display:flex;align-items:center;justify-content:center;flex:1">
+<img src="../../uploads/logo-branca.svg" style="height:56px;transform:scaleX(1.4)" alt="Wrong stretch">
+</div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 12 — SEÇÃO 04: PALETA DE CORES -->
+<section data-screen-label="12" style="background:#000000;display:flex;align-items:flex-end;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;position:relative;overflow:hidden">
+<div style="position:absolute;top:-80px;left:-40px;font-size:580px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.08);pointer-events:none;letter-spacing:-20px">04</div>
+<div style="position:relative;z-index:1">
+<div style="font-size:80px;font-weight:800;color:white;letter-spacing:-1px">04</div>
+<div style="font-size:52px;font-weight:800;color:#0BBCA2;text-transform:uppercase;letter-spacing:4px">Paleta de Cores</div>
+</div>
+</section>
+
+<!-- SLIDE 13 — CORES PRIMÁRIAS -->
+<section data-screen-label="13" style="background:#FFFFFF;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;font-family:'Plus Jakarta Sans',sans-serif">
+<div style="background:#0BBCA2;display:flex;flex-direction:column;justify-content:space-between;padding:48px 36px">
+<div style="font-size:80px;font-weight:800;color:white;line-height:1">01</div>
+<div>
+<div style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.6">R: 11, G: 188, B: 162<br>HEX: #0BBCA2</div>
+<div style="font-size:20px;font-weight:700;color:white;margin-top:8px">Primária</div>
+</div>
+</div>
+<div style="background:#00eed0;display:flex;flex-direction:column;justify-content:space-between;padding:48px 36px">
+<div style="font-size:80px;font-weight:800;color:#000000;line-height:1">02</div>
+<div>
+<div style="font-size:14px;color:rgba(0,0,0,0.6);line-height:1.6">R: 0, G: 238, B: 208<br>HEX: #00EED0</div>
+<div style="font-size:20px;font-weight:700;color:#000000;margin-top:8px">Primária</div>
+</div>
+</div>
+<div style="background:#4b227a;display:flex;flex-direction:column;justify-content:space-between;padding:48px 36px">
+<div style="font-size:80px;font-weight:800;color:white;line-height:1">03</div>
+<div>
+<div style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.6">R: 75, G: 34, B: 122<br>HEX: #4B227A</div>
+<div style="font-size:20px;font-weight:700;color:white;margin-top:8px">Secundária</div>
+</div>
+</div>
+<div style="background:#000000;display:flex;flex-direction:column;justify-content:space-between;padding:48px 36px">
+<div style="font-size:80px;font-weight:800;color:white;line-height:1">04</div>
+<div>
+<div style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6">R: 0, G: 0, B: 0<br>HEX: #000000</div>
+<div style="font-size:20px;font-weight:700;color:white;margin-top:8px">Base</div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 14 — CORES NEUTRAS & SUPORTE -->
+<section data-screen-label="14" style="background:#FFFFFF;display:flex;flex-direction:column;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:40px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Cores neutras &amp; suporte</div>
+<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px;flex:1">
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#FFFFFF;border-radius:12px;flex:1;border:1px solid #E7E5E2"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Branco</div><div style="font-size:13px;color:#6E6F76">#FFFFFF</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#F7F6F5;border-radius:12px;flex:1"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Off-white</div><div style="font-size:13px;color:#6E6F76">#F7F6F5</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#E7E5E2;border-radius:12px;flex:1"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Cinza claro</div><div style="font-size:13px;color:#6E6F76">#E7E5E2</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#6E6F76;border-radius:12px;flex:1"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Cinza</div><div style="font-size:13px;color:#6E6F76">#6E6F76</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#111114;border-radius:12px;flex:1"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Quase preto</div><div style="font-size:13px;color:#6E6F76">#111114</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#000000;border-radius:12px;flex:1"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Preto</div><div style="font-size:13px;color:#6E6F76">#000000</div></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#EAFBF7;border-radius:12px;height:80px"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Cyan 050</div><div style="font-size:13px;color:#6E6F76">#EAFBF7</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#CFF5EC;border-radius:12px;height:80px"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Cyan 100</div><div style="font-size:13px;color:#6E6F76">#CFF5EC</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#F3F0F8;border-radius:12px;height:80px"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Lavender 050</div><div style="font-size:13px;color:#6E6F76">#F3F0F8</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="background:#F0555B;border-radius:12px;height:80px"></div>
+<div><div style="font-size:14px;font-weight:700;color:#111114">Coral (alerta)</div><div style="font-size:13px;color:#6E6F76">#F0555B</div></div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 15 — SEÇÃO 05: TIPOGRAFIA -->
+<section data-screen-label="15" style="background:#000000;display:flex;align-items:flex-end;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;position:relative;overflow:hidden">
+<div style="position:absolute;top:-80px;left:-40px;font-size:580px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.08);pointer-events:none;letter-spacing:-20px">05</div>
+<div style="position:relative;z-index:1">
+<div style="font-size:80px;font-weight:800;color:white;letter-spacing:-1px">05</div>
+<div style="font-size:44px;font-weight:800;color:white;text-transform:uppercase;letter-spacing:4px">Tipografia &amp;</div>
+<div style="font-size:52px;font-weight:800;color:#0BBCA2;text-transform:uppercase;letter-spacing:4px">Hierarquia</div>
+</div>
+</section>
+
+<!-- SLIDE 16 — TIPOGRAFIA: PLUS JAKARTA SANS -->
+<section data-screen-label="16" style="background:#FFFFFF;display:flex;flex-direction:column;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:48px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Família tipográfica</div>
+<div style="display:flex;gap:80px;flex:1;align-items:center">
+<div style="flex:1">
+<div style="font-size:96px;font-weight:800;color:#111114;line-height:1.1;letter-spacing:-3px">Plus<br>Jakarta<br>Sans</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid #E7E5E2;padding-bottom:16px">
+<span style="font-size:36px;font-weight:300;color:#111114">Light</span>
+<span style="font-size:16px;color:#6E6F76">300</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid #E7E5E2;padding-bottom:16px">
+<span style="font-size:36px;font-weight:400;color:#111114">Regular</span>
+<span style="font-size:16px;color:#6E6F76">400</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid #E7E5E2;padding-bottom:16px">
+<span style="font-size:36px;font-weight:500;color:#111114">Medium</span>
+<span style="font-size:16px;color:#6E6F76">500</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid #E7E5E2;padding-bottom:16px">
+<span style="font-size:36px;font-weight:600;color:#111114">SemiBold</span>
+<span style="font-size:16px;color:#6E6F76">600</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid #E7E5E2;padding-bottom:16px">
+<span style="font-size:36px;font-weight:700;color:#111114">Bold</span>
+<span style="font-size:16px;color:#6E6F76">700</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:20px">
+<span style="font-size:36px;font-weight:800;color:#111114">ExtraBold</span>
+<span style="font-size:16px;color:#6E6F76">800</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 17 — HIERARQUIA TIPOGRÁFICA -->
+<section data-screen-label="17" style="background:#F7F6F5;display:flex;flex-direction:column;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:40px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Hierarquia tipográfica</div>
+<div style="display:flex;flex-direction:column;gap:28px;flex:1;justify-content:center">
+<div style="display:flex;align-items:baseline;gap:40px;border-bottom:1px solid #E7E5E2;padding-bottom:20px">
+<span style="font-size:14px;font-weight:600;color:#0BBCA2;width:120px;flex-shrink:0">Display</span>
+<span style="font-size:64px;font-weight:800;color:#111114;letter-spacing:-2px;line-height:1">Avraham Digital</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:40px;border-bottom:1px solid #E7E5E2;padding-bottom:20px">
+<span style="font-size:14px;font-weight:600;color:#0BBCA2;width:120px;flex-shrink:0">Heading 1</span>
+<span style="font-size:48px;font-weight:700;color:#111114;line-height:1.1">Automação Inteligente</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:40px;border-bottom:1px solid #E7E5E2;padding-bottom:20px">
+<span style="font-size:14px;font-weight:600;color:#0BBCA2;width:120px;flex-shrink:0">Heading 2</span>
+<span style="font-size:36px;font-weight:600;color:#111114;line-height:1.2">WhatsApp e IA para negócios</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:40px;border-bottom:1px solid #E7E5E2;padding-bottom:20px">
+<span style="font-size:14px;font-weight:600;color:#0BBCA2;width:120px;flex-shrink:0">Body</span>
+<span style="font-size:24px;font-weight:400;color:#45464A;line-height:1.5">Transformamos a comunicação digital do seu negócio em resultados reais.</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:40px">
+<span style="font-size:14px;font-weight:600;color:#0BBCA2;width:120px;flex-shrink:0">Caption</span>
+<span style="font-size:16px;font-weight:500;color:#6E6F76;line-height:1.5;text-transform:uppercase;letter-spacing:2px">Inteligência Artificial • Automação • Atendimento</span>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 18 — SPECIMEN -->
+<section data-screen-label="18" style="background:#0BBCA2;display:flex;align-items:flex-end;padding:0 0 80px 100px;font-family:'Plus Jakarta Sans',sans-serif;position:relative;overflow:hidden">
+<div style="position:absolute;top:-60px;left:-20px;font-size:420px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.25);pointer-events:none;letter-spacing:-10px">Aa</div>
+<div style="position:relative;z-index:1">
+<div style="font-size:48px;font-weight:800;color:white;text-transform:uppercase;letter-spacing:3px">Plus Jakarta Sans</div>
+<div style="font-size:28px;font-weight:400;color:rgba(255,255,255,0.7);margin-top:8px">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+<div style="font-size:28px;font-weight:400;color:rgba(255,255,255,0.7);margin-top:4px">abcdefghijklmnopqrstuvwxyz</div>
+<div style="font-size:28px;font-weight:400;color:rgba(255,255,255,0.7);margin-top:4px">0123456789 !@#$%&amp;*()+-=</div>
+</div>
+</section>
+
+<!-- SLIDE 19 — SEÇÃO 06: ÍCONE & SÍMBOLO -->
+<section data-screen-label="19" style="background:#000000;display:flex;align-items:flex-end;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;position:relative;overflow:hidden">
+<div style="position:absolute;top:-80px;left:-40px;font-size:580px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.08);pointer-events:none;letter-spacing:-20px">06</div>
+<div style="position:relative;z-index:1">
+<div style="font-size:80px;font-weight:800;color:white;letter-spacing:-1px">06</div>
+<div style="font-size:44px;font-weight:800;color:white;text-transform:uppercase;letter-spacing:4px">Ícone &amp;</div>
+<div style="font-size:52px;font-weight:800;color:#0BBCA2;text-transform:uppercase;letter-spacing:4px">Símbolo</div>
+</div>
+</section>
+
+<!-- SLIDE 20 — CONSTRUÇÃO DO ÍCONE -->
+<section data-screen-label="20" style="background:#FFFFFF;display:flex;align-items:center;justify-content:center;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:80px">
+<div style="flex:1;display:flex;align-items:center;justify-content:center">
+<div style="width:400px;height:400px;border:1px solid #E7E5E2;border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative;background:#FAFAF9">
+<img src="../../uploads/icon-degrade.svg" style="width:280px;height:280px" alt="Icon construction">
+<div style="position:absolute;inset:0;border:1px dashed rgba(11,188,162,0.3);border-radius:20px;pointer-events:none"></div>
+<div style="position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(11,188,162,0.2)"></div>
+<div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(11,188,162,0.2)"></div>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Construção do símbolo</div>
+<div style="font-size:40px;font-weight:800;color:#111114;line-height:1.2;letter-spacing:-1px">Proteção, Inteligência<br>&amp; Conexão</div>
+<div style="font-size:18px;color:#6E6F76;line-height:1.7">O ícone Avraham representa a convergência entre proteção (a forma de escudo/capacete), inteligência artificial (as linhas de conexão) e humanidade (a silhueta central). O degradê teal-to-dark reflete a profundidade tecnológica da marca.</div>
+</div>
+</section>
+
+<!-- SLIDE 21 — ÁREA DE PROTEÇÃO -->
+<section data-screen-label="21" style="background:#F7F6F5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:48px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Área de proteção do logotipo</div>
+<div style="position:relative;display:flex;align-items:center;justify-content:center;padding:80px 120px;border:2px dashed rgba(11,188,162,0.4);border-radius:12px;background:white">
+<img src="../../uploads/logo-branca.svg" style="height:80px;filter:brightness(0)" alt="Logo with safe zone">
+<div style="position:absolute;top:12px;left:50%;transform:translateX(-50%);font-size:13px;color:#0BBCA2;font-weight:600">x</div>
+<div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);font-size:13px;color:#0BBCA2;font-weight:600">x</div>
+<div style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#0BBCA2;font-weight:600">x</div>
+<div style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#0BBCA2;font-weight:600">x</div>
+</div>
+<div style="font-size:17px;color:#6E6F76;max-width:680px;text-align:center;line-height:1.6">A área de proteção mínima ao redor do logotipo corresponde à medida "x" (altura do ícone). Nenhum elemento gráfico ou texto deve invadir esse espaço.</div>
+</section>
+
+<!-- SLIDE 22 — SEÇÃO 07: APLICAÇÕES -->
+<section data-screen-label="22" style="background:#000000;display:flex;align-items:flex-end;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;position:relative;overflow:hidden">
+<div style="position:absolute;top:-80px;left:-40px;font-size:580px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.08);pointer-events:none;letter-spacing:-20px">07</div>
+<div style="position:relative;z-index:1">
+<div style="font-size:80px;font-weight:800;color:white;letter-spacing:-1px">07</div>
+<div style="font-size:52px;font-weight:800;color:#0BBCA2;text-transform:uppercase;letter-spacing:4px">Aplicações</div>
+</div>
+</section>
+
+<!-- SLIDE 23 — APLICAÇÕES: MOCKUPS REFERÊNCIA -->
+<section data-screen-label="23" style="background:#0BBCA2;display:flex;flex-direction:column;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:48px">
+<div style="font-size:18px;font-weight:600;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:3px">Aplicações da marca</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1">
+<div style="background:#000000;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;gap:24px">
+<img src="../../uploads/logo-branca.svg" style="height:48px" alt="Digital">
+<div style="font-size:16px;color:rgba(255,255,255,0.7);text-align:center">Site &amp; plataformas digitais</div>
+</div>
+<div style="background:white;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;gap:24px">
+<img src="../../uploads/icon-degrade.svg" style="height:80px" alt="App icon">
+<div style="font-size:16px;color:#6E6F76;text-align:center">Ícone de aplicativo</div>
+</div>
+<div style="background:#000000;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;gap:24px">
+<img src="../../uploads/icon-bg-branco.svg" style="height:80px;filter:brightness(0) invert(1)" alt="Print">
+<div style="font-size:16px;color:rgba(255,255,255,0.7);text-align:center">Impressos &amp; papelaria</div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 24 — MOCKUPS: PAPELARIA -->
+<section data-screen-label="24" style="background:#FFFFFF;display:flex;flex-direction:column;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:40px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Papelaria corporativa</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1">
+<div style="background:#F7F6F5;border-radius:16px;display:flex;flex-direction:column;padding:48px;gap:24px">
+<div style="font-size:16px;font-weight:700;color:#111114">Cartão de visita — frente</div>
+<div style="background:white;border-radius:8px;padding:32px;flex:1;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+<img src="../../uploads/logo-branca.svg" style="height:28px;filter:brightness(0)" alt="Logo">
+<div>
+<div style="font-size:18px;font-weight:700;color:#111114">Nome Completo</div>
+<div style="font-size:14px;color:#6E6F76;margin-top:4px">Cargo — Diretor(a)</div>
+<div style="font-size:13px;color:#0BBCA2;margin-top:12px">+55 00 00000-0000</div>
+<div style="font-size:13px;color:#6E6F76">email@avrahamdigital.com.br</div>
+</div>
+</div>
+</div>
+<div style="background:#F7F6F5;border-radius:16px;display:flex;flex-direction:column;padding:48px;gap:24px">
+<div style="font-size:16px;font-weight:700;color:#111114">Cartão de visita — verso</div>
+<div style="background:#000000;border-radius:8px;padding:32px;flex:1;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+<img src="../../uploads/logo-branca.svg" style="height:48px" alt="Logo white">
+</div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 25 — GRADIENTES -->
+<section data-screen-label="25" style="background:#FFFFFF;display:flex;flex-direction:column;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:40px">
+<div style="font-size:18px;font-weight:600;color:#6E6F76;text-transform:uppercase;letter-spacing:3px">Gradientes da marca</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1">
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="background:linear-gradient(135deg,#0BBCA2,#00eed0 42%,#4b227a 100%);border-radius:16px;flex:1;display:flex;align-items:flex-end;padding:28px">
+<span style="font-size:15px;font-weight:600;color:white">Flow Gradient</span>
+</div>
+<div style="font-size:13px;color:#6E6F76">Emerald → Mint → Purple • 135°</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="background:linear-gradient(135deg,#00eed0,#0BBCA2);border-radius:16px;flex:1;display:flex;align-items:flex-end;padding:28px">
+<span style="font-size:15px;font-weight:600;color:white">Step 1</span>
+</div>
+<div style="font-size:13px;color:#6E6F76">Mint → Emerald • 135°</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="background:linear-gradient(135deg,#0BBCA2,#099B85);border-radius:16px;flex:1;display:flex;align-items:flex-end;padding:28px">
+<span style="font-size:15px;font-weight:600;color:white">Step 2</span>
+</div>
+<div style="font-size:13px;color:#6E6F76">Emerald → Deep teal • 135°</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="background:linear-gradient(135deg,#8A6CA8,#4b227a);border-radius:16px;flex:1;display:flex;align-items:flex-end;padding:28px">
+<span style="font-size:15px;font-weight:600;color:white">Step 5</span>
+</div>
+<div style="font-size:13px;color:#6E6F76">Light purple → Deep purple • 135°</div>
+</div>
+</div>
+</section>
+
+<!-- SLIDE 26 — ENCERRAMENTO -->
+<section data-screen-label="26" style="background:#000000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 100px;font-family:'Plus Jakarta Sans',sans-serif;gap:40px">
+<img src="../../uploads/icon-degrade.svg" style="width:160px;height:160px" alt="Avraham icon">
+<div style="font-size:56px;font-weight:800;color:white;text-align:center;letter-spacing:-1px;line-height:1.15">Avraham Digital</div>
+<div style="font-size:22px;color:rgba(255,255,255,0.5);font-weight:400">Brand Guidelines 2026</div>
+<div style="margin-top:40px;display:flex;gap:40px">
+<span style="font-size:16px;color:#0BBCA2;font-weight:500">avrahamdigital.com.br</span>
+<span style="font-size:16px;color:rgba(255,255,255,0.4)">Todos os direitos reservados</span>
+</div>
+</section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

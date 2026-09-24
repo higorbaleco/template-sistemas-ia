@@ -1,0 +1,171 @@
+:root{
+  /* ===================================================================
+     Avraham palette — extracted from the live site (avrahamdigital.com.br).
+     LIGHT is the canonical default. Emerald green is primary, lavender secondary.
+     A dark "command center" variant lives under [data-theme="dark"].
+     =================================================================== */
+
+  /* -------- Official Pantone brand swatches (design-team chips, uploads/1-6.png) -------- */
+  /* Reference only — the live site's functional UI colors are the emerald/lavender scale below. */
+  --navy:#02153d;          /* Pantone 282°C — dark-mode bg */
+  --purple:#4b227a;        /* Pantone 2617°C — deep secondary */
+  --pantone-cyan:#0197af;  /* Pantone 632°C — brand reference swatch, not a UI color */
+  --cyan-bright:#00eed0;   /* Pantone 333°C — bright mint glow/live-status accent */
+  --neutral-dark:#222221;  /* Pantone Neutro Preto C — text */
+  --white:#ffffff;         /* surfaces */
+
+  /* -------- Functional scale — emerald teal is PRIMARY (sampled from the live site) -------- */
+  --cyan-050:#EAFBF7;
+  --cyan-100:#CFF5EC;      /* soft mint surface — icon tiles, badges */
+  --cyan-200:#9FE8D9;
+  --cyan-400:#3BCDB3;
+  --cyan-500:#0BBCA2;      /* PRIMARY — CTAs, links, icon accents */
+  --cyan-600:#099B85;      /* hover */
+  --cyan-700:#067A68;      /* deep / text on light mint (WCAG) */
+
+  --lavender-050:#F3F0F8;
+  --lavender-100:#EDE7F5;  /* soft purple surface */
+  --lavender-200:#D6CBE6;
+  --lavender-500:#7C5C9E;  /* mid-purple — secondary UI accent */
+  --lavender-700:var(--purple);  /* #4b227a */
+
+  --green:var(--cyan-500);          /* positive == brand emerald */
+  --green-light:var(--cyan-bright); /* bright mint == the "other green" accent */
+  --coral:#F0555B;         /* alert */
+  --amber:#E8A13A;         /* warning */
+
+  /* Legacy emerald aliases for backward compat */
+  --emerald-500:var(--cyan-500);
+  --emerald-400:var(--cyan-bright);
+  --emerald-600:var(--cyan-600);
+  --emerald-700:var(--cyan-700);
+  --teal:var(--cyan-600);
+  --purp:var(--purple);
+  --purp-light:var(--lavender-500);
+
+  /* -------- Neutrals -------- */
+  --n-000:#FFFFFF;
+  --n-050:#FAFAF9;
+  --n-100:#F7F6F5;   /* page */
+  --n-150:#EFEEEC;
+  --n-200:#E7E5E2;
+  --n-900:#111114;
+
+  /* -------- Surfaces (light) -------- */
+  --bg:#F7F6F5;            /* page */
+  --bg2:#FFFFFF;           /* raised card base */
+  --bg-light:#F7F6F5;
+
+  /* -------- Text (light) -------- */
+  --t1:#111114;            /* strong */
+  --t2:#45464A;            /* body */
+  --t3:#6E6F76;            /* muted */
+  --t4:#A9AAB0;            /* faint */
+
+  /* -------- Glass (light) — white acrylic for nav/overlays -------- */
+  --gb:rgba(255,255,255,0.72);
+  --gbo:rgba(17,17,20,0.08);
+  --ghb:rgba(11,188,162,0.06);
+  --gho:rgba(11,188,162,0.35);
+
+  /* -------- Semantic aliases -------- */
+  --surface-page:var(--bg);
+  --surface-card:var(--n-000);
+  --surface-deep:var(--n-150);
+  --surface-cyan:var(--cyan-100);
+  --surface-emerald:var(--cyan-100);
+  --surface-purp:var(--lavender-100);
+  --surface-lavender:var(--lavender-100);
+  --surface-green:var(--cyan-100);
+  --surface-coral:rgba(240,85,91,.12);
+
+  --text-strong:var(--t1);
+  --text-body:var(--t2);
+  --text-muted:var(--t3);
+  --text-faint:var(--t4);
+  --text-accent:var(--cyan-700);
+  --text-on-cyan:#FFFFFF;
+  --text-link:var(--cyan-700);
+  --text-link-hover:var(--cyan-600);
+
+  --border-glass:var(--gbo);
+  --border-hover:var(--gho);
+  --border-cyan:rgba(11,188,162,.32);
+  --border-strong:rgba(17,17,20,.16);
+
+  --action-primary-bg:var(--cyan-500);
+  --action-primary-fg:#FFFFFF;
+  --action-primary-hover:var(--cyan-600);
+  --action-secondary-bg:var(--n-000);
+  --action-secondary-fg:var(--t1);
+  --action-ghost-fg:var(--t2);
+
+  /* Status */
+  --status-live:var(--cyan-bright);
+  --status-accent:var(--cyan-500);
+  --status-warn:var(--amber);
+  --status-danger:var(--coral);
+  --status-info:var(--purple);
+  --status-idle:var(--t3);
+
+  /* -------- Gradients (emerald → bright mint → purple flow) -------- */
+  --grad-flow:linear-gradient(135deg,#0BBCA2,#00eed0 42%,#4b227a 100%); /* @kind color */
+  --grad-step-1:linear-gradient(135deg,#00eed0,#0BBCA2); /* @kind color */
+  --grad-step-2:linear-gradient(135deg,#0BBCA2,#099B85); /* @kind color */
+  --grad-step-3:linear-gradient(135deg,#4BAEA0,#7C93A8); /* @kind color */
+  --grad-step-4:linear-gradient(135deg,#7C93A8,#7C5C9E); /* @kind color */
+  --grad-step-5:linear-gradient(135deg,#8A6CA8,#4b227a); /* @kind color */
+  --grad-halo:radial-gradient(60% 60% at 70% 12%,rgba(0,238,208,.16) 0%,rgba(0,238,208,0) 70%); /* @kind color */
+  --grad-command:radial-gradient(70% 60% at 6% -4%,rgba(11,188,162,.14) 0%,rgba(247,246,245,0) 60%),radial-gradient(60% 55% at 100% 0%,rgba(75,34,122,.14) 0%,rgba(247,246,245,0) 58%); /* @kind color */
+}
+
+/* ===================================================================
+   DARK — "command center" variant (product/dashboard optional mode)
+   =================================================================== */
+[data-theme="dark"]{
+  --cyan-100:rgba(0,238,208,.14);
+  --cyan-500:#1FE0C4;
+  --cyan-600:#00eed0;
+  --cyan-700:#80EDDB;
+  --purple:#9C7EC0;
+  --lavender-100:rgba(124,92,158,.20);
+  --lavender-500:#B9A4DD;
+  --lavender-700:#C9B6E6;
+
+  --bg:#02153d;            /* navy dark bg */
+  --bg2:#010A1F;
+  --t1:#E6EAE8;
+  --t2:rgba(230,234,232,.74);
+  --t3:rgba(230,234,232,.54);
+  --t4:rgba(230,234,232,.34);
+
+  --gb:rgba(255,255,255,0.04);
+  --gbo:rgba(255,255,255,0.09);
+  --ghb:rgba(0,238,208,0.06);
+  --gho:rgba(0,238,208,0.30);
+
+  --n-000:rgba(255,255,255,0.035);
+  --n-050:rgba(255,255,255,0.04);
+  --n-150:rgba(255,255,255,0.05);
+
+  --surface-card:rgba(255,255,255,0.035);
+  --surface-deep:rgba(255,255,255,0.05);
+  --surface-coral:rgba(240,85,91,.16);
+
+  --text-accent:#00eed0;
+  --text-link:#00eed0;
+  --text-link-hover:#26F0E0;
+  --text-on-cyan:#010A1F;
+  --border-cyan:rgba(0,238,208,.34);
+  --border-strong:rgba(255,255,255,.16);
+
+  --action-primary-bg:#00eed0;
+  --action-primary-fg:#010A1F;
+  --action-secondary-bg:rgba(255,255,255,0.05);
+
+  --status-live:#00eed0;
+  --status-info:#B9A4DD;
+
+  --grad-command:radial-gradient(70% 60% at 6% -4%,rgba(0,238,208,.12) 0%,rgba(2,21,61,0) 60%),radial-gradient(60% 55% at 100% 0%,rgba(75,34,122,.22) 0%,rgba(2,21,61,0) 58%); /* @kind color */
+  --grad-halo:radial-gradient(60% 60% at 70% 12%,rgba(0,238,208,.14) 0%,rgba(0,238,208,0) 70%); /* @kind color */
+}

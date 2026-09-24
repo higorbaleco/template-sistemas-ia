@@ -1,0 +1,13 @@
+# Copiar para a configuração do cliente somente depois de obter valores reais
+# em Settings → Instance-level MCP → Connect no n8n.
+# Nunca versionar um token aqui.
+
+[mcp_servers.n8n]
+url = "http://localhost:5678/mcp-server/http"
+bearer_token_env_var = "N8N_MCP_TOKEN"
+startup_timeout_sec = 30
+
+# Defina N8N_MCP_TOKEN no ambiente do cliente antes de iniciar a sessão.
+# Para uma instância remota, substitua pelo URL exibido em Settings →
+# Instance-level MCP → Connect. Em n8n 2.37.x o endpoint HTTP nativo termina
+# em /mcp-server/http.

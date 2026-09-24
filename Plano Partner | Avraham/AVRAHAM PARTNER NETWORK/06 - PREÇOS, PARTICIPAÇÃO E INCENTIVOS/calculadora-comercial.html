@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora Comercial · Avraham</title>
+  <link rel="stylesheet" href="../materials.css">
+  <script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+</head>
+<body class="material-page grid-bg glow-bg" data-theme="light" data-theme-fixed="true">
+  <main class="materials-app deck-shell">
+    <nav class="topbar">
+      <a class="brand-lockup" href="../index.html">Avraham · Commercial Models</a>
+      <div class="topbar-actions"><a class="button button-ghost" href="precos-e-planos.md"><i data-lucide="book-open"></i>Regras de preço</a><button class="toolbar-button" data-theme-toggle></button></div>
+    </nav>
+
+    <header class="material-hero">
+      <div>
+        <div class="eyebrow">USO INTERNO · NEGOCIAÇÃO</div>
+        <h1 class="h1">Preço claro para cada operação.</h1>
+        <p class="body-lg">Classifique o cliente, informe o volume, separe implantação, gestão e capacidade e leve para a proposta uma composição que outra pessoa consiga revisar.</p>
+      </div>
+      <div class="hero-side">
+        <div class="hero-metric"><span>Fórmula</span><strong>MRR = Gestão + Capacidade</strong></div>
+        <div class="hero-metric"><span>Repasse adicional</span><strong>R$0,07 / interação</strong></div>
+      </div>
+    </header>
+
+    <section class="section-heading"><div><div class="eyebrow">CENÁRIO DA NEGOCIAÇÃO</div><h2 class="h2">Preencha os dados conhecidos.</h2></div><span class="status hypothesis">Estimativa interna</span></section>
+    <section class="calc-grid">
+      <div class="visual-card">
+        <div class="form-grid">
+          <div class="field"><label for="plan">Plano sugerido</label><select id="plan"><option value="base" data-setup="2500" data-management="447">Base</option><option value="commercial" data-setup="4500" data-management="697" selected>Comercial</option><option value="integrated" data-setup="8000" data-management="1147">Integrada</option><option value="advanced" data-setup="12000" data-management="1747">Avançada</option><option value="enterprise" data-setup="20000" data-management="3000">Enterprise</option></select></div>
+          <div class="field"><label for="volume">Interações por mês</label><input id="volume" type="number" min="0" step="100" value="10000"></div>
+          <div class="field"><label for="setup">Setup de implantação</label><input id="setup" type="number" min="0" step="100" value="4500"></div>
+          <div class="field"><label for="management">Gestão & Evolução mensal</label><input id="management" type="number" min="0" step="10" value="697"></div>
+          <div class="field"><label for="tax">Impostos estimados (%)</label><input id="tax" type="number" min="0" step="0.5" value="0"></div>
+          <div class="field"><label for="other-cost">Outros custos mensais</label><input id="other-cost" type="number" min="0" step="50" value="0"></div>
+        </div>
+        <div class="section-heading" style="margin-top:34px"><div><div class="eyebrow">COMISSÃO PARTNER</div><h3>Se houver participação, informe por componente.</h3></div></div>
+        <div class="form-grid">
+          <div class="field"><label for="setup-share">Comissão sobre setup (%)</label><input id="setup-share" type="number" min="0" step="1" value="0"></div>
+          <div class="field"><label for="management-share">Comissão sobre gestão (%)</label><input id="management-share" type="number" min="0" step="1" value="0"></div>
+          <div class="field"><label for="capacity-share">Comissão sobre margem da capacidade (%)</label><input id="capacity-share" type="number" min="0" step="1" value="0"></div>
+        </div>
+        <div class="hypothesis-note" style="margin-top:20px"><i data-lucide="info"></i><div>A comissão da capacidade é calculada sobre a margem bruta conhecida da tecnologia, e não automaticamente sobre o faturamento bruto da capacidade.</div></div>
+      </div>
+      <div>
+        <div class="section-heading" style="margin-top:0"><div><div class="eyebrow">LEITURA ECONÔMICA</div><h2 class="h2">A conta da oportunidade.</h2></div></div>
+        <div class="calc-result">
+          <div class="metric-card"><span>Faixa sugerida</span><strong id="capacity-band">10K</strong><span id="capacity-note">interações mensais</span></div>
+          <div class="metric-card"><span>Capacidade do cliente</span><strong id="capacity-price">R$0</strong><span>por mês</span></div>
+          <div class="metric-card"><span>Gestão & Evolução</span><strong id="management-result">R$0</strong><span>por mês</span></div>
+          <div class="metric-card"><span>MRR total</span><strong id="mrr-result">R$0</strong><span>gestão + capacidade</span></div>
+          <div class="metric-card"><span>Valor no primeiro ano</span><strong id="year-one-result">R$0</strong><span>setup + 12 meses</span></div>
+          <div class="metric-card"><span>Custo Partner da capacidade</span><strong id="tech-cost">R$0</strong><span>estimativa de uso</span></div>
+          <div class="metric-card"><span>Margem bruta da capacidade</span><strong id="capacity-margin">R$0</strong><span>antes de impostos e comissão</span></div>
+          <div class="metric-card"><span>Margem estimada no 1º ano</span><strong id="estimated-net">R$0</strong><span>com os custos informados</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-heading"><div><div class="eyebrow">COMO LEVAR PARA A PROPOSTA</div><h2 class="h2">Cliente vê uma composição simples.</h2></div></section>
+    <section class="material-grid three">
+      <div class="material-card"><div class="icon-tile"><i data-lucide="layers-3"></i></div><h3>Implantação</h3><p>Um valor único para diagnóstico, configuração, integrações, testes e entrada em produção.</p></div>
+      <div class="material-card"><div class="icon-tile"><i data-lucide="refresh-cw"></i></div><h3>Gestão & Evolução</h3><p>Uma mensalidade para monitoramento, suporte, manutenção, melhoria e acompanhamento.</p></div>
+      <div class="material-card"><div class="icon-tile"><i data-lucide="gauge"></i></div><h3>Capacidade de Operação</h3><p>Uma faixa mensal de interações, com excedente e upgrade previsíveis.</p></div>
+    </section>
+
+    <footer class="footer-note"><span>Calculadora Comercial · uso interno · v1</span><a href="../04%20-%20VENDA%20AO%20CLIENTE%20FINAL/ficha-de-negociacao.md">Abrir ficha de negociação</a></footer>
+  </main>
+  <script src="../materials.js"></script>
+  <script>
+    (() => {
+      const ids = ["volume", "setup", "management", "tax", "other-cost", "setup-share", "management-share", "capacity-share"];
+      const el = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
+      const plan = document.getElementById("plan");
+      const money = (value) => value.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+      const band = (volume) => volume <= 2500 ? ["2.5K", 2500] : volume <= 5000 ? ["5K", 5000] : volume <= 10000 ? ["10K", 10000] : volume <= 25000 ? ["25K", 25000] : volume <= 50000 ? ["50K", 50000] : ["Custom", volume];
+      const number = (input) => Number(input.value || 0);
+      const calculate = () => {
+        const volume = number(el.volume);
+        const setup = number(el.setup);
+        const management = number(el.management);
+        const excess = Math.max(0, volume - 2500);
+        const capacity = 147 + excess * 0.07;
+        const techCost = 87 + excess * 0.03;
+        const capacityMargin = capacity - techCost;
+        const mrr = management + capacity;
+        const yearOne = setup + mrr * 12;
+        const tax = yearOne * number(el.tax) / 100;
+        const partner = setup * number(el["setup-share"]) / 100 + management * 12 * number(el["management-share"]) / 100 + capacityMargin * 12 * number(el["capacity-share"]) / 100;
+        const net = yearOne - techCost * 12 - tax - partner - number(el["other-cost"]) * 12;
+        const [bandName, bandVolume] = band(volume);
+        document.getElementById("capacity-band").textContent = bandName;
+        document.getElementById("capacity-note").textContent = `${bandVolume.toLocaleString("pt-BR")} interações mensais`;
+        document.getElementById("capacity-price").textContent = money(capacity);
+        document.getElementById("management-result").textContent = money(management);
+        document.getElementById("mrr-result").textContent = money(mrr);
+        document.getElementById("year-one-result").textContent = money(yearOne);
+        document.getElementById("tech-cost").textContent = money(techCost);
+        document.getElementById("capacity-margin").textContent = money(capacityMargin);
+        document.getElementById("estimated-net").textContent = money(net);
+      };
+      plan.addEventListener("change", () => { const option = plan.selectedOptions[0]; el.setup.value = option.dataset.setup; el.management.value = option.dataset.management; calculate(); });
+      [...Object.values(el)].forEach((input) => input.addEventListener("input", calculate));
+      calculate();
+    })();
+  </script>
+</body>
+</html>

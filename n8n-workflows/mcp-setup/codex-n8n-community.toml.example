@@ -1,0 +1,11 @@
+# Fallback opcional: use somente se o MCP nativo da instância não estiver
+# disponível. O pacote comunitário n8n-mcp precisa de API URL e API key.
+
+[mcp_servers.n8n_knowledge]
+command = "npx"
+args = ["-y", "n8n-mcp"]
+startup_timeout_sec = 120
+
+[mcp_servers.n8n_knowledge.env]
+N8N_API_URL = "https://SEU_HOST_N8N/api/v1"
+N8N_API_KEY = "COLOQUE_FORA_DO_REPOSITORIO"

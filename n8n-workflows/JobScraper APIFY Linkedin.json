@@ -1,0 +1,937 @@
+﻿{
+  "name": "[CONTEUDO] - Job Scraper Apify + Prosp",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1cf200f5-8c94-4f05-8ab2-3e0cc60b504d",
+              "name": "job_title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "73d1e04a-c6ca-422f-a53a-8e3dcd3257e4",
+              "name": "empresa",
+              "value": "={{ $json.companyName }}",
+              "type": "string"
+            },
+            {
+              "id": "10114228-06be-4d3e-82fa-7de3e9760950",
+              "name": "linkedin_empresa",
+              "value": "={{ $json.companyLinkedinUrl }}",
+              "type": "string"
+            },
+            {
+              "id": "5bde3f66-2c64-4883-9718-c8092f5c6501",
+              "name": "localização",
+              "value": "={{ $json.location }}",
+              "type": "string"
+            },
+            {
+              "id": "059760ba-a3b2-4048-ab7b-eef32261d546",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "92b8bd52-4ecd-456f-9769-cc0860fc74e5",
+              "name": "url_vaga",
+              "value": "={{ $json.link }}",
+              "type": "string"
+            },
+            {
+              "id": "d32e802b-4e54-4edf-a2ea-edeaf480cf8a",
+              "name": "data_postado",
+              "value": "={{ $json.postedAt }}",
+              "type": "string"
+            },
+            {
+              "id": "df5c9576-d619-4d5c-ae72-828e16e79096",
+              "name": "slogan",
+              "value": "={{ $json.companySlogan }}",
+              "type": "string"
+            },
+            {
+              "id": "774404a5-de2e-4ea1-8822-7af88cf93149",
+              "name": "description",
+              "value": "={{ $json.companyDescription }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1680,
+        -48
+      ],
+      "id": "0f87b136-886e-427f-88d4-85e71b364170",
+      "name": "Set Data"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/hKByXkMQaC5Qt9UMN/run-sync-get-dataset-items",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer TOKEN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"count\": 50,\n  \"scrapeCompany\": true,\n  \"urls\": [\n    \"https://www.linkedin.com/jobs/search/?currentJobId=4288538073&f_TPR=r86400&geoId=106057199&keywords=sdr&origin=JOB_SEARCH_PAGE_JOB_FILTER&refresh=true\"\n  ]\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2128,
+        -32
+      ],
+      "id": "949af2cb-f634-4f5e-b4f6-f7c29ebf87ca",
+      "name": "Apify - Search SDR Jobs"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "[\n  {\n    \"job_title\": \"Executivo Comercial Empresas - Unifg (PE)\",\n    \"empresa\": \"Ânima Educação\",\n    \"linkedin_empresa\": \"https://br.linkedin.com/company/animaeducacao?trk=public_jobs_jserp-result_job-search-card-subtitle\",\n    \"localização\": \"Jaboatão dos Guararapes, Pernambuco, Brazil\",\n    \"id\": \"4291360273\",\n    \"url_vaga\": \"https://br.linkedin.com/jobs/view/executivo-comercial-empresas-unifg-pe-at-%C3%A2nima-educa%C3%A7%C3%A3o-4291360273?refId=QSRsDRdrnMRNQYW3i71oKw%3D%3D&trackingId=0TK4nCW53Wbzl7btewDegg%3D%3D&position=22&pageNum=0\",\n    \"data_postado\": \"2025-08-26\",\n    \"slogan\": \"Nosso propósito é Transformar o Brasil pela Educação. Somos o Maior Ecossistema de Educação de Qualidade do País.\",\n    \"description\": \"Com o propósito de transformar o Brasil pela educação, a Ânima é o maior e o mais inovador ecossistema de ensino de qualidade do país, com um portfólio de marcas valiosas e um dos principais players de educação continuada na área médica. A companhia é composta por mais de 400 mil estudantes, distribuídos em 18 instituições de ensino superior e em mais de 700 polos educacionais por todo o Brasil. Integradas também ao Ecossistema Ânima estão marcas especialistas em suas áreas de atuação, como HSM, HSM University, EBRADI (Escola Brasileira de Direito), Le Cordon Bleu (SP), SingularityU Brazil, Inspirali e Learning Village, primeiro hub de inovação e educação da América Latina, além do Instituto Ânima.  \\n \\nEm 2022, a Ânima foi um dos destaques do Prêmio Valor Inovação – parceria do jornal Valor Econômico e a Strategy&, consultoria estratégica da PwC – figurando no ranking de empresas mais inovadoras do Brasil no setor de educação. Além disso, o CEO, Marcelo Battistela Bueno, foi premiado como Executivo de Valor, no setor de Educação, no Prêmio Executivo de Valor 2022, que elege os gestores que se destacaram à frente de empresas e organizações. A companhia também se destacou no Finance & Law Summit Awards – FILASA, em 2022, como Melhor Departamento de Compliance. Em 2021, a organização educacional foi destaque no Guia ESG da revista Exame como uma das vencedoras na categoria Educação. Desde 2013, a companhia está na Bolsa de Valores, no segmento de Novo Mercado, considerado o de mais elevado grau de governança corporativa.\"\n  }"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -992,
+        -16
+      ],
+      "id": "d672ed6f-5c56-4794-aaaf-6967ede69cb4",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {
+          "temperature": 0.2,
+          "topP": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -1248,
+        -16
+      ],
+      "id": "d5376ade-8b8f-41b2-a89b-f2de5f3b40ae",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "CREDENTIAL",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "crawl",
+        "url": "={{ $json.linkedin_empresa }}",
+        "options": {}
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        64
+      ],
+      "id": "715023d2-63b1-480b-bf6f-6be63d562fa5",
+      "name": "Crawl in Tavily",
+      "credentials": {
+        "tavilyApi": {
+          "id": "CREDENTIAL",
+          "name": "Tavily account - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "43b3ffb4-4489-4561-8ef1-8d09df7e6bf1",
+              "leftValue": "={{ $json.output[0].empresa }}",
+              "rightValue": "ANULADO",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -624,
+        -32
+      ],
+      "id": "1269a684-c8fe-4c35-8053-c9796b3ddc56",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "query": "=Head de Vendas {{ $json.output[0].empresa }} LinkedIn\nGestor de Vendas {{ $json.output[0].empresa }} LinkedIn\nDiretor Comercial {{ $json.output[0].empresa }} LinkedIn\nGerente de Vendas {{ $json.output[0].empresa }} LinkedIn\nDiretor de Vendas {{ $json.output[0].empresa }} LinkedIn",
+        "options": {
+          "search_depth": "advanced",
+          "max_results": 3,
+          "include_domains": [
+            "https://www.linkedin.com/"
+          ]
+        }
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavily",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        -48
+      ],
+      "id": "66b32fef-5baa-4c3b-9aca-b2ebe0fd3d96",
+      "name": "Search",
+      "credentials": {
+        "tavilyApi": {
+          "id": "CREDENTIAL",
+          "name": "Tavily account - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5f4e87be-da33-4219-a266-323847dd59b5",
+              "leftValue": "={{ $('Loop Over Items1').item.json.empresa }}",
+              "rightValue": "={{ $json.data.experiences[0].company }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "53e10715-1734-4ad5-a310-cf4f8f6796c1",
+              "leftValue": "={{ $json.data.experiences[0].end_year }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1152,
+        0
+      ],
+      "id": "7eeb36be-ae07-4ec8-9873-2c2351ff08b9",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/bRhFQxugvkhDrzp2e/run-sync-get-dataset-items",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer TOKEN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"linkedin_url\": \"{{ $json.url }}\"\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        0
+      ],
+      "id": "81d7f1dc-8f80-4741-b007-a03b431d5dc6",
+      "name": "Apify - Get Profile ID1",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "results",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -48
+      ],
+      "id": "745bb066-a137-4fd9-a0cb-6fd42af2b43f",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "content": "## SDR Job Scrape\nBusca as vagas para SDR das últimas 24 horas dentro do Brasil, em sequência separa os dados importantes",
+        "height": 304,
+        "width": 832
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2224,
+        -176
+      ],
+      "id": "ff961f27-07ef-4ff7-bdfd-94a28f997a47",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Head Hunter HUNTER\nUtiliza tool de Crawl do Tavily para fazer análise da página do LinkedIn na empresa e descobrir se são recrutadores. Em seguida, o IF elimina os recrutadores",
+        "height": 768,
+        "width": 896,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1360,
+        -352
+      ],
+      "id": "917b78b5-a341-4940-8221-75e8f4547316",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Company Decider Search\nBusca os decisores da empresa com Tavily Search, faz um Split Out dos resultados para que possam ser analisados",
+        "height": 416,
+        "width": 1024,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -176
+      ],
+      "id": "5c03ab0d-94cf-410b-81cf-3438acde5101",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Company Match\nVerifica se os perfis encontrados no Search batem com a empresa sendo pesquisada",
+        "height": 416,
+        "width": 672,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        672,
+        -176
+      ],
+      "id": "0fe8ddcd-b7ac-4fa5-9095-c9f1dab622e5",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "maxItems": 15
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        -48
+      ],
+      "id": "af43a944-5bd5-4b76-bd43-58faaac8554f",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://prosp.ai/api/v1/leads",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"KEY\",\n  \"linkedin_url\": \"{{ $json.data.linkedin_url }}\",\n  \"list_id\": \"LIST_ID\",\n  \"campaign_id\": \"CAMP_ID\",\n  \"data\": [\n    {\n      \"property\": \"name\",\n      \"value\": \"{{ $json.data.full_name }}\"\n    },\n    {\n      \"property\": \"company\",\n      \"value\": \"{{ $json.data.company }}\"\n    },\n    {\n      \"property\": \"Headline\",\n      \"value\": \"{{ $json.data.headline }}\"\n    },\n    {\n      \"property\": \"jobtitle\",\n      \"value\": \"{{ $json.data.experiences[0].title }}\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1456,
+        16
+      ],
+      "id": "df0dd361-a8ba-4cfc-8d89-5ad3f044025d",
+      "name": "Prosp AI - Add lead to contact list and campaign​"
+    },
+    {
+      "parameters": {
+        "content": "## Add Lead to Campaign",
+        "height": 288,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1392,
+        -80
+      ],
+      "id": "8222943d-8b46-4d7d-845b-6f054ea9c266",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b7bec996-d68b-4abd-844b-085733d1c077",
+              "leftValue": "={{ $json.url }}",
+              "rightValue": "linkedin",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        -48
+      ],
+      "id": "38f6d2bf-5c45-4ec6-97a7-4bad286ed674",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "93340462-1d7e-4f60-8507-722c37c7c3b2",
+              "name": "url",
+              "value": "={{ 'https://www.linkedin.com/in/' + $json.url.split('/in/')[1].split('/')[0] + '/' }}",
+              "type": "string"
+            },
+            {
+              "id": "d1f56068-bfa7-47ca-ae8e-517bc6bffe4d",
+              "name": "empresa",
+              "value": "={{ $('If').item.json.output[0].empresa }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        -64
+      ],
+      "id": "df2569ed-2e86-4a55-80ff-1d23a5bb913c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        736,
+        -48
+      ],
+      "id": "1e498d07-efea-4a44-84ca-10238c1271ee",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "25a64994-6ac9-4c38-975f-3a88ca3b3435",
+              "leftValue": "={{ $json.slogan }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "3dec18b2-412d-406a-9358-65ae3d95f225",
+              "leftValue": "={{ $json.description }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1504,
+        -48
+      ],
+      "id": "18a38cdb-b890-41c1-a567-7889ea316f5b",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Descrição da Empresa: {{ $json.description }}\nSlogan da Empresa: {{ $json.slogan }}\nNome da Empresa: {{ $json.empresa }}\njob_title: {{ $json.job_title }}\nLinkedIn: {{ $json.linkedin_empresa }}\nLocalização: {{ $json['localização'] }}\nID: {{ $json.id }}\nURL da Vaga: {{ $json.url_vaga }}\nData: {{ $json.data_postado }}\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Objetivo\nVocê é o caçador de Head Hunters (Recrutadores Comerciais). Seu objetivo é analisar a descrição, o slogan e o nome da empresa dada a você e repassar as informações das vagas que não estejam postadas por empresas de Recrutamento. Você DEVE conseguir distinguir entre empresas que estão contratando para si (ORIGINAIS) e empresas que estão contratando para outras empresas (RECRUTAMENTO/HEAD HUNTING)\n\n## Operação\nBaseado nas informações recebidas (nome, slogan e descrição), analise se a empresa é uma empresa de recrutamento. \nEmpresas de recrutamento tendem a ter na descrição referências a recursos humanos, além de comumente terem em seu nome as palavras \"RH\", \"Recrutamento\", \"Seleção\", \"Vagas\", ou alguma palavra que utilize ou faça referência a essas citadas.\nExemplos de empresas que devem ser anuladas: Netvagas, RH Ser Consultoria Empresarial, BuscarVagas.\n\n## Output\nEmpresas consideradas RECRUTAMENTO: traga a url da vaga, o nome da empresa, o job_title como recebido. Indique como ANULADA os campos slogan e description.\nEmpresas consideradas ORIGINAIS: retorne todas informações (job_title, empresa, linkedin_empresa, localização, id, url_vaga, data_postado, slogan e description) recebidas como indicado no output parser.\n\n# Comentários Finais\n- Seja minucioso e detalhista\n- NÃO RETORNE AS INFORMAÇÕES DE FORMA DIFERENTE DA ORIENTADA\n- NÃO ERRE\n- Não serão todas empresas que deverão ser eliminadas, revise caso necessário"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -1200,
+        -240
+      ],
+      "id": "35b77bfc-7f1b-467a-b402-fb2ce76f334a",
+      "name": "Filtro de Head Hunters 1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=*INFORMAÇÕES A SEREM ANALISADAS*\nTítulo da Vaga: {{ $json.job_title }}\nEmpresa Fazendo Contratação: {{ $json.empresa }}\nLinkedIn da Empresa: {{ $json.linkedin_empresa }}\nLocalização: {{ $json['localização'] }}\nURL da Vaga: {{ $json.url_vaga }}\nData de Postagem da Vaga: {{ $json.data_postado }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Objetivo\nVocê é o caçador de Head Hunters (Recrutadores Comerciais). Seu objetivo é analisar as informações dadas a você e repassar as informações das vagas que não estejam postadas por empresas de Recrutamento.\n\n## Operação\nUtilize a ferramenta Tavily Crawl para analisar a página de LinkedIn da empresa, verificando se é uma empresa de Recrutamento ou não. \nEmpresas de recrutamento (DEVEM SER DESCLASSIFICADAS) tendem a ter diversas postagens de vagas para diferentes setores e empresas, além de comumente terem em seu nome as palavras \"RH\", \"Recrutamento\", \"Seleção\", \"Vagas\", ou alguma palavra que utilize ou faça referência a essas citadas.\nExemplos de empresas que devem ser anuladas: Netvagas, RH Ser Consultoria Empresarial, BuscarVagas.\n\n## Output\nDe acordo com o output parser, retorne as informações como recebidas, mas APENAS para empresas que você classificar como ORIGINAIS.\nPara empresas de RECRUTAMENTO/HEAD HUNTING, você deve retornar os campos como ANULADO.\n\n# Comentários Finais\n- Seja minucioso e detalhista\n- NÃO RETORNE AS INFORMAÇÕES DE FORMA DIFERENTE DA ORIENTADA\n- NÃO ERRE"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -1184,
+        208
+      ],
+      "id": "f6331796-2b8c-4773-b510-21e0a83505c0",
+      "name": "Filtro de Head Hunters 2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -784,
+        -32
+      ],
+      "id": "118ee7e0-f898-4731-9638-4a5110fb8031",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 12
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2368,
+        -32
+      ],
+      "id": "3498d1a9-1377-4d74-8f4f-f9c376a7a502",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5fd1b89e-2758-47fe-9883-0d9cf1a34ec7",
+              "leftValue": "={{ $json.companyEmployeesCount }}",
+              "rightValue": 15,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "ba4b1935-e3d7-49dd-baa8-2a29d3df5e63",
+              "leftValue": "={{ $json.companyEmployeesCount }}",
+              "rightValue": 1000,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1936,
+        -32
+      ],
+      "id": "93806592-b61c-480a-9c5b-1ed03777c3ee",
+      "name": "If4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Set Data": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify - Search SDR Jobs": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Filtro de Head Hunters 1",
+            "type": "ai_outputParser",
+            "index": 0
+          },
+          {
+            "node": "Filtro de Head Hunters 2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Filtro de Head Hunters 1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Filtro de Head Hunters 2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crawl in Tavily": {
+      "ai_tool": [
+        [
+          {
+            "node": "Filtro de Head Hunters 2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Prosp AI - Add lead to contact list and campaign​",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify - Get Profile ID1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prosp AI - Add lead to contact list and campaign​": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Apify - Get Profile ID1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Filtro de Head Hunters 1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Filtro de Head Hunters 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtro de Head Hunters 1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtro de Head Hunters 2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Apify - Search SDR Jobs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Set Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d84ebcee-ccea-47af-864d-aa8a8863511f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "98a7f76cbff973591af08e09b5be2fed14b55b37d878782c0638229a94477203"
+  },
+  "id": "TIlU0TFlRzdx5rKs",
+  "tags": [
+    {
+      "createdAt": "2025-08-27T21:31:36.032Z",
+      "updatedAt": "2025-08-27T21:31:36.032Z",
+      "id": "nI5VnwTNbrlcvnR4",
+      "name": "CONTEUDO"
+    }
+  ]
+}

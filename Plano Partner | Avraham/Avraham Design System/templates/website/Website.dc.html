@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Avraham Website" description="Marketing homepage recreated from the live Avraham Digital site" -->
+<helmet><script src="./ds-base.js"></script></helmet>
+<div style="background:var(--bg);color:var(--t1);font-family:var(--font-body,sans-serif);min-height:100vh">
+
+<header style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 48px;background:var(--gb);backdrop-filter:blur(12px);border-bottom:1px solid var(--gbo)">
+<div style="display:flex;align-items:center;gap:12px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.IconTile" icon="headphones" tone="emerald" size="{{ logoSize }}" hint-size="40,40"></x-import>
+<div style="display:flex;flex-direction:column;line-height:1.15">
+<span style="font-weight:800;font-size:18px;letter-spacing:-0.01em">AVRAHAM</span>
+<span style="font-size:11px;color:var(--t3)">WhatsApp e IA</span>
+</div>
+</div>
+<nav style="display:flex;align-items:center;gap:36px">
+<sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+<a href="{{ link.href }}" style="color:var(--t2);font-size:14px;font-weight:500;text-decoration:none">{{ link.label }}</a>
+</sc-for>
+</nav>
+<div style="display:flex;align-items:center;gap:12px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.IconButton" icon="moon" label="Alternar tema" variant="ghost" hint-size="36,36"></x-import>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.IconButton" icon="globe" label="Idioma" variant="ghost" hint-size="36,36"></x-import>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="primary" hint-size="170,44">Book a diagnosis</x-import>
+</div>
+</header>
+
+<section style="max-width:1360px;margin:0 auto;padding:72px 48px 96px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:start;position:relative">
+<div>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Badge" tone="neutral" dot="{{ true }}" uppercase="{{ false }}" hint-size="auto,36" style="margin-bottom:28px;font-size:14px">Para empresas que dependem do WhatsApp para vender, atender e escalar.</x-import>
+<h1 style="font-size:52px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin:0 0 24px">Criamos sistemas inteligentes que qualificam <span style="color:var(--cyan-500)">clientes pelo WhatsApp.</span></h1>
+<p style="font-size:17px;color:var(--t2);line-height:1.6;max-width:520px;margin:0 0 28px">Estrutura atendimento, qualificação, campanhas e integrações para responder mais rápido e operar com controle.</p>
+<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px">
+<sc-for list="{{ heroBullets }}" as="txt" hint-placeholder-count="4">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Pill" tone="neutral" hint-size="auto,40" style="align-self:flex-start">{{ txt }}</x-import>
+</sc-for>
+</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="primary" size="lg" hint-size="180,54">Book a diagnosis</x-import>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="secondary" size="lg" iconRight="{{ none }}" hint-size="150,54">See solutions</x-import>
+</div>
+</div>
+
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Card" tone="plain" hint-size="100%,520">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
+<div>
+<div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:var(--cyan-500);margin-bottom:6px">OPERAÇÃO VIVA</div>
+<div style="font-size:16px;font-weight:700">Atendimento, comercial e infraestrutura no mesmo fluxo</div>
+</div>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Badge" tone="live" hint-size="auto,28">Tempo real</x-import>
+</div>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Card" tone="sunken" hint-size="100%,auto" style="margin-bottom:16px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Badge" tone="neutral" icon="radio" hint-size="auto,28">Operação conectada</x-import>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Badge" tone="live" dot="{{ true }}" pulse="{{ true }}" hint-size="auto,28">Em tempo real</x-import>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+<sc-for list="{{ liveOps }}" as="op" hint-placeholder-count="3">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.NumberedCard" number="{{ op.number }}" icon="{{ op.icon }}" title="{{ op.title }}" body="{{ op.body }}" tone="emerald" hint-size="100%,180" style="padding:16px"></x-import>
+</sc-for>
+</div>
+</x-import>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Card" tone="emerald" hint-size="100%,auto">
+<div style="display:flex;gap:12px;align-items:flex-start">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Avatar" name="Agente Avraham" tone="emerald" status="online" size="{{ avatarSize }}" hint-size="40,40"></x-import>
+<div style="flex:1">
+<div style="font-weight:700;font-size:15px;margin-bottom:4px">Agente Avraham</div>
+<div style="font-size:14px;color:var(--t2);line-height:1.5;margin-bottom:10px">Qualifica o lead, atualiza o CRM e entrega para o comercial no momento certo.</div>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Pill" tone="emerald" hint-size="auto,32">Lead pronto para proposta</x-import>
+</div>
+</div>
+</x-import>
+</x-import>
+</section>
+
+<section style="max-width:1360px;margin:0 auto;padding:80px 48px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Eyebrow" tone="accent" rule="{{ true }}" hint-size="auto,24">É depender dele sem estrutura</x-import>
+<h2 style="font-size:38px;font-weight:800;letter-spacing:-0.015em;margin:16px 0 48px;max-width:760px">O problema não é usar WhatsApp</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Card" tone="sunken" hint-size="100%,auto">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Badge" tone="neutral" dot="{{ true }}" uppercase="{{ true }}" hint-size="auto,28" style="margin-bottom:20px">Quando a operação ainda é manual</x-import>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ manualIssues }}" as="txt" hint-placeholder-count="6">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.ChecklistItem" state="no" divider="{{ true }}" hint-size="100%,52">{{ txt }}</x-import>
+</sc-for>
+</div>
+</x-import>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Card" tone="plain" flowTop="{{ true }}" hint-size="100%,auto">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Badge" tone="live" dot="{{ true }}" uppercase="{{ true }}" hint-size="auto,28" style="margin-bottom:20px">Quando a operação é estruturada</x-import>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ structuredWins }}" as="txt" hint-placeholder-count="6">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.ChecklistItem" state="yes" divider="{{ true }}" hint-size="100%,52">{{ txt }}</x-import>
+</sc-for>
+</div>
+</x-import>
+</div>
+</section>
+
+<section style="max-width:1360px;margin:0 auto;padding:40px 48px 96px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Eyebrow" tone="accent" hint-size="auto,24">Como resolvemos</x-import>
+<h2 style="font-size:38px;font-weight:800;letter-spacing:-0.015em;margin:16px 0 20px;max-width:820px">Não entregamos uma ferramenta isolada. Estruturamos a operação inteira do WhatsApp.</h2>
+<p style="font-size:16px;color:var(--t2);max-width:640px;margin:0 0 44px;line-height:1.6">Diagnóstico operacional, agentes de IA, automações, disparos e integrações para escalar com previsibilidade.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Card" tone="emerald" hint-size="100%,auto">
+<div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:var(--cyan-700);margin-bottom:18px">COMO RESOLVEMOS</div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ howWeSolve }}" as="txt" hint-placeholder-count="4">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.ChecklistItem" state="yes" hint-size="100%,48">{{ txt }}</x-import>
+</sc-for>
+</div>
+</x-import>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Card" tone="lavender" hint-size="100%,auto">
+<div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:var(--lavender-500);margin-bottom:18px">ENTREGÁVEIS E MECANISMO</div>
+<p style="font-size:15px;color:var(--t2);line-height:1.6;margin:0 0 28px">Entregáveis práticos: IA, fluxos, dashboards, campanhas, estrutura de números e acompanhamento operacional.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="primary" hint-size="220,48">Solicitar diagnóstico</x-import>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="secondary" iconRight="{{ none }}" hint-size="170,48">Conhecer soluções</x-import>
+</div>
+</x-import>
+</div>
+</section>
+
+<section style="max-width:1360px;margin:0 auto;padding:40px 48px 96px">
+<h2 style="font-size:38px;font-weight:800;letter-spacing:-0.015em;margin:0 0 20px;max-width:820px">O WhatsApp da sua empresa precisa de aquisição, atendimento e infraestrutura trabalhando juntos.</h2>
+<p style="font-size:16px;color:var(--t2);max-width:640px;margin:0 0 44px;line-height:1.6">Estruturamos a operação em três frentes para gerar demanda, atender com velocidade e sustentar escala.</p>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+<sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.NumberedCard" number="{{ p.number }}" icon="{{ p.icon }}" title="{{ p.title }}" body="{{ p.body }}" bullets="{{ p.bullets }}" tone="emerald" hint-size="100%,360"></x-import>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1360px;margin:0 auto;padding:40px 48px 96px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;gap:24px;flex-wrap:wrap">
+<div>
+<h2 style="font-size:34px;font-weight:800;letter-spacing:-0.015em;margin:0 0 12px;max-width:640px">Cada solução resolve um gargalo real da operação comercial.</h2>
+<p style="font-size:16px;color:var(--t2);margin:0;max-width:560px;line-height:1.6">Da aquisição à contingência, os módulos entram combinados ou por prioridade, conforme o estágio da operação.</p>
+</div>
+<a href="#" style="color:var(--cyan-700);font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap">See all solutions →</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+<sc-for list="{{ solutions }}" as="s" hint-placeholder-count="6">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.SolutionCard" icon="{{ s.icon }}" title="{{ s.title }}" body="{{ s.body }}" cta="Explore details" tone="emerald" hint-size="100%,240"></x-import>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1360px;margin:0 auto;padding:40px 48px 96px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Eyebrow" tone="accent" hint-size="auto,24">Como entregamos</x-import>
+<h2 style="font-size:38px;font-weight:800;letter-spacing:-0.015em;margin:16px 0 20px">Do gargalo ao fluxo orquestrado.</h2>
+<p style="font-size:16px;color:var(--t2);max-width:640px;margin:0 0 44px;line-height:1.6">Quatro fases conectadas, do diagnóstico ao acompanhamento contínuo.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+<sc-for list="{{ process }}" as="ph" hint-placeholder-count="4">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.NumberedCard" number="{{ ph.number }}" icon="{{ ph.icon }}" title="{{ ph.title }}" body="{{ ph.body }}" bullets="{{ ph.bullets }}" tone="emerald" hint-size="100%,300"></x-import>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1360px;margin:0 auto;padding:40px 48px 96px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Eyebrow" tone="accent" hint-size="auto,24">Casos de uso</x-import>
+<h2 style="font-size:38px;font-weight:800;letter-spacing:-0.015em;margin:16px 0 44px">Onde a operação trava, a Avraham entra.</h2>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+<sc-for list="{{ useCases }}" as="u" hint-placeholder-count="8">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.SolutionCard" icon="{{ u.icon }}" title="{{ u.title }}" body="{{ u.body }}" cta="{{ none }}" tone="emerald" hint-size="100%,190"></x-import>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1360px;margin:0 auto;padding:40px 48px 96px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Eyebrow" tone="accent" rule="{{ true }}" hint-size="auto,24">Setores que atendemos</x-import>
+<h2 style="font-size:34px;font-weight:800;letter-spacing:-0.015em;margin:16px 0 32px">Sua empresa provavelmente está aqui.</h2>
+<div style="display:flex;gap:14px;overflow-x:auto;padding-bottom:8px">
+<sc-for list="{{ sectors }}" as="sec" hint-placeholder-count="8">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Pill" tone="{{ sec.tone }}" hint-size="auto,52" style="white-space:nowrap;flex-shrink:0">{{ sec.label }}</x-import>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1360px;margin:0 auto;padding:0 48px 96px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Card" tone="emerald" flowTop="{{ true }}" hint-size="100%,220">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
+<div>
+<div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:var(--cyan-700);margin-bottom:14px">CTA FINAL</div>
+<h2 style="font-size:32px;font-weight:800;letter-spacing:-0.015em;margin:0 0 12px;max-width:480px">Solicite um diagnóstico e descubra o que estruturar primeiro.</h2>
+<p style="font-size:15px;color:var(--t2);margin:0;max-width:480px;line-height:1.6">A Avraham avalia atendimento, campanhas, integrações e infraestrutura para indicar o caminho mais seguro.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="primary" size="lg" hint-size="260,54">Solicitar diagnóstico da operação</x-import>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="secondary" iconRight="{{ none }}" hint-size="260,48">Conhecer soluções</x-import>
+</div>
+</div>
+</x-import>
+</section>
+
+<footer style="border-top:1px solid var(--gbo);padding:64px 48px 32px">
+<div style="max-width:1360px;margin:0 auto">
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:48px">
+<div>
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.IconTile" icon="headphones" tone="emerald" size="{{ logoSizeSmall }}" hint-size="32,32"></x-import>
+<span style="font-weight:800;font-size:16px">AVRAHAM</span>
+</div>
+<p style="font-size:14px;color:var(--t2);line-height:1.6;margin:0 0 20px;max-width:260px">Operational infrastructure for companies turning WhatsApp and AI into commercial predictability.</p>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="secondary" iconRight="{{ none }}" hint-size="170,44">Talk to a specialist</x-import>
+</div>
+<div>
+<div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:var(--t3);margin-bottom:16px">SOLUTIONS</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ footerSolutions }}" as="l" hint-placeholder-count="5">
+<a href="#" style="color:var(--t2);font-size:14px;text-decoration:none">{{ l }}</a>
+</sc-for>
+</div>
+</div>
+<div>
+<div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:var(--t3);margin-bottom:16px">COMPANY</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ footerCompany }}" as="l" hint-placeholder-count="5">
+<a href="#" style="color:var(--t2);font-size:14px;text-decoration:none">{{ l }}</a>
+</sc-for>
+</div>
+</div>
+<div>
+<div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:var(--t3);margin-bottom:16px">FOR YOUR SECTOR</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ footerSectors }}" as="l" hint-placeholder-count="6">
+<a href="#" style="color:var(--t2);font-size:14px;text-decoration:none">{{ l }}</a>
+</sc-for>
+</div>
+</div>
+<div>
+<div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:var(--t3);margin-bottom:16px">READY TO SCALE?</div>
+<p style="font-size:14px;color:var(--t2);line-height:1.6;margin:0 0 16px">Get an initial diagnosis of your WhatsApp operation.</p>
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="primary" size="sm" hint-size="150,40">Book a diagnosis</x-import>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--gbo);flex-wrap:wrap;gap:12px">
+<span style="font-size:13px;color:var(--t3)">© 2026 Avraham. WhatsApp &amp; IA. All rights reserved.</span>
+<div style="display:flex;gap:24px">
+<a href="#" style="color:var(--t3);font-size:13px;text-decoration:none">Privacy Policy</a>
+<a href="#" style="color:var(--t3);font-size:13px;text-decoration:none">Terms of Use</a>
+<a href="#" style="color:var(--t3);font-size:13px;text-decoration:none">Gerenciar cookies</a>
+</div>
+</div>
+</div>
+</footer>
+
+<div style="position:fixed;bottom:24px;right:24px;z-index:60">
+<x-import component-from-global-scope="AvrahamDesignSystem_609133.Button" variant="primary" icon="message-circle" iconRight="{{ none }}" hint-size="200,52">Falar com especialista</x-import>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      none: null,
+      logoSize: 24,
+      logoSizeSmall: 20,
+      avatarSize: 40,
+      navLinks: [
+        {label:"Solutions",href:"#solutions"},
+        {label:"Cases",href:"#"},
+        {label:"About",href:"#"},
+        {label:"Resources",href:"#"},
+        {label:"Blog",href:"#"},
+      ],
+      heroBullets: [
+        "IA 24/7 para não deixar lead sem resposta",
+        "Qualificação automática para o comercial focar no que importa",
+        "Campanhas e reativação com processo claro",
+        "Infraestrutura e contingência para reduzir instabilidade",
+      ],
+      liveOps: [
+        {number:"01",icon:"bot",title:"Atendimento inteligente",body:"IA responde, qualifica e encaminha cada conversa."},
+        {number:"02",icon:"message-circle",title:"Comercial em movimento",body:"Follow-up, campanhas e reativação com processo claro."},
+        {number:"03",icon:"server",title:"Infraestrutura confiável",body:"API, integrações e contingência para a operação continuar."},
+      ],
+      manualIssues: [
+        "Leads chegam e ficam tempo demais sem resposta",
+        "Equipe gasta energia demais com perguntas repetidas e triagem manual",
+        "Campanhas e reativações acontecem sem processo claro",
+        "Um único número vira ponto crítico de falha da operação",
+        "O atendimento perde velocidade fora do horário ou em picos de demanda",
+        "CRM, time comercial e WhatsApp trabalham sem integração consistente",
+      ],
+      structuredWins: [
+        "Mais velocidade no atendimento e menos filas manuais",
+        "Leads chegam mais qualificados para o time comercial",
+        "Campanhas, reativações e follow-ups passam a ter governança",
+        "A operação reduz dependência de um único número ou pessoa",
+        "A empresa ganha mais previsibilidade comercial e operacional",
+        "A gestão acompanha gargalos, volume e performance com mais clareza",
+      ],
+      howWeSolve: [
+        "Diagnóstico dos gargalos comerciais, técnicos e operacionais",
+        "Implantação de IA, fluxos automatizados e campanhas",
+        "Integração com CRM, sistemas internos e time comercial",
+        "Infraestrutura com contingência, monitoramento e governança",
+      ],
+      pillars: [
+        {number:"01",icon:"target",title:"Aquisição",body:"Campanhas, disparos e reativação para transformar base parada em novas oportunidades comerciais.",bullets:["Reativação estruturada de leads e clientes","Campanhas segmentadas com cadência e governança","Mais geração de demanda sem depender só de tráfego novo"]},
+        {number:"02",icon:"bot",title:"Operação",body:"Atendimento com IA, triagem e qualificação para acelerar resposta e reduzir sobrecarga da equipe.",bullets:["Agentes de IA treinados no contexto da empresa","Triagem automática antes de chegar ao vendedor","Padronização do atendimento com cobertura 24/7"]},
+        {number:"03",icon:"server",title:"Infraestrutura",body:"Números, rotas, monitoramento e contingência para reduzir risco operacional no WhatsApp.",bullets:["Estrutura multi-número com governança","Contingência para operação sensível a bloqueios","Mais continuidade para vendas, suporte e campanhas"]},
+      ],
+      solutions: [
+        {icon:"bot",title:"AI Agents",body:"Atenda, qualifique e direcione oportunidades no WhatsApp com contexto operacional."},
+        {icon:"send",title:"Mass Messaging",body:"Reative bases e rode campanhas de WhatsApp com segmentação, cadência e controle."},
+        {icon:"server",title:"WhatsApp Infrastructure",body:"Estruture números, rotas e monitoramento para reduzir risco operacional no WhatsApp."},
+        {icon:"message-circle",title:"Smart Chatbots",body:"Organize triagens, respostas automáticas e direcionamentos sem engessar a experiência."},
+        {icon:"shield-check",title:"WhatsApp Contingency",body:"Mantenha a operação ativa mesmo diante de bloqueios, quedas ou instabilidade de canais."},
+        {icon:"settings-2",title:"Commercial Automation",body:"Conecte WhatsApp, CRM, equipe e dados para reduzir tarefas manuais e acelerar vendas."},
+      ],
+      process: [
+        {number:"01",icon:"clipboard-list",title:"Diagnóstico",body:"Mapeamos gargalos comerciais, técnicos e operacionais da sua operação no WhatsApp.",bullets:["Volume atual vs. capacidade","Tempo de resposta e filas","Pontos críticos de falha","Oportunidades de receita"]},
+        {number:"02",icon:"layers",title:"Implantação em 3 Camadas",body:"Estruturamos IA, automações, integrações e infraestrutura alinhadas ao seu volume real.",bullets:["Aquisição: campanhas e reativação","Operação: IA e qualificação","Infraestrutura: múltiplos números e contingência"]},
+        {number:"03",icon:"gauge",title:"Otimização",body:"Testes, ajustes de fluxo e transferência de conhecimento para seu time.",bullets:["A/B testes em campanhas","Refinamento das respostas de IA","Treinamento do time comercial","Documentação de processos"]},
+        {number:"04",icon:"eye",title:"Acompanhamento",body:"Dashboards em tempo real, SLA, suporte dedicado e evolução contínua.",bullets:["Métricas de volume e qualidade","Alertas de anomalia","Suporte reativo e proativo","Roadmap de evolução"]},
+      ],
+      useCases: [
+        {icon:"layers",title:"Base de leads parada",body:"Reativação com segmentação e cadência para gerar demanda de novo."},
+        {icon:"message-circle",title:"Atendimento sobrecarregado",body:"IA e triagem para absorver volume sem perder velocidade."},
+        {icon:"shield-check",title:"Operação com alto risco",body:"Contingência e múltiplos números para reduzir dependência de um único canal."},
+        {icon:"target",title:"Vendas sem previsibilidade",body:"Funil com IA, qualificação e automação para o time vender com mais foco."},
+        {icon:"zap",title:"Atendimento fora do horário",body:"Agentes de IA 24/7 para não deixar oportunidade esfriar."},
+        {icon:"send",title:"Reativação comercial recorrente",body:"Campanhas para base esquecida, com mensagem e ritmo certos."},
+        {icon:"share-2",title:"Qualificação antes de vender",body:"Triagem automática para entregar ao comercial só o que merece atenção."},
+        {icon:"bar-chart-3",title:"Campanhas em escala",body:"Estrutura para disparos recorrentes com acompanhamento de entrega e resposta."},
+      ],
+      sectors: [
+        {label:"Empresas de Tecnologia",tone:"emerald"},
+        {label:"Imobiliárias",tone:"neutral"},
+        {label:"Bets Regulamentadas",tone:"neutral"},
+        {label:"iGaming",tone:"neutral"},
+        {label:"Software Houses",tone:"neutral"},
+        {label:"Clínicas Médicas",tone:"neutral"},
+        {label:"Concessionárias de Veículos",tone:"neutral"},
+        {label:"E-commerces",tone:"neutral"},
+      ],
+      footerSolutions: ["Agentes de IA","Disparos em Massa","Infraestrutura","Chatbots","Contingência"],
+      footerCompany: ["About","Cases","Resources","Blog","Contact"],
+      footerSectors: ["Bets Regulamentadas","Clínicas Médicas","Concessionárias de Veículos","E-commerces","Imobiliárias","Software Houses"],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

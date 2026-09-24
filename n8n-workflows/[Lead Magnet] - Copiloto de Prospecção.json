@@ -1,0 +1,2185 @@
+{
+  "name": "[Lead Magnet] - Copiloto de Prospecção",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Formulário do Copilot",
+        "formDescription": "Insira a URL do Perfil do LinkedIn do Lead a ser prospectado",
+        "formFields": {
+          "values": [
+            {
+              "fieldName": "URL",
+              "fieldLabel": "URL",
+              "placeholder": "https://www.linkedin.com/in",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.4,
+      "position": [
+        -4944,
+        1280
+      ],
+      "id": "ca727ff8-d484-48b4-b176-45bc81b7b018",
+      "name": "On form submission",
+      "webhookId": "9c2e876d-8dfa-4a25-92ec-c7aed0de6d5f",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c2a6489e-a54b-4fb8-89d8-9064af356c86",
+              "leftValue": "={{ $json.website }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1776,
+        1104
+      ],
+      "id": "ea47932e-233b-4141-bf42-78d263ea38a4",
+      "name": "Company Website Exists"
+    },
+    {
+      "parameters": {
+        "query": "={{ $('Unipile - Scrape Company').item.json.name }} Website",
+        "options": {
+          "exclude_domains": [
+            "https://www.linkedin.com/company/",
+            "https://br.linkedin.com/in/",
+            " https://www.linkedin.com/"
+          ]
+        }
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavily",
+      "typeVersion": 1,
+      "position": [
+        -1472,
+        1120
+      ],
+      "id": "53e40bb5-e0d8-4449-99b9-e7272725b4a8",
+      "name": "Search",
+      "credentials": {
+        "tavilyApi": {
+          "id": "YOUR_TAVILY_CREDENTIAL_ID",
+          "name": "Tavily account - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=URL do site analisado: {{ $json.url }}\nNome do site analisado: {{ $json.title }}\nConteúdo do site analisado: {{ $json.content }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Você é um analista de Empresas e Websites e está tentando descobrir se a {{ $('Unipile - Scrape Company').item.json.name }} tem um website ativo ou não. Você conta com a descrição da empresa no LinkedIn e irá analisar o conteúdo de sites recebidos na User Message e descobrirá se o site é da empresa correta ou não.\n\nVocê deve retornar sempre a URL analisada em \"url\" e o status de aprovação (SIM caso o website esteja correto, NÃO caso o website não esteja correto) em \"aprovacao\".\n\nDescrição da {{ $('Unipile - Scrape Company').item.json.name }} no LinkedIn:\n{{ $('Unipile - Scrape Company').item.json.description }}"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        -1056,
+        1120
+      ],
+      "id": "05bb716c-d9e9-4209-95ce-bf86061db1ab",
+      "name": "Check Website"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}\n\n**Raw Data do Site da Empresa (Caso exista):**\n{{ $('Extract').first().json.results[0].raw_content }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Com base nas informações do perfil do linkedin descrita na User Message e site da empresa escreva uma frase bem curta de 4 a 8 palavras (como descrito no output parser) que complemente a frase \"vi que você tá fazendo X\".\nSubstitua X por informações sobre o lead ou a empresa dele usando abreviações coloquiais em um tom bem casual amigável.\nNão pode reutilizar a mesma palavra que encontrar no perfil pra não parecer copiado, também não adicione pontuação ou maiúsculas.\n- Escreva uma frase curta, com no máximo 8 palavras\n- Não mencione o nome da empresa\n- Soe natural, como se você tivesse lido o perfil e encontrado um comentário relevante para fazer\n\nA mensagem na qual seu output será encaixado é a seguinte, considere:\n\"Eu ajudo empresas a prospectarem pelo Linkedin sem precisar contratar um exército de SDRs. \nVocês já geram leads por aqui?\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        144,
+        128
+      ],
+      "id": "7c8bbfc8-be0a-4b54-a86a-5d0ae4247078",
+      "name": "Copilot Prospecção"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "YOUR_SLACK_CHANNEL_ID",
+          "mode": "list",
+          "cachedResultName": "sdr-copilot"
+        },
+        "text": "=*DM 1:*\n\n\"{{ $json.text[0] }}\"\n\n*DM 2:*\n\n\"{{ $json.text[1] }}\"\n\n*DM 3:*\n\n\"{{ $json.text[2] }}\"\n\n*DM 4:*\n\n\"{{ $json.text[3] }}\"\n\n*DM 5:*\n\n\"{{ $json.text[4] }}\"\n\n*DM 6:*\n\n\"{{ $json.text[5] }}\"\n\n",
+        "otherOptions": {
+          "mrkdwn": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        1376,
+        976
+      ],
+      "id": "581a0fe3-6edb-4690-86ba-c07d420205bb",
+      "name": "Send a message",
+      "webhookId": "effc717b-b26e-4eda-91e1-4d508257ae66",
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack account 20"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api17.unipile.com:14737/api/v1/users/{{ $('Slack Trigger').item.json.text.split(\"/\")[4] }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "account_id",
+              "value": "={{ $json.account_id }}"
+            },
+            {
+              "name": "linkedin_sections",
+              "value": "*_preview"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-KEY",
+              "value": "={{ $json.api_key }}"
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -4272,
+        1088
+      ],
+      "id": "14fb940e-2e5b-4267-a38a-849303c4c668",
+      "name": "Unipile - Scrape Profile",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2851bee4-cb25-448c-8bf9-9337fb1cb7b3",
+              "name": "api_key",
+              "value": "YOUR_UNIPILE_API_KEY_1",
+              "type": "string"
+            },
+            {
+              "id": "4227ffe6-9c3f-4485-97c9-a26a65f58d12",
+              "name": "account_id",
+              "value": "YOUR_UNIPILE_ACCOUNT_ID_1",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -4496,
+        1088
+      ],
+      "id": "ba5cba09-f275-4148-a1c2-ae0d8d82e19b",
+      "name": "Keys"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "user": {
+          "__rl": true,
+          "value": "YOUR_SLACK_USER_ID",
+          "mode": "list",
+          "cachedResultName": "mateus"
+        },
+        "message": "=Confirmar a análise do Lead *{{ $('Unipile - Scrape Profile').item.json.first_name }} {{ $('Unipile - Scrape Profile').item.json.last_name }}* da seguinte empresa:",
+        "approvalOptions": {
+          "values": {
+            "approveLabel": "={{ $('Filter - Active Experiences').item.json.company }}"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        -3008,
+        1184
+      ],
+      "id": "4ef5a768-5864-4279-8f17-89096851b552",
+      "name": "Human in the Loop - 1 Empresa",
+      "webhookId": "66808c1b-ead8-4a1c-8cd3-30419ef32787",
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack account 20"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "YOUR_SLACK_CHANNEL_ID",
+          "mode": "list",
+          "cachedResultName": "sdr-copilot"
+        },
+        "message": "=Selecione qual empresa do Lead *{{ $('Unipile - Scrape Profile').item.json.first_name }} {{ $('Unipile - Scrape Profile').item.json.last_name }}* que deve ser analisada",
+        "responseType": "customForm",
+        "defineForm": "json",
+        "jsonOutput": "={{ $('Code in JavaScript - Generate JSON Form').item.json.formJsonString }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        -3008,
+        992
+      ],
+      "id": "8b5c03d4-a103-4e95-975a-5d23958d8e2a",
+      "name": "Human in the Loop - Empresa > 1",
+      "webhookId": "66808c1b-ead8-4a1c-8cd3-30419ef32787",
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack account 20"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -3424,
+        992
+      ],
+      "id": "92c27e5b-2916-4114-b3b7-207de2a0bf62",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "resource": "extract",
+        "urls": [
+          "={{ $json.website }}"
+        ],
+        "options": {
+          "extract_depth": "advanced"
+        }
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavily",
+      "typeVersion": 1,
+      "position": [
+        -992,
+        944
+      ],
+      "id": "e7da5e08-433d-44c6-93c8-a3eb3eb2f293",
+      "name": "Extract",
+      "credentials": {
+        "tavilyApi": {
+          "id": "YOUR_TAVILY_CREDENTIAL_ID",
+          "name": "Tavily account - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "results",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -1264,
+        1120
+      ],
+      "id": "805f5cc6-4ad7-46b4-a6d2-4ea48227c5cc",
+      "name": "Search Results"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.7,
+          "topP": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -1088,
+        1328
+      ],
+      "id": "89f252cb-f03e-4be0-8721-a78a8f68083c",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"website\": \"url do site analisado\",\n\t\"aprovacao\": \"SIM/NÃO\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -896,
+        1344
+      ],
+      "id": "ac955a6c-14d8-4f9e-a500-52120f54663b",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "13391326-c6a1-48c1-b0b6-7a6e521b6361",
+              "name": "company_id",
+              "value": "={{ $json.company_id }}",
+              "type": "string"
+            },
+            {
+              "id": "aa171eff-295e-4390-bbcd-f137679be862",
+              "name": "company",
+              "value": "={{ $json.company }}",
+              "type": "string"
+            },
+            {
+              "id": "a4decf3f-2a10-476b-8bd0-af1747db1eb4",
+              "name": "position",
+              "value": "={{ $json.position }}",
+              "type": "string"
+            },
+            {
+              "id": "33c7cff0-0d6e-41a8-97c1-32c189b85b93",
+              "name": "location",
+              "value": "={{ $json.location }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2208,
+        1104
+      ],
+      "id": "cfda73b5-d7b7-4e3b-9872-6eb00b3630a2",
+      "name": "Set Company Data"
+    },
+    {
+      "parameters": {
+        "content": "## Ciclo Inicial\nWebhook do Slack para receber novas mensagens\nSet data com Keys necessárias\nScrape do Perfil submetido no formulário\nFiltro por experiências de trabalho ativas\nSeparação por n° de empresas (1 ou maior que 1)",
+        "height": 576,
+        "width": 1520
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -5024,
+        912
+      ],
+      "id": "bc1eeb0b-1b5b-4935-b0b7-9c2579fc9847",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "work_experience",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -4064,
+        1088
+      ],
+      "id": "8fc94408-0505-44c6-ab70-89d1249cb3eb",
+      "name": "Split Out - Work Experiences"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b4fb22a1-b5a5-4420-bb79-7e76cd9adff4",
+              "leftValue": "={{ $json.end }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        -3856,
+        1088
+      ],
+      "id": "2fb5a1d0-6f2a-4b97-af74-c51c791c8519",
+      "name": "Filter - Active Experiences"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "0a6df446-b446-4ead-af4a-2ec9a3e023c9",
+              "leftValue": "={{ $input.all().length }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -3648,
+        1088
+      ],
+      "id": "cb1cb095-77f3-43c4-9be5-70477651fb17",
+      "name": "More than 1 company"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Espera 1 item com a chave \"data\" sendo um array de empresas\n// [\n//   {\n//     \"data\": [ {company_id, company, ...}, {...} ]\n//   }\n// ]\n\n// 1) Array com todos os objetos de empresa (mantendo todos os campos)\nconst companies = $json.data || [];\n\n// 2) Form JSON para o dropdown, usando o nome da empresa como opção\nconst formJson = [\n  {\n    fieldLabel: \"Escolha a empresa deste lead\",\n    fieldType: \"dropdown\",\n    requiredField: true,\n    fieldOptions: {\n      values: companies.map(c => ({\n        option: c.company, // label exibido no dropdown\n      })),\n    },\n  },\n];\n\n// 3) Retorna um único objeto com tudo\nreturn [\n  {\n    json: {\n      formJson,\n      formJsonString: JSON.stringify(formJson, null, 2),\n      companies,\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3216,
+        992
+      ],
+      "id": "ac74826e-ddd7-4c3a-9521-46680463bb19",
+      "name": "Code in JavaScript - Generate JSON Form"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9071a35f-74cb-4ae0-8f9a-d39c0348f161",
+              "name": "data",
+              "value": "={{ $('Aggregate').item.json.data }}",
+              "type": "array"
+            },
+            {
+              "id": "4fb31c3a-dc46-4ca2-9c01-76529ab67ae9",
+              "name": "resposta",
+              "value": "={{ $json.data['Escolha a empresa deste lead'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2816,
+        992
+      ],
+      "id": "8397aa96-6cf4-4728-b5a8-f65bb4b614f4",
+      "name": "Set Data 1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5351efad-a145-4cfd-a67d-ea446201b14f",
+              "name": "company_id",
+              "value": "={{ $('More than 1 company').item.json.company_id }}",
+              "type": "string"
+            },
+            {
+              "id": "b1bdc8ab-7fb8-4569-aa7c-6ab74dbbf8c2",
+              "name": "company",
+              "value": "={{ $('More than 1 company').item.json.company }}",
+              "type": "string"
+            },
+            {
+              "id": "0f55d795-3731-4ba0-b0ca-b51d75867f5b",
+              "name": "position",
+              "value": "={{ $('More than 1 company').item.json.position }}",
+              "type": "string"
+            },
+            {
+              "id": "40bed8a4-282d-4176-858a-89bbcdcda249",
+              "name": "location",
+              "value": "={{ $('More than 1 company').item.json.location }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2816,
+        1184
+      ],
+      "id": "62ced01f-5217-4bef-95db-2c847f53997c",
+      "name": "Set Data"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -2640,
+        992
+      ],
+      "id": "0e507ca5-9cbc-4123-a523-8042f1c08234",
+      "name": "Split Out - Filtered Experiences"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "7c98fa27-83f2-459d-b465-4b00cdae2496",
+              "leftValue": "={{ $json.company }}",
+              "rightValue": "={{ $('Set Data 1').item.json.resposta }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        -2464,
+        992
+      ],
+      "id": "6fdde503-bcf5-4a2e-a3e5-6f4f072c3b8d",
+      "name": "Filter - Chosen Company"
+    },
+    {
+      "parameters": {
+        "url": "=https://api17.unipile.com:14737/api/v1/linkedin/company/{{ $json.company_id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "account_id",
+              "value": "YOUR_UNIPILE_ACCOUNT_ID_2"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-KEY",
+              "value": "YOUR_UNIPILE_API_KEY_2"
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -2000,
+        1104
+      ],
+      "id": "f3fe5887-a507-4fc5-98c3-56fa7fb26d19",
+      "name": "Unipile - Scrape Company"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a449069a-1b56-44de-b800-2db39c97678e",
+              "leftValue": "={{ $json.output.aprovacao }}",
+              "rightValue": "SIM",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        -688,
+        1120
+      ],
+      "id": "7f8d56e4-ee81-45a1-a9c6-70241cfe6ccf",
+      "name": "Filter - Correct Website"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "15bbb617-2dfc-4776-9bcf-b091a8d02919",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -480,
+        1120
+      ],
+      "id": "53712778-560c-4faf-a68b-4372d4230010",
+      "name": "Website Exists?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "73e48b2f-17b9-4adc-8535-74fa08f5c221",
+              "name": "website",
+              "value": "={{ $json.output.website }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -272,
+        1104
+      ],
+      "id": "522b055b-a957-4ab8-b9a5-f8b665af347f",
+      "name": "Set URL"
+    },
+    {
+      "parameters": {
+        "content": "## Human In the Loop\nTopo -> Unificar experiências novamente para que o código em JavaScript possa gerar um formulário dropdown em JSON, que será enviado para o humano caso haja mais que uma empresa ativa.\n\nBaixo -> Envia uma mensagem confirmando a análise e o Copilot",
+        "height": 640,
+        "width": 1408
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -3472,
+        848
+      ],
+      "id": "70c6d96b-0417-47ea-8d5a-8bc025132162",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Analise de Empresa e Website\nFaz o scrape da empresa, verificando se ela tem site.\nSe possuir website, é analisado e a informação passada para o agente.\nSe não possuir website registrado, é feito uma busca com o Tavily que é \nconfirmada por uma LLM e depois feita a análise do site (se confirmado).",
+        "height": 640,
+        "width": 1936
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2016,
+        848
+      ],
+      "id": "8b5e3fde-e339-4ae2-a72d-6f05a75d6ed9",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Agentes de Prospecção",
+        "height": 2064,
+        "width": 896
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "20769f96-9e50-425c-8549-ba18fbca48fa",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}\n\n**Raw Data do Site da Empresa (Caso exista):**\n{{ $('Extract').first().json.results[0].raw_content }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Você é um especialista em prospecting que analisa perfis do LinkedIn e sites de empresas para gerar personalizações relevantes e naturais.\n\nOBJETIVO:\nCom base nas informações do perfil do linkedin descritas na User Message e no site da empresa, complete a seguinte frase começando com:\n\"sei que você provavelmente tá super ocupado [o que a pessoa faz na {nome da empresa}]\".\n\nSubstitua [o que a pessoa faz na {nome da empresa}] pelo que você encontrar no perfil, mantendo um tom casual e amigável.\nVocê também pode analisar o site da empresa (descrito na User Message) para ajudar a entender o que ela faz.\n\nREGRAS OBRIGATÓRIAS:\n- Não reutilize exatamente as mesmas palavras do perfil ou do site; use variações naturais, como se estivesse falando online de forma amigável e casual\n- Pode usar abreviações e construções coloquiais leves (ex.: \"tocando a operação de vendas\", \"segurando a parte comercial\")\n- A saída deve conter APENAS o trecho entre colchetes [o que a pessoa faz na {nome da empresa}]\n- Não repita o início da frase (\"sei que você provavelmente tá super ocupado\")\n- Mantenha curto: entre 5 e 10 palavras\n- Não adicione ponto final, nem outras pontuações desnecessárias\n- Tudo em letra minúscula\n\nCONTEXTO - Onde sua resposta será encaixada:\n\"sei que você deve estar super ocupado {personalização}, mas acho que vale dar uma olhada:\n\neu ajudo fundadores a gerarem demanda através do linkedin, sem parecerem chatos. \nvocê já faz prospecção por aqui?\"\n\nEXEMPLOS DE SAÍDA VÁLIDA (APENAS O TRECHO ENTRE COLCHETES):\n- \"tocando a frente comercial e o time de vendas\"\n- \"cuidando da operação de marketing e crescimento\"\n- \"segurando a parte de vendas e parcerias da empresa\"\n- \"tocando produto e ainda gerenciando o comercial\"\n\nEXEMPLOS DE SAÍDA INVÁLIDA (NÃO FAZER):\n- ❌ \"sei que você provavelmente tá super ocupado tocando o time de vendas\" (repete o começo da frase)\n- ❌ \"cuidando da operação de vendas.\" (tem ponto final)\n- ❌ \"Cuidando Da Operação De Vendas\" (maiúsculas)\n\nOUTPUT:\nRetorne APENAS o trecho correspondente a [o que a pessoa faz na {nome da empresa}], sem explicações adicionais.\nExemplo de formato esperado: \"tocando a operação comercial e o time de vendas\"\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        144,
+        464
+      ],
+      "id": "2985288e-137f-484f-8ea8-010262a5e492",
+      "name": "Copilot Prospecção1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}\n\n**Raw Data do Site da Empresa (Caso exista):**\n{{ $('Extract').first().json.results[0].raw_content }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Você é um especialista em prospecting que analisa perfis do LinkedIn e sites de empresas para gerar personalizações relevantes e naturais.\n\nOBJETIVO:\nGerar uma frase curta (2 a 4 palavras) sobre o público-alvo do lead que complemente a mensagem:\n\"Pelo que eu vi, vocês prospectam {personalização}. Sei que não é fácil escalar a prospecção pra esse público.\"\n\nREGRAS OBRIGATÓRIAS:\n- Escreva uma frase com no máximo 4 palavras\n- Nunca mencione o nome da empresa\n- Não reutilize palavras que já aparecem no perfil do lead (evite parecer copiado)\n- Sem pontuação, sem maiúsculas (tudo em letra minúscula)\n- Tom casual, amigável e natural\n- Use abreviações e construções coloquiais leves quando fizer sentido\n- A personalização deve funcionar como complemento direto de \"vocês prospectam\" (sintagma nominal), não como uma frase com verbo\n\nCONTEXTO - Onde sua resposta será encaixada:\n\"pelo que eu vi, vocês prospectam {personalização}. sei que não é fácil escalar a prospecção pra esse público.\n\nestão fazendo isso de forma automatizada já? ou ainda dependendo de bdrs e sdrs?\"\n\nEXEMPLOS DE PERSONALIZAÇÕES VÁLIDAS:\n- \"founders e agencias tech\"\n- \"donos de pequenos ecommerces\"\n- \"líderes de vendas b2b\"\n- \"gestores de marketing b2b\"\n\nEXEMPLOS DE PERSONALIZAÇÕES INVÁLIDAS (não fazer):\n- ❌ \"vocês prospectam gestores de marketing\" (repete estrutura completa, não é só o alvo)\n- ❌ \"prospectando gestores de marketing\" (começa com verbo, não encaixa bem após \"vocês prospectam\")\n- ❌ \"Líderes De Vendas B2B\" (tem maiúsculas)\n- ❌ \"gestores de marketing no brasil inteiro\" (frase longa demais)\n\nOUTPUT:\nRetorne APENAS a frase gerada, sem explicações, títulos ou formatação adicional.\nExemplo de formato esperado: \"fundadores de startups b2b\"\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        144,
+        784
+      ],
+      "id": "ae299415-7502-4157-b115-f44cbd824768",
+      "name": "Copilot Prospecção2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}\n\n**Raw Data do Site da Empresa (Caso exista):**\n{{ $('Extract').first().json.results[0].raw_content }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Você é um especialista em prospecting que analisa perfis do LinkedIn e sites de empresas para gerar personalizações relevantes e naturais.\n\nOBJETIVO:\nGerar uma frase curta (2 a 4 palavras) sobre o segmento/atividade do lead que complemente a mensagem:\n\"Eu ajudo outros [role] que trabalham com [activity/segment] a escalar vendas com prospecção automatizada e qualificada\"\n\nREGRAS OBRIGATÓRIAS:\n- Máximo 4 palavras\n- Nunca mencione o nome da empresa\n- Não reutilize palavras que já aparecem no perfil do lead (evite parecer copiado)\n- Sem pontuação, sem maiúsculas (tudo em letra minúscula)\n- Tom casual, amigável e natural\n- Soe como um comentário genuíno após ler o perfil, não uma análise robótica\n- Use abreviações e construções coloquiais (tipo \"tá\", \"tô\", etc.)\n\n\nCONTEXTO - Onde sua resposta será encaixada:\n\"Já vi clientes no mesmo setor perdendo muito tempo valioso com atividades repetitivas que podem ser facilmente eliminadas. Como é aí pela {empresa}? tão enfrentando problemas assim também?\"\n\nEXEMPLOS DE PERSONALIZAÇÕES VÁLIDAS:\n- \"automação de funis de vendas\"\n- \"prospecção em massa no b2b\"\n- \"qualificação de leads de forma escalável\"\n- \"pipeline cheio de oportunidades qualificadas\"\n\nEXEMPLOS DE PERSONALIZAÇÕES INVÁLIDAS (não fazer):\n- ❌ \"conteúdo de marketing digital\" (muito genérico, não específico do segmento)\n- ❌ \"vendas e marketing\" (reutiliza palavras comuns, não agrega)\n- ❌ \"Automação de Vendas Para B2B\" (tem maiúsculas e pontuação)\n- ❌ \"prospecção no linkedin com vendas automatizadas\" (mais de 6 palavras)\n\nOUTPUT:\nRetorne APENAS a frase gerada, sem explicações, títulos ou formatação adicional.\nExemplo de formato esperado: \"automação de processos de vendas\"\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        144,
+        1104
+      ],
+      "id": "19d78631-bb5f-46c3-bd9e-408779cd1018",
+      "name": "Copilot Prospecção3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}\n\n**Raw Data do Site da Empresa (Caso exista):**\n{{ $('Extract').first().json.results[0].raw_content }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Você é um assistente de personalização para DMs de vendas no LinkedIn.\n\nOBJETIVO:\nCom base nas informações do perfil do LinkedIn e do site da empresa (fornecidos na User Message), escreva uma frase bem curta, com cerca de 10–12 palavras, começando com:\n\"Percebi que vocês estão [observação de marketing e vendas]\"\n\nSubstitua [observação de marketing e vendas] pelo que você encontrar sobre a parte comercial e/ou de marketing, mantendo um tom casual e amigável.\n\nREGRAS OBRIGATÓRIAS:\n- A frase completa DEVE começar exatamente com:\n  \"percebi que vocês estão \"\n- Seu trabalho é gerar APENAS a parte [observação de marketing e vendas]\n- Não reutilize exatamente as mesmas palavras do perfil ou do site; use variações naturais, como se estivesse falando online de forma amigável e casual\n- Você pode usar abreviações e construções coloquiais leves (ex.: \"indo forte em\", \"apostando bastante em\", \"crescendo em cima de\")\n- O tamanho total da frase (começo fixo + observação) deve ficar em torno de 10–12 palavras\n- Não mencione números específicos, nem copie cargos literalmente (ex.: “gerente de marketing sênior”)\n- Verifique abas de “Carreiras”, “Trabalhe Conosco” ou similares para ver se há vagas abertas em vendas/marketing; se encontrar, você pode mencionar isso ou algo que dê para deduzir claramente do LinkedIn + site\n- Mantenha o tom positivo, observacional e sem críticas\n\nCONTEXTO – Como sua saída será usada:\nA mensagem final ficará assim:\n\"percebi que vocês estão {observacao_marketing_vendas}\"\n\nFORMATO DE SAÍDA:\nRetorne APENAS a parte [observação de marketing e vendas], sem aspas e sem repetir o começo da frase.\n\nEXEMPLOS DE SAÍDA BOA (APENAS A OBSERVAÇÃO):\n- \"indo forte em outbound e testes de campanhas pagas\"\n- \"crescendo o time comercial e apostando mais em marketing\"\n- \"puxando inbound forte e testando algumas jogadas de outbound\"\n- \"contratando mais gente pra acelerar funil de vendas b2b\"\n\nEXEMPLOS DE SAÍDA RUIM (NÃO FAZER):\n- \"percebi que vocês estão crescendo o time comercial\" (repete o começo da frase)\n- \"indo forte em outbound e testes de campanhas pagas.\" (com ponto final)\n- \"gerente de marketing e sdr\" (copia cargos ao pé da letra)\n- \"fazendo marketing e vendas\" (genérico demais, pouco insight)\n\nOUTPUT:\nRetorne APENAS o texto da observação, por exemplo:\n\"crescendo o time comercial e testando novas jogadas de outbound\"\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        144,
+        1424
+      ],
+      "id": "6c02810e-cc57-4fca-bdcb-3fef133923e4",
+      "name": "Copilot Prospecção4"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}\n\n**Raw Data do Site da Empresa (Caso exista):**\n{{ $('Extract').first().json.results[0].raw_content }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Você é um assistente de personalização para DMs de vendas no LinkedIn.\n\nOBJETIVO:\nCom base nas informações do perfil do LinkedIn, do site da empresa (User Message) e em um pequeno contexto de busca na web (resultados resumidos de Medium Search Context), escolha dois concorrentes relevantes, sendo pelo menos um deles brasileiro, para a {company} e gere o nome desses concorrentes para serem usados na mensagem:\n\n\"oi, {first_name}.\n\nvi que vocês estão no mesmo mercado que {2 concorrentes}.\nvocês já estão usando ia aí na operação da {company} pra garantir vantagem competitiva?\"\n\nDADOS QUE VOCÊ RECEBE:\n- Nome da empresa alvo ({company}) e seu site\n- Descrição/segmento da empresa alvo\n- Informações do perfil do lead\n- Uma lista curta de empresas encontradas via busca na web, com:\n  - nome\n  - url\n  - pequeno resumo/descrição (snippet)\n\nREGRAS OBRIGATÓRIAS:\n- Escolha APENAS um concorrente direto ou muito próximo da {company}\n- Priorize empresas da lista de busca que atuem claramente no mesmo segmento/mercado/solução\n- Nunca use a própria {company} como concorrente\n- Mantenha o nome exatamente como a empresa é conhecida no mercado (sem inventar abreviações estranhas)\n- Se nenhuma empresa da lista fizer sentido como concorrente, ignore a lista e use seu conhecimento/dedução a partir do segmento/descrição para escolher um player conhecido no mesmo mercado\n- Não adicione comentários, texto extra ou pontuação; retorne apenas o nome da empresa concorrente\n\nEXEMPLOS DE SAÍDA BOA:\n- \"rd station\"\n- \"hubspot\"\n- \"pipedrive\"\n\nEXEMPLOS DE SAÍDA RUIM (NÃO FAZER):\n- \"rd station, hubspot e outras\" (mais de uma empresa)\n- \"uma empresa concorrente de vocês\" (genérico, sem nome)\n- \"rd station.\" (com ponto final)\n- \"empresa de automação de marketing\" (tipo de empresa, não nome)\n\nOUTPUT:\nRetorne APENAS os dois nomes das empresas concorrentes, sem aspas e sem nenhum texto adicional.\nPor exemplo:\n\"rd station e piperun\"\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        160,
+        1744
+      ],
+      "id": "09bd8cd7-269f-4243-b4f8-642a9dcf0cb5",
+      "name": "Copilot Prospecção5"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"frase0\": \"frase de no máximo 8 palavras\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        336
+      ],
+      "id": "3bd1a1ea-218b-4d4c-92da-8851924c5d71",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.7,
+          "topP": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        128,
+        336
+      ],
+      "id": "6654bca3-a5f1-4d1c-9ece-5868482a5316",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Frase Gerada:**\n{{ $json.output.frase0 }}\n\n**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}\n\n**Raw Data do Site da Empresa (Caso exista):**\n{{ $('Extract').first().json.results[0].raw_content }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Você é um Copywriter especializado em mensagens do LinkedIn. Seu objetivo é ajustar a frase de observação gerada pelo agente anterior (inputada no User Message) para que seja coerente, natural e efetiva dentro da mensagem base.\n\nREGRAS IMPORTANTES:\n- Não mude o contexto ou significado principal da frase\n- Apenas ajuste a coerência, fluidez e naturalidade das palavras para não parecer robotizado ou gerado por IA\n- Não altere gírias; mantenha um tom casual, informal e amigável\n- A {icebreaker} será usada na estrutura \"vi que você tá fazendo {icebreaker}\", então ela deve soar natural nessa posição\n- A {icebreaker} deve funcionar como algo que a pessoa/empresa está fazendo (pode começar com verbo ou expressão de ação), sem virar uma frase muito longa\n- Identifique se o perfil da pessoa é feminino ou masculino pra corrigir possíveis erros relacionados a isso. \n\nMENSAGEM BASE ONDE A PERSONALIZAÇÃO SERÁ INSERIDA:\n\"Oi {first_name}, tudo bem? \n\nVi que você tá {icebreaker}\n\nEu ajudo empresas a prospectarem pelo linkedin sem precisar contratar um exército de sdrs. \n\nVocês já geram leads por aqui?\"\n\nEXEMPLOS DE CORREÇÃO:\n\nExemplo de correção 1:\n[Input] - gerar conteúdo rápido para linkedin\n[Correção] - gerando conteúdo rápido para linkedin\n\nExemplo de correção 2:\n[Input] - postar bastante sobre cases de clientes e resultados\n[Correção] - postando bastante sobre cases de clientes e resultados\n\nExemplo de correção 3:\n[Input] - construir autoridade em vendas b2b com conteúdo\n[Correção] - construindo autoridade em vendas b2b com conteúdo\n\n(As correções mantêm o mesmo sentido, apenas deixam a expressão mais natural e fluida dentro de \"vi que você tá fazendo {icebreaker}\".)\n\nOUTPUT:\nRetorne a frase completa com o {icebreaker} ajustado, pronta para ser enviada. Nada mais além disso.\nGaranta que a mensagem final está revisada, que faz sentido e não contém nenhum caracter que não deveria estar lá. "
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        496,
+        128
+      ],
+      "id": "00685bdb-dae4-4071-9381-3d03e230fe5f",
+      "name": "Copywriter"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Frase Gerada:**\n{{ $json.output.frase1 }}\n\n**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}\n\n**Raw Data do Site da Empresa (Caso exista):**\n{{ $('Extract').first().json.results[0].raw_content }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Você é um Copywriter especializado em mensagens do LinkedIn. Seu objetivo é ajustar a frase de observação gerada pelo agente anterior (inputada no User Message) para que seja coerente, natural e efetiva dentro da mensagem base.\n\nREGRAS IMPORTANTES:\n- Não mude o contexto ou significado principal da frase\n- Apenas ajuste a coerência e fluidez das palavras para não parecer robotizado ou gerado por IA\n- Não altere gírias; mantenha um tom casual, informal e amigável\n- A {personalização} será encaixada após \"sei que você deve estar super ocupado\", então ela deve soar natural nessa posição (pode começar com verbo ou não, desde que a frase completa fique fluida)\n- A personalização deve referenciar APENAS a empresa principal citada e detalhada na User Message na seção **EMPRESA**\n- {first_name} deve ser o primeiro nome do do Lead\n- Identifique se o perfil da pessoa é feminino ou masculino pra corrigir possíveis erros relacionados a isso. \n\nMENSAGEM BASE ONDE A PERSONALIZAÇÃO SERÁ INSERIDA:\n\"Oi {first_name}, tudo bem?\n\nSei que você deve estar super ocupado {personalização}, mas acho que vale dar uma olhada:\n\nEu ajudo fundadores a gerarem demanda através do linkedin, sem parecerem chatos. \n\nVocê já faz prospecção por aqui?\"\n\nEXEMPLO DE CORREÇÃO:\n\nExemplo de correção 1:\n[Input] - gerar conteúdo rápido para linkedin\n[Correção] - gerando conteúdo rápido e com qualidade para linkedin\n\n(Observe que a correção mantém o mesmo sentido, apenas deixa a expressão mais natural e fluida.)\n\nOUTPUT:\nRetorne a frase completa com o {personalizacao} ajustado, pronta para ser enviada. Nada mais além disso.\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        496,
+        464
+      ],
+      "id": "8c1a1382-0cea-4b3f-8881-fb0286079da7",
+      "name": "Copywriter1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Frase Gerada:**\n{{ $json.output.frase2 }}\n\n**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Você é um Copywriter especializado em mensagens do LinkedIn. Seu objetivo é ajustar a frase gerada pelo agente anterior (inputada no User Message) para que seja coerente, natural e efetiva.\n\nREGRAS IMPORTANTES:\n- Não mude o contexto ou significado principal da frase\n- Apenas ajuste a coerência e fluidez das palavras para não parecer robotizado ou gerado por IA\n- Não altere gírias; mantenha um tom casual, informal e amigável\n- A {personalização} será encaixada após \"vocês prospectam\", então ela deve funcionar como um complemento nominal (sem começar com verbo)\n- Identifique se o perfil da pessoa é feminino ou masculino pra corrigir possíveis erros relacionados a isso. \n\nMENSAGEM BASE ONDE A PERSONALIZAÇÃO SERÁ INSERIDA:\n\"Oi {first_name}, tudo bem? \n\nPelo que eu vi, vocês prospectam {personalização}. Sei que não é fácil escalar a prospecção pra esse público.\n\nEstão fazendo isso de forma automatizada já? Ou ainda dependendo de bdrs e sdrs?\"\n\nEXEMPLO DE CORREÇÃO:\n\nExemplo de correção 1:\n[Input] - founders e agencias de tech\n[Correção] - founders e agencias tech\n\n(Observe que a correção mantém o mesmo sentido, apenas deixa a expressão mais natural e enxuta, sem adicionar verbos.)\n\nOUTPUT:\nRetorne a frase completa com a {personalizacao} ajustada, pronta para ser enviada. Nada mais além disso.\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        496,
+        784
+      ],
+      "id": "62c83feb-e342-4f31-8ee4-2e711b4533f1",
+      "name": "Copywriter2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Frase Gerada:**\n{{ $json.output.frase3 }}\n\n**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Você é um Copywriter especializado em mensagens do LinkedIn. Seu objetivo é ajustar a frase de observação gerada pelo agente anterior (inputada no User Message) para que seja coerente, natural e efetiva dentro da mensagem base.\n\nREGRAS IMPORTANTES:\n- Não mude o contexto ou significado principal da frase\n- Apenas ajuste a coerência e fluidez das palavras para não parecer robotizado ou gerado por IA\n- Mantenha o tom casual, informal e amigável\n- Prefira construções em gerúndio ou formas naturais da fala quando possível\n- Quando for especificar a [role] normalize o texto e fale como uma pessoa falaria comumente, como Business Sale Representative (BDR), Coordenador de Marketing - Geração de Demanda (Coordenador de marketing), Sales Development Representative (SDR)\n- Mantenha a [role] em letras minúsculas\n- Identifique se o perfil da pessoa é feminino ou masculino pra corrigir possíveis erros relacionados a isso. \n\nCONTEXTO - Mensagem base onde a personalização será inserida:\n\"Oi {first_name}, tudo bem? \n\nEu ajudo outros {cargo do lead} que trabalham com {atividade inputada} a escalar vendas com prospecção automatizada e qualificada\n\nJá vi clientes no mesmo setor perdendo muito tempo valioso com atividades repetitivas que podem ser facilmente eliminadas. Como é aí pela {empresa}? Tão enfrentando problemas assim também?\"\n\nEXEMPLOS DE CORREÇÃO:\n\nExemplo 1:\n[Input] - gerar conteúdo rápido para linkedin\n[Correção] - conteúdo rápido para linkedin\n\nExemplo 2:\n[Input] - conectar com pessoas da área de vendas\n[Correção] - conexões com pessoas da área de vendas\n\nExemplo 3:\n[Input] - mostrar autoridade em marketing digital\n[Correção] - autoridade em marketing digital\n\nExemplo 4:\n[Input] - conteúdo no linkedin\n[Correção] - criação de conteúdo no linkedin\n\nOUTPUT:\nRetorne a frase completa com a {atividade inputada} e o {cargo do lead} ajustados, pronta para ser enviada. Nada mais além disso."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        496,
+        1104
+      ],
+      "id": "e1c63f20-6c03-45ea-9792-3ca9ff352fd8",
+      "name": "Copywriter3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Frase Gerada:**\n{{ $json.output.frase4 }}\n\n**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Você é um Copywriter especializado em mensagens do LinkedIn. Seu objetivo é ajustar a frase de observação gerada pelo agente anterior (inputada no User Message) para que seja coerente, natural e efetiva dentro da mensagem base.\n\nREGRAS IMPORTANTES:\n- Não mude o contexto ou significado principal da frase\n- Apenas ajuste a coerência, fluidez e naturalidade das palavras para não parecer robotizado ou gerado por IA\n- Não altere gírias; mantenha um tom casual, informal e amigável\n- A {personalização} deve descrever algo ligado a marketing e/ou vendas (não invente coisas totalmente novas)\n\nMENSAGEM BASE ONDE A PERSONALIZAÇÃO SERÁ INSERIDA:\n\"Oi {first_name}, tudo bem? \n\nPercebi que vocês estão {personalização}\n\nEu ajudo empresas a prospectarem pelo Linkedin sem precisar contratar um exército de SDRs. \n\nVocês já geram leads por aqui?\"\n\nEXEMPLOS DE CORREÇÃO:\n\nExemplo de correção 1:\n[Input] - indo bem forte em campanhas pagas e conteúdo no linkedin\n[Correção] - indo forte em campanhas pagas e conteúdo no linkedin\n\nExemplo de correção 2:\n[Input] - crescendo bastante o time comercial e testando outbound\n[Correção] - crescendo o time comercial e testando outbound\n\nExemplo de correção 3:\n[Input] - apostando cada vez mais em marketing e funil de vendas b2b\n[Correção] - apostando mais em marketing e funil de vendas b2b\n\n(Observe que as correções mantêm o mesmo sentido, apenas deixam a expressão mais natural e enxuta.)\n\nOUTPUT:\nRetorne a frase completa com a {personalização} ajustada, pronta para ser enviada. Nada mais além disso.\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        496,
+        1424
+      ],
+      "id": "97cf92c1-bbaa-4652-bc22-bfe5e77a1577",
+      "name": "Copywriter4"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.7,
+          "topP": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        128,
+        640
+      ],
+      "id": "8104bea3-2569-4892-9ff1-66f25b46e001",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"frase1\": \"frase com 5-10 palavras\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        640
+      ],
+      "id": "110b1959-15fd-4d48-927d-42b5c48d9eec",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.7,
+          "topP": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        128,
+        960
+      ],
+      "id": "09fe9d43-e85b-4594-ab16-b18da66d2c01",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"frase2\": \"frase de no máximo 4 palavras\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        960
+      ],
+      "id": "e08f2803-f3f2-4c31-b089-16c8a69ce0f3",
+      "name": "Structured Output Parser3"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.7,
+          "topP": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        128,
+        1280
+      ],
+      "id": "3550d78a-fd28-4a62-8a62-e524a2c583ab",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"frase3\": \"frase de entre 2 a 4 palavras\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        1280
+      ],
+      "id": "53645b21-8653-4e82-a1f1-f47f6aa9b924",
+      "name": "Structured Output Parser4"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.7,
+          "topP": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        128,
+        1600
+      ],
+      "id": "c42c100e-a796-4a23-b21f-d24807fbc254",
+      "name": "OpenAI Chat Model5",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"frase4\": \"frase de no máximo 12 palavras\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        288,
+        1600
+      ],
+      "id": "afd86bc9-2177-47ad-a933-765d84bd7d1e",
+      "name": "Structured Output Parser5"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2"
+        },
+        "builtInTools": {
+          "webSearch": {
+            "searchContextSize": "medium",
+            "country": "BR"
+          }
+        },
+        "options": {
+          "temperature": 0.7,
+          "topP": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        144,
+        1920
+      ],
+      "id": "a071b0c3-24c2-4656-b73c-65de40ed60cb",
+      "name": "OpenAI Chat Model6",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"text\":\"nome do concorrente 1 e do concorrente 2\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        1920
+      ],
+      "id": "8265a225-8b5c-4de8-bd2b-ff4ab9201a5c",
+      "name": "Structured Output Parser6"
+    },
+    {
+      "parameters": {
+        "numberInputs": 6
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        992,
+        912
+      ],
+      "id": "7995b982-ec1f-4f3d-955f-2abf4a24306e",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "text"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        976
+      ],
+      "id": "7a3f85be-f051-41b2-b63b-c59cf205a461",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "content": "## Envio de Mensagem",
+        "height": 384,
+        "width": 640
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        960,
+        832
+      ],
+      "id": "62f18bec-0272-4dec-a628-994e33a90676",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Frase Gerada:**\n{{ $json.output.text }}\n\n**Informações do LEAD:**\nNome: {{ $('Unipile - Scrape Profile').first().json.first_name }} {{ $('Unipile - Scrape Profile').first().json.last_name }}\nHeadline: {{ $('Unipile - Scrape Profile').first().json.headline }}\nLocalidade: {{ $('Unipile - Scrape Profile').first().json.location }}\nLíngua Principal: {{ $('Unipile - Scrape Profile').first().json.primary_locale.language }}\nDescrição: {{ $('Unipile - Scrape Profile').first().json.summary }}\nCargo: {{ $('Set Company Data').first().json.position }}\n\n**Informações da EMPRESA:**\nNome: {{ $('Unipile - Scrape Company').first().json.name }}\nDescrição: {{ $('Unipile - Scrape Company').first().json.description }}\nNúmero de Funcionários: {{ $('Unipile - Scrape Company').first().json.employee_count }}\nSetor: {{ $('Unipile - Scrape Company').first().json.industry[0] }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Você é um Copywriter especializado em mensagens do LinkedIn. Seu objetivo é ajustar a frase de observação gerada pelo agente anterior (inputada no User Message) para que seja coerente, natural e efetiva dentro da mensagem base.\n\nREGRAS IMPORTANTES:\n- Não mude o contexto ou significado principal da frase\n- Apenas ajuste a coerência, fluidez e naturalidade das palavras para não parecer robotizado ou gerado por IA\n- Não altere gírias; mantenha um tom casual, informal e amigável\n\nMENSAGEM BASE ONDE A PERSONALIZAÇÃO SERÁ INSERIDA:\n\"Oi, {first_name}. \n\nVi que vocês estão no mesmo mercado que {concorrentes}. \nVocês já estão usando AI aí na operação da {company} pra garantir vantagem competitiva?\"\n\nEXEMPLOS DE CORREÇÃO:\n\nExemplo de correção 1:\n[Input] - indo bem forte em campanhas pagas e conteúdo no linkedin\n[Correção] - indo forte em campanhas pagas e conteúdo no linkedin\n\nExemplo de correção 2:\n[Input] - crescendo bastante o time comercial e testando outbound\n[Correção] - crescendo o time comercial e testando outbound\n\nExemplo de correção 3:\n[Input] - apostando cada vez mais em marketing e funil de vendas b2b\n[Correção] - apostando mais em marketing e funil de vendas b2b\n\n(Observe que as correções mantêm o mesmo sentido, apenas deixam a expressão mais natural e enxuta.)\n\nOUTPUT:\nRetorne a frase completa com a {personalização} ajustada, pronta para ser enviada. Nada mais além disso.\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        496,
+        1744
+      ],
+      "id": "83124e29-fb07-4231-97bb-e3440a39cdd1",
+      "name": "Copywriter5"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "YOUR_SLACK_CHANNEL_ID",
+          "mode": "list",
+          "cachedResultName": "sdr-copilot"
+        },
+        "text": "URL inválido, tente novamente",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        -4064,
+        1296
+      ],
+      "id": "82d4a1c4-fc12-4791-8770-c38c8e21ba9f",
+      "name": "Slack - Error Message",
+      "webhookId": "db846970-ce49-4a5c-849a-af3984ac40a5",
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack account 20"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "bedae74f-0e4f-4fbb-81d4-9b17cf045237",
+              "leftValue": "={{ $json.subtype }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        -4736,
+        1088
+      ],
+      "id": "c374c129-c85c-40e5-9da0-1d3acb60b474",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "trigger": [
+          "message"
+        ],
+        "channelId": {
+          "__rl": true,
+          "value": "YOUR_SLACK_CHANNEL_ID",
+          "mode": "list",
+          "cachedResultName": "sdr-copilot"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [
+        -4944,
+        1088
+      ],
+      "id": "cfd2b50c-0a1c-44ae-8ab9-0216a5c55f22",
+      "name": "Slack Trigger",
+      "webhookId": "04a2ffbb-ccfb-4722-b3dd-6f3d6946afe9",
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack account 20"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "URL": "https://www.linkedin.com/in/guilhermecleto/",
+          "submittedAt": "2026-01-20T08:24:57.204-03:00",
+          "formMode": "test"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Keys",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Company Website Exists": {
+      "main": [
+        [
+          {
+            "node": "Extract",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search": {
+      "main": [
+        [
+          {
+            "node": "Search Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Website": {
+      "main": [
+        [
+          {
+            "node": "Filter - Correct Website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copilot Prospecção": {
+      "main": [
+        [
+          {
+            "node": "Copywriter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unipile - Scrape Profile": {
+      "main": [
+        [
+          {
+            "node": "Split Out - Work Experiences",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Slack - Error Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keys": {
+      "main": [
+        [
+          {
+            "node": "Unipile - Scrape Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Human in the Loop - Empresa > 1": {
+      "main": [
+        [
+          {
+            "node": "Set Data 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Human in the Loop - 1 Empresa": {
+      "main": [
+        [
+          {
+            "node": "Set Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript - Generate JSON Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Results": {
+      "main": [
+        [
+          {
+            "node": "Check Website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Check Website",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Check Website",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract": {
+      "main": [
+        [
+          {
+            "node": "Copilot Prospecção",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Company Data": {
+      "main": [
+        [
+          {
+            "node": "Unipile - Scrape Company",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out - Work Experiences": {
+      "main": [
+        [
+          {
+            "node": "Filter - Active Experiences",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter - Active Experiences": {
+      "main": [
+        [
+          {
+            "node": "More than 1 company",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "More than 1 company": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Human in the Loop - 1 Empresa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript - Generate JSON Form": {
+      "main": [
+        [
+          {
+            "node": "Human in the Loop - Empresa > 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Data 1": {
+      "main": [
+        [
+          {
+            "node": "Split Out - Filtered Experiences",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Data": {
+      "main": [
+        [
+          {
+            "node": "Set Company Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out - Filtered Experiences": {
+      "main": [
+        [
+          {
+            "node": "Filter - Chosen Company",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter - Chosen Company": {
+      "main": [
+        [
+          {
+            "node": "Set Company Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unipile - Scrape Company": {
+      "main": [
+        [
+          {
+            "node": "Company Website Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter - Correct Website": {
+      "main": [
+        [
+          {
+            "node": "Website Exists?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Website Exists?": {
+      "main": [
+        [
+          {
+            "node": "Set URL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Copilot Prospecção",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copilot Prospecção5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set URL": {
+      "main": [
+        [
+          {
+            "node": "Extract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Copilot Prospecção",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Copilot Prospecção",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Copywriter",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copywriter": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copilot Prospecção1": {
+      "main": [
+        [
+          {
+            "node": "Copywriter1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copilot Prospecção2": {
+      "main": [
+        [
+          {
+            "node": "Copywriter2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copilot Prospecção3": {
+      "main": [
+        [
+          {
+            "node": "Copywriter3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copilot Prospecção4": {
+      "main": [
+        [
+          {
+            "node": "Copywriter4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copilot Prospecção5": {
+      "main": [
+        [
+          {
+            "node": "Copywriter5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Copilot Prospecção1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Copywriter1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Copilot Prospecção1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Copilot Prospecção2",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Copywriter2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Copilot Prospecção2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Copilot Prospecção3",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Copywriter3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser4": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Copilot Prospecção3",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Copilot Prospecção4",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Copywriter4",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Copywriter5",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser5": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Copilot Prospecção4",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Copilot Prospecção5",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser6": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Copilot Prospecção5",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copywriter1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Copywriter2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Copywriter3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Copywriter4": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copywriter5": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Keys",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "7204e487-4a02-45e4-9131-4ee19900b392",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "98a7f76cbff973591af08e09b5be2fed14b55b37d878782c0638229a94477203"
+  },
+  "id": "y2EpIElpgW9ybAiVkSv82",
+  "tags": [
+    {
+      "updatedAt": "2025-06-12T17:49:26.927Z",
+      "createdAt": "2025-06-12T17:49:26.927Z",
+      "id": "PatjR2DI1NI2457H",
+      "name": "Lead Magnet"
+    }
+  ]
+}

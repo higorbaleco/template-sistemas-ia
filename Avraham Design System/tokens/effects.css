@@ -1,0 +1,26 @@
+:root{
+  --glass-blur:blur(12px); /* @kind other */
+  --glass-blur-heavy:blur(20px); /* @kind other */
+
+  --grid-size:60px; /* @kind spacing */
+  --grid-line:rgba(17,17,20,.045); /* @kind color */
+
+  --shadow-sm-t:0 1px 2px rgba(17,17,20,.05),0 2px 6px -2px rgba(17,17,20,.08); /* @kind shadow */
+  --shadow-card:0 2px 6px -1px rgba(17,17,20,.06),0 16px 34px -18px rgba(17,17,20,.16); /* @kind shadow */
+  --shadow-raised:0 6px 14px -4px rgba(17,17,20,.08),0 26px 52px -20px rgba(17,17,20,.22); /* @kind shadow */
+  --shadow-inset-hair:inset 0 1px 0 rgba(255,255,255,.6); /* @kind shadow */
+  --glow-cyan:0 0 0 3px rgba(11,188,162,.16); /* @kind shadow */
+  --glow-cyan-soft:0 8px 22px -12px rgba(11,188,162,.5); /* @kind shadow */
+
+  --bracket-width:4px; /* @kind spacing */
+  --bracket-inset:16px; /* @kind spacing */
+}
+[data-theme="dark"]{
+  --grid-line:rgba(255,255,255,.04); /* @kind color */
+  --shadow-sm-t:0 1px 2px rgba(0,0,0,.4); /* @kind shadow */
+  --shadow-card:0 18px 40px -26px rgba(0,0,0,.85); /* @kind shadow */
+  --shadow-raised:0 26px 60px -28px rgba(0,0,0,.9); /* @kind shadow */
+  --shadow-inset-hair:inset 0 1px 0 rgba(255,255,255,.05); /* @kind shadow */
+  --glow-cyan:0 0 0 3px rgba(18,214,184,.2); /* @kind shadow */
+  --glow-cyan-soft:0 8px 24px -10px rgba(18,214,184,.45); /* @kind shadow */
+}

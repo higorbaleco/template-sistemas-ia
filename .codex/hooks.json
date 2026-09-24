@@ -1,0 +1,23 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node '/Users/higorplens/Antigravity Software/.codex/hooks/block-push.mjs'"
+          },
+          {
+            "type": "command",
+            "command": "node '/Users/higorplens/Antigravity Software/.codex/hooks/block-main-commit.mjs'"
+          },
+          {
+            "type": "command",
+            "command": "node '/Users/higorplens/Antigravity Software/.codex/hooks/suite-gate.mjs'"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,2068 @@
+{
+  "name": "[Lead Magnet] - Registro CRM Pós-Reunião",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "336b97ae-4dd2-4f44-b003-04b54aa24ec3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1312,
+        -160
+      ],
+      "id": "882e45c0-116f-4027-8d93-cdc87ebe6cfd",
+      "name": "tl;dv - Webhook",
+      "webhookId": "336b97ae-4dd2-4f44-b003-04b54aa24ec3",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-nano"
+        },
+        "options": {
+          "temperature": 0.2,
+          "topP": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        4528,
+        176
+      ],
+      "id": "bb0b0dc3-eadc-41f2-b025-a41ced9eaa08",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "mkpIijv36vqUm91Y",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"resumo\": \"Máximo dois parágrafos de resumo da interação, indicando quais são as necessidades do cliente e quais soluções foram propostas para ele.\",\n  \"necessidade_principal\": \"Descrição de qual é a necessidade principal identificada\",\n  \"proximos_passos_pb\": \"Máximo 1 parágrafo descrevendo os próximos passos combinados que serão executados pela Playbook Lab.\",\n  \"proximos_passos_cl\": \"Máximo 1 parágrafo descrevendo os próximos passos combinados que serão executados pelo Cliente.\",\n  \"crm_atual\": \"String com o nome do CRM mencionado ou 'Não identificado' se não for mencionado pelo cliente\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        4704,
+        176
+      ],
+      "id": "05e687e2-cc6c-4f37-84b2-f5edfb68a054",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "resource": "person",
+        "operation": "search",
+        "term": "={{ $('Client Data').first().json.email }}",
+        "additionalFields": {
+          "exactMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        2960,
+        0
+      ],
+      "id": "b0172541-bb67-47fd-95b5-aff8700364a5",
+      "name": "Search a person",
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "term": "={{ $json.name }}",
+        "additionalFields": {
+          "personId": "={{ $('Data').item.json.person_id }}",
+          "status": "open"
+        }
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        5152,
+        -32
+      ],
+      "id": "9259c11e-b2bb-45eb-8404-b24db925d9c8",
+      "name": "Search a deal",
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dealId": "={{ $json.id }}",
+        "updateFields": {
+          "customProperties": {
+            "property": [
+              {
+                "name": "5f608a06a3cf0f30da894074fd6c153ed8dcbf41",
+                "value": "={{ $('Client Data').first().json.url_meeting }}"
+              }
+            ]
+          },
+          "stage_id": 3
+        }
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        5344,
+        -32
+      ],
+      "id": "1aabce38-d200-4aeb-88f7-628be1099084",
+      "name": "Update a deal",
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "organization",
+        "operation": "update",
+        "organizationId": "={{ $('Data').item.json.org_id }}",
+        "updateFields": {
+          "customProperties": {
+            "property": [
+              {
+                "name": "2104960df7bbdc77715b6794b0f0e0bdfa3a5516",
+                "value": "={{ $('Analista de Call').first().json.output.crm_atual }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        4928,
+        -32
+      ],
+      "id": "3d2f944f-6745-4628-ae3a-4c347b82bfea",
+      "name": "Update an organization",
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "note",
+        "content": "=**Resumo da Ligação:**\n{{ $('Analista de Call').first().json.output.resumo }}\n\n**Necessidade Principais:**\n{{ $('Analista de Call').first().json.output.necessidade_principal }}\n\n**Próximos Passos Playbook:**\n{{ $('Analista de Call').first().json.output.proximos_passos_pb }}\n\n**Próximos Passos Cliente:**\n{{ $('Analista de Call').first().json.output.proximos_passos_cl }}",
+        "additionalFields": {
+          "deal_id": "={{ $json.id }}"
+        }
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        5552,
+        -32
+      ],
+      "id": "75404ac2-cff6-4f5b-9ef4-334333687383",
+      "name": "Create a note",
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://pasta.tldv.io/v1alpha1/meetings/{{ $json.meetingId }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $('Credentials').item.json['tl;dv'] }}"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2064,
+        0
+      ],
+      "id": "1a66b1db-b333-45ec-a2b3-6e32fb61acf7",
+      "name": "tl;dv - Get Meeting by ID"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7796a4bb-287c-4fec-b9a0-755184de32a7",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "148b941c-dfed-4548-b7cc-39a30f9bf61f",
+              "name": "email",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "1bd823c1-7f39-4310-b0ba-ea532e128745",
+              "name": "meeting_name",
+              "value": "={{ $('tl;dv - Get Meeting by ID').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "c524aa51-58da-47a6-928e-7ecef8929ef5",
+              "name": "url_meeting",
+              "value": "={{ $('tl;dv - Get Meeting by ID').first().json.url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2720,
+        0
+      ],
+      "id": "9efdfc32-0233-44ac-8df7-6ff38805c225",
+      "name": "Client Data"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Concatena transcrição do TLDV - Versão Ajustada\n// Input: Webhook payload do TLDV\n// Output: String com transcrição formatada\n\nconst input = $input.first().json;\n\n// O payload é um array, pega o primeiro elemento\nconst payload = Array.isArray(input) ? input[0] : input;\n\n// Acessa o array de transcrições\nconst transcriptData = payload?.data;\n\n// Valida se existem dados\nif (!transcriptData || !Array.isArray(transcriptData)) {\n  return [{\n    json: {\n      meetingId: null,\n      transcriptId: null,\n      executedAt: new Date().toISOString(),\n      totalFalas: 0,\n      transcricao: \"\"\n    }\n  }];\n}\n\n// Concatena as falas\nlet transcricao = \"\";\ntranscriptData.forEach(entry => {\n  const speaker = entry.speaker || \"Desconhecido\";\n  const text = entry.text || \"\";\n  \n  transcricao += `${speaker}: ${text}\\n`;\n});\n\n// Remove última quebra de linha\ntranscricao = transcricao.trim();\n\n// Retorna resultado\nreturn [{\n  json: {\n    meetingId: payload.meetingId || null,\n    transcriptId: payload.id || null,\n    executedAt: new Date().toISOString(),\n    totalFalas: transcriptData.length,\n    transcricao: transcricao\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1856,
+        0
+      ],
+      "id": "88f97fd9-de14-4299-b845-96ec20927b65",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "url": "=https://pasta.tldv.io/v1alpha1/meetings/{{ $('On form submission').item.json['ID da Reunião'] }}/transcript",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $json['tl;dv'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1648,
+        0
+      ],
+      "id": "8016609e-06f0-4e49-b858-b6df4be7a171",
+      "name": "tl;dv - Get Meeting Transcript"
+    },
+    {
+      "parameters": {
+        "formTitle": "Formulário - ID da Reunião",
+        "formDescription": "Faça o Input do ID da reunião",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "ID da Reunião",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        1312,
+        0
+      ],
+      "id": "d79f09a1-377d-48d3-aafc-48a27487da7e",
+      "name": "On form submission",
+      "webhookId": "53ee0422-b381-42f1-802d-ac0191893bdd"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Transcrição da Ligação: {{ $('Code in JavaScript').item.json.transcricao }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Você é um assistente especializado em analisar transcrições de reuniões de negócios do Victor, fundador da Playbook Lab, e extrair informações relevantes.\n\nNa transcrição recebida na User Message, as falas da Playbook Lab são as do Victor. As falas de outras pessoas dvem ser tratadas como falas de clientes.\nAnalise a transcrição abaixo e retorne APENAS um JSON válido no formato indicado no Structured Output Parser.\n\n  \"resumo\": Máximo dois parágrafos de resumo da interação, indicando quais são as necessidades do cliente e quais soluções foram propostas para ele.\n  \"necessidade_principal\": Descrição de qual é a necessidade principal identificada\n  \"proximos_passos_pb\": Máximo 1 parágrafo descrevendo os próximos passos combinados que serão executados pela Playbook Lab.\n  \"proximos_passos_cl\": Máximo 1 parágrafo descrevendo os próximos passos combinados que serão executados pelo Cliente.\n  \"crm_atual\": String com o nome do CRM mencionado ou 'Não identificado' se não for mencionado pelo cliente\n\nINSTRUÇÕES:\n- No resumo, foque em: qual é o problema/necessidade do cliente e qual solução foi proposta ou discutida\n- Na necessidade principal, seja objetivo e direto\n- Nos próximos passos, liste apenas ações concretas que foram combinadas (prazos, responsáveis, entregas)\n- Para o CRM, identifique se foi mencionado algum sistema de CRM, Pipedrive, HubSpot, Salesforce, ou similar\n- Se alguma informação não estiver clara na transcrição, indique \"Não identificado\" ou \"Não mencionado\"\n- Retorne APENAS o JSON, sem explicações adicionais"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        4544,
+        -32
+      ],
+      "id": "8b65e50c-0872-4c4f-9dcf-a6ebed4e6a07",
+      "name": "Analista de Call"
+    },
+    {
+      "parameters": {
+        "content": "## Trigger (tl;dv)\nWebhook tl;dv -> Para sistema 100% automatizado, traz o transcript da reunião.\nForms Trigger -> Pede o URL da reunião gravada no tl;dv.\n\nUtiliza um nó de Code (Criado no Claude) que junta o transcript em um item só. Em seguida usa o ID da reunião para pegar os nomes de quem compareceu.",
+        "height": 480,
+        "width": 1584,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1264,
+        -304
+      ],
+      "typeVersion": 1,
+      "id": "a08f4de8-f1c8-4548-a6e7-f7680d96c02c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Human in the Loop\nBusca o cliente no Pipedrive.\nEnvia um Email de verificação no seu email, pede confirmação para seguir o fluxo ou enviar o ID do Lead.",
+        "height": 656,
+        "width": 1504,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2912,
+        -304
+      ],
+      "id": "9a5c42bb-6bfb-4b10-8454-085d43c7bb70",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Agente Analista\nAnalisa o Transcrito da Call, retirando informações chave para registrar no CRM",
+        "height": 496,
+        "width": 336,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4480,
+        -176
+      ],
+      "id": "e69b8626-ddf1-452a-8aae-2a15f8efe042",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## CRM\nAtualiza dados de organização, contato e deal. Também cria uma nota com o resumo da reunião.\n",
+        "height": 272,
+        "width": 864
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4864,
+        -128
+      ],
+      "id": "6edfb44f-f761-4f2f-89aa-1221fa908887",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3936,
+        0
+      ],
+      "id": "5cf32c22-4508-4dd2-9987-21bdc4ba0caa",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "resource": "person",
+        "operation": "get",
+        "personId": "={{ $json.data['ID do contato'] }}"
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        3856,
+        192
+      ],
+      "id": "55a6bd2c-340a-440a-9561-c57cf0ebb96f",
+      "name": "Get a person",
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e2202436-521b-4948-a39d-d0f9c591e782",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "@playbooklab",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        2464,
+        0
+      ],
+      "id": "5e0597da-6193-4ccc-8159-98ec47f8bf17",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "invitees",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2272,
+        0
+      ],
+      "id": "aade1080-1a69-4bcd-b95d-9c880962802e",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "victor@playbooklab.com.br",
+        "subject": "=Confirmação de Análise de Reunião - {{ $('tl;dv - Get Meeting by ID').item.json.name }}",
+        "message": "=Olá, Victor!\n\nSó confirmando a execução do fluxo de análise de calls + registro de CRM da reunião {{ $('tl;dv - Get Meeting by ID').item.json.name }}.\n\nCaso a reunião não seja de vendas e não deva ser registrada no CRM, por favor negue este pedido.",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "approveLabel": "Confirmar",
+            "disapproveLabel": "Negar"
+          }
+        },
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        3408,
+        -112
+      ],
+      "id": "7e9a65be-25b1-4adc-9c92-8f505cdbf36a",
+      "name": "Confirmation",
+      "webhookId": "bfca0cda-b660-4af4-b440-36e3e5accd2a",
+      "executeOnce": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "o3DLdswi9Mm39ZZx",
+          "name": "Gmail account - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "victor@playbooklab.com.br",
+        "subject": "=Erro no Registro da Reunião -  {{ $('Client Data').item.json.meeting_name }}",
+        "message": "=Não foi possível encontrar dentro do CRM um contato atrelado ao email {{ $('Client Data').item.json.email }}. \nPara registrar a ligação no CRM, responda o formulário com o ID do contato.\nPara cancelar, envie o formulário vazio.",
+        "responseType": "customForm",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "ID do contato",
+              "fieldType": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        3408,
+        96
+      ],
+      "id": "58bcc26d-ac4d-4ea0-8afd-2666c7831451",
+      "name": "Error CRM",
+      "webhookId": "d47306f5-b9e1-4b25-9023-8fafc447d90a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "o3DLdswi9Mm39ZZx",
+          "name": "Gmail account - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5be66676-4fd6-471e-ad50-704add61a47b",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3168,
+        0
+      ],
+      "id": "1390d806-8106-4f5b-8dca-fa8fd7f840cd",
+      "name": "Lead Exists?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e27f5720-718e-4652-8b16-869de3cbfad5",
+              "leftValue": "={{ $json.data['ID do contato'] }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3664,
+        96
+      ],
+      "id": "43d9b4d9-88a0-4ec9-9410-f6ad404dc1fa",
+      "name": "New ID"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b8acbfe5-236e-4f93-814b-db623ff09c86",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3664,
+        -112
+      ],
+      "id": "74b3bcef-7094-4bd9-9863-26d9200d0f34",
+      "name": "Yes?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "424b243a-3c6f-407d-832f-12eedb6a7e05",
+              "name": "org_id",
+              "value": "={{ $('Search a person').item.json.organization.id }}",
+              "type": "number"
+            },
+            {
+              "id": "ca136cf1-bcb0-4059-a67e-92525740ef87",
+              "name": "person_id",
+              "value": "={{ $('Search a person').item.json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3936,
+        -208
+      ],
+      "id": "3aac2564-9b78-4872-80c2-f59484f20d66",
+      "name": "Set ID"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "db42d607-70bd-4a31-bd54-ee6075dfed26",
+              "name": "org_id",
+              "value": "={{ $json.org_id.value }}",
+              "type": "string"
+            },
+            {
+              "id": "c421dd7c-5a9b-4e4b-9128-e19d30fef2fc",
+              "name": "person_id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4064,
+        192
+      ],
+      "id": "075e5d9d-590e-42e3-9b01-685cfe822b7a",
+      "name": "Set ID 0"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "45ee156d-b456-406f-b3d0-139b89ddc7d5",
+              "name": "org_id",
+              "value": "={{ $json.org_id }}",
+              "type": "string"
+            },
+            {
+              "id": "adc22879-23e6-4e8b-a8fb-f7409405dcb0",
+              "name": "person_id",
+              "value": "={{ $json.person_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4272,
+        -32
+      ],
+      "id": "8ec8224e-a81c-440e-a549-9a6c828d2e51",
+      "name": "Data"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "14ebc59d-8487-4605-8634-9025378b0cdc",
+              "name": "tl;dv",
+              "value": "API KEY TL;DV",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1488,
+        0
+      ],
+      "id": "363fd348-db7d-440b-af6f-e66847ecb1c4",
+      "name": "Credentials"
+    }
+  ],
+  "pinData": {
+    "tl;dv - Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n-n8n-start.zqyxpr.easypanel.host",
+            "user-agent": "tldv-webhook/v1alpha1",
+            "content-length": "47900",
+            "accept-charset": "utf-8",
+            "content-type": "application/json; charset=utf-8",
+            "traceparent": "00-72b6f8a4b3a157202c1909da5022899f-be7897b86df7f88f-01",
+            "x-forwarded-for": "34.185.199.180",
+            "x-forwarded-host": "n8n-n8n-start.zqyxpr.easypanel.host",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "8d7443a82c62",
+            "x-real-ip": "34.185.199.180",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "TranscriptReady",
+            "data": {
+              "id": "68f937f854e61d0013fd26c2",
+              "meetingId": "68f937bec2f181001306c48e",
+              "data": [
+                {
+                  "startTime": 0,
+                  "endTime": 6,
+                  "speaker": "Victor Baggio",
+                  "text": "É Victor, porque né? Por causa do seno nome, mas o pessoal chama de Vitor não tem problema nenhum."
+                },
+                {
+                  "startTime": 6,
+                  "endTime": 13,
+                  "speaker": "Wagner Pontes",
+                  "text": "Isso que eu imaginei eu falei, pô, se você tá ali, ele não é à toa, né? Tem o ser mais a maioria da Galera deve deve emendar no Victor."
+                },
+                {
+                  "startTime": 13,
+                  "endTime": 22,
+                  "speaker": "Victor Baggio",
+                  "text": "É normal? A gente vai receber eu esqueci o nome da tua diretora de comercial."
+                },
+                {
+                  "startTime": 22,
+                  "endTime": 23,
+                  "speaker": "Wagner Pontes",
+                  "text": "Eduardo Costa Sem Ela acabou de me pedir o link deixou a TV isso, acabei de"
+                },
+                {
+                  "startTime": 23,
+                  "endTime": 24,
+                  "speaker": "Victor Baggio",
+                  "text": "Eduardo legal"
+                },
+                {
+                  "startTime": 28,
+                  "endTime": 37,
+                  "speaker": "Wagner Pontes",
+                  "text": "passar para ela. então aguardando ela entrar e A gente segue bom, tá? Tudo bem por aí, tá tudo certo."
+                },
+                {
+                  "startTime": 38,
+                  "endTime": 51,
+                  "speaker": "Victor Baggio",
+                  "text": "Tudo cara, graças a Deus, aquele dia foi só um imprevisto com meu pai lá, não era nem nada sério, mas eu eu fui dar uma força lá e acabei ficando sem bateria, não consigo voltar e nem te avisei peço desculpa de volta."
+                },
+                {
+                  "startTime": 51,
+                  "endTime": 52,
+                  "speaker": "Wagner Pontes",
+                  "text": "Imagina tranquilo."
+                },
+                {
+                  "startTime": 53,
+                  "endTime": 56,
+                  "speaker": "Victor Baggio",
+                  "text": "Aí mora aqui pertinho. Daí eu fui até lá. Sai correndo."
+                },
+                {
+                  "startTime": 56,
+                  "endTime": 60,
+                  "speaker": "Wagner Pontes",
+                  "text": "É isso aí Família em primeiro lugar, né prioridade."
+                },
+                {
+                  "startTime": 60,
+                  "endTime": 64,
+                  "speaker": "Victor Baggio",
+                  "text": "Eu nem sei se você sabe mas eu tô com um bebezinho em casa, né? Tem vai fazer"
+                },
+                {
+                  "startTime": 64,
+                  "endTime": 81,
+                  "speaker": "Wagner Pontes",
+                  "text": "oito meses o Davi. É daí tem ele também. Agora já tá mais tranquilo, mas esses os primeiros quatro cinco meses é trabalhadeira, né? É enfim, eu que diga eu enfim a Giovana nasceu, a Giovana tá com 19 anos. Então, eu comecei 19 anos atrás aí a brincadeira."
+                },
+                {
+                  "startTime": 81,
+                  "endTime": 88,
+                  "speaker": "Victor Baggio",
+                  "text": "Oi Eduardo é bem-vinda."
+                },
+                {
+                  "startTime": 88,
+                  "endTime": 88,
+                  "speaker": "Eduarda Costa",
+                  "text": "Oi Vitor. Oi Wagner, tudo bem?"
+                },
+                {
+                  "startTime": 88,
+                  "endTime": 90,
+                  "speaker": "Wagner Pontes",
+                  "text": "E aí"
+                },
+                {
+                  "startTime": 90,
+                  "endTime": 92,
+                  "speaker": "Victor Baggio",
+                  "text": "Tudo bom prazer."
+                },
+                {
+                  "startTime": 92,
+                  "endTime": 92,
+                  "speaker": "Wagner Pontes",
+                  "text": "Tudo certo."
+                },
+                {
+                  "startTime": 93,
+                  "endTime": 97,
+                  "speaker": "Eduarda Costa",
+                  "text": "Ótimo prazer é meu perdão a demora aqui eu tava. baixando aqui"
+                },
+                {
+                  "startTime": 97,
+                  "endTime": 100,
+                  "speaker": "Wagner Pontes",
+                  "text": "Tranquilo, acabamos de entrar eu vou até fechar."
+                },
+                {
+                  "startTime": 103,
+                  "endTime": 107,
+                  "speaker": "Eduarda Costa",
+                  "text": "Eu estava justamente chegando o meu aqui também, mas acho que o meu tá ok,"
+                },
+                {
+                  "startTime": 107,
+                  "endTime": 108,
+                  "speaker": "Victor Baggio",
+                  "text": "Tá tranquilo."
+                },
+                {
+                  "startTime": 108,
+                  "endTime": 109,
+                  "speaker": "Eduarda Costa",
+                  "text": "né? Então tá bom."
+                },
+                {
+                  "startTime": 114,
+                  "endTime": 136,
+                  "speaker": "Wagner Pontes",
+                  "text": "Então Duda. Esse é o Victor o Victor como Maria que tava brincando com ele que você a galera acaba engolindo o rapaz que eu te falei enfim. Então já estamos inclusive de contrato assinado tudo certinho para gente. Para a gente avançar então, com certeza você vai poder ir contribuir para a gente"
+                },
+                {
+                  "startTime": 136,
+                  "endTime": 139,
+                  "speaker": "Victor Baggio",
+                  "text": "show"
+                },
+                {
+                  "startTime": 139,
+                  "endTime": 144,
+                  "speaker": "Wagner Pontes",
+                  "text": "hoje com muita informação coisas que eu não sobre explicar. Com certeza, você é a melhor pessoa hoje para"
+                },
+                {
+                  "startTime": 146,
+                  "endTime": 146,
+                  "speaker": "Victor Baggio",
+                  "text": "Legal, obrigado, também. Tô bem ansioso para o projeto. Vem trocando com"
+                },
+                {
+                  "startTime": 146,
+                  "endTime": 157,
+                  "speaker": "Eduarda Costa",
+                  "text": "Me deu a gente teve tá bem confiante e eu quero que você precisa nesse momento sabe?"
+                },
+                {
+                  "startTime": 162,
+                  "endTime": 246,
+                  "speaker": "Victor Baggio",
+                  "text": "vocês dois daí vocês podem adicionar mais pessoas também para o grupo. A gente tem um grupo que fica ativo durante o projeto todo para comunicação assim eu vou dar os detalhes daqui a pouquinho mas antes eu queria voltar e colocar a Eduarda na mesma página para garantir que o entendimento do projeto"
+                },
+                {
+                  "startTime": 246,
+                  "endTime": 249,
+                  "speaker": "Eduarda Costa",
+                  "text": "Ótimo não isso é muito bom para gente aqui eu sempre aprecio e fico feliz que você tenha aberto essa porta porque para a gente quando vê o Insight fora às vezes dentro, a gente tem enxerga menos né?"
+                },
+                {
+                  "startTime": 249,
+                  "endTime": 370,
+                  "speaker": "Victor Baggio",
+                  "text": "com tecnologia ao mesmo tempo, né? Então fica à vontade para a gente vai poder ter conversas de alto nível. Mesmo que fora do escopo do projeto no sentido talvez mais construtivo tira dúvidas e tal a gente entende bastante sobre o ambiente de vendas, tá?"
+                },
+                {
+                  "startTime": 370,
+                  "endTime": 381,
+                  "speaker": "Eduarda Costa",
+                  "text": "Ótimo não isso é muito bom para gente aqui eu sempre aprecio e fico feliz que você tenha aberto essa porta porque para a gente quando vê o Insight fora às vezes dentro, a gente tem enxerga menos né?"
+                },
+                {
+                  "startTime": 382,
+                  "endTime": 383,
+                  "speaker": "Victor Baggio",
+                  "text": "Quantos anos de casa se tem já?"
+                },
+                {
+                  "startTime": 383,
+                  "endTime": 388,
+                  "speaker": "Eduarda Costa",
+                  "text": "A gente fica cego então eu 6:30."
+                },
+                {
+                  "startTime": 388,
+                  "endTime": 453,
+                  "speaker": "Victor Baggio",
+                  "text": "anos no mesmo negócio, você não tem tanto input de outros negócios de outros mercados, o que que eles estão fazendo e isso acaba sendo ruim acaba sendo bem ruim. Eu depois que eu sair eu fui trabalhar direto com consultoria que daí eu acho que é o momento que você fica mais exposto a outros negócios porque você conversa sobre vendas com diversas empresas de diversos segmentos aí que foi parar para perceber assim, caramba, eu tinha cinco anos e meio de mesma empresa trabalhando em vendas. Eu achava que eu sabia muito e que eu fazia sempre do bom e do melhor, mas depois eu falei caramba muita coisa. Ainda né? Então é ótimo e"
+                },
+                {
+                  "startTime": 453,
+                  "endTime": 464,
+                  "speaker": "Eduarda Costa",
+                  "text": "Para a gente é ótimo assim. Eu sempre gosto de contratar todo ano para a gente ter uma visão de fora de melhoria. Então o que você enxergar do seu lado aí, por favor me traga. Porque para mim é muito valioso realmente."
+                },
+                {
+                  "startTime": 464,
+                  "endTime": 525,
+                  "speaker": "Victor Baggio",
+                  "text": "locode tipo N8 n agora tá famoso e tal construir agentes de Inteligência Artificial tanto para conversar com o público, né com os clientes trabalhando por exemplo fazendo um SDR virtual fazendo qualificação fazendo suporte atendimento tira dúvidas via WhatsApp ou até mesmo via plataformas internas, mas a gente construiu já criou, né bagagem de solucionar problemas internos também então gravar reunião igual a gente tá gravando aqui preencher esse RM automaticamente gerar um e-mail de follow up automático uma série de coisas que a gente pode já vir explorando com Wagner, principalmente coisas no Instagram que vocês têm uma presença muito forte. Tem muita coisa que vocês podem atrelar a tecnologia a estratégia e gerar muito muito líder. Tá então assim, eu já fiz o número depois que a gente finalizar esse esse projeto, né fechar esse."
+                },
+                {
+                  "startTime": 525,
+                  "endTime": 527,
+                  "speaker": "Wagner Pontes",
+                  "text": "legal"
+                },
+                {
+                  "startTime": 527,
+                  "endTime": 547,
+                  "speaker": "Victor Baggio",
+                  "text": "gente é até bom a gente não colocar não começar a abrir várias frentes porque eu costumo ter esse problema. Quero fazer tudo junto tudo ao mesmo tempo. Daí você vê que não faz nada direito, então a gente tem que"
+                },
+                {
+                  "startTime": 547,
+                  "endTime": 549,
+                  "speaker": "Eduarda Costa",
+                  "text": "Foi um projeto a gente conversa outro né?"
+                },
+                {
+                  "startTime": 549,
+                  "endTime": 806,
+                  "speaker": "Victor Baggio",
+                  "text": "pouquinho mais alta. Porque ninguém gosta de receber uma prospecção sabendo que é uma prospecção de um vendedor e eu já até tinha falado por Wagner que para o caso de vocês. Talvez vocês não enfrentam isso porque vocês vendem sonhom literalmente, né? Se vocês verem algo que as pessoas normalmente não querem aí é mais desafiado. O cara recebe a prospecção já vai lá em bloquear. Não quero saber né de vendedor me procurando no caso de vocês, o vendedor deve ser muito bem aceito, né? Então, talvez a gente."
+                },
+                {
+                  "startTime": 806,
+                  "endTime": 810,
+                  "speaker": "Eduarda Costa",
+                  "text": "Gosta de fazer senão em nome do Wagner em meu nome pelo menos."
+                },
+                {
+                  "startTime": 810,
+                  "endTime": 846,
+                  "speaker": "Victor Baggio",
+                  "text": "Quatro dá para ir colocando mais né? Hoje a gente tem clientes que tem até acho que tem cinco caixas lá enviando fazendo a prospecção e daí."
+                },
+                {
+                  "startTime": 846,
+                  "endTime": 847,
+                  "speaker": "Wagner Pontes",
+                  "text": "legal"
+                },
+                {
+                  "startTime": 847,
+                  "endTime": 875,
+                  "speaker": "Victor Baggio",
+                  "text": "Entre 20 e 30 sabe geralmente a gente começa com 20. Espera um tempo para meio que para contaquecer assim depois sobe para 25 no máximo estourando 30 DM por dia para não ficar não ter problema de banir. Então é dá para fazer aí cinco vezes 30, por exemplo, vocês têm uma ideia de quantas pessoas vão receber um primeiro contato, diariamente todos os dias prospecta mais e mais 30 por conta, né?"
+                },
+                {
+                  "startTime": 876,
+                  "endTime": 878,
+                  "speaker": "Wagner Pontes",
+                  "text": "Essa limitação é só para esse primeiro contato para o segundo e para o"
+                },
+                {
+                  "startTime": 878,
+                  "endTime": 881,
+                  "speaker": "Victor Baggio",
+                  "text": "uma bolinha de Neve exatamente e"
+                },
+                {
+                  "startTime": 886,
+                  "endTime": 887,
+                  "speaker": "Wagner Pontes",
+                  "text": "terceiro existe a mesma intenção."
+                },
+                {
+                  "startTime": 887,
+                  "endTime": 908,
+                  "speaker": "Victor Baggio",
+                  "text": "é 30 DM por dia então vai ter um dia que ela vai ter que fazer 10 DM das pessoas que foram prospeitadas. Só vai sobrar 20 novos Slots para prospectar novos, né? a gente vai chegar num platô obviamente de volume, mas"
+                },
+                {
+                  "startTime": 908,
+                  "endTime": 913,
+                  "speaker": "Wagner Pontes",
+                  "text": "Mas ao time é grande, o nosso time comercial é grande e a gente consegue se espalhar, né?"
+                },
+                {
+                  "startTime": 915,
+                  "endTime": 1004,
+                  "speaker": "Victor Baggio",
+                  "text": "vai ver a lista de 1.500 hospitais, aí não adianta nada se querer bolar uma super estratégia automatizada assim três meses acabou a lista. Que que você vai fazer? Aí esse cara indica aí para um outro caminho, você precisa diminuir volume aumentar a qualidade é raitante inveja de você só fazer DM de LinkedIn automático, você vai fazer fio de seios, você vai mandar um presente para o cara você vai fazer um evento uma Confraria. Confraria cheia de vinho, cara e vai chamar. Os diretores desses hospitais, você vai fechar a parceria estratégica é mais caro é mais chato é mais lento é mais demorado, mas Ele caminho queimar Líder, daqui a pouco você falou com todo mundo, encheu o saco de todo mundo, você não tem mais para quem vender acabou, né? então"
+                },
+                {
+                  "startTime": 1004,
+                  "endTime": 1005,
+                  "speaker": "Eduarda Costa",
+                  "text": "E como é que a gente faz eu não entendi a primeira parte da seleção?"
+                },
+                {
+                  "startTime": 1005,
+                  "endTime": 1042,
+                  "speaker": "Victor Baggio",
+                  "text": "quererem super intensificar a qualidade às vezes né na prospecção ou deixar o caqui muito alto porque às vezes vocês estão falando com pessoas que Por mais que seja um perfil para vocês, o cara não tem intenção nenhuma de ir ou ele não tenha a grana não tenha a capacidade financeira de bancar o processo. Então daí vocês vão gastar um monte de grana no processo outband com alguém que nem tem tanto potencial para virar cliente não faz sentido, né? Então"
+                },
+                {
+                  "startTime": 1042,
+                  "endTime": 1042,
+                  "speaker": "Wagner Pontes",
+                  "text": "Específicas onde você tem Engenheiros Estados Unidos, enfim a gente consegue"
+                },
+                {
+                  "startTime": 1042,
+                  "endTime": 1058,
+                  "speaker": "Victor Baggio",
+                  "text": "isso. É tudo estratégia, né de venda. Eu parei de compartilhar, mas eu ia voltar era só para a gente a ideia, olha aqui."
+                },
+                {
+                  "startTime": 1065,
+                  "endTime": 1068,
+                  "speaker": "Wagner Pontes",
+                  "text": "ir numa né?"
+                },
+                {
+                  "startTime": 1068,
+                  "endTime": 1072,
+                  "speaker": "Victor Baggio",
+                  "text": "O que que é uma p aqui tá Eduarda? É uma pia alguns pontos o primeiro que a"
+                },
+                {
+                  "startTime": 1072,
+                  "endTime": 1074,
+                  "speaker": "Eduarda Costa",
+                  "text": "tema"
+                },
+                {
+                  "startTime": 1074,
+                  "endTime": 1326,
+                  "speaker": "Victor Baggio",
+                  "text": "assim, pô, as pessoas comentaram isso aqui são potenciais Livres. Porque estão comentando e um post que fala sobre trabalhar fora do país ou se mudar e"
+                },
+                {
+                  "startTime": 1326,
+                  "endTime": 1326,
+                  "speaker": "Eduarda Costa",
+                  "text": "tema"
+                },
+                {
+                  "startTime": 1326,
+                  "endTime": 1332,
+                  "speaker": "Victor Baggio",
+                  "text": "tudo mais né? Isso aqui é melhor do que aquela lista que a gente fez de engenheiro de software."
+                },
+                {
+                  "startTime": 1332,
+                  "endTime": 1333,
+                  "speaker": "Wagner Pontes",
+                  "text": "Mais assertivo ainda."
+                },
+                {
+                  "startTime": 1333,
+                  "endTime": 1395,
+                  "speaker": "Victor Baggio",
+                  "text": "seu perfil e achei que valesse a pena o contato eu trabalho com imigração blá blá. Você já pensou em se mudado do Brasil sair daqui trabalhar para fora. Isso é algo que passou na sua cabeça então até a copy fica bem personalizada e a pessoa ler aqui, nunca que ela vai achar que foi uma automação ou uma né um negócio ela vai falar assim, pô, a Eduarda parou o tempo dela escreveu para"
+                },
+                {
+                  "startTime": 1395,
+                  "endTime": 1399,
+                  "speaker": "Wagner Pontes",
+                  "text": "Aí Aí você me disse, se você achar que vai só Popular ali. Enfim ocupar"
+                },
+                {
+                  "startTime": 1399,
+                  "endTime": 1406,
+                  "speaker": "Victor Baggio",
+                  "text": "mim viu? Que eu comentei acessou meu perfil pesquisou sobre mim e veio aqui me mandar uma mensagem, né?"
+                },
+                {
+                  "startTime": 1406,
+                  "endTime": 1406,
+                  "speaker": "Eduarda Costa",
+                  "text": "legal"
+                },
+                {
+                  "startTime": 1406,
+                  "endTime": 1448,
+                  "speaker": "Victor Baggio",
+                  "text": "cozinha nos Estados Unidos. Você já se mudou para lá, você tá pensando ainda? Falta isso, eu queria ir fechou é um p*** de um vídeo na mão de vocês para vocês ajudarem o cara."
+                },
+                {
+                  "startTime": 1448,
+                  "endTime": 1449,
+                  "speaker": "Eduarda Costa",
+                  "text": "Ótimo não já vem várias ideias a mente aqui de perfis que a gente pode pegar que também. Bem direto ao ponto eu acho bem legal bem legal."
+                },
+                {
+                  "startTime": 1449,
+                  "endTime": 1520,
+                  "speaker": "Victor Baggio",
+                  "text": "É a princípio São esses os impostos no decorrer do projeto, talvez a gente pense em outros tem outras ideias. E daí vira projeto sequencial para a gente ir tornando isso aqui cada vez maior cada vez mais mais alinhado com que vocês precisam tá o input seja vocês que façam e o resto roda tudo no automático, praticamente tá?"
+                },
+                {
+                  "startTime": 1520,
+                  "endTime": 1528,
+                  "speaker": "Eduarda Costa",
+                  "text": "Ótimo não já vem várias ideias a mente aqui de perfis que a gente pode pegar que também. Bem direto ao ponto eu acho bem legal bem legal."
+                },
+                {
+                  "startTime": 1528,
+                  "endTime": 1582,
+                  "speaker": "Victor Baggio",
+                  "text": "E uma parte que vai ser vai precisar bastante de do teu input da tua ajuda Eduarda, vai ser primeiro é treinar uma ia para fazer a qualificação que daí basicamente você nos ajudar a entender, o que que no perfil do LinkedIn de uma pessoa é um red Flag para que ela não seja um bom vídeo ou ele pesa como um bom ponto para ela ser e daí junto a gente vai meio que melhorando esse pronto de até ele ficar bem legal trazer as informações que vocês querem aí para esse para essa qualificação, né? E a gente vai precisar também escrever a sequência, né das mensagens para cada um desses pontos então a gente tem bastante experiência escrevendo essas cópias a gente sabe mais ou menos o que funciona que não funciona, mas é legal ter a validação de vocês, porque como vai sair do perfil de vocês, né? Pessoal. Inclusive o tom de voz, tem que"
+                },
+                {
+                  "startTime": 1582,
+                  "endTime": 1583,
+                  "speaker": "Eduarda Costa",
+                  "text": "Claro"
+                },
+                {
+                  "startTime": 1583,
+                  "endTime": 1660,
+                  "speaker": "Victor Baggio",
+                  "text": "estar alinhado você tá né? OK com aquilo que a gente vai vai escrever. Ali naquela frequência, tá? E daí essa ferramenta a gente vai usar ela para automação, mas ela pode ser usada de forma manual apartado da automação. Então vamos supor que você vai falar assim. O Vitor eu fiz eu vi um post novo lá de alguém que eu vou usar para fazer o drape. Só que eu não quero que vá para a mesma sequência. Eu quero uma Totalmente diferente dá para a gente duplicar a mesma sequência reescrever a cop e vincular essa nova, com certeza dá para fazer e mesmo que o projeto acabado eu consigo treinar você e tua equipe para fazer isso sem depender da gente tá o que a gente é a gente a gente tenta evitar isso ao máximo os nossos projetos é fazer coisas que vocês fiquem Refém. Da gente para tudo povo trocar uma cópia eu mudo, né? Você não pode eu que tenho que mudar uma vírgula lá um texto que faltou tem que chamar a gente isso é uma bosta perdão a palavra e tem um monte de empresa que faz isso, porque daí eles cobram de vocês uma mensalidade para ficar tirando uma vírgula e colocando uma vírgula no texto."
+                },
+                {
+                  "startTime": 1661,
+                  "endTime": 1663,
+                  "speaker": "Eduarda Costa",
+                  "text": "Só coloca o intermediário bem legal e me conta uma coisa Vitor, como é que"
+                },
+                {
+                  "startTime": 1663,
+                  "endTime": 1664,
+                  "speaker": "Victor Baggio",
+                  "text": "exato"
+                },
+                {
+                  "startTime": 1667,
+                  "endTime": 1668,
+                  "speaker": "Eduarda Costa",
+                  "text": "funciona a interface com o hobspot?"
+                },
+                {
+                  "startTime": 1670,
+                  "endTime": 1749,
+                  "speaker": "Victor Baggio",
+                  "text": "Boa a gente conseguir publicar essa galera no hubspot tem api aberta super tranquilo. E daí a gente basicamente precisa definir quando Em que momento da jornada fazer isso. A gente tem alguns clientes rodando os sistemas parecidos idênticos a esse não tem tá seriam vocês são os seus primeiros a ter um mecanismo desse. Mas o que que a gente tem alguns clientes eles fazem o seguinte fez o scraping definiu que é bom Lead coloca no hobspot e na prospe ao mesmo tempo. Então, ele vai aparecer lá no redspot em algum funil em algum canto que vocês tenham lá, né do Funil de vendas como Lead, só que a indicação é que vocês não falem com essa pessoa não precisa estar processo humano, porque a próspe vai estar fazendo o processo automatizado. E tem clientes nossos que fazem o seguinte eu começo o processo faço qualificação mando para Próspera e só se o cara responder eu coloco ele lá no pote, porque daí um humano comece o contato e de fato vai precisar porque o cara responde não acontece mais nada e ela não faz. Não não tem o contato sabe? Então ele respondeu alguém vai ter que pegar o barco ali andando e fazer."
+                },
+                {
+                  "startTime": 1749,
+                  "endTime": 1756,
+                  "speaker": "Eduarda Costa",
+                  "text": "Legal e em relação a lgpd eu acho que também tem que ser assim, né em relação a lgpd. Eu preciso."
+                },
+                {
+                  "startTime": 1757,
+                  "endTime": 1772,
+                  "speaker": "Victor Baggio",
+                  "text": "Ele não vai influenciar muito. Né? Não vai influenciar muito aqui porque a gente tá fazendo contato via rede social com essa pessoa, né? Então é igual alguém que achar teu Instagram e te mandar um ADM. Não tem isso não vai poder falar assim da onde você achou meu contato. Pô, o contato tá aberto, né?"
+                },
+                {
+                  "startTime": 1772,
+                  "endTime": 1774,
+                  "speaker": "Wagner Pontes",
+                  "text": "Aí Aí você me disse, se você achar que vai só Popular ali. Enfim ocupar"
+                },
+                {
+                  "startTime": 1774,
+                  "endTime": 1783,
+                  "speaker": "Eduarda Costa",
+                  "text": "Mas será que eu conseguiria antes? Eu acho melhor a gente fazer dessa forma mesmo a gente esperar a resposta, você não acha Wagner? Para a gente criar o livro."
+                },
+                {
+                  "startTime": 1788,
+                  "endTime": 1793,
+                  "speaker": "Wagner Pontes",
+                  "text": "espaço é no momento que é inadequado ainda Ok você que me diz."
+                },
+                {
+                  "startTime": 1793,
+                  "endTime": 1803,
+                  "speaker": "Eduarda Costa",
+                  "text": "A minha única questão é o contato antes disso antes dele responder ele vai receber automação, né? Vai receber comunicação em massa vai receber tudo isso."
+                },
+                {
+                  "startTime": 1803,
+                  "endTime": 1803,
+                  "speaker": "Victor Baggio",
+                  "text": "Eu não acho legal aí assim, eu até não tinha pensado nisso Eduardo, eu não"
+                },
+                {
+                  "startTime": 1803,
+                  "endTime": 1805,
+                  "speaker": "Wagner Pontes",
+                  "text": "tudo"
+                },
+                {
+                  "startTime": 1809,
+                  "endTime": 1818,
+                  "speaker": "Victor Baggio",
+                  "text": "vejo problema em criar o contato antes, mas não coloca ele em régua de comunicação nenhuma, porque não teve optim para isso sabe?"
+                },
+                {
+                  "startTime": 1818,
+                  "endTime": 1837,
+                  "speaker": "Eduarda Costa",
+                  "text": "A gente pode eu posso pedir para criar o contato na quando a gente mandar a lista é que a gente tem uma limitação do número nosso número é bem alto, mas como a gente está esperando escalar, se a gente começar a criar sei lá 150 mil contatos, isso é muito custo para gente aqui, né?"
+                },
+                {
+                  "startTime": 1837,
+                  "endTime": 1912,
+                  "speaker": "Victor Baggio",
+                  "text": "Minha opinião minha opinião sincera tá? A gente não cadastra esse cara no redspot enquanto ele não responder e no máximo que a gente faz pode ser o seguinte. Vamos supor que um dos um dos inputs que vocês deram é muito bom assim, vocês colocaram 60 leads através da automação. Vocês sabem que são assim é a nata da nata. E mesmo que vocês coloquem na automação e essas pessoas não respondam o fluxo, vocês vão querer Ligar vão querer ir na casa desses caras. Queria fazer alguma coisa nesses casos a gente pode criar uma Cadência aqui na próspe que é tipo isso aqui, né? É uma sequênciazinha em que o último step caso a pessoa não tenha respondido é uma chamada Api para cadastrar o cara dentro do Spot mesmo que ele não tenha respondido e daí o que vai ser que é inteligente é o seguinte automação e o sistema tentam fazer esse cara responder tentam fazer abordagem. Se não der certo um humano vai tentar depois aí o humano vai vai pelas vias dele o humano vai cafundo até falar com a pessoa, né? Acha e-mail acha Instagram vai no face. Fala com o vizinho até conseguir falar com a pessoa. Então daria para a gente fazer um negócio, sabe agora eu acho que eu acho que"
+                },
+                {
+                  "startTime": 1912,
+                  "endTime": 1912,
+                  "speaker": "Wagner Pontes",
+                  "text": "Muito bom."
+                },
+                {
+                  "startTime": 1916,
+                  "endTime": 1923,
+                  "speaker": "Victor Baggio",
+                  "text": "é burrice ficar cadastrando tudo dentro do HUB, porque vai ter muita coisa que vai ser lixo que realmente não tem nem potencial para nada e só vai ficar"
+                },
+                {
+                  "startTime": 1923,
+                  "endTime": 1925,
+                  "speaker": "Eduarda Costa",
+                  "text": "gosto eu pensei nisso justamente porque eu tô apagando 150 mil contatos do"
+                },
+                {
+                  "startTime": 1925,
+                  "endTime": 1927,
+                  "speaker": "Victor Baggio",
+                  "text": "ocupando espaço lá e poluindo a visão de vocês, tá?"
+                },
+                {
+                  "startTime": 1928,
+                  "endTime": 1930,
+                  "speaker": "Wagner Pontes",
+                  "text": "É verdade"
+                },
+                {
+                  "startTime": 1933,
+                  "endTime": 1937,
+                  "speaker": "Eduarda Costa",
+                  "text": "hobsport agora porque senão a gente ia chegar num dia mais alto lá e"
+                },
+                {
+                  "startTime": 1937,
+                  "endTime": 1953,
+                  "speaker": "Victor Baggio",
+                  "text": "É o que eu manteria lá daí se talvez se em algum são Lides de inbound que fizeram um optim Em algum momento e daí sim, você mantém esse cara porque você quer ficar mandando campanha, você quer fazer sei lá black friday jogar um e-mail para o cara. Você quer chegar nele de alguma forma, né?"
+                },
+                {
+                  "startTime": 1954,
+                  "endTime": 1954,
+                  "speaker": "Eduarda Costa",
+                  "text": "ótimo"
+                },
+                {
+                  "startTime": 1954,
+                  "endTime": 1969,
+                  "speaker": "Victor Baggio",
+                  "text": "Mas esses de outbound. Eu não colocaria porque ele sequer Conhece vocês ele sequer o contato e daí você vai ficar ocupando espaço para um cara que nunca nem pisou numa página de vocês, não faz muito sentido."
+                },
+                {
+                  "startTime": 1969,
+                  "endTime": 1973,
+                  "speaker": "Eduarda Costa",
+                  "text": "Claro Então vamos colocar a criação do líder na resposta."
+                },
+                {
+                  "startTime": 1976,
+                  "endTime": 2100,
+                  "speaker": "Victor Baggio",
+                  "text": "Maravilha alguns detalhes mais técnicos, depois a gente vai acabar vendo isso, mas é para galera da tua operação tem depois a gente vai dar um treinamento, né de como tudo isso funciona e de como eles operam isso no dia a dia porque afinal de contas não adianta nada automação funcionar as pessoas responderem e vocês não darem o atendimento correto do jeito certo para as pessoas vai ser jogar tudo fora ou né os livros que a automação tá. Então, depois a gente vai treinar em como que as pessoas conseguem ver quando vem uma resposta responder a galera no Linkedin mesmo usando um perfil que não é deles, né? Então vai ter que ter um treinamento específico com essa galera, porque se eu vou lá e falar assim, oi aqui é o Vitor, só que mando na prospe e esse lide veio do perfil do disparo do Wagner vai estar lá Wagner pontes e eu Oi aqui é o Vitor p****. O cara vai olhar e falar que que é isso, sabe? então É que é automação que tem alguém usando tua conta um SDR usando tua conta, né? Que não é muito legal. Então tem alguns alguns detalhes no uso do dia a dia que daí o pessoal tem que saber a ferramenta ajuda ela organiza um inbox unificado de todas as contas. Então por mais que a gente tenha cinco contas mandando mensagem ele unifica tudo num lugar dá para criar um fluxo de notificação para cada resposta então se vocês usam alguma ferramenta interna o próprio Hub ou falar uns leque da vida. Vem lá uma mensagemzinha novo líder respondeu o link do vídeo e tal para alguém e atender rápido essa pessoa a gente pode pensar depois no fluxo de enriquecimento dos dados todo mundo que responder positivamente já enriquecer os dados com o telefone dessa pessoa com e-mail outros canais de prospecção. Enfim, mas é bom saber que no dia a dia depois operacional. Provavelmente o teu time que vai botar a mão na massa para atender essa galera, tá? E daí. Vocês tem que saber como abordar porque é diferente de provavelmente diferente do que vocês fazem hoje usando o perfil que não é deles e tal tem que cuidados especiais, né? beleza"
+                },
+                {
+                  "startTime": 2101,
+                  "endTime": 2102,
+                  "speaker": "Eduarda Costa",
+                  "text": "Legal ótimo."
+                },
+                {
+                  "startTime": 2102,
+                  "endTime": 2173,
+                  "speaker": "Victor Baggio",
+                  "text": "Mas ele é essa respondeu daí pinga o líder Esporte pingou ele no Spot. Vem lá a origem próspede ou automação, ele sabe que ele tem que ir lá na Próspera abrir o painel e começar a conversar com essa pessoa os vendedores. Eles só acessam as mensagens que são provenientes do da automação, então o teu inbox Às vezes você tá contratando. Você tá conversando com alguém no mercado, eles não vão enxergar porque senão seria em alguns casos meios delicado, né? Imagine eu poder ver todas as conversas do inbox lá do Wagner sei tudo que ele tá falando com todo mundo no Linkedin e às vezes tem uns papo que não é para galera da operação ver, né? Contratação parceria essas coisas. Então esse é um ponto também da ferramenta de resto, a gente vai descobrir. Vai tropeçar no meio do caminho e vai se apoiando para resolver e enfim vai implementando juntos, beleza? Essa ideia do projeto eu queria mais uns 5 10 minutinhos no máximo só para a gente arrematar. Quais são os próximos passos? Eu sei que a gente estourou já. Esse agendamento essa janela era para ser de uma hora tá mas veio de meia hora porque o Wagner são um link mesmo link do passado lá."
+                },
+                {
+                  "startTime": 2173,
+                  "endTime": 2177,
+                  "speaker": "Eduarda Costa",
+                  "text": "Para mim eu posso ficar."
+                },
+                {
+                  "startTime": 2178,
+                  "endTime": 2686,
+                  "speaker": "Victor Baggio",
+                  "text": "O que? Então beleza mais uns 10 minutinhos no máximo a gente encerra. Como que funciona os próximos passos tá nossa metodologia prevê o seguinte uma reunião semanal uma wicle durante todo o projeto tá? E seria legal hoje a gente definir um dia e horário que fique confortável. Pode ser cancelada a gente pode trocando ela mas é bom deixar já o compromisso na agenda para quando precisar a gente ter um bate-papo para fazer. Sempre que a gente não tiver grandes atualizações vão ter momentos do projeto que naquela semana a gente tá imerso solucionando ou resolvendo alguma coisa e não tem muito que não tem entrega, né? A gente só não precisa conversar a gente vai seremos os primeiros a falar assim galera do nosso lado. Não precisa dessa reunião porque a gente odeia ficar Enchendo Linguiça, eu sei o quão caro é uma reunião dessa aqui com duas pessoas, né de Alto escalando na empresa, então a gente respeita o tempo de vocês para essas reuniões. A gente vai avisar no grupo antes do nosso lado, não precisa. Se vocês falarem a gente quer a gente quer dar uma olhada a gente quer bater um papo estaremos lá nosso compromisso nessa nessa meia hora meia hora geralmente essa reunião meia hora até 5 minutos. A gente vai estar lá presente se vocês precisarem tá o que não precisa de reunião a gente vai comunicando pelo grupo o grupo ficativo o tempo todo a gente tem um slide de resposta bem bem baixinho e muitas coisas a gente vai demandar de vocês, né, liberam acesso me manda tal coisa corrigir isso aqui, traz um feedback para mim se funcionou se não funcionou e daí a gente vai se comunicando por lá, tá? Então primeiro ponto o ícone depois a gente escolhe um horário para a gente já travar nossas agendas pode participar quantas pessoas vocês quiserem, eu só seria comedido porque provavelmente muitas pessoas nem precisam estar nessa região eu colocaria só os principais stakeholders do projeto e a gente avisa assim hoje seria legal alguém mais técnico. Hoje seria legal um vendedor para a gente. Sei lá ver. O que que ele acha e tal. Daí a gente vai combinando ponto a ponto tá? Segundo ponto é o grupo do WhatsApp grupo do WhatsApp também pode todo mundo para lá sem problema e a gente usa para comunicação assim, né? E quase tudo vai estar por lá terceiro ponto é o dashboard duplicar ele aqui, como que a gente usa. Mas basicamente é ele é mais para gente Para vocês porque é onde a gente se coordena nas tarefas que a gente tem para fazer cross projetos, né, mas caso vocês queiram ter acesso dá para ter acesso tá? Então pense que vocês vão. Possivelmente ter uma viu onde aparecem todas as tarefas e micro tarefas do projeto. Tem um Dash onde vocês vem? Deixa eu pegar aqui. Vocês vêm as tarefas em execução? Como que tá o workload da semana? Quem que tá fazendo as horas as horas que cada uma das pessoas do time empregou então eu sei que o Igor trabalhou por uma hora e 28 nesse dia que depois ele fez uma outra tarefa de 58 minutos, então a gente vai logando absolutamente tudo sobre o projeto tá no dia a dia isso aqui pouco importa para vocês, tá? Não precisa ver muito mas vocês têm acesso a isso caso queiram para acompanhar logar alguma coisa tá tirar alguma dúvida às vezes por lá, tá? Então beleza são esses três pontos. Partindo agora para as tarefas de casa, tá do nosso lado aqui a tarefa de casa nesse começo costuma ser liberar esses acessos criar o grupo organizar quem vai trabalhar no projeto, por enquanto não tem ninguém na minha equipe alocado, né para o projeto isso aí tem o Arthur é um coordenador da equipe de deves aqui, ele escolhe daí de acordo com as horas alguém para locar a gente sabe que vai ser um Punch meio rápido ali, né? Eu fiz a proposta da gente acelerar o projeto no começo então. Talvez tenham duas pessoas que vão trabalhar nele nesse comecinho no primeiro mês. E então do lado de cá é mais essa organização da casa e para o lado de vocês, tem algumas coisas que a gente vai precisar tá a primeira delas é. A liberação de algumas ferramentas que a gente vai precisar para construir as automações, tá eu depois da lista não adianta ficar falando aqui, mas vai ser o M8 n o N8 n é uma ferramenta então é basicamente ele tem um código aberto, ele é gratuito é só instalar ele numa num servidor. Dá para instalar por exemplo num servidor físico, tipo eu posso instalar ele no Meu MacBook aqui ele vai rodar, só que a hora que eu fecho Meu MacBook o servidor vai precisar né? Então é comum que a gente use um servidor nuvem Cloud, né? Então provavelmente. Talvez vocês tenham né? Para hospedar? Site de vocês tem vários provedores. Mas se não tem um padrão se não tem problema a gente costuma indicar o dahostinger pela facilidade e pelo custo baixo também que tem provavelmente vocês vão pagar algo em torno de 400 A 600 por ano então assim é pina para você usar um software de automação parrudo. É o M8 n e ele não tem mensalidade daí tá o M8 n é gratuito você só paga o espacinho lá no Cláudio que precisa para poder instalar lá dentro se você se optarem para o outro beleza? Pode usar tem gente que a gente usa WS hora ou Google Cloud qualquer outro provedor que tenha VPS, né? Dá para usar. a gente vai precisar de Alguns scrapers né? Daí eu passo o link, depois são scrapers para coletar os dados do perfil. E daí precisa carregar uns créditos nesses scrapers a gente vai precisar usar Open ai ou algum provedor de llm para fazer aí a funcionar, né? E daí não precisa pagar mensalidade é o crédito na api, você carrega os créditos lá e a gente vai gastando então usar api da Open é diferente de você pagar o GPT Plus lá aquele que tem. Não importa se você paga ou não paga api é o que a gente precisa tem que ter uns créditos lá, sabe aí dá para carregar lá o mínimo acho que é 10 12 dólares e ativar um Refrão de automático lá que ele bateu um piso, ele já recarrega para 12 de novo, sabe? E a gente não tá muito vai gastar pouco tá vai gastar bem pouquinho de llm porque é super barato viapi e a gente vai ter um consumo relativamente baixo. E acho que a ferramenta mais cara que a gente vai precisar vai ser a próspede que é para conectar as contas, tá? A prospe eu dei a sorte, eles estavam Life times atrás. Sei lá, quase um ano atrás, eu comprei eles no life time Bio que eu paguei 100 dólares e eu tenho para o resto da vida sem pagar nada então sortudo. Na época eu indiquei tiveram três clientes que fecharam o Lifetime deu agora. Acho que tá fora do Lifetime deu se aparecer de volta eu aviso vocês que às vezes vem uma eles fazem isso como o funghing, né? Com ventre capta ou com banco e tal você abre um like. Viu? Vem uma bomba de dinheiro você usa esse dinheiro como financiamento pelo cliente é o dinheiro mais barato. E daí eu vou passar o link para vocês contratarem lá, eu acho que vai sair na casa dos 49 dólares, talvez por mês daí tá? Eu não lembro. Quantas contas permite, mas eu acho que é 5 nesse plano de 49 dólares, mas a gente vê isso depois tá? E bom isso tudo Eu vou listar para vocês para vocês irem fazendo aos pouquinhos, não tem não tem muita coisa que vai travar a gente porque se demorar para sair do lado de vocês. A gente vai construindo do nosso lado aqui depois sua amiga por de vocês. A gente não vai ficar travado por conta disso não. Beleza de casa, daí acho que mais para Eduarda que é pensar nos critérios de qualificação pensando que o único input que a gente vai ter vai ser o perfil de LinkedIn. O que que a gente olha no perfil e fala. Esse vídeo é bom, o que que a gente vai no perfil a gente fala que esse vídeo é ruim e é basicamente definir documentar para nós o que que é o Icep de vocês, quais são essas características, tá pode ser um documento um bloco de notas. Daí você cria ele aos pouquinhos. Sem pressa também. Envia para a gente quando tiver pronto."
+                },
+                {
+                  "startTime": 2686,
+                  "endTime": 2693,
+                  "speaker": "Eduarda Costa",
+                  "text": "Então aqui eu acho que agora a gente vai envolver o Richard, né? Wagner para os acessos."
+                },
+                {
+                  "startTime": 2694,
+                  "endTime": 2701,
+                  "speaker": "Wagner Pontes",
+                  "text": "É acho que o restaurante pode nos ajudar em relação aos acessos até relação aos servidor, né? O Richard ou CJ para verdor e é isso, né? Acho"
+                },
+                {
+                  "startTime": 2701,
+                  "endTime": 2706,
+                  "speaker": "Eduarda Costa",
+                  "text": "Legal, não é o todos esses critérios eu te mando amanhã, já coloquei na"
+                },
+                {
+                  "startTime": 2706,
+                  "endTime": 2707,
+                  "speaker": "Wagner Pontes",
+                  "text": "que isso é bem é bem tranquilo."
+                },
+                {
+                  "startTime": 2713,
+                  "endTime": 2731,
+                  "speaker": "Eduarda Costa",
+                  "text": "minha agenda aqui para te enviar isso à tarde os critérios de qualificação do LinkedIn e tudo mais e aí os acessos. Eu acho que o primeiro são os acessos para a gente começar a fazer treinamento mesmo, né? E aí vai ser com a equipe de tecnologia princípio."
+                },
+                {
+                  "startTime": 2735,
+                  "endTime": 2812,
+                  "speaker": "Victor Baggio",
+                  "text": "Não necessariamente, eu acho que eu acho que não Talvez tenham dois momentos que seja legal eles participarem no momento de liberação dos acessos. Porque se vocês forem usar um servidor interno vai precisar liberar uma porta específica para a gente poder acessar daqui o N8 n que tá hospedado aí daí tem uns trâmitezinhos que às vezes é bom a gente bater um papo com os caras ao invés de ficar só no grupo do WhatsApp, que fica meio esquisito e lá na frente quando a gente tiver entregando já automação, a gente pode sentar com eles para um treinamento técnico daí porque vai que um dia sei lá caiu automação. Pô, fui colocar que não tá funcionando. Se ele estiver em conhecimento eles conseguem resolver ele não precisa acionar a gente sabe então o que eles possam conhecer um pouquinho viram viram uma Skill interna para eles também, porque eles já vão ter a VPS. Vocês já vão ter o M8 n vocês podem criar automações não precisa só dependendo da gente se eles quiserem pô, tava precisando conectar aqui o esporte com o activecamp e não tem integração, cara. Você faz em dois palitos um vídeo no YouTube e uma hora fazendo isso tá feito e daí não precisa o Vitor faz lá uma automação pega o cara que já é técnico. Aí já tem o N8 n vai faz sabe então a gente pode comunicar com eles lá no final para fazer um mini treinamento explicar como é que funciona as coisas, tá?"
+                },
+                {
+                  "startTime": 2812,
+                  "endTime": 2819,
+                  "speaker": "Eduarda Costa",
+                  "text": "Então com eles e eu só quero dar um Heads para eles para inserção dos Deuses"
+                },
+                {
+                  "startTime": 2819,
+                  "endTime": 2826,
+                  "speaker": "Wagner Pontes",
+                  "text": "Eles agora nesse início. Vamos focar no seu time e vamos deixar eles para esses dois pontos específicos como Vitor falou e a gente tem uma coisa."
+                },
+                {
+                  "startTime": 2832,
+                  "endTime": 2835,
+                  "speaker": "Eduarda Costa",
+                  "text": "no hotspot."
+                },
+                {
+                  "startTime": 2835,
+                  "endTime": 2838,
+                  "speaker": "Victor Baggio",
+                  "text": "É no redspot a gente vai precisar."
+                },
+                {
+                  "startTime": 2838,
+                  "endTime": 2840,
+                  "speaker": "Wagner Pontes",
+                  "text": "Eu prefiro que você toque tem Grande Chance, essa foi me envolver da coisa dá"
+                },
+                {
+                  "startTime": 2840,
+                  "endTime": 2877,
+                  "speaker": "Victor Baggio",
+                  "text": "A gente vai precisar do spot de duas uma né? Ou um acesso nosso mesmo para a gente poder entrar lá e fazer as configurações que a gente precisa ou no mínimo algumas Chaves api que a gente precisa para conectar o hobspot no N8 n e daí a gente poder fazer por exemplo, um Crate ou update Lead lá dentro sabe é um negócio que a gente já fez várias vezes várias clientes nossos usam Hub também e ele é tranquilo é questão de ap, inclusive bem melhor do que ser os fortes é robusto, mas é chato chato chato de mexer nele na Via p e ele é muito chato."
+                },
+                {
+                  "startTime": 2881,
+                  "endTime": 2882,
+                  "speaker": "Eduarda Costa",
+                  "text": "Então é isso que eu te perguntar Wagner, você vai querer fazer o ícones ou"
+                },
+                {
+                  "startTime": 2882,
+                  "endTime": 2886,
+                  "speaker": "Victor Baggio",
+                  "text": "Beleza querem bater uma data para as nossas wicles já?"
+                },
+                {
+                  "startTime": 2892,
+                  "endTime": 2896,
+                  "speaker": "Eduarda Costa",
+                  "text": "eu posso tocar aqui na minha agenda com o restante do pessoal do meu time."
+                },
+                {
+                  "startTime": 2901,
+                  "endTime": 2912,
+                  "speaker": "Wagner Pontes",
+                  "text": "uma dá uma atrasada, até porque começo do mês agora você sabe o Brasil fico três semanas então deixa contigo eu vou me olhando com você. Eu prefiro que você toque tem Grande Chance, essa foi me envolver da coisa dá"
+                },
+                {
+                  "startTime": 2912,
+                  "endTime": 2914,
+                  "speaker": "Victor Baggio",
+                  "text": "Vou colocar na agenda do Wagner para ele saber e quando ele tiver disponível"
+                },
+                {
+                  "startTime": 2914,
+                  "endTime": 2916,
+                  "speaker": "Wagner Pontes",
+                  "text": "do dia mais"
+                },
+                {
+                  "startTime": 2916,
+                  "endTime": 2919,
+                  "speaker": "Victor Baggio",
+                  "text": "entra se não quiser entrar não tem problema."
+                },
+                {
+                  "startTime": 2919,
+                  "endTime": 2926,
+                  "speaker": "Eduarda Costa",
+                  "text": "Ótimo ótimo então, vamos fazer o seguinte Victor o dia que eu tenho menos a terça-feira."
+                },
+                {
+                  "startTime": 2926,
+                  "endTime": 2926,
+                  "speaker": "Victor Baggio",
+                  "text": "tá"
+                },
+                {
+                  "startTime": 2926,
+                  "endTime": 2928,
+                  "speaker": "Eduarda Costa",
+                  "text": "Aí me fala como é que tá a sua terça-feira."
+                },
+                {
+                  "startTime": 2929,
+                  "endTime": 2938,
+                  "speaker": "Victor Baggio",
+                  "text": "Deixa eu pegar para frente aqui, olha os únicos horários que eu não consigo. Lembrando que você tá. Uma hora atrás, né?"
+                },
+                {
+                  "startTime": 2940,
+                  "endTime": 2943,
+                  "speaker": "Eduarda Costa",
+                  "text": "Vamos fazer a três da tarde aqui seria quatro da tarde para você hoje em dia"
+                },
+                {
+                  "startTime": 2943,
+                  "endTime": 2967,
+                  "speaker": "Victor Baggio",
+                  "text": "tá Os últimos horários que eu não posso são as 8:30 da manhã aqui do Brasil e 10 e 45 da manhã aqui do Brasil de resto, eu tô o dia inteiro Livre. Dá para pegar o meio da manhã entre 9 e 10 e meia. Ou então na parte da tarde."
+                },
+                {
+                  "startTime": 2978,
+                  "endTime": 2979,
+                  "speaker": "Eduarda Costa",
+                  "text": "esse horário é ruim."
+                },
+                {
+                  "startTime": 2979,
+                  "endTime": 2981,
+                  "speaker": "Victor Baggio",
+                  "text": "Não é ótimo, eu vou agendar aqui."
+                },
+                {
+                  "startTime": 2982,
+                  "endTime": 2982,
+                  "speaker": "Eduarda Costa",
+                  "text": "ótimo"
+                },
+                {
+                  "startTime": 2984,
+                  "endTime": 2991,
+                  "speaker": "Victor Baggio",
+                  "text": "Eu vou deixar um bloco de 45 minutos. E me passa deixa aqui no chat o teu e-mail."
+                },
+                {
+                  "startTime": 2993,
+                  "endTime": 2999,
+                  "speaker": "Eduarda Costa",
+                  "text": "E aí eu vou e aí o grupo você cria e me dá um me libera lá para colocar um pessoal."
+                },
+                {
+                  "startTime": 3000,
+                  "endTime": 3005,
+                  "speaker": "Victor Baggio",
+                  "text": "Eu vou criar vou adicionar o Wagner que eu tenho contato dele Wagner, coloca você você coloca pirâmide."
+                },
+                {
+                  "startTime": 3007,
+                  "endTime": 3008,
+                  "speaker": "Eduarda Costa",
+                  "text": "Coloquei aqui tanto meu meu e-mail quando meu WhatsApp tá?"
+                },
+                {
+                  "startTime": 3008,
+                  "endTime": 3045,
+                  "speaker": "Victor Baggio",
+                  "text": "Beleza, tá anotado para fechar então gente. Não é isso, eu já tava pensando no projeto futuro do Instagram, depois que eu vi que tem aquilo de gente eu já estou empolgado para fazer outras coisas aí"
+                },
+                {
+                  "startTime": 3045,
+                  "endTime": 3046,
+                  "speaker": "Eduarda Costa",
+                  "text": "Também acho que tem muita coisa para gente fazer no Instagram também, fico"
+                },
+                {
+                  "startTime": 3046,
+                  "endTime": 3049,
+                  "speaker": "Victor Baggio",
+                  "text": "na parte principal."
+                },
+                {
+                  "startTime": 3050,
+                  "endTime": 3050,
+                  "speaker": "Eduarda Costa",
+                  "text": "bem."
+                },
+                {
+                  "startTime": 3050,
+                  "endTime": 3051,
+                  "speaker": "Victor Baggio",
+                  "text": "é"
+                },
+                {
+                  "startTime": 3055,
+                  "endTime": 3066,
+                  "speaker": "Eduarda Costa",
+                  "text": "Animada Victor a gente está com várias ideias aqui. O time é bem participativo também com ideias. Então tô bem feliz da gente fazer é bom que você esteja aberto. Aí às vezes chamar um pessoal porque a gente está bem animado aqui com o projeto."
+                },
+                {
+                  "startTime": 3067,
+                  "endTime": 3067,
+                  "speaker": "Wagner Pontes",
+                  "text": "verdade"
+                },
+                {
+                  "startTime": 3069,
+                  "endTime": 3070,
+                  "speaker": "Victor Baggio",
+                  "text": "boa eu"
+                },
+                {
+                  "startTime": 3070,
+                  "endTime": 3076,
+                  "speaker": "Eduarda Costa",
+                  "text": "Ah isso deixa eu te perguntar, o que você acha que é o tempo do projeto para a gente estar com isso rodando."
+                },
+                {
+                  "startTime": 3077,
+                  "endTime": 3083,
+                  "speaker": "Victor Baggio",
+                  "text": "Então a primeira entrega concluída que é aquela da lista de busca, né funcionando completamente um prazo de um mês tá a gente vai tentar entregar"
+                },
+                {
+                  "startTime": 3083,
+                  "endTime": 3083,
+                  "speaker": "Wagner Pontes",
+                  "text": "certo"
+                },
+                {
+                  "startTime": 3087,
+                  "endTime": 3088,
+                  "speaker": "Victor Baggio",
+                  "text": "dentro do primeiro. É então."
+                },
+                {
+                  "startTime": 3089,
+                  "endTime": 3093,
+                  "speaker": "Eduarda Costa",
+                  "text": "Perfeito, então, eu posso colocar aqui que na terceira semana de Novembro está rodando."
+                },
+                {
+                  "startTime": 3095,
+                  "endTime": 3116,
+                  "speaker": "Victor Baggio",
+                  "text": "Exato e daí vai sobrar para depois os outros inputs mais campanhas, a gente vai ajeitando a máquina depois tá? Eu vou fechar minha câmera rapidinho que tá travando a internet que acho que ele estabiliza melhor, eu ia só estava vendo no Instagram. Eu fiquei com uma ideia eu uso muito mais estratégia no meu LinkedIn para captação de elites"
+                },
+                {
+                  "startTime": 3116,
+                  "endTime": 3116,
+                  "speaker": "Eduarda Costa",
+                  "text": "perfeito"
+                },
+                {
+                  "startTime": 3118,
+                  "endTime": 3261,
+                  "speaker": "Victor Baggio",
+                  "text": "para a gente mesmo. Inclusive a gente fala muito sobre vendas implementa essas máquinas e tal e a gente faz muito pouco. Prospecção altiva onde por aqui é opção de conteúdo e funil de vendas sim balde, né? A gente usa muito da autoridade que é produzir conteúdo que é um negócio que vocês têm de sobra por tudo que vocês têm selo gente trabalhando no time que era do consulado, não sei das quanta tipo, vocês têm muita muita autoridade, né? Uma marca super forte líder de mercado e tal e a gente usa uma estratégia no meu LinkedIn pessoal que é Criar um material de valor a gente chama de Lead magnet hoje em dia mas basicamente é antiga isca de valor você produz um antigamente produzia muito ebook, né hoje em dia e saber mais ninguém ler mais mas basicamente a estratégia produzir algo que as pessoas querem que elas pagariam para ter né? Tão valioso que ela chegariam a pagar para ter. e daí postar isso e falar assim se você quer ter acesso esse material gratuitamente é só deixar um comentário aqui embaixo, fala eu quero Fala Estados Unidos ou fala e-book, sei lá o que for e dá para construir automações que A entrega desse material é automatizada a partir do comentário e logo depois. Ah tá, beleza. E daí logo depois inicia um funil de qualificação com perguntas dentro da própria DM do Instagram. Trazendo esse vídeo para uma conversão e daí eu fiquei pensando tipo, imagina posts do tipo alguém de vocês ou a equipe que está nos Estados Unidos que mora nos Estados Unidos e tal produzindo conteúdo diariamente botando a cara lá e colocando coisas do tipo. Olha esse carro aqui nessa revenda que custa r$ 6000 convertendo e olha esse carro. Quanto custa no Brasil? Se você quer ter acesso a um guia passo a passo do que você precisa fazer hoje para se preparar para ser cidadão americano amanhã. Comenta guia aqui embaixo, imagina a quantidade de pessoas que iam querer desse com uma publicação dessa sabe e a chover. Então eu acho que a gente precisa"
+                },
+                {
+                  "startTime": 3261,
+                  "endTime": 3265,
+                  "speaker": "Eduarda Costa",
+                  "text": "Muita coisa para fazer muita coisa que a gente pode fazer e a gente pode"
+                },
+                {
+                  "startTime": 3265,
+                  "endTime": 3266,
+                  "speaker": "Victor Baggio",
+                  "text": "depois logo aí."
+                },
+                {
+                  "startTime": 3271,
+                  "endTime": 3284,
+                  "speaker": "Eduarda Costa",
+                  "text": "realmente oferecer muito conteúdo gratuito até cursos coisas pequenas assim consultoria tudo isso porque eu acho que é isso que você falou a gente oferece antes e a gente já testou de algumas formas e dá bastante certo."
+                },
+                {
+                  "startTime": 3285,
+                  "endTime": 3285,
+                  "speaker": "Wagner Pontes",
+                  "text": "verdade"
+                },
+                {
+                  "startTime": 3286,
+                  "endTime": 3286,
+                  "speaker": "Victor Baggio",
+                  "text": "sim, é"
+                },
+                {
+                  "startTime": 3287,
+                  "endTime": 3287,
+                  "speaker": "Eduarda Costa",
+                  "text": "É bastante ela atrás a gente tinha um e-book que a gente enviava para o"
+                },
+                {
+                  "startTime": 3287,
+                  "endTime": 3291,
+                  "speaker": "Victor Baggio",
+                  "text": "isso Valeu gente, obrigado, vocês vamos daqui a pouco eu crio o grupo."
+                },
+                {
+                  "startTime": 3291,
+                  "endTime": 3305,
+                  "speaker": "Eduarda Costa",
+                  "text": "cliente, mas realmente algo mais criativo, mas vai dar para fazer muita coisa. A gente tá bem animado, viu? Obrigada."
+                },
+                {
+                  "startTime": 3310,
+                  "endTime": 3310,
+                  "speaker": "Victor Baggio",
+                  "text": "tchau"
+                }
+              ]
+            },
+            "id": "web-job-a9b80270-3be0-4039-b682-613377cbdc87",
+            "executedAt": "2025-10-22T20:56:37.917Z"
+          },
+          "webhookUrl": "https://n8n-n8n-start.zqyxpr.easypanel.host/webhook/336b97ae-4dd2-4f44-b003-04b54aa24ec3",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Analista de Call",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Analista de Call",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search a person": {
+      "main": [
+        [
+          {
+            "node": "Lead Exists?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search a deal": {
+      "main": [
+        [
+          {
+            "node": "Update a deal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a deal": {
+      "main": [
+        [
+          {
+            "node": "Create a note",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update an organization": {
+      "main": [
+        [
+          {
+            "node": "Search a deal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tl;dv - Get Meeting by ID": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client Data": {
+      "main": [
+        [
+          {
+            "node": "Search a person",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "tl;dv - Get Meeting by ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tl;dv - Get Meeting Transcript": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Credentials",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analista de Call": {
+      "main": [
+        [
+          {
+            "node": "Update an organization",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a person": {
+      "main": [
+        [
+          {
+            "node": "Set ID 0",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Client Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confirmation": {
+      "main": [
+        [
+          {
+            "node": "Yes?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error CRM": {
+      "main": [
+        [
+          {
+            "node": "New ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lead Exists?": {
+      "main": [
+        [
+          {
+            "node": "Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "New ID": {
+      "main": [
+        [
+          {
+            "node": "Get a person",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Yes?": {
+      "main": [
+        [
+          {
+            "node": "Set ID",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set ID": {
+      "main": [
+        [
+          {
+            "node": "Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set ID 0": {
+      "main": [
+        [
+          {
+            "node": "Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data": {
+      "main": [
+        [
+          {
+            "node": "Analista de Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Credentials": {
+      "main": [
+        [
+          {
+            "node": "tl;dv - Get Meeting Transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "4834a92e-b8e3-4d39-87e5-b0a262b821e1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "98a7f76cbff973591af08e09b5be2fed14b55b37d878782c0638229a94477203"
+  },
+  "id": "k4lxwRQU1uDCSWud",
+  "tags": [
+    {
+      "updatedAt": "2025-06-12T17:49:26.927Z",
+      "createdAt": "2025-06-12T17:49:26.927Z",
+      "id": "PatjR2DI1NI2457H",
+      "name": "Lead Magnet"
+    },
+    {
+      "updatedAt": "2026-02-03T09:04:12.279Z",
+      "createdAt": "2026-02-03T09:04:12.279Z",
+      "id": "z7kGEnPlOyR1jg0p",
+      "name": "PACK 2"
+    }
+  ]
+}

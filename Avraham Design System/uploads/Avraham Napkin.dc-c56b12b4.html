@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_ds/ultra-avraham-digital-design-system-3297ad07-77c4-4643-b32f-8197e225ea4d/tokens/tokens.css">
+<link rel="stylesheet" href="_ds/ultra-avraham-digital-design-system-3297ad07-77c4-4643-b32f-8197e225ea4d/tokens/base.css">
+<link rel="stylesheet" href="_ds/ultra-avraham-digital-design-system-3297ad07-77c4-4643-b32f-8197e225ea4d/tokens/components.css">
+<link rel="stylesheet" href="_ds/ultra-avraham-digital-design-system-3297ad07-77c4-4643-b32f-8197e225ea4d/tokens/motion.css">
+<link rel="stylesheet" href="_ds/ultra-avraham-digital-design-system-3297ad07-77c4-4643-b32f-8197e225ea4d/tokens/mockups.css">
+<link rel="stylesheet" href="_ds/ultra-avraham-digital-design-system-3297ad07-77c4-4643-b32f-8197e225ea4d/tokens/theme-light.css">
+<link rel="stylesheet" href="_ds/ultra-avraham-digital-design-system-3297ad07-77c4-4643-b32f-8197e225ea4d/styles.css">
+<script src="_ds/ultra-avraham-digital-design-system-3297ad07-77c4-4643-b32f-8197e225ea4d/_ds_bundle.js"></script>
+<style>
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { color: var(--cyan-l); }
+  .lib-nav{ position:sticky; top:0; z-index:50; background:var(--nav-bg); backdrop-filter:blur(var(--blur-nav)); border-bottom:1px solid var(--gbo); }
+  .lib-nav-inner{ display:flex; gap:6px; overflow-x:auto; padding:14px 40px; scrollbar-width:none; max-width:1280px; margin:0 auto; }
+  .lib-nav-inner::-webkit-scrollbar{ display:none; }
+  .lib-nav a{ flex-shrink:0; font-size:12.5px; font-weight:600; color:var(--t3); padding:8px 14px; border-radius:999px; border:1px solid transparent; white-space:nowrap; transition:all var(--dur-fast) ease; }
+  .lib-nav a:hover{ color:var(--t1); background:var(--gb); border-color:var(--gbo); }
+  .cat{ margin-top:110px; scroll-margin-top:80px; }
+  .cat:first-of-type{ margin-top:56px; }
+  .cat-head{ display:flex; align-items:center; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--gbo); }
+  .cat-ico{ width:52px; height:52px; border-radius:14px; display:grid; place-items:center; flex-shrink:0; }
+  .cat-ico .mat{ font-size:26px; color:#0D0E11; }
+  .cat-head h2{ font-size:28px; margin:0; letter-spacing:-.02em; }
+  .cat-head .cc{ font-size:13px; color:var(--t3); margin-top:4px; }
+  .cat-head .idx{ margin-left:auto; font-family:var(--font-display); font-size:14px; font-weight:700; color:var(--t4); letter-spacing:.1em; }
+  .nk-block{ margin-top:56px; }
+  .nk-block .num{ font-family:var(--font-display); font-size:12px; font-weight:700; color:var(--t4); letter-spacing:.1em; }
+  .nk-block h3{ font-size:22px; font-weight:700; color:var(--t1); margin:6px 0 8px; letter-spacing:-.01em; }
+  .nk-block .cap{ font-size:13.5px; color:var(--t3); max-width:640px; line-height:1.6; margin-bottom:28px; }
+  .nk-scroll{ overflow-x:auto; overflow-y:hidden; padding:8px 2px 20px; scrollbar-width:thin; scrollbar-color:var(--gbo) transparent; }
+  .nk-stage{ position:relative; width:1000px; margin:0 auto; }
+  .nk-svg{ position:absolute; inset:0; width:1000px; height:100%; overflow:visible; z-index:1; pointer-events:none; }
+  .nk-node{ position:absolute; transform:translate(-50%,-50%); z-index:2; display:flex; align-items:center; gap:13px; padding:14px 20px 14px 14px; background:var(--gb); border:1px solid var(--gbo); border-radius:16px; backdrop-filter:blur(var(--blur-glass)); box-shadow:var(--shadow-float); box-sizing:border-box; }
+  .nk-node.w210{ width:210px; } .nk-node.w180{ width:180px; } .nk-node.w160{ width:160px; } .nk-node.w150{ width:150px; }
+  .nk-node.primary{ background:linear-gradient(135deg,rgba(0,238,208,.18),rgba(0,238,208,.05)); border-color:var(--gho); }
+  .nk-node.center-col{ flex-direction:column; text-align:center; gap:10px; padding:18px 16px; }
+  .nk-badge{ width:44px; height:44px; border-radius:12px; display:grid; place-items:center; flex-shrink:0; }
+  .nk-badge .mat{ font-size:23px; }
+  .nk-badge.dark .mat{ color:#0D0E11; } .nk-badge.light .mat{ color:#fff; }
+  .nk-node .txt{ min-width:0; }
+  .nk-node .t{ font-size:14.5px; font-weight:600; color:var(--t1); line-height:1.2; letter-spacing:-.01em; }
+  .nk-node .s{ font-size:11.5px; color:var(--t3); margin-top:3px; line-height:1.35; }
+  .nk-node .step-n{ font-family:var(--font-display); font-size:11px; font-weight:700; color:var(--cyan); letter-spacing:.08em; margin-bottom:2px; }
+  .nk-pill{ position:absolute; transform:translate(-50%,-50%); z-index:3; font-size:11px; font-weight:700; padding:4px 11px; border-radius:999px; background:var(--bg2); border:1px solid var(--gbo); color:var(--t2); white-space:nowrap; }
+  .nk-pill.cyan{ color:var(--cyan); border-color:var(--gho); background:rgba(0,238,208,.08); }
+  .nk-pill.coral{ color:var(--coral); border-color:rgba(255,107,107,.3); background:rgba(255,107,107,.08); }
+  .nk-pyramid{ display:flex; flex-direction:column; align-items:center; gap:10px; width:620px; margin:0 auto; max-width:100%; }
+  .pyr-row{ display:flex; align-items:center; gap:24px; width:100%; }
+  .pyr-shape{ height:74px; display:flex; align-items:center; justify-content:center; color:#0D0E11; font-weight:700; font-size:15px; flex-shrink:0; }
+  .pyr-side{ flex:1; font-size:13px; color:var(--t3); line-height:1.5; }
+  .pyr-side.l{ text-align:right; }
+  .nk-funnel{ display:flex; flex-direction:column; align-items:center; gap:14px; width:640px; margin:0 auto; max-width:100%; }
+  .fun-row{ display:grid; grid-template-columns:minmax(0,1fr) 150px; align-items:center; gap:28px; width:100%; }
+  .fun-bar{ height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:600; font-size:15px; justify-self:end; }
+  .fun-meta .fn{ font-size:22px; font-weight:700; color:var(--cyan); line-height:1; }
+  .fun-meta .fl{ font-size:12px; color:var(--t3); margin-top:4px; }
+  .nk-compare{ display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:stretch; max-width:840px; margin:0 auto; }
+  .cmp-col{ padding:32px 30px; border-radius:var(--rc); background:var(--gb); border:1px solid var(--gbo); backdrop-filter:blur(var(--blur-glass)); }
+  .cmp-col.after{ background:linear-gradient(160deg,rgba(0,238,208,.1),rgba(0,238,208,.02)); border-color:var(--gho); }
+  .cmp-col h4{ display:flex; align-items:center; gap:10px; font-size:15px; font-weight:700; margin-bottom:20px; }
+  .cmp-col.before h4{ color:var(--t2); } .cmp-col.after h4{ color:var(--cyan); }
+  .cmp-col ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px; }
+  .cmp-col li{ display:flex; gap:11px; font-size:13.5px; color:var(--t2); line-height:1.5; }
+  .cmp-col li .mat{ font-size:18px; flex-shrink:0; margin-top:1px; }
+  .cmp-col.before li .mat{ color:var(--coral); } .cmp-col.after li .mat{ color:var(--green); }
+  .cmp-vs{ display:flex; align-items:center; justify-content:center; padding:0 22px; }
+  .cmp-vs span{ width:52px; height:52px; border-radius:50%; background:var(--bg2); border:1px solid var(--gbo); display:grid; place-items:center; font-family:var(--font-display); font-weight:700; font-size:15px; color:var(--t3); }
+  .nk-matrix{ position:relative; width:600px; height:600px; margin:0 auto; max-width:100%; }
+  .mx-grid{ position:absolute; inset:60px 40px 60px 60px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:1fr 1fr; gap:16px; }
+  .mx-q{ border-radius:16px; padding:24px; background:var(--gb); border:1px solid var(--gbo); backdrop-filter:blur(var(--blur-glass)); display:flex; flex-direction:column; gap:8px; }
+  .mx-q .qi{ width:38px; height:38px; border-radius:10px; display:grid; place-items:center; margin-bottom:6px; }
+  .mx-q .qt{ font-size:14px; font-weight:700; color:var(--t1); }
+  .mx-q .qd{ font-size:12px; color:var(--t3); line-height:1.45; }
+  .mx-axis{ position:absolute; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--t4); }
+  .mx-axis.top{ top:24px; left:50%; transform:translateX(-50%); } .mx-axis.bot{ bottom:24px; left:50%; transform:translateX(-50%); }
+  .mx-axis.lft{ left:8px; top:50%; transform:translateY(-50%) rotate(-90deg); } .mx-axis.rgt{ right:2px; top:50%; transform:translateY(-50%) rotate(90deg); }
+  .nk-stepper{ max-width:720px; margin:0 auto; display:flex; flex-direction:column; }
+  .stp{ display:grid; grid-template-columns:56px minmax(0,1fr); gap:22px; }
+  .stp-rail{ display:flex; flex-direction:column; align-items:center; }
+  .stp-dot{ width:44px; height:44px; border-radius:12px; display:grid; place-items:center; font-family:var(--font-display); font-weight:700; font-size:16px; color:#0D0E11; flex-shrink:0; }
+  .stp-line{ width:2px; flex:1; background:linear-gradient(var(--cyan),rgba(0,238,208,.15)); margin:6px 0; min-height:26px; }
+  .stp:last-child .stp-line{ display:none; }
+  .stp-body{ padding-bottom:34px; }
+  .stp-body h4{ font-size:16px; font-weight:700; color:var(--t1); margin-bottom:6px; }
+  .stp-body p{ font-size:13.5px; color:var(--t3); line-height:1.6; margin:0; }
+  .stp-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .stp-tags span{ font-size:11px; font-weight:600; color:var(--t2); padding:5px 12px; border-radius:999px; background:var(--gb); border:1px solid var(--gbo); }
+  .swot{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; max-width:760px; margin:0 auto; }
+  .swot-q{ padding:26px; border-radius:var(--rc); border:1px solid var(--gbo); background:var(--gb); backdrop-filter:blur(var(--blur-glass)); }
+  .swot-q h4{ display:flex; align-items:center; gap:10px; font-size:15px; font-weight:700; margin:0 0 14px; }
+  .swot-q .sh{ width:34px; height:34px; border-radius:9px; display:grid; place-items:center; flex-shrink:0; }
+  .swot-q ul{ margin:0; padding-left:18px; color:var(--t2); font-size:13px; line-height:1.7; }
+  .swot-q.s h4{ color:var(--cyan); } .swot-q.w h4{ color:var(--coral); } .swot-q.o h4{ color:var(--green); } .swot-q.t h4{ color:var(--purp-l); }
+  .chart-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
+  .chart-card{ padding:26px; border-radius:var(--rc); background:var(--gb); border:1px solid var(--gbo); backdrop-filter:blur(var(--blur-glass)); }
+  .chart-card h4{ font-size:14px; font-weight:700; color:var(--t1); margin:0 0 3px; }
+  .chart-card .ch-sub{ font-size:12px; color:var(--t4); margin-bottom:20px; }
+  .chart-card svg{ width:100%; height:auto; display:block; }
+  .ch-legend{ display:flex; flex-wrap:wrap; gap:14px; margin-top:16px; }
+  .ch-legend span{ display:flex; align-items:center; gap:7px; font-size:12px; color:var(--t2); }
+  .ch-legend i{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+  .iceberg-grid{ display:grid; grid-template-columns:auto minmax(0,1fr); gap:36px; align-items:center; max-width:820px; margin:0 auto; }
+  .ice-legend .il{ padding:14px 0; border-bottom:1px solid var(--gbo); }
+  .ice-legend .il:last-child{ border-bottom:none; }
+  .ice-legend .il .tag{ font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .ice-legend .il h4{ font-size:14px; font-weight:700; color:var(--t1); margin:6px 0 0; }
+  .ice-legend .il p{ font-size:13px; color:var(--t3); margin:6px 0 0; line-height:1.5; }
+  @media(max-width:720px){ .swot,.nk-compare,.iceberg-grid{ grid-template-columns:minmax(0,1fr); } .lib-nav-inner{ padding:14px 20px; } }
+</style>
+</helmet>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gcyan" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5EE7C8"></stop><stop offset="1" stop-color="#00EED0"></stop></linearGradient>
+  <linearGradient id="gcyanV" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#0197AF"></stop><stop offset="1" stop-color="#00EED0"></stop></linearGradient>
+  <linearGradient id="gteal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0197AF"></stop><stop offset="1" stop-color="#0D7D9E"></stop></linearGradient>
+  <linearGradient id="gpurp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6B3FA0"></stop><stop offset="1" stop-color="#4B227A"></stop></linearGradient>
+  <linearGradient id="ggreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ECB99"></stop><stop offset="1" stop-color="#1BB87F"></stop></linearGradient>
+  <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00EED0" stop-opacity=".35"></stop><stop offset="1" stop-color="#00EED0" stop-opacity="0"></stop></linearGradient>
+  <marker id="ah" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L8,5 L0,9 Z" fill="#00EED0"></path></marker>
+  <marker id="ah-g" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L8,5 L0,9 Z" fill="#1BB87F"></path></marker>
+  <marker id="ah-c" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L8,5 L0,9 Z" fill="#FF6B6B"></path></marker>
+</defs></svg>
+
+<section class="section" style="padding-bottom:40px">
+  <div class="container">
+    <div style="max-width:820px">
+      <span class="eyebrow"><span class="mat" style="font-size:14px">account_tree</span> Biblioteca visual</span>
+      <h1 class="h1">Diagramas estilo Napkin</h1>
+      <p class="body-lg" style="margin-top:20px">Nós de vidro e conectores SVG em coordenadas fixas. Para reutilizar um arquétipo, copie o bloco, troque ícone e rótulo e mantenha as coordenadas.</p>
+    </div>
+  </div>
+</section>
+
+<div class="lib-nav"><div class="lib-nav-inner">
+  <a href="#mindmap">Mindmap</a><a href="#hub">Hub</a><a href="#processo">Processo</a><a href="#ciclo">Ciclo</a><a href="#decisao">Decisão</a><a href="#stepper">Stepper</a><a href="#roadmap">Roadmap</a><a href="#antes">Antes e depois</a><a href="#matriz">Matriz</a><a href="#funil">Funil</a><a href="#piramide">Pirâmide</a><a href="#iceberg">Iceberg</a><a href="#swot">SWOT</a><a href="#fishbone">Causa e efeito</a><a href="#ponte">Ponte</a><a href="#jornada">Jornada</a><a href="#charts">Charts</a>
+</div></div>
+
+<div class="container" style="padding-bottom:120px">
+
+  <div class="cat" id="mindmap">
+    <div class="cat-head"><div class="cat-ico g-cyan"><span class="mat">account_tree</span></div><div><h2>Mindmap</h2><div class="cc">Ideias que ramificam de um conceito central</div></div><div class="idx">01</div></div>
+    <div class="nk-block">
+      <span class="num">MAPA RADIAL</span>
+      <h3>Mindmap radial</h3>
+      <p class="cap">Conceito central que ramifica em temas e subtemas, com branches em cores distintas.</p>
+      <div class="nk-scroll"><div class="nk-stage" style="height:500px">
+        <svg class="nk-svg" viewBox="0 0 1000 500">
+          <path d="M420,220 C340,170 320,140 285,120" stroke="url(#gcyan)" stroke-width="2.5" fill="none"></path>
+          <path d="M175,120 C150,120 130,105 118,88" stroke="url(#gcyan)" stroke-width="2" fill="none" opacity=".8"></path>
+          <path d="M175,130 C150,140 130,155 118,172" stroke="url(#gcyan)" stroke-width="2" fill="none" opacity=".8"></path>
+          <path d="M580,220 C660,170 680,140 715,120" stroke="url(#gteal)" stroke-width="2.5" fill="none"></path>
+          <path d="M825,120 C850,120 870,105 882,88" stroke="url(#gteal)" stroke-width="2" fill="none" opacity=".8"></path>
+          <path d="M825,130 C850,140 870,155 882,172" stroke="url(#gteal)" stroke-width="2" fill="none" opacity=".8"></path>
+          <path d="M420,280 C340,330 320,360 285,382" stroke="url(#gpurp)" stroke-width="2.5" fill="none"></path>
+          <path d="M175,382 C150,382 130,368 118,352" stroke="url(#gpurp)" stroke-width="2" fill="none" opacity=".8"></path>
+          <path d="M175,392 C150,400 130,415 118,432" stroke="url(#gpurp)" stroke-width="2" fill="none" opacity=".8"></path>
+          <path d="M580,280 C660,330 680,360 715,382" stroke="url(#ggreen)" stroke-width="2.5" fill="none"></path>
+          <path d="M825,382 C850,382 870,368 882,352" stroke="url(#ggreen)" stroke-width="2" fill="none" opacity=".8"></path>
+          <path d="M825,392 C850,400 870,415 882,432" stroke="url(#ggreen)" stroke-width="2" fill="none" opacity=".8"></path>
+        </svg>
+        <div class="nk-node w180 primary center-col" style="left:500px; top:250px"><div class="nk-badge g-cyan dark" style="width:52px;height:52px"><span class="mat" style="font-size:27px">account_tree</span></div><div class="txt"><div class="t">Operação<br>comercial</div></div></div>
+        <div class="nk-node w160" style="left:250px; top:120px"><div class="nk-badge g-cyan dark"><span class="mat">campaign</span></div><div class="txt"><div class="t">Aquisição</div></div></div>
+        <div class="nk-pill" style="left:80px; top:88px">Tráfego</div>
+        <div class="nk-pill" style="left:80px; top:172px">Conteúdo</div>
+        <div class="nk-node w160" style="left:750px; top:120px"><div class="nk-badge g-teal light"><span class="mat">forum</span></div><div class="txt"><div class="t">Atendimento</div></div></div>
+        <div class="nk-pill" style="left:918px; top:88px">IA 24/7</div>
+        <div class="nk-pill" style="left:918px; top:172px">Humano</div>
+        <div class="nk-node w160" style="left:250px; top:382px"><div class="nk-badge g-purp light"><span class="mat">trending_up</span></div><div class="txt"><div class="t">Vendas</div></div></div>
+        <div class="nk-pill" style="left:80px; top:352px">Funil</div>
+        <div class="nk-pill" style="left:80px; top:432px">Follow-up</div>
+        <div class="nk-node w160" style="left:750px; top:382px"><div class="nk-badge g-green dark"><span class="mat">insights</span></div><div class="txt"><div class="t">Dados</div></div></div>
+        <div class="nk-pill" style="left:918px; top:352px">Painel</div>
+        <div class="nk-pill" style="left:918px; top:432px">Previsão</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="cat" id="hub">
+    <div class="cat-head"><div class="cat-ico g-teal"><span class="mat" style="color:#fff">hub</span></div><div><h2>Sistemas se encontrando</h2><div class="cc">Um núcleo orquestrando canais e bases</div></div><div class="idx">02</div></div>
+    <div class="nk-block">
+      <span class="num">NÚCLEO E CONEXÕES</span>
+      <h3>Hub de integração</h3>
+      <p class="cap">A Avraham no centro, cada sistema entra como um nó conectado ao núcleo.</p>
+      <div class="nk-scroll"><div class="nk-stage" style="height:460px">
+        <svg class="nk-svg" viewBox="0 0 1000 460">
+          <path d="M500,230 L500,132" stroke="url(#gcyan)" stroke-width="2.5" fill="none" marker-end="url(#ah)"></path>
+          <path d="M500,230 L773,190" stroke="url(#gcyan)" stroke-width="2.5" fill="none" marker-end="url(#ah)"></path>
+          <path d="M500,230 L655,332" stroke="url(#gcyan)" stroke-width="2.5" fill="none" marker-end="url(#ah)"></path>
+          <path d="M500,230 L347,332" stroke="url(#gcyan)" stroke-width="2.5" fill="none" marker-end="url(#ah)"></path>
+          <path d="M500,230 L229,190" stroke="url(#gcyan)" stroke-width="2.5" fill="none" marker-end="url(#ah)"></path>
+        </svg>
+        <div class="nk-node w180 primary center-col" style="left:500px; top:230px"><div class="nk-badge g-cyan dark" style="width:52px;height:52px"><span class="mat" style="font-size:27px">hub</span></div><div class="txt"><div class="t">Avraham</div><div class="s">Orquestração</div></div></div>
+        <div class="nk-node w150" style="left:500px; top:62px"><div class="nk-badge g-green dark"><span class="mat">chat</span></div><div class="txt"><div class="t">WhatsApp</div></div></div>
+        <div class="nk-node w150" style="left:842px; top:177px"><div class="nk-badge g-teal light"><span class="mat">smart_toy</span></div><div class="txt"><div class="t">Agente IA</div></div></div>
+        <div class="nk-node w150" style="left:712px; top:368px"><div class="nk-badge g-purp light"><span class="mat">contacts</span></div><div class="txt"><div class="t">CRM</div></div></div>
+        <div class="nk-node w150" style="left:288px; top:368px"><div class="nk-badge g-teal light"><span class="mat">table_chart</span></div><div class="txt"><div class="t">Dados</div></div></div>
+        <div class="nk-node w150" style="left:158px; top:177px"><div class="nk-badge g-green dark"><span class="mat">dashboard</span></div><div class="txt"><div class="t">Painel</div></div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="cat" id="processo">
+    <div class="cat-head"><div class="cat-ico g-teal"><span class="mat" style="color:#fff">conversion_path</span></div><div><h2>Processos</h2><div class="cc">Etapas encadeadas, ciclos e passo a passo</div></div><div class="idx">03</div></div>
+
+    <div class="nk-block">
+      <span class="num">FLUXO LINEAR</span>
+      <h3>Processo linear</h3>
+      <p class="cap">Sequência de etapas encadeadas, para pipeline ou jornada passo a passo.</p>
+      <div class="nk-scroll"><div class="nk-stage" style="height:170px">
+        <svg class="nk-svg" viewBox="0 0 1000 170">
+          <path d="M220,85 L282,85" stroke="url(#gcyan)" stroke-width="2.5" fill="none" marker-end="url(#ah)"></path>
+          <path d="M478,85 L542,85" stroke="url(#gcyan)" stroke-width="2.5" fill="none" marker-end="url(#ah)"></path>
+          <path d="M738,85 L802,85" stroke="url(#gcyan)" stroke-width="2.5" fill="none" marker-end="url(#ah)"></path>
+        </svg>
+        <div class="nk-node w210" style="left:120px; top:85px"><div class="nk-badge g-cyan dark"><span class="mat">chat</span></div><div class="txt"><div class="step-n">ETAPA 01</div><div class="t">Contato</div><div class="s">Lead chega no canal</div></div></div>
+        <div class="nk-node w210" style="left:380px; top:85px"><div class="nk-badge g-teal light"><span class="mat">smart_toy</span></div><div class="txt"><div class="step-n">ETAPA 02</div><div class="t">Triagem</div><div class="s">IA qualifica</div></div></div>
+        <div class="nk-node w210" style="left:640px; top:85px"><div class="nk-badge g-purp light"><span class="mat">contacts</span></div><div class="txt"><div class="step-n">ETAPA 03</div><div class="t">CRM</div><div class="s">Etapa e dono</div></div></div>
+        <div class="nk-node w210 primary" style="left:900px; top:85px"><div class="nk-badge g-green dark"><span class="mat">handshake</span></div><div class="txt"><div class="step-n">ETAPA 04</div><div class="t">Venda</div><div class="s">Receita medida</div></div></div>
+      </div></div>
+    </div>
+
+    <div class="nk-block" id="ciclo">
+      <span class="num">LOOP</span>
+      <h3>Ciclo contínuo</h3>
+      <p class="cap">Processo recorrente sem fim, para melhoria, feedback ou operação contínua.</p>
+      <div class="nk-scroll"><div class="nk-stage" style="height:480px">
+        <svg class="nk-svg" viewBox="0 0 1000 480">
+          <ellipse cx="500" cy="240" rx="340" ry="168" fill="none" stroke="url(#gcyan)" stroke-width="2" stroke-dasharray="7 9" opacity="0.55"></ellipse>
+        </svg>
+        <div class="nk-node w180 center-col" style="left:500px; top:240px; background:var(--bg2); border-color:var(--gho)"><div class="nk-badge g-cyan dark"><span class="mat">sync</span></div><div class="txt"><div class="t">Operação<br>inteligente</div></div></div>
+        <div class="nk-node w160" style="left:500px; top:72px"><div class="nk-badge g-cyan dark"><span class="mat">radar</span></div><div class="txt"><div class="t">Monitorar</div></div></div>
+        <div class="nk-node w160" style="left:840px; top:240px"><div class="nk-badge g-teal light"><span class="mat">tune</span></div><div class="txt"><div class="t">Ajustar</div></div></div>
+        <div class="nk-node w160" style="left:500px; top:408px"><div class="nk-badge g-purp light"><span class="mat">rocket_launch</span></div><div class="txt"><div class="t">Executar</div></div></div>
+        <div class="nk-node w160" style="left:160px; top:240px"><div class="nk-badge g-green dark"><span class="mat">analytics</span></div><div class="txt"><div class="t">Medir</div></div></div>
+      </div></div>
+    </div>
+
+    <div class="nk-block" id="decisao">
+      <span class="num">DECISÃO</span>
+      <h3>Ramificação condicional</h3>
+      <p class="cap">Um ponto de decisão divide o fluxo em caminhos distintos.</p>
+      <div class="nk-scroll"><div class="nk-stage" style="height:420px">
+        <svg class="nk-svg" viewBox="0 0 1000 420">
+          <path d="M500,90 L500,146" stroke="url(#gcyan)" stroke-width="2.5" fill="none" marker-end="url(#ah)"></path>
+          <path d="M430,205 C340,240 300,270 300,308" stroke="#1BB87F" stroke-width="2.5" fill="none" marker-end="url(#ah-g)"></path>
+          <path d="M570,205 C660,240 700,270 700,308" stroke="#FF6B6B" stroke-width="2.5" fill="none" marker-end="url(#ah-c)"></path>
+        </svg>
+        <div class="nk-node w210" style="left:500px; top:60px"><div class="nk-badge g-teal light"><span class="mat">person_add</span></div><div class="txt"><div class="t">Novo lead</div><div class="s">Entra pelo WhatsApp</div></div></div>
+        <div class="nk-node w210" style="left:500px; top:190px; background:rgba(255,107,107,.06); border-color:rgba(255,107,107,.28)"><div class="nk-badge g-cyan dark"><span class="mat">help</span></div><div class="txt"><div class="t">Qualificado?</div><div class="s">IA avalia intenção</div></div></div>
+        <div class="nk-pill cyan" style="left:355px; top:262px">Sim</div>
+        <div class="nk-pill coral" style="left:645px; top:262px">Não</div>
+        <div class="nk-node w210 primary" style="left:300px; top:352px"><div class="nk-badge g-green dark"><span class="mat">verified</span></div><div class="txt"><div class="t">Rota comercial</div><div class="s">Encaminha ao vendedor</div></div></div>
+        <div class="nk-node w210" style="left:700px; top:352px"><div class="nk-badge g-purp light"><span class="mat">schedule</span></div><div class="txt"><div class="t">Nutrição</div><div class="s">Sequência automática</div></div></div>
+      </div></div>
+    </div>
+
+    <div class="nk-block" id="stepper">
+      <span class="num">PASSO A PASSO</span>
+      <h3>Stepper vertical</h3>
+      <p class="cap">Etapas detalhadas com descrição e tags, para metodologias e checklists ricos.</p>
+      <div class="nk-stepper">
+        <div class="stp"><div class="stp-rail"><div class="stp-dot g-cyan">1</div><div class="stp-line"></div></div><div class="stp-body"><h4>Diagnóstico</h4><p>Mapeamos operação atual, base, riscos e oportunidades comerciais.</p><div class="stp-tags"><span>Operação</span><span>Base</span><span>Riscos</span></div></div></div>
+        <div class="stp"><div class="stp-rail"><div class="stp-dot g-teal" style="color:#fff">2</div><div class="stp-line"></div></div><div class="stp-body"><h4>Estruturação</h4><p>API Oficial, plataforma, templates, usuários e fluxos configurados.</p><div class="stp-tags"><span>API Oficial</span><span>Templates</span><span>Fluxos</span></div></div></div>
+        <div class="stp"><div class="stp-rail"><div class="stp-dot g-purp" style="color:#fff">3</div><div class="stp-line"></div></div><div class="stp-body"><h4>Execução</h4><p>Campanhas no ar, com foco em resposta, qualificação e conversão.</p><div class="stp-tags"><span>Campanhas</span><span>Qualificação</span></div></div></div>
+        <div class="stp"><div class="stp-rail"><div class="stp-dot g-green">4</div></div><div class="stp-body"><h4>Otimização</h4><p>Leitura mensal de dados e ajuste de mensagem, fluxo e oferta.</p><div class="stp-tags"><span>Dados</span><span>Ajustes</span><span>Escala</span></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat" id="roadmap">
+    <div class="cat-head"><div class="cat-ico g-purp"><span class="mat" style="color:#fff">timeline</span></div><div><h2>Timelines</h2><div class="cc">Marcos ao longo do tempo</div></div><div class="idx">04</div></div>
+    <div class="nk-block">
+      <span class="num">ROADMAP</span>
+      <h3>Linha do tempo</h3>
+      <p class="cap">Marcos alternando acima e abaixo do eixo, para respiro visual.</p>
+      <div class="nk-scroll"><div class="nk-stage" style="height:340px">
+        <svg class="nk-svg" viewBox="0 0 1000 340">
+          <line x1="70" y1="170" x2="930" y2="170" stroke="url(#gcyan)" stroke-width="2.5"></line>
+          <line x1="180" y1="170" x2="180" y2="120" stroke="var(--gbo)" stroke-width="1.5"></line><line x1="420" y1="170" x2="420" y2="220" stroke="var(--gbo)" stroke-width="1.5"></line><line x1="640" y1="170" x2="640" y2="120" stroke="var(--gbo)" stroke-width="1.5"></line><line x1="860" y1="170" x2="860" y2="220" stroke="var(--gbo)" stroke-width="1.5"></line>
+          <circle cx="180" cy="170" r="7" fill="#00EED0"></circle><circle cx="420" cy="170" r="7" fill="#0197AF"></circle><circle cx="640" cy="170" r="7" fill="#6B3FA0"></circle><circle cx="860" cy="170" r="7" fill="#1BB87F"></circle>
+        </svg>
+        <div class="nk-node w180" style="left:180px; top:80px"><div class="nk-badge g-cyan dark"><span class="mat">search</span></div><div class="txt"><div class="step-n">SEMANA 1</div><div class="t">Diagnóstico</div></div></div>
+        <div class="nk-node w180" style="left:420px; top:260px"><div class="nk-badge g-teal light"><span class="mat">settings</span></div><div class="txt"><div class="step-n">SEMANA 2</div><div class="t">Estruturação</div></div></div>
+        <div class="nk-node w180" style="left:640px; top:80px"><div class="nk-badge g-purp light"><span class="mat">integration_instructions</span></div><div class="txt"><div class="step-n">SEMANA 3</div><div class="t">Estratégia</div></div></div>
+        <div class="nk-node w180 primary" style="left:860px; top:260px"><div class="nk-badge g-green dark"><span class="mat">flag</span></div><div class="txt"><div class="step-n">SEMANA 4</div><div class="t">Go-live</div></div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="cat" id="antes">
+    <div class="cat-head"><div class="cat-ico g-teal"><span class="mat" style="color:#fff">compare_arrows</span></div><div><h2>Comparação</h2><div class="cc">Confronto de estados, opções e trade-offs</div></div><div class="idx">05</div></div>
+
+    <div class="nk-block">
+      <span class="num">CONTRASTE</span>
+      <h3>Antes e depois</h3>
+      <p class="cap">Confronto direto de dois estados, para tornar o valor da mudança tangível.</p>
+      <div class="nk-compare">
+        <div class="cmp-col before"><h4><span class="mat">sentiment_dissatisfied</span> Sem estrutura</h4><ul>
+          <li><span class="mat">close</span> Conversas soltas, sem dono e sem etapa</li>
+          <li><span class="mat">close</span> Atendimento só quando o cliente chega</li>
+          <li><span class="mat">close</span> Follow-up dependente da memória</li>
+          <li><span class="mat">close</span> Base sem reativação</li></ul></div>
+        <div class="cmp-vs"><span>VS</span></div>
+        <div class="cmp-col after"><h4><span class="mat">sentiment_very_satisfied</span> Com Avraham</h4><ul>
+          <li><span class="mat">check</span> Pipeline e dono em cada conversa</li>
+          <li><span class="mat">check</span> Resposta em 4s, 24/7</li>
+          <li><span class="mat">check</span> Régua automática de follow-up</li>
+          <li><span class="mat">check</span> Base reativada por campanha</li></ul></div>
+      </div>
+    </div>
+
+    <div class="nk-block" id="matriz">
+      <span class="num">PRIORIZAÇÃO</span>
+      <h3>Matriz 2 por 2</h3>
+      <p class="cap">Dois eixos, quatro quadrantes, para priorização e posicionamento.</p>
+      <div class="nk-matrix">
+        <div class="mx-axis top">Alto impacto</div><div class="mx-axis bot">Baixo impacto</div><div class="mx-axis lft">Baixo esforço</div><div class="mx-axis rgt">Alto esforço</div>
+        <div class="mx-grid">
+          <div class="mx-q" style="border-color:var(--gho)"><div class="qi g-cyan"><span class="mat" style="font-size:20px; color:#0D0E11">bolt</span></div><div class="qt">Fazer agora</div><div class="qd">Alto impacto, baixo esforço. Ganhos rápidos.</div></div>
+          <div class="mx-q"><div class="qi g-teal"><span class="mat" style="font-size:20px; color:#fff">calendar_month</span></div><div class="qt">Planejar</div><div class="qd">Alto impacto, alto esforço. Projetos-chave.</div></div>
+          <div class="mx-q"><div class="qi g-green"><span class="mat" style="font-size:20px; color:#0D0E11">check_circle</span></div><div class="qt">Automatizar</div><div class="qd">Baixo impacto, baixo esforço. Tira do time.</div></div>
+          <div class="mx-q"><div class="qi g-purp"><span class="mat" style="font-size:20px; color:#fff">do_not_disturb_on</span></div><div class="qt">Evitar</div><div class="qd">Baixo impacto, alto esforço. Descarte.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nk-block" id="funil">
+      <span class="num">CONVERSÃO</span>
+      <h3>Funil de estágios</h3>
+      <p class="cap">Volume que se estreita a cada etapa, do primeiro contato à venda fechada.</p>
+      <div class="nk-funnel">
+        <div class="fun-row"><div class="fun-bar g-cyan" style="width:100%; color:#0D0E11">Conversas</div><div class="fun-meta"><div class="fn">1.284</div><div class="fl">Volume total</div></div></div>
+        <div class="fun-row"><div class="fun-bar g-teal" style="width:76%">Qualificados</div><div class="fun-meta"><div class="fn">327</div><div class="fl">25% do topo</div></div></div>
+        <div class="fun-row"><div class="fun-bar g-purp" style="width:52%">Em proposta</div><div class="fun-meta"><div class="fn">62</div><div class="fl">19% dos qualificados</div></div></div>
+        <div class="fun-row"><div class="fun-bar g-green" style="width:30%; color:#0D0E11">Fechados</div><div class="fun-meta"><div class="fn">21</div><div class="fl">34% de fechamento</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat" id="piramide">
+    <div class="cat-head"><div class="cat-ico g-green"><span class="mat" style="color:#0D0E11">stacks</span></div><div><h2>Hierarquia e partes do todo</h2><div class="cc">Camadas de importância e o que fica sob a superfície</div></div><div class="idx">06</div></div>
+
+    <div class="nk-block">
+      <span class="num">PIRÂMIDE</span>
+      <h3>Pirâmide de prioridade</h3>
+      <p class="cap">Camadas de importância, base ampla e topo estratégico.</p>
+      <div class="nk-pyramid">
+        <div class="pyr-row"><div class="pyr-side l">Visão de longo prazo e posicionamento.</div><div class="pyr-shape g-cyan" style="width:230px; clip-path:polygon(50% 0,100% 100%,0 100%)"><span style="margin-top:26px">Estratégia</span></div><div class="pyr-side">O que decidimos não automatizar ainda.</div></div>
+        <div class="pyr-row"><div class="pyr-side l">Sistemas, integrações e automação.</div><div class="pyr-shape g-teal" style="width:400px; color:#fff; clip-path:polygon(12% 0,88% 0,100% 100%,0 100%)">Infraestrutura</div><div class="pyr-side">API Oficial, CRM e IA integrados.</div></div>
+        <div class="pyr-row"><div class="pyr-side l">Execução diária, atendimento e vendas.</div><div class="pyr-shape g-purp" style="width:560px; color:#fff; clip-path:polygon(8% 0,92% 0,100% 100%,0 100%)">Operação</div><div class="pyr-side">A base que gera resultado agora.</div></div>
+      </div>
+    </div>
+
+    <div class="nk-block" id="iceberg">
+      <span class="num">METÁFORA</span>
+      <h3>Iceberg</h3>
+      <p class="cap">O visível é só a ponta. A maior parte do valor está sob a superfície.</p>
+      <div class="iceberg-grid">
+        <svg viewBox="0 0 260 320" style="width:220px; flex-shrink:0">
+          <line x1="0" y1="120" x2="260" y2="120" stroke="#00EED0" stroke-width="1.5" stroke-dasharray="5 5" opacity=".6"></line>
+          <text x="6" y="112" font-size="10" fill="#00EED0" font-family="Space Grotesk">superfície</text>
+          <path d="M130,30 L175,120 L85,120 Z" fill="url(#gcyan)"></path>
+          <path d="M85,120 L175,120 L215,300 L45,300 Z" fill="url(#gteal)" opacity=".55"></path>
+          <path d="M85,120 L175,120 L200,230 L60,230 Z" fill="url(#gteal)" opacity=".75"></path>
+        </svg>
+        <div class="ice-legend">
+          <div class="il"><span class="tag" style="color:var(--cyan)">Visível</span><h4>Resultado</h4><p>Vendas, resposta rápida e painel. O que o cliente percebe.</p></div>
+          <div class="il"><span class="tag" style="color:var(--teal)">Abaixo</span><h4>Fundação</h4><p>Integrações, base limpa, automações, IA treinada e processo. O trabalho que sustenta o resultado.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat" id="swot">
+    <div class="cat-head"><div class="cat-ico g-purp"><span class="mat" style="color:#fff">grid_view</span></div><div><h2>Frameworks</h2><div class="cc">Modelos estruturados de análise</div></div><div class="idx">07</div></div>
+    <div class="nk-block">
+      <span class="num">ANÁLISE</span>
+      <h3>SWOT</h3>
+      <p class="cap">Forças, fraquezas, oportunidades e ameaças em quatro quadrantes.</p>
+      <div class="swot">
+        <div class="swot-q s"><h4><span class="sh g-cyan"><span class="mat" style="font-size:19px; color:#0D0E11">bolt</span></span> Forças</h4><ul><li>API Oficial e CRM integrados</li><li>IA treinada para qualificação</li><li>Operação medida por dados</li></ul></div>
+        <div class="swot-q w"><h4><span class="sh g-coral"><span class="mat" style="font-size:19px; color:#fff">warning</span></span> Fraquezas</h4><ul><li>Depende de base ativa</li><li>Exige rotina de ajuste mensal</li></ul></div>
+        <div class="swot-q o"><h4><span class="sh g-green"><span class="mat" style="font-size:19px; color:#0D0E11">trending_up</span></span> Oportunidades</h4><ul><li>Base histórica sem reativação</li><li>Custo de aquisição baixo no canal</li></ul></div>
+        <div class="swot-q t"><h4><span class="sh g-purp"><span class="mat" style="font-size:19px; color:#fff">gpp_maybe</span></span> Ameaças</h4><ul><li>Bloqueio por uso informal do canal</li><li>Disputa por atenção no WhatsApp</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat" id="fishbone">
+    <div class="cat-head"><div class="cat-ico g-coral"><span class="mat" style="color:#fff">fork_right</span></div><div><h2>Causa e efeito</h2><div class="cc">Raízes que levam a um resultado</div></div><div class="idx">08</div></div>
+    <div class="nk-block">
+      <span class="num">ISHIKAWA</span>
+      <h3>Espinha de peixe</h3>
+      <p class="cap">Categorias de causas que convergem para um efeito central.</p>
+      <div class="nk-scroll"><div class="nk-stage" style="height:360px">
+        <svg class="nk-svg" viewBox="0 0 1000 360">
+          <line x1="60" y1="180" x2="800" y2="180" stroke="url(#gcyan)" stroke-width="3" marker-end="url(#ah)"></line>
+          <line x1="200" y1="70" x2="290" y2="180" stroke="var(--gbo)" stroke-width="2"></line><line x1="440" y1="70" x2="530" y2="180" stroke="var(--gbo)" stroke-width="2"></line><line x1="680" y1="70" x2="770" y2="180" stroke="var(--gbo)" stroke-width="2"></line>
+          <line x1="200" y1="290" x2="290" y2="180" stroke="var(--gbo)" stroke-width="2"></line><line x1="440" y1="290" x2="530" y2="180" stroke="var(--gbo)" stroke-width="2"></line><line x1="680" y1="290" x2="770" y2="180" stroke="var(--gbo)" stroke-width="2"></line>
+        </svg>
+        <div class="nk-node w180 primary center-col" style="left:900px; top:180px"><div class="nk-badge g-coral light"><span class="mat">flag</span></div><div class="txt"><div class="t">Lead perdido</div></div></div>
+        <div class="nk-pill cyan" style="left:200px; top:54px">Processo</div>
+        <div class="nk-pill cyan" style="left:440px; top:54px">Pessoas</div>
+        <div class="nk-pill cyan" style="left:680px; top:54px">Tecnologia</div>
+        <div class="nk-pill" style="left:200px; top:306px">Base</div>
+        <div class="nk-pill" style="left:440px; top:306px">Atendimento</div>
+        <div class="nk-pill" style="left:680px; top:306px">Oferta</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="cat" id="ponte">
+    <div class="cat-head"><div class="cat-ico g-green"><span class="mat" style="color:#0D0E11">emoji_objects</span></div><div><h2>Problema e solução</h2><div class="cc">Da dor à ponte que leva ao ganho</div></div><div class="idx">09</div></div>
+    <div class="nk-block">
+      <span class="num">PONTE</span>
+      <h3>Do estado atual ao resultado</h3>
+      <p class="cap">Dois estados separados por um vão, unidos por uma ponte de solução.</p>
+      <div class="nk-scroll"><div class="nk-stage" style="height:360px">
+        <svg class="nk-svg" viewBox="0 0 1000 360">
+          <path d="M120,250 L360,250" stroke="var(--gbo)" stroke-width="3"></path>
+          <path d="M640,250 L880,250" stroke="var(--gbo)" stroke-width="3"></path>
+          <path d="M360,250 C440,120 560,120 640,250" fill="none" stroke="url(#gcyan)" stroke-width="3.5" stroke-linecap="round"></path>
+          <line x1="420" y1="163" x2="420" y2="250" stroke="var(--gho)" stroke-width="1.5"></line><line x1="500" y1="143" x2="500" y2="250" stroke="var(--gho)" stroke-width="1.5"></line><line x1="580" y1="163" x2="580" y2="250" stroke="var(--gho)" stroke-width="1.5"></line>
+        </svg>
+        <div class="nk-node w180" style="left:180px; top:250px; background:rgba(255,107,107,.06); border-color:rgba(255,107,107,.28)"><div class="nk-badge g-coral light"><span class="mat">sentiment_stressed</span></div><div class="txt"><div class="t">Hoje</div><div class="s">Operação manual</div></div></div>
+        <div class="nk-node w180 primary center-col" style="left:500px; top:110px"><div class="nk-badge g-cyan dark"><span class="mat">handyman</span></div><div class="txt"><div class="t">Avraham</div><div class="s">A ponte</div></div></div>
+        <div class="nk-node w180 primary" style="left:820px; top:250px"><div class="nk-badge g-green dark"><span class="mat">rocket_launch</span></div><div class="txt"><div class="t">Meta</div><div class="s">Operação em escala</div></div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="cat" id="jornada">
+    <div class="cat-head"><div class="cat-ico g-purp"><span class="mat" style="color:#fff">route</span></div><div><h2>Narrativa</h2><div class="cc">Uma história que serpenteia até o desfecho</div></div><div class="idx">10</div></div>
+    <div class="nk-block">
+      <span class="num">STORYLINE EM S</span>
+      <h3>Jornada serpentina</h3>
+      <p class="cap">Etapas que fluem em curva contínua, ideal para percurso do cliente.</p>
+      <div class="nk-scroll"><div class="nk-stage" style="height:440px">
+        <svg class="nk-svg" viewBox="0 0 1000 440">
+          <path d="M150,110 L500,110 C640,110 640,220 500,220 L200,220 C60,220 60,330 200,330 L850,330" fill="none" stroke="url(#gcyan)" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"></path>
+        </svg>
+        <div class="nk-node w160" style="left:150px; top:110px"><div class="nk-badge g-cyan dark"><span class="mat">waving_hand</span></div><div class="txt"><div class="step-n">01</div><div class="t">Descoberta</div></div></div>
+        <div class="nk-node w160" style="left:520px; top:110px"><div class="nk-badge g-teal light"><span class="mat">search</span></div><div class="txt"><div class="step-n">02</div><div class="t">Avaliação</div></div></div>
+        <div class="nk-node w160" style="left:400px; top:220px"><div class="nk-badge g-purp light"><span class="mat">description</span></div><div class="txt"><div class="step-n">03</div><div class="t">Proposta</div></div></div>
+        <div class="nk-node w160" style="left:230px; top:330px"><div class="nk-badge g-green dark"><span class="mat">handshake</span></div><div class="txt"><div class="step-n">04</div><div class="t">Fechamento</div></div></div>
+        <div class="nk-node w180 primary" style="left:760px; top:330px"><div class="nk-badge g-green dark"><span class="mat">favorite</span></div><div class="txt"><div class="step-n">05</div><div class="t">Recompra</div></div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="cat" id="charts">
+    <div class="cat-head"><div class="cat-ico g-cyan"><span class="mat">bar_chart</span></div><div><h2>Dados e charts</h2><div class="cc">Gráficos para quantificar e comparar</div></div><div class="idx">11</div></div>
+    <div class="nk-block">
+      <span class="num">GRÁFICOS</span>
+      <h3>Biblioteca de charts</h3>
+      <p class="cap">Barras, linha com área, rosca e radar, todos na paleta Avraham.</p>
+      <div class="chart-grid">
+        <div class="chart-card"><h4>Barras verticais</h4><div class="ch-sub">Conversas por mês</div>
+          <svg viewBox="0 0 300 190">
+            <line x1="34" y1="160" x2="288" y2="160" stroke="var(--gbo)" stroke-width="1"></line>
+            <g fill="url(#gcyanV)"><rect x="46" y="96" width="30" height="64" rx="4"></rect><rect x="98" y="72" width="30" height="88" rx="4"></rect><rect x="150" y="110" width="30" height="50" rx="4"></rect><rect x="202" y="50" width="30" height="110" rx="4"></rect><rect x="254" y="34" width="30" height="126" rx="4"></rect></g>
+            <g fill="var(--t4)" font-size="10" text-anchor="middle" font-family="Space Grotesk"><text x="61" y="176">Jan</text><text x="113" y="176">Fev</text><text x="165" y="176">Mar</text><text x="217" y="176">Abr</text><text x="269" y="176">Mai</text></g>
+          </svg></div>
+
+        <div class="chart-card"><h4>Barras horizontais</h4><div class="ch-sub">Origem dos leads</div>
+          <svg viewBox="0 0 300 190">
+            <g font-size="10" fill="var(--t3)" font-family="Space Grotesk"><text x="4" y="30">WhatsApp</text><text x="4" y="70">Indicação</text><text x="4" y="110">Anúncio</text><text x="4" y="150">Base</text></g>
+            <g><rect x="88" y="20" width="192" height="16" rx="4" fill="url(#gcyan)"></rect><rect x="88" y="60" width="140" height="16" rx="4" fill="url(#gteal)"></rect><rect x="88" y="100" width="96" height="16" rx="4" fill="url(#gpurp)"></rect><rect x="88" y="140" width="58" height="16" rx="4" fill="url(#ggreen)"></rect></g>
+            <g font-size="10" fill="var(--t2)" font-weight="600" font-family="Space Grotesk"><text x="286" y="32" text-anchor="end">61%</text><text x="234" y="72">44%</text><text x="190" y="112">30%</text><text x="152" y="152">18%</text></g>
+          </svg></div>
+
+        <div class="chart-card"><h4>Linha e área</h4><div class="ch-sub">Pipeline acumulado</div>
+          <svg viewBox="0 0 300 190">
+            <line x1="30" y1="160" x2="288" y2="160" stroke="var(--gbo)" stroke-width="1"></line>
+            <path d="M40,130 L88,110 L136,120 L184,72 L232,58 L280,30 L280,160 L40,160 Z" fill="url(#areaFill)"></path>
+            <path d="M40,130 L88,110 L136,120 L184,72 L232,58 L280,30" fill="none" stroke="url(#gcyan)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <g fill="#00EED0"><circle cx="40" cy="130" r="3.5"></circle><circle cx="88" cy="110" r="3.5"></circle><circle cx="136" cy="120" r="3.5"></circle><circle cx="184" cy="72" r="3.5"></circle><circle cx="232" cy="58" r="3.5"></circle><circle cx="280" cy="30" r="3.5"></circle></g>
+          </svg></div>
+
+        <div class="chart-card"><h4>Rosca</h4><div class="ch-sub">Distribuição de canais</div>
+          <svg viewBox="0 0 200 190">
+            <g transform="translate(100,95)">
+              <circle r="62" fill="none" stroke="var(--bg2)" stroke-width="26"></circle>
+              <circle r="62" fill="none" stroke="#00EED0" stroke-width="26" stroke-dasharray="156 233" transform="rotate(-90)"></circle>
+              <circle r="62" fill="none" stroke="#0197AF" stroke-width="26" stroke-dasharray="97 292" stroke-dashoffset="-156" transform="rotate(-90)"></circle>
+              <circle r="62" fill="none" stroke="#6B3FA0" stroke-width="26" stroke-dasharray="78 311" stroke-dashoffset="-253" transform="rotate(-90)"></circle>
+              <circle r="62" fill="none" stroke="#1BB87F" stroke-width="26" stroke-dasharray="58 331" stroke-dashoffset="-331" transform="rotate(-90)"></circle>
+              <text text-anchor="middle" y="-2" font-size="24" font-weight="700" fill="var(--t1)" font-family="Space Grotesk">1.2k</text>
+              <text text-anchor="middle" y="16" font-size="10" fill="var(--t4)" font-family="Space Grotesk">total</text>
+            </g>
+          </svg>
+          <div class="ch-legend"><span><i style="background:#00EED0"></i>WhatsApp 40%</span><span><i style="background:#0197AF"></i>Site 25%</span><span><i style="background:#6B3FA0"></i>Social 20%</span><span><i style="background:#1BB87F"></i>Outros 15%</span></div></div>
+
+        <div class="chart-card"><h4>Radar</h4><div class="ch-sub">Maturidade da operação</div>
+          <svg viewBox="0 0 200 190">
+            <g transform="translate(100,95)">
+              <polygon points="0,-70 66,-22 41,57 -41,57 -66,-22" fill="none" stroke="var(--gbo)" stroke-width="1"></polygon>
+              <polygon points="0,-47 44,-15 27,38 -27,38 -44,-15" fill="none" stroke="var(--gbo)" stroke-width="1"></polygon>
+              <polygon points="0,-23 22,-7 14,19 -14,19 -22,-7" fill="none" stroke="var(--gbo)" stroke-width="1"></polygon>
+              <polygon points="0,-60 50,-10 30,45 -32,30 -44,-15" fill="rgba(0,238,208,.2)" stroke="#00EED0" stroke-width="2"></polygon>
+              <g fill="#00EED0"><circle cx="0" cy="-60" r="3"></circle><circle cx="50" cy="-10" r="3"></circle><circle cx="30" cy="45" r="3"></circle><circle cx="-32" cy="30" r="3"></circle><circle cx="-44" cy="-15" r="3"></circle></g>
+            </g>
+            <g fill="var(--t4)" font-size="9" text-anchor="middle" font-family="Space Grotesk"><text x="100" y="16">Dados</text><text x="182" y="82">IA</text><text x="150" y="180">Fluxo</text><text x="50" y="180">CRM</text><text x="16" y="82">Canal</text></g>
+          </svg></div>
+
+        <div class="chart-card"><h4>Medidor</h4><div class="ch-sub">Índice de saúde da operação</div>
+          <svg viewBox="0 0 320 190">
+            <path d="M40,170 A120,120 0 0,1 280,170" fill="none" stroke="var(--bg2)" stroke-width="20" stroke-linecap="round"></path>
+            <path d="M40,170 A120,120 0 0,1 232,80" fill="none" stroke="url(#gcyan)" stroke-width="20" stroke-linecap="round"></path>
+            <line x1="160" y1="170" x2="220" y2="96" stroke="var(--t1)" stroke-width="3" stroke-linecap="round"></line>
+            <circle cx="160" cy="170" r="8" fill="var(--t1)"></circle>
+            <text x="160" y="135" text-anchor="middle" font-size="30" font-weight="700" fill="var(--t1)" font-family="Space Grotesk">78</text>
+            <text x="34" y="188" font-size="10" fill="var(--t4)" font-family="Space Grotesk">0</text><text x="278" y="188" font-size="10" fill="var(--t4)" font-family="Space Grotesk">100</text>
+          </svg></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <span class="foot-logo">Avraham<span>.</span></span>
+    <p>Biblioteca visual · Diagramas, frameworks e charts estilo Napkin</p>
+  </div>
+</footer>
+</x-dc>
+</body>
+</html>

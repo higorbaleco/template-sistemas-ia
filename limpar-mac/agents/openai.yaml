@@ -1,0 +1,15 @@
+interface:
+  display_name: Limpar Mac
+  short_description: Limpeza local e arquivo de projetos inativos no Git
+  default_prompt: Use $limpar-mac para analisar meu computador, documentar e arquivar
+    projetos inativos há mais de 14 dias no Git e limpar os itens elegíveis conforme
+    o plano autorizado.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

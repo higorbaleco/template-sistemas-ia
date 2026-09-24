@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partner Growth Calculator · Avraham</title>
+  <link rel="stylesheet" href="materials.css"><script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+</head>
+<body class="material-page grid-bg glow-bg" data-theme="dark">
+  <main class="materials-app">
+    <nav class="topbar"><a class="brand-lockup" href="index.html">Avraham · Growth Calculator</a><div class="topbar-actions"><a class="button button-ghost" href="index.html"><i data-lucide="layout-grid"></i>Materiais</a><button class="toolbar-button" data-theme-toggle></button></div></nav>
+    <section class="material-hero"><div><div class="eyebrow">PARTNER DISTRIBUTION ENGINE</div><h1 class="h1">Quanto mais essa base pode gerar?</h1><p class="body-lg">Simule penetração, receita recorrente, setup e divisão econômica para abrir uma conversa de distribuição. Os valores são hipóteses editáveis.</p></div><div class="hero-side"><div class="hero-metric"><span>Caso de referência</span><strong>200 empresas</strong></div><div class="hero-metric"><span>Penetração exemplo</span><strong>30%</strong></div></div></section>
+    <div class="hypothesis-note"><i data-lucide="flask-conical"></i><div><strong>Uso interno:</strong> esta calculadora cria cenários para diagnóstico e Growth Proposal. Ela não substitui o modelo econômico, o contrato ou a validação de margem.</div></div>
+
+    <section class="section-heading"><div><div class="eyebrow">CENÁRIO EDITÁVEL</div><h2 class="h2">Base, penetração e economia.</h2></div><span class="status hypothesis">Hipótese v1</span></section>
+    <section class="calc-grid">
+      <div class="visual-card">
+        <div class="form-grid">
+          <div class="field"><label for="base">Base total</label><input id="base" type="number" min="0" value="200"></div>
+          <div class="field"><label for="penetration">Penetração (%)</label><input id="penetration" type="number" min="0" max="100" value="30"></div>
+          <div class="field"><label for="monthly">Recorrência por cliente (R$)</label><input id="monthly" type="number" min="0" value="300"></div>
+          <div class="field"><label for="setup">Setup médio por cliente (R$)</label><input id="setup" type="number" min="0" value="4000"></div>
+          <div class="field"><label for="partnerShare">Participação Partner (%)</label><input id="partnerShare" type="number" min="0" max="100" value="40"></div>
+          <div class="field"><label for="costShare">Custos e terceiros (%)</label><input id="costShare" type="number" min="0" max="100" value="15"></div>
+        </div>
+        <div class="inline-actions" style="margin-top:18px"><button class="button button-primary" id="resetCalculator"><i data-lucide="rotate-ccw"></i>Restaurar exemplo Jogo Rápido</button></div>
+        <p class="formula" style="margin-top:18px">Fórmula: clientes ativos = base × penetração. MRR bruto = clientes ativos × recorrência. ARR = MRR × 12. O resultado de Partner e Avraham é uma simulação sobre a receita recorrente bruta.</p>
+      </div>
+      <div class="calc-result">
+        <div class="metric-card"><span>Clientes potenciais</span><strong id="activeClients">60</strong><span>base ativada</span></div>
+        <div class="metric-card"><span>MRR bruto</span><strong id="mrr">R$ 18.000</strong><span>recorrência mensal</span></div>
+        <div class="metric-card"><span>ARR bruto</span><strong id="arr">R$ 216.000</strong><span>recorrência anualizada</span></div>
+        <div class="metric-card"><span>Setup total</span><strong id="setupTotal">R$ 240.000</strong><span>receita inicial estimada</span></div>
+        <div class="metric-card"><span>Partner por mês</span><strong id="partnerMonthly">R$ 7.200</strong><span>hipótese de participação</span></div>
+        <div class="metric-card"><span>Avraham após custos</span><strong id="avrahamMonthly">R$ 8.100</strong><span>simulação mensal</span></div>
+      </div>
+    </section>
+
+    <section class="section-heading"><div><div class="eyebrow">LEITURA PARA O COMMERCIAL</div><h2 class="h2">A conta abre a conversa. A proposta fecha o compromisso.</h2></div></section>
+    <section class="material-grid three">
+      <div class="material-card"><div class="icon-tile"><i data-lucide="scan-search"></i></div><h3>Diagnosticar</h3><p>Trocar a base total pela base elegível, com segmentos, ticket e integração real.</p></div>
+      <div class="material-card"><div class="icon-tile"><i data-lucide="route"></i></div><h3>Comprometer</h3><p>Transformar a hipótese em meta 30/60/90/180, com responsável e rotina.</p></div>
+      <div class="material-card"><div class="icon-tile"><i data-lucide="shield-check"></i></div><h3>Proteger margem</h3><p>Separar receita bruta, receita elegível, custos, participação e resultado.</p></div>
+    </section>
+    <footer class="footer-note"><span>Partner Growth Calculator · hipótese v1</span><a href="../01%20-%20MODELO%20ECONÔMICO%20E%20REGRAS.md">Ver regras econômicas</a></footer>
+  </main>
+  <script src="materials.js"></script>
+  <script>
+    (() => {
+      const ids = ["base", "penetration", "monthly", "setup", "partnerShare", "costShare"];
+      const money = (value) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(value || 0);
+      const read = (id) => Number(document.getElementById(id).value) || 0;
+      const render = () => {
+        const base = read("base");
+        const penetration = Math.min(100, Math.max(0, read("penetration"))) / 100;
+        const monthly = read("monthly");
+        const setup = read("setup");
+        const partnerShare = Math.min(100, Math.max(0, read("partnerShare"))) / 100;
+        const costShare = Math.min(100, Math.max(0, read("costShare"))) / 100;
+        const active = Math.round(base * penetration);
+        const mrr = active * monthly;
+        document.getElementById("activeClients").textContent = active.toLocaleString("pt-BR");
+        document.getElementById("mrr").textContent = money(mrr);
+        document.getElementById("arr").textContent = money(mrr * 12);
+        document.getElementById("setupTotal").textContent = money(active * setup);
+        document.getElementById("partnerMonthly").textContent = money(mrr * partnerShare);
+        document.getElementById("avrahamMonthly").textContent = money(mrr * (1 - partnerShare - costShare));
+      };
+      ids.forEach((id) => document.getElementById(id).addEventListener("input", render));
+      document.getElementById("resetCalculator").addEventListener("click", () => {
+        const values = { base: 200, penetration: 30, monthly: 300, setup: 4000, partnerShare: 40, costShare: 15 };
+        Object.entries(values).forEach(([id, value]) => { document.getElementById(id).value = value; });
+        render();
+      });
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,688 @@
+{
+  "name": "[Lead Magnet] - Engajamento Automático LinkedIn",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Formulário Genérico",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nome"
+            },
+            {
+              "fieldLabel": "Sobrenome"
+            },
+            {
+              "fieldLabel": "Empresa"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -480,
+        0
+      ],
+      "id": "22d96bfb-aefc-4b46-8de1-83306ec4ca45",
+      "name": "On form submission",
+      "webhookId": "67f31ea7-c037-4208-80d5-7bc29a24ef17"
+    },
+    {
+      "parameters": {
+        "url": "=https://apiXX.unipile.com:XXXXX/api/v1/users/{{ $json.output.linkedin_url.split(\"in/\")[1].split(\"/\")[0] }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "account_id",
+              "value": "UNIPILE ACCOUNT ID"
+            },
+            {
+              "name": "linkedin_sections",
+              "value": "*_preview"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-KEY",
+              "value": "Unipile API KEY"
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        720,
+        0
+      ],
+      "id": "e5eb8528-94e0-4680-a053-cd3450c24cea",
+      "name": "Unipile - Scrape Profile"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d5df501f-da93-4e7f-9caa-6952a6c20a48",
+              "name": "unipile_api",
+              "value": "UBPZcJIK.wa+oCPcZ2XuvkpcdZLTttvXN2g6m9HT0i/iK/PbwRQo=",
+              "type": "string"
+            },
+            {
+              "id": "4e3c26fe-40d9-44d5-b1c5-512e899ec03d",
+              "name": "unipile_account",
+              "value": "ZyuV7E9nRW6EoxJsFOz4XA",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -240,
+        0
+      ],
+      "id": "e5ac3235-a549-41a8-9094-3af4aa60d756",
+      "name": "Keys"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dd58dd12-075e-43eb-a119-9c4ec7da90b8",
+              "name": "Nome",
+              "value": "={{ $('On form submission').item.json.Nome }}",
+              "type": "string"
+            },
+            {
+              "id": "3933b3f0-5061-4547-986f-f96196be52ca",
+              "name": "Sobrenome",
+              "value": "={{ $('On form submission').item.json.Sobrenome }}",
+              "type": "string"
+            },
+            {
+              "id": "64fe3889-a550-465c-a72c-16182a66c18d",
+              "name": "Empresa",
+              "value": "={{ $('On form submission').item.json.Empresa }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "daf3bd40-632e-4762-adc7-1dc6c0f055bd",
+      "name": "Set Data"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://apiXX.unipile.com:XXXXX/api/v1/users/invite",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-KEY",
+              "value": "={{ $('Keys').first().json.unipile_api }}"
+            },
+            {
+              "name": "accept",
+              "value": "=application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "account_id",
+              "value": "={{ $('Keys').first().json.unipile_account }}"
+            },
+            {
+              "name": "provider_id",
+              "value": "={{ $('Unipile - Scrape Profile').item.json.provider_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1872,
+        -16
+      ],
+      "id": "75793386-48fb-463c-b348-1a25df08eca2",
+      "name": "Unipile - Send Connection Request",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', `Escreva sua qwery para gusca no google, com objetivo de encontrar o perfil pessoal do lead`, 'string') }}",
+        "options": {
+          "max_results": 5,
+          "include_domains": [
+            "www.linkedin.com/in/"
+          ],
+          "country": "Brazil"
+        }
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        384,
+        208
+      ],
+      "id": "96ea1c14-eab2-4bf6-8bb1-9ecee039692b",
+      "name": "Search in Tavily",
+      "credentials": {
+        "tavilyApi": {
+          "id": "0dHB9uy0sCPdXvny",
+          "name": "Tavily account - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"nome_pessoa\": \"string\",\n  \"nome_empresa\": \"string\",\n  \"linkedin_url\": \"string\",\n  \"status\": \"encontrado|nao_encontrado\",\n  \"justificativa\": \"string\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        528,
+        208
+      ],
+      "id": "eb9e2109-8878-4528-be0d-148fee836e32",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        208
+      ],
+      "id": "0ce3d236-0d5d-464a-b8f7-f89141781ead",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "mkpIijv36vqUm91Y",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "95222449-fee3-4613-a525-38814ebfea06",
+              "leftValue": "={{ $json.is_relationship }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "32aa1988-b257-4497-ab9d-5c7a87c099e2",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        960,
+        0
+      ],
+      "id": "e3c46fe9-db41-45c9-96d3-f0ae707a5db7",
+      "name": "Não é Conexão"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "work_experience",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        0
+      ],
+      "id": "92e90170-b8a8-4b13-8a5f-3e3f0dbcf121",
+      "name": "Split Out Experiencia"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2a78f760-d914-44cd-9e87-bb9c70c48187",
+              "leftValue": "={{ $json.end }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "dae7f681-53aa-47b1-ae10-ba6a7a65d66f",
+              "leftValue": "={{ $json.company }}",
+              "rightValue": "={{ $('Set Data').first().json.Empresa }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        1408,
+        0
+      ],
+      "id": "2f6637b0-2f40-4b58-8ac0-e6b326d910fa",
+      "name": "Filter1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2360a603-e155-49b2-a598-0c43c03f0fbb",
+              "leftValue": "={{ $json }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1632,
+        0
+      ],
+      "id": "c337c8a3-f1ae-4380-8c8f-adbebdc2c794",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "## Formulário de Input",
+        "height": 256,
+        "width": 224
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -544,
+        -96
+      ],
+      "typeVersion": 1,
+      "id": "7cbe970a-75b2-4cc6-99b8-eeb286cb7d97",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Credenciais + Set Data",
+        "height": 256,
+        "width": 480,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -304,
+        -96
+      ],
+      "typeVersion": 1,
+      "id": "ca4f4d9b-ee26-494a-b9d0-faf43184b9ee",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## LinkedIn Search Agent",
+        "height": 448,
+        "width": 448,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        192,
+        -96
+      ],
+      "typeVersion": 1,
+      "id": "27a94f30-9835-4514-a8d0-8e9e1b1460f8",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Scrape",
+        "height": 256,
+        "width": 224,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        656,
+        -96
+      ],
+      "typeVersion": 1,
+      "id": "2395c3c3-389a-444b-88ad-46def89e6f03",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Nome: {{ $json.Nome }}\nSobrenome: {{ $json.Sobrenome }}\nEmpresa: {{ $json.Empresa }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Você é um agente especializado em encontrar perfis de LinkedIn de decisores empresariais.\n\nINPUTS:\n- nome_pessoa: Primeiro nome da pessoa\n- sobrenome_pessoa: Sobrenome completo da pessoa\n- nome_empresa: Nome da empresa\n\nFERRAMENTA:\n- tavily_search: Retorna resultados do LinkedIn (título, URL, snippets)\n- LIMITE: Máximo 4 chamadas por pessoa\n\nESTRATÉGIA DE BUSCA (3 TENTATIVAS PROGRESSIVAS):\n\n1. TENTATIVA 1 - Busca Direta\n   Query: \"Nome Completo\" \"Nome Empresa\"\n   Exemplo: \"Cleomar Pietro Santos de Lima\" \"Conta Fácil\"\n\n2. TENTATIVA 2 - Variações (se necessário)\n   - Simplifique nome da pessoa (remova segundo nome)\n   Exemplo: \"Cleomar Lima\" \"Conta Fácil\"\n\n3. TENTATIVA 3 - Nome Reduzido (se necessário)\n   - Use primeiro + último nome\n   - Adicione \"LinkedIn\" na query\n   Exemplo: \"Cleomar Santos\" \"Conta Fácil\" LinkedIn\n\n4. TENTATIVA 4 - Variação do Nome (se necessário)\n   - Varie o nome, tentando apenas Primeiro nome + Sobrenome\n   Exemplo: \"Cleomar Pietro\" \"Conta Fácil\"\n\nBOAS PRÁTICAS PARA QUERIES:\n- Mantenha queries curtas (3-6 termos relevantes)\n- Combine: nome + empresa + localização\n- Faça variações estratégicas do nome, e nunca repita a mesma qwery\n\nCRITÉRIOS DE ACEITAÇÃO:\nAceite um perfil apenas se:\n- Nome muito similar ao informado\n- Empresa atual/recente corresponde OU mesmo segmento + localização\n- URL contém \"/in/\" (perfil pessoal)\n\nQUANDO NÃO ACEITAR:\n- Após 3 tentativas sem match confiável\n- Quando a URL contém \"/pub/dir/\"\n- Perfil não corresponde aos critérios\n- Múltiplos perfis sem diferenciação clara\n\nREGRAS CRÍTICAS:\n- NUNCA invente ou construa URLs\n- NUNCA retorne perfis com baixa confiança\n- Prefira \"nao_encontrado\" a resultado incorreto\n\nOUTPUT OBRIGATÓRIO (JSON PURO - sem texto adicional):\n\n{\n  \"nome_pessoa\": \"string\",\n  \"nome_empresa\": \"string\", \n  \"linkedin_url\": \"string ou null\",\n  \"status\": \"encontrado|nao_encontrado\",\n  \"justificativa\": \"string\"\n}\n\n# FORMATO DE RESPOSTA OBRIGATÓRIO (JSON PURO):\n\nVocê DEVE responder EXCLUSIVAMENTE com um JSON no formato:\n\n{\n  \"nome_pessoa\": \"string\",\n  \"nome_empresa\": \"string\",\n  \"linkedin_url\": \"string\",\n  \"status\": \"encontrado|nao_encontrado\",\n  \"justificativa\": \"string\"\n}\n\nNão escreva nenhuma outra palavra, explicação ou comentário fora desse JSON.\n\n# REGRAS CRÍTICAS:\n- Use NO MÁXIMO 4 chamadas ao tavily_search por execução.\n- Nunca invente ou altere uma URL de LinkedIn.\n- Nunca retorne um perfil se a confiança for baixa; prefira \"nao_encontrado\".\n- Queries devem ser sempre objetivas, com foco em: \"nome\", \"empresa\".\n- Nunca considere um URL com \"/pub/dir/\" um url válido. Ele não é válido pois não é um URL de um perfil pessoal. Continue procurando. \n- Sempre use a tool Tavily"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        304,
+        0
+      ],
+      "id": "69669ea2-3773-455e-ab96-ae80353a7d9c",
+      "name": "LinkedIn Searcher",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "content": "## Verificação de Conexão e de Trabalho Atual",
+        "height": 256,
+        "width": 896,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        896,
+        -96
+      ],
+      "typeVersion": 1,
+      "id": "742e4c2f-d1ac-4185-9b3a-c7952487ec4f",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Envio de Conexão",
+        "height": 256,
+        "width": 224,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1808,
+        -96
+      ],
+      "typeVersion": 1,
+      "id": "59f7b40a-81b4-41ee-98f6-38e0f2e3c37f",
+      "name": "Sticky Note6"
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "Nome": "Victor",
+          "Sobrenome": "Baggio",
+          "Empresa": "Playbook Lab",
+          "submittedAt": "2026-02-05T08:31:24.304-03:00",
+          "formMode": "test"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "LinkedIn Searcher": [
+      {
+        "json": {
+          "output": {
+            "nome_pessoa": "Victor Baggio",
+            "nome_empresa": "Playbook Lab",
+            "linkedin_url": "https://br.linkedin.com/in/victorzbaggio",
+            "status": "encontrado",
+            "justificativa": "Perfil encontrado com nome muito similar e empresa Playbook Lab. URL válida contendo /in/ e corresponde ao decisor na empresa mencionada."
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Keys",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keys": {
+      "main": [
+        [
+          {
+            "node": "Set Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Data": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn Searcher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unipile - Scrape Profile": {
+      "main": [
+        [
+          {
+            "node": "Não é Conexão",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unipile - Send Connection Request": {
+      "main": [
+        []
+      ]
+    },
+    "Search in Tavily": {
+      "ai_tool": [
+        [
+          {
+            "node": "LinkedIn Searcher",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "LinkedIn Searcher",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "LinkedIn Searcher",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Não é Conexão": {
+      "main": [
+        [
+          {
+            "node": "Split Out Experiencia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out Experiencia": {
+      "main": [
+        [
+          {
+            "node": "Filter1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Unipile - Send Connection Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn Searcher": {
+      "main": [
+        [
+          {
+            "node": "Unipile - Scrape Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "410fce5c-5e4d-490c-a64a-27cd44d3fd25",
+  "meta": {
+    "instanceId": "98a7f76cbff973591af08e09b5be2fed14b55b37d878782c0638229a94477203"
+  },
+  "id": "Ua7v3ytPghmUZ_YDCv591",
+  "tags": [
+    {
+      "updatedAt": "2026-02-03T09:04:12.279Z",
+      "createdAt": "2026-02-03T09:04:12.279Z",
+      "id": "z7kGEnPlOyR1jg0p",
+      "name": "PACK 2"
+    },
+    {
+      "updatedAt": "2025-06-12T17:49:26.927Z",
+      "createdAt": "2025-06-12T17:49:26.927Z",
+      "id": "PatjR2DI1NI2457H",
+      "name": "Lead Magnet"
+    }
+  ]
+}

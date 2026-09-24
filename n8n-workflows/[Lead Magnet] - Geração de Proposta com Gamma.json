@@ -1,0 +1,1281 @@
+{
+  "name": "[Lead Magnet] - Geração de Proposta com Gamma",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// Estrutura de entrada\nconst response = items[0].json;\n\n// Se vier como array, pega o primeiro registro\nconst meetingData = Array.isArray(response) ? response[0] : response;\n\n// Garante que existe `data`\nif (!meetingData?.data || !Array.isArray(meetingData.data)) {\n  throw new Error('Invalid data structure - missing data array');\n}\n\n// Cria transcript limpo com mudança de speaker\nlet transcript = '';\nlet lastSpeaker = null;\n\nmeetingData.data.forEach(sentence => {\n  const speakerName = sentence.speaker;\n  const text = sentence.text || '';\n  \n  if (!text) return;\n\n  if (speakerName !== lastSpeaker) {\n    transcript += `\\n${speakerName}:\\n`;\n    lastSpeaker = speakerName;\n  }\n  \n  transcript += `${text} `;\n});\n\n// Extrai speakers únicos a partir de `data`\nconst speakers = [...new Set(\n  meetingData.data\n    .map(s => s.speaker)\n    .filter(Boolean)\n)];\n\n// Retorna dados processados\nreturn [{\n  json: {\n    transcript: transcript.trim(),\n    speakers,\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        752
+      ],
+      "id": "775a57e7-1fb9-4c84-a2a3-15cef6b15e37",
+      "name": "Clean Up"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "a0cff43b-8e2a-43d1-a3ea-d3950e0e89b6",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2176,
+        752
+      ],
+      "id": "ae7f0900-fa3b-4ed4-ac21-8404461a5c7b",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Transcript:\n\n{{ $json.transcript }}",
+        "options": {
+          "systemMessage": "=# Papel  \nVocê é um Consultor Sênior de Soluções em IA e Engenheiro de Pré‑Vendas **especialista em Playbook Lab**. Seu papel é analisar a transcrição bruta de uma call de diagnóstico ou venda e transformá‑la em uma proposta de negócio polida, de alta conversão e pronta para ser enviada ao cliente.  \n\n# Objetivo  \nUsando a transcrição da call, gere uma proposta abrangente e persuasiva de automação comercial e/ou IA aplicada a vendas. Você deve extrair diretamente da conversa as dores reais, resultados desejados, restrições operacionais e requisitos técnicos, e transformá‑los em uma narrativa de negócio clara, que motive o cliente a avançar com o projeto.  \n\n# Restrições Importantes  \n- A proposta é 100% voltada para o cliente.  \n- NÃO inclua perguntas de follow‑up, notas internas ou comentários laterais.  \n- NÃO mencione automação de geração, IA generativa ou que o conteúdo foi produzido por sistemas.  \n- Faça suposições seguras quando necessário e deixe explícitas essas suposições dentro da própria proposta.  \n- Se faltarem dados específicos, use placeholders claros como [Horas Economizadas Estimadas] ou [Custo Anual].  \n\n# Tom e Estilo  \n- Profissional, claro e orientado a negócios.  \n- Persuasivo, mas ancorado na própria linguagem do cliente.  \n- Empático e específico, demonstrando escuta ativa e entendimento profundo do contexto.  \n- Evite jargões desnecessários, a menos que o cliente os tenha usado explicitamente.  \n\n# Estrutura Obrigatória da Proposta  \nVocê deve gerar a proposta exatamente na ordem abaixo, separando cada seção com os headers indicados.  \n\n---\n\n## 1. Capa da Proposta  \n**Instrução:** Crie uma capa simples no topo da proposta.  \n\n**Incluir:**  \n- Título da proposta (exemplo: Proposta de Otimização Comercial com IA e Automação)  \n- Nome da empresa do cliente  \n- “Preparado para:”  \n- “Preparado por: Playbook Lab”  \n- Data atual, que é {{ $now.format('yyyy-MM-dd') }}  \n- Imagem gerada por IA que represente o negócio do cliente quando melhorado com IA e automação\n\n---\n\n## 2. Resumo Executivo  \n**Instrução:** Resuma a proposta em 3 a 4 frases objetivas.  \n\n**Deve Incluir:**  \n- O desafio central que a empresa está enfrentando  \n- A solução que a Playbook Lab está propondo  \n- O resultado esperado em termos de eficiência, economia ou crescimento de receita  \n- Nunca utilizar ou inserir imagens ou ícones neste slide\n\n---\n\n## 3. Problema e Desafios  \n**Instrução:** Aprofunde a descrição do problema.  \n\n**Incluir:**  \n- Como são hoje os fluxos de trabalho e processos manuais na operação comercial  \n- Principais dores, usando sempre que possível as próprias palavras do cliente  \n- Impacto em tempo, custo ou operação desses desafios  \n- Impacto emocional ou organizacional, como estresse, gargalos, retrabalho ou ineficiência no time de vendas\n- Nunca utilizar ou inserir imagens ou ícones neste slide\n\n---\n\n## 4. Solução Proposta pela Playbook Lab  \n**Instrução:** Descreva claramente como a Playbook Lab irá resolver o problema.  \n\n**Incluir:**  \n- Breve recapitulação do fluxo atual  \n- Descrição detalhada do fluxo futuro, automatizado e/ou assistido por IA  \n- Explicação passo a passo de como a solução funciona no dia a dia  \n- Menção a ferramentas, plataformas e sistemas discutidos na call (CRM, ferramentas de prospecção, WhatsApp, LinkedIn, etc.)  \n- Nunca utilizar ou inserir imagens ou ícones neste slide\n\nFoque em fluxos de trabalho e resultados de negócio, não apenas em tecnologia.  \n\n---\n\n## 5. Retorno sobre o Investimento (ROI)  \n**Instrução:** Quantifique o valor de negócio da solução.  \n\n**Incluir:**  \n- Horas economizadas por dia ou por semana  \n- Economia operacional semanal ou mensal  \n- Conversão das horas em economia anual de custo  \n- Assunções explícitas quando não houver números exatos (ex.: volume de leads, número de vendedores, ticket médio)\n- Nunca utilizar ou inserir imagens ou ícones neste slide\n\n---\n\n## 6. Benefícios Intangíveis e Qualitativos  \n**Instrução:** Destaque benefícios que vão além do financeiro.  \n\n**Exemplos:**  \n- Redução de erros humanos na operação comercial  \n- Melhora da experiência do time de vendas e SDRs  \n- Respostas mais rápidas a leads e oportunidades  \n- Aumento da consistência e qualidade dos contatos e follow‑ups  \n- Melhor governança de dados comerciais e aderência a processos  \n- Nunca utilizar ou inserir imagens ou ícones neste slide\n\n---\n\n## 7. Roadmap de Implementação  \n**Instrução:** Traga um cronograma claro, em semanas ou fases.  \n\n**Incluir:**  \n- Duração estimada de cada fase  \n- O que será entregue em cada etapa  \n- Fases típicas podem incluir: diagnóstico, desenho de arquitetura e playbook, desenvolvimento e integrações, testes, implantação, treinamento e ajustes finos \n- Nunca utilizar ou inserir imagens ou ícones neste slide\n\n---\n\n## 8. Métricas de Sucesso  \n**Instrução:** Defina como o sucesso será medido.  \n\n**Declarar Explicitamente:**  \n- Quais métricas serão acompanhadas  \n- Exemplos: tempo de resposta a leads, tempo de atualização de CRM, taxa de conversão por etapa do funil, número de tarefas manuais eliminadas, volume de oportunidades tocadas por vendedor  \n- Como a Playbook Lab demonstrará valor para os stakeholders (dashboards, relatórios, before/after, pilotos de 30–90 dias, etc.)  \n- Nunca utilizar ou inserir imagens, apenas ícones neste slide\n\n---\n\n## 9. Investimento  \n**Instrução:** Indique em formato de Big Numbers o valor em reais (R$) XXXX,XX.  \n\n**Declarar Explicitamente:**  \n- O valor 'R$ XXXX,XX'\n- Nunca utilizar ou inserir imagens ou ícones neste slide\n- Estilizar de acordo com o template\n\n---\n\n## 10. Por que Escolher a Playbook Lab  \n**Instrução:** Defender a Playbook Lab como o parceiro ideal.  \n\nNunca utilizar ou inserir imagens ou ícones neste slide\n\nAdapte o texto abaixo para o contexto da Playbook Lab, mantendo a proposta de valor:  \n\n> “A Playbook Lab é especializada em escalar vendas B2B com automações e IA aplicadas à operação comercial, ajudando fundadores e gestores a focar no que realmente traz resultado. Nossos clientes reduzem CAC, eliminam tarefas manuais e aumentam a previsibilidade de receita porque nós não apenas implementamos o que você acha que precisa. Antes, mergulhamos na sua operação para entender os gargalos reais e identificar onde a automação e a IA geram mais alavancagem. Além disso, utilizamos componentes, frameworks e integrações já testados em diversos projetos, o que reduz drasticamente o tempo de implementação e o custo em comparação com agências tradicionais ou desenvolvimentos do zero.”  \n\nEncerre esta seção com um fechamento confiante, posicionando a Playbook Lab como parceira estratégica de longo prazo para desenhar, implementar e evoluir a máquina de vendas da empresa.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        2992,
+        704
+      ],
+      "id": "59f38a37-cb93-4920-906d-350721fd3ecf",
+      "name": "Proposal Generator Agent"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://public-api.gamma.app/v1.0/generations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-API-KEY",
+              "value": "sk-gamma-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"inputText\": \"{{ $json.output.replace(/\\n/g, ' ').replace(/\"/g, \"'\") }}\",\n  \"textMode\": \"condense\",\n  \"format\": \"presentation\",\n  \"themeId\": \"maai2chg5kah2o8\",\n  \"numCards\": 10,\n  \"cardSplit\": \"auto\",\n  \"additionalInstructions\": \"A professional business proposal\",\n  \"exportAs\": \"pdf\",\n  \"textOptions\": {\n    \"amount\": \"medium\",\n    \"tone\": \"professional, inspiring\",\n    \"audience\": \"business owner\",\n    \"language\": \"pt-br\"\n  },\n  \"imageOptions\": {\n    \"source\": \"aiGenerated\",\n    \"model\": \"gemini-2.5-flash-image\",\n    \"style\": \"minimalistic images and icons\"\n  },\n  \"cardOptions\": {\n    \"dimensions\": \"fluid\",\n    \"headerFooter\": {\n      \"topRight\": {\n        \"type\": \"image\",\n        \"source\": \"themeLogo\",\n        \"size\": \"sm\"\n      },\n      \"bottomRight\": {\n        \"type\": \"cardNumber\"\n      },\n      \"hideFromFirstCard\": true,\n      \"hideFromLastCard\": false\n    }\n  },\n  \"sharingOptions\": {\n    \"workspaceAccess\": \"view\",\n    \"externalAccess\": \"comment\",\n    \"emailOptions\": {\n      \"recipients\": [\"mateus@playbooklab.com.br\"],\n      \"access\": \"comment\"\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        3376,
+        752
+      ],
+      "id": "de71bfc1-e707-4bff-900f-0335051cae19",
+      "name": "Gamma Deck"
+    },
+    {
+      "parameters": {
+        "formTitle": "Create Proposal Deck",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Meeting ID",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -16,
+        672
+      ],
+      "id": "c720c67d-9e7e-4b2c-92f5-52777eeb334a",
+      "name": "On form submission",
+      "webhookId": "97978e55-e43e-42f1-94b8-368cd7a12159"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8",
+          "mode": "list",
+          "cachedResultName": "Meeting Logger - [Lead Magnet]",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $json.row_number }}",
+            "Status": "Geração Negada"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Date / Time",
+              "displayName": "Date / Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Attendees",
+              "displayName": "Attendees",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2496,
+        880
+      ],
+      "id": "9cb504b1-9443-4d4b-897b-aa087c60df66",
+      "name": "Generation Declined",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XXXXXXXXXXXXXXXX",
+          "name": "Google Sheets - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0cd20ba9-0c3c-40d8-b3a6-0c2a0176f2f0",
+              "name": "transcript",
+              "value": "={{ $('Clean Up').item.json.transcript }}",
+              "type": "string"
+            },
+            {
+              "id": "d25943d9-7245-4b7d-b43e-30f3052d7ed5",
+              "name": "id",
+              "value": "={{ $('tl;dv - Get Transcript1').item.json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2704,
+        752
+      ],
+      "id": "b18b489a-4eee-4ad7-b9a6-d756f3774ef8",
+      "name": "Standardize"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8",
+          "mode": "list",
+          "cachedResultName": "Meeting Logger - [Lead Magnet]",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "Gerado",
+            "row_number": "={{ $json.row_number }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Date / Time",
+              "displayName": "Date / Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Attendees",
+              "displayName": "Attendees",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4016,
+        752
+      ],
+      "id": "e14457ad-34fa-43da-8d87-f727e2231aab",
+      "name": "Generated",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XXXXXXXXXXXXXXXX",
+          "name": "Google Sheets - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8",
+          "mode": "list",
+          "cachedResultName": "Cópia de Meeting Logger",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Stc1guUXnYIYoxTZwznv3EMRQ-esZmR5RFuhoVbsffw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date / Time": "={{ $now.format('yyyy-MM-dd hh:mm a') }}",
+            "Title": "={{ $('tl;dv - Get Meeting').item.json.name }}",
+            "Status": "N/A",
+            "ID": "={{ $('tl;dv - Get Meeting').item.json.id }}",
+            "Attendees": "={{ $json.speakerNames.join(\", \") }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date / Time",
+              "displayName": "Date / Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Attendees",
+              "displayName": "Attendees",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1216,
+        752
+      ],
+      "id": "5ae1e64f-db6a-48f3-8d1a-0fdb9fa96936",
+      "name": "Log Meeting",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XXXXXXXXXXXXXXXX",
+          "name": "Google Sheets - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5ed03235-7f53-498a-a3f3-8c3be62295d2",
+              "leftValue": "={{ $('Transcript Ready').item.json.body.event }}",
+              "rightValue": "MeetingReady",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        896
+      ],
+      "id": "bb42a232-fd89-4023-a57a-d125b76dbf91",
+      "name": "If Transcript Ready"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "16fea7fa-58a2-459b-acf3-6155533bd000",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -16,
+        896
+      ],
+      "id": "dc9bb560-2425-4bca-a3c9-9b548b9cc4e9",
+      "name": "Transcript Ready",
+      "webhookId": "16fea7fa-58a2-459b-acf3-6155533bd000",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "=https://pasta.tldv.io/v1alpha1/meetings/{{ $json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        736,
+        752
+      ],
+      "id": "56f2e426-17c8-43ee-a9b6-f3afc0aff141",
+      "name": "tl;dv - Get Meeting"
+    },
+    {
+      "parameters": {
+        "content": "## Transcript Ready Trigger",
+        "height": 208,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -96,
+        816
+      ],
+      "typeVersion": 1,
+      "id": "e8bcebf2-331e-4286-b8ed-70a7aa8f7088",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Validate Event",
+        "height": 208,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        160,
+        816
+      ],
+      "typeVersion": 1,
+      "id": "65ea9c25-cb35-43a4-910a-385994e2dfd5",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## tl;dv - Get Meeting",
+        "height": 448,
+        "width": 224,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        672,
+        576
+      ],
+      "typeVersion": 1,
+      "id": "ac654556-cda9-4885-9478-c909073a1eeb",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Supondo que o payload inteiro está em items[0].json\nconst meetings = items[0].json;\n\n// Garante que é array\nconst meetingsArray = Array.isArray(meetings) ? meetings : [meetings];\n\n// Coleta todos os invitees\nlet invitees = [];\n\nfor (const meeting of meetingsArray) {\n  if (Array.isArray(meeting.invitees)) {\n    for (const inv of meeting.invitees) {\n      invitees.push({\n        name: inv.name,\n        email: inv.email,\n      });\n    }\n  }\n}\n\n// Remove duplicados e nomes vazios\nconst uniqueInvitees = [];\nconst seen = new Set();\n\nfor (const inv of invitees) {\n  const key = (inv.email || '').toLowerCase();\n  if (!key || seen.has(key)) continue;\n  if (!inv.name || !inv.name.trim()) continue; // ignora nomes vazios\n  seen.add(key);\n  uniqueInvitees.push(inv);\n}\n\n// Agora pega APENAS um array com os nomes dos falantes\nconst speakerNames = uniqueInvitees.map(inv => inv.name);\n\n// n8n sempre espera array de objetos\nreturn [\n  {\n    json: {\n      speakerNames\n    },\n    },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        976,
+        752
+      ],
+      "id": "30498f20-5588-4761-9f6d-d6353d426345",
+      "name": "Attendees"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "8258893621",
+        "message": "=A sua reunião: {{ $('tl;dv - Get Meeting').item.json.name }} foi condluída. \n\nGostaria de gerar uma proposta personalizada?",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "approveLabel": "✅ Aprovar",
+            "disapproveLabel": "❌ Negar"
+          }
+        },
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1952,
+        752
+      ],
+      "id": "373a9234-1099-41e1-95e2-f87eb624f726",
+      "name": "Send message and wait for response",
+      "webhookId": "8c9ffd67-0278-4ac5-9b38-08d388b0c336",
+      "credentials": {
+        "telegramApi": {
+          "id": "tUgOJtCshY8XsmzR",
+          "name": "Telegram account 8"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        2992,
+        880
+      ],
+      "id": "b8bc7a38-fbf9-4c7d-b292-cb5050d57666",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "mkpIijv36vqUm91Y",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "8258893621",
+        "text": "=Sua apresentação Gamma está sendo gerada 🎉 \nVocê receberá um email em breve.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3648,
+        752
+      ],
+      "id": "ab9543de-1db0-431f-a6aa-959dc18e5b79",
+      "name": "Send a text message",
+      "webhookId": "0e01ba5f-20f0-4ee8-88bd-6b341624bd5f",
+      "credentials": {
+        "telegramApi": {
+          "id": "jz2TaS59QLym3FgC",
+          "name": "Telegram Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://pasta.tldv.io/v1alpha1/meetings/{{ $('tl;dv - Get Meeting').item.json.id }}/transcript",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1472,
+        752
+      ],
+      "id": "4f332500-db4c-42a8-b49b-cf55f0434098",
+      "name": "tl;dv - Get Transcript1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d842bde-2a57-4814-a229-633d4ddc4f9f",
+              "name": "id",
+              "value": "={{ $json['Meeting ID'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        496,
+        672
+      ],
+      "id": "11a0f857-427f-48c7-9dc9-d9ce135833df",
+      "name": "Set ID"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d842bde-2a57-4814-a229-633d4ddc4f9f",
+              "name": "id",
+              "value": "={{ $('Transcript Ready').item.json.body.data.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        496,
+        880
+      ],
+      "id": "8a0aa3ca-c500-4769-b9b7-434f3c3a4452",
+      "name": "Set ID1"
+    },
+    {
+      "parameters": {
+        "content": "## ID Submission",
+        "height": 208,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -96,
+        592
+      ],
+      "typeVersion": 1,
+      "id": "fe6d18d2-41fd-4205-afb6-34643cdd10d3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Set ID (Padronização)",
+        "height": 448
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        416,
+        576
+      ],
+      "id": "7f854ddd-6e45-49c1-aa47-ed3b1b5e28b2",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Define Participantes",
+        "height": 448,
+        "width": 224,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        912,
+        576
+      ],
+      "id": "4d5dd1d1-e98b-4a69-bd52-d70c011a708b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Registra em Planilha",
+        "height": 448,
+        "width": 224,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        576
+      ],
+      "id": "927370c8-c159-48e6-b29f-46641cf4b1ff",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Busca o Transcrito e Padroniza",
+        "height": 448,
+        "width": 464,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1392,
+        576
+      ],
+      "id": "f6fe0233-7b51-456f-aa3a-49d253a81c9c",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Human in the Loop\nCaso não seja aceito, registra na planilha como \"Geração Negada\"",
+        "height": 448,
+        "width": 752,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1872,
+        576
+      ],
+      "id": "bd6c3ef5-1c35-4d38-98df-421b0ec4d23c",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## Padroniza Trancript e ID + Agente de Personalização + Gamma API Call",
+        "height": 448,
+        "width": 944,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        576
+      ],
+      "id": "e894da01-ed1d-4198-a992-4ab34cd615a8",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "## Notificação via Telegram + Registro em Planilha\nLink da Planilha -> https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit?usp=sharing",
+        "height": 448,
+        "width": 544,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3600,
+        576
+      ],
+      "id": "63269550-4528-4d92-9fa2-04d4314f54d0",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8",
+          "mode": "list",
+          "cachedResultName": "Meeting Logger - [Lead Magnet]",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID",
+              "lookupValue": "={{ $('tl;dv - Get Meeting').item.json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2336,
+        880
+      ],
+      "id": "1209b45c-cf8f-4eaf-9be1-4a5e56672ba4",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XXXXXXXXXXXXXXXX",
+          "name": "Google Sheets - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8",
+          "mode": "list",
+          "cachedResultName": "Meeting Logger - [Lead Magnet]",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xW2rg9C9k-GcJhEidM44Tm6rQShFfd4zqQ7zqYOwnA8/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID",
+              "lookupValue": "={{ $('tl;dv - Get Meeting').item.json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3840,
+        752
+      ],
+      "id": "5cbc0f50-e7c2-47f9-9eb2-c853acc22227",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XXXXXXXXXXXXXXXX",
+          "name": "Google Sheets - Mateus"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Transcript Ready": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n-n8n-start.zqyxpr.easypanel.host",
+            "user-agent": "tldv-webhook/v1alpha1",
+            "content-length": "628",
+            "accept-charset": "utf-8",
+            "content-type": "application/json; charset=utf-8",
+            "traceparent": "00-56f3b252a2145e017d5a01139ed40a83-2deff4781f2f8c6f-01",
+            "x-forwarded-for": "35.246.162.220",
+            "x-forwarded-host": "n8n-n8n-start.zqyxpr.easypanel.host",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "472048f93931",
+            "x-real-ip": "35.246.162.220",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "MeetingReady",
+            "data": {
+              "happenedAt": "2026-01-27T14:30:00.000Z",
+              "id": "6978cbe558722f001349f800",
+              "name": "Playbook Lab + Alexandre Samberg Filho",
+              "organizer": {
+                "email": "victor@playbooklab.com.br",
+                "name": "Victor Baggio"
+              },
+              "invitees": [
+                {
+                  "name": "Victor Baggio",
+                  "email": "victor@playbooklab.com.br"
+                },
+                {
+                  "name": "",
+                  "email": "alexandre@catacliente.com.br"
+                }
+              ],
+              "url": "https://tldv.io/app/meetings/6978cbe558722f001349f800",
+              "template": {
+                "id": "ai-topics",
+                "label": "Smart topics"
+              },
+              "extraProperties": {
+                "conferenceId": "znp-zsyt-qrh"
+              },
+              "duration": 2988.379
+            },
+            "id": "web-job-4b1350b0-5d6f-4501-8c34-dc3c7233c2c1",
+            "executedAt": "2026-01-27T15:21:51.886Z"
+          },
+          "webhookUrl": "https://n8n-n8n-start.zqyxpr.easypanel.host/webhook/16fea7fa-58a2-459b-acf3-6155533bd000",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "On form submission": [
+      {
+        "json": {
+          "Meeting ID": "6980e620da959300134625c8",
+          "submittedAt": "2026-02-04T09:01:39.765-03:00",
+          "formMode": "test"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Clean Up": {
+      "main": [
+        [
+          {
+            "node": "Send message and wait for response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Standardize",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Proposal Generator Agent": {
+      "main": [
+        [
+          {
+            "node": "Gamma Deck",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gamma Deck": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Set ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Standardize": {
+      "main": [
+        [
+          {
+            "node": "Proposal Generator Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Transcript Ready": {
+      "main": [
+        [
+          {
+            "node": "Set ID1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcript Ready": {
+      "main": [
+        [
+          {
+            "node": "If Transcript Ready",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tl;dv - Get Meeting": {
+      "main": [
+        [
+          {
+            "node": "Attendees",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attendees": {
+      "main": [
+        [
+          {
+            "node": "Log Meeting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Proposal Generator Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message and wait for response": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tl;dv - Get Transcript1": {
+      "main": [
+        [
+          {
+            "node": "Clean Up",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Meeting": {
+      "main": [
+        [
+          {
+            "node": "tl;dv - Get Transcript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set ID": {
+      "main": [
+        [
+          {
+            "node": "tl;dv - Get Meeting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set ID1": {
+      "main": [
+        [
+          {
+            "node": "tl;dv - Get Meeting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Generation Declined",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Generated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "5060f5b0-2132-41a8-8f80-76a1a002c698",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "98a7f76cbff973591af08e09b5be2fed14b55b37d878782c0638229a94477203"
+  },
+  "id": "-mQl5vfO2E10fnVwDaZNQ",
+  "tags": [
+    {
+      "updatedAt": "2025-06-12T17:49:26.927Z",
+      "createdAt": "2025-06-12T17:49:26.927Z",
+      "id": "PatjR2DI1NI2457H",
+      "name": "Lead Magnet"
+    }
+  ]
+}

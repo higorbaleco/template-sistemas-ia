@@ -1,0 +1,26 @@
+{
+  "business": {
+    "average_ticket": 3000,
+    "monthly_revenue_target": 30000,
+    "sales_target": 10,
+    "sales_cycle_days": 21
+  },
+  "baseline": {
+    "lead_to_response": 0.10,
+    "response_to_meeting": 0.40,
+    "meeting_to_sale": 0.33,
+    "lead_to_sale": 0.0132
+  },
+  "volume": {
+    "minimum_monthly_approaches": 758,
+    "operational_monthly_target": 1000,
+    "daily_target": 50
+  },
+  "opportunity_score": {
+    "icp_weight": 0.40,
+    "pain_weight": 0.60,
+    "priority_a_min": 80,
+    "priority_b_min": 60,
+    "priority_c_min": 40
+  }
+}

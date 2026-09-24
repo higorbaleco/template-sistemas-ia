@@ -1,0 +1,726 @@
+{
+  "name": "[CONTEUDO] - Search + Scrape",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "teste",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nome",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Sobrenome",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Empresa",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "35c5eccc-99a5-45fa-a7a2-ce7beccb1257",
+      "name": "On form submission",
+      "webhookId": "f0de1415-42ad-4568-90e1-3bef53334590"
+    },
+    {
+      "parameters": {
+        "url": "=https://api17.unipile.com:14737/api/v1/users/{{ $json.output.url_linkedin.split(\"/\")[4] }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "linkedin_sections",
+              "value": "*"
+            },
+            {
+              "name": "account_id",
+              "value": "1R5G6sJ3S8iq6_Ktn-h9pg"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-KEY",
+              "value": "/+IKgzn2.CBrIA6jsU94W+pW//YSR3lupUnOFY8xvbRGzDy7fH9s="
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        864,
+        -16
+      ],
+      "id": "9f656bde-79dd-4cda-950a-fdd838943d58",
+      "name": "Unipile - Retrieve a Profile"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {
+          "temperature": 0.2,
+          "topP": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        224
+      ],
+      "id": "5cffc391-8c3b-4810-ad38-321eb1b86a67",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "mkpIijv36vqUm91Y",
+          "name": "Mateus Jung - Conta OpenAI da Playbook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"nome\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"empresa\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n      \"email\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n      \"url_linkedin\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n      \"sucesso\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n    }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        512,
+        224
+      ],
+      "id": "181aebf1-6ed7-4cc6-acfb-05c6c07ceea9",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "285ec136-6d57-43c3-a742-1b1e523719dd",
+              "leftValue": "={{ $json.output.sucesso }}",
+              "rightValue": "Sim",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "85e125bc-a1f9-4860-85c7-d0abf6bd3b93",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "url": "=https://api17.unipile.com:14737/api/v1/linkedin/company/{{ $json.work_experience[0].company_id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "account_id",
+              "value": "1R5G6sJ3S8iq6_Ktn-h9pg"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-KEY",
+              "value": "/+IKgzn2.CBrIA6jsU94W+pW//YSR3lupUnOFY8xvbRGzDy7fH9s="
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1056,
+        -16
+      ],
+      "id": "51a05acb-f7a9-4465-8e53-d4d5dee087a9",
+      "name": "Unipile - Retrieve Company Profile"
+    },
+    {
+      "parameters": {
+        "resource": "crawl",
+        "url": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('URL', `URL do site da empresa, caso exista`, 'string') }}",
+        "options": {}
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        1424,
+        208
+      ],
+      "id": "a4c73b59-c2d3-4af8-88b3-d3b66e8c375b",
+      "name": "crawl_website",
+      "credentials": {
+        "tavilyApi": {
+          "id": "0dHB9uy0sCPdXvny",
+          "name": "Tavily account - Mateus"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "organization",
+        "name": "={{ $('Set Data').item.json.empresa }}",
+        "additionalFields": {
+          "customProperties": {
+            "property": [
+              {
+                "name": "linkedin",
+                "value": "={{ $('Set Data').item.json.linkedin_empresa }}"
+              },
+              {
+                "name": "f7b6fa514059ac762bde1ed8553756ec15ed892e",
+                "value": "={{ $('Set Data').item.json.setor }}"
+              },
+              {
+                "name": "employee_count",
+                "value": "={{ $('Set Data').item.json.funcionarios }}"
+              },
+              {
+                "name": "website",
+                "value": "={{ $('Set Data').item.json.website }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        1808,
+        -16
+      ],
+      "id": "d8eee5bf-2510-4ff6-ab52-e30c65c7119a",
+      "name": "Create an organization",
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "person",
+        "name": "={{ $('Set Data').item.json.nome }}",
+        "additionalFields": {
+          "customProperties": {
+            "property": [
+              {
+                "name": "fbef4eb8c436cc2efba67d3a706b26a395279f08",
+                "value": "={{ $('Set Data').item.json.cargo }}"
+              }
+            ]
+          },
+          "email": [],
+          "org_id": "={{ $json.id }}"
+        }
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        2016,
+        -16
+      ],
+      "id": "fd53a980-e9ab-47a3-bcd7-d8012cb2e93f",
+      "name": "Create a person",
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "title": "={{ $('Set Data').item.json.empresa }} - {{ $('Set Data').item.json.nome }}",
+        "associateWith": "person",
+        "person_id": "={{ $json.id }}",
+        "additionalFields": {
+          "org_id": "={{ $('Create an organization').item.json.id }}"
+        }
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        2208,
+        -16
+      ],
+      "id": "d449679e-ca70-4599-9922-027e0beafb9c",
+      "name": "Create a deal",
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bd3ab863-cdb1-4a1e-aa98-e60f740c9afb",
+              "name": "nome",
+              "value": "={{ $('Unipile - Retrieve a Profile').item.json.first_name }} {{ $('Unipile - Retrieve a Profile').item.json.last_name }}",
+              "type": "string"
+            },
+            {
+              "id": "3ec12083-5a21-4c35-b8a3-9ad72c0134e3",
+              "name": "cargo",
+              "value": "={{ $('Unipile - Retrieve a Profile').item.json.work_experience[0].position }}",
+              "type": "string"
+            },
+            {
+              "id": "1e3b3b7f-e29d-4d66-84ff-a1956efed267",
+              "name": "empresa",
+              "value": "={{ $('Unipile - Retrieve a Profile').item.json.work_experience[0].company }}",
+              "type": "string"
+            },
+            {
+              "id": "bdeedb43-ca18-4897-9ac7-156989252b73",
+              "name": "setor",
+              "value": "={{ $('Unipile - Retrieve Company Profile').item.json.industry[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "c2f1041d-8774-4df2-b5da-398bec4b9c7c",
+              "name": "funcionarios",
+              "value": "={{ $('Unipile - Retrieve Company Profile').item.json.employee_count }}",
+              "type": "string"
+            },
+            {
+              "id": "b73b83aa-ef29-4a54-b888-59fc05a9159f",
+              "name": "sobre",
+              "value": "={{ $('Unipile - Retrieve Company Profile').item.json.description }}",
+              "type": "string"
+            },
+            {
+              "id": "51b9614a-6a3e-4b46-a12b-4dab860af053",
+              "name": "website",
+              "value": "={{ $('Unipile - Retrieve Company Profile').item.json.website }}",
+              "type": "string"
+            },
+            {
+              "id": "e892967d-686a-4986-a91c-411e00674b3e",
+              "name": "headline",
+              "value": "={{ $('Unipile - Retrieve a Profile').item.json.headline }}",
+              "type": "string"
+            },
+            {
+              "id": "8255fba3-7064-4548-a919-a9031c23c153",
+              "name": "pais",
+              "value": "={{ $('Unipile - Retrieve Company Profile').item.json.locations[0].country }}",
+              "type": "string"
+            },
+            {
+              "id": "2436cc10-bb07-409f-a0ac-5dc7b226dab4",
+              "name": "linkedin_empresa",
+              "value": "={{ $('Unipile - Retrieve Company Profile').item.json.profile_url }}",
+              "type": "string"
+            },
+            {
+              "id": "614f523e-4ef5-4b57-bf58-48925de58692",
+              "name": "nota",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1616,
+        -16
+      ],
+      "id": "3f4632d9-89a9-4fd5-a491-4280a4e46fac",
+      "name": "Set Data"
+    },
+    {
+      "parameters": {
+        "resource": "note",
+        "content": "={{ $('Set Data').item.json.nota }}",
+        "additionalFields": {
+          "deal_id": "={{ $json.id }}"
+        }
+      },
+      "type": "n8n-nodes-base.pipedrive",
+      "typeVersion": 1,
+      "position": [
+        2416,
+        -16
+      ],
+      "id": "c1b98bb2-76c5-43e0-a3d6-66b8c1d98fc4",
+      "name": "Create a note",
+      "credentials": {
+        "pipedriveApi": {
+          "id": "vWqz12N02DdmJ11y",
+          "name": "Pipedrive Teste Comercial - Playbook Lab"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Forms Trigger\nPreenchimento de Formulário",
+        "height": 304
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        -112
+      ],
+      "id": "495c504f-d687-4f9a-9994-5648597b3972",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Verifica Perfil\nVerifica se o perfil encontrado é correto",
+        "height": 480,
+        "width": 576,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        192,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "709f3af8-c626-4a0f-a661-78a1a6bff9d5",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Scrape\nScrape do perfil da empresa e da pessoa",
+        "height": 288,
+        "width": 400,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        800,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "cdb6bee8-f31f-49e9-9568-8a272e84dddd",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Agente Criador de Nota + Set Data",
+        "height": 464,
+        "width": 528,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1216,
+        -112
+      ],
+      "id": "4df64771-350d-4b1c-9af9-2c40ebb0741b",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=**Lead:**\nNome: {{ $('Unipile - Retrieve a Profile').item.json.first_name }} {{ $('Unipile - Retrieve a Profile').item.json.last_name }}\nCargo: {{ $('Unipile - Retrieve a Profile').item.json.work_experience[0].position }}\nHeadline: {{ $('Unipile - Retrieve a Profile').item.json.headline }}\nSobre: {{ ('Unipile - Retrieve a Profile').item.json.summary }}\n\n**Empresa:**\nNome: {{ $json.name }}\nDescrição: {{ $json.description }}\nPaís: {{ $json.locations[0].country }}\nAtividades: {{ $json.activities }}\nWebsite: {{ $json.website }}\nN° de Funcionários: {{ $json.employee_count }}\nSetor: {{ $json.industry }}\n",
+        "options": {
+          "systemMessage": "=# Persona\nVocê é um pesquisador de usuários de classe mundial, capaz de realizar pesquisas detalhadas sobre qualquer tópico e produzir resultados baseados em fatos.\n\n## Objective\nSeu objetivo é pesquisar um novo usuário que deixou seus contatos em uma das nossas páginas para entender suas necessidades e construir um dossiê curto e preciso para ser incluido como Nota no CRM.\n\n## SOP\n1. Analise as seguintes informações recebidas da empresa do Lead e do perfil pessoal do Lead. Considere para sua análise os seguintes pontos:\n\n**Lead:**\n\n- Cargo e Função Atuais  \n- Experiência Profissional Anterior  \n- Qualquer outra informação que possa ser relevante para determinarmos seus objetivos e \"tarefas a serem realizadas\" (jobs to be done) com a empresa do lead.\n\n**Empresa:**\n\n- Missão e Visão\n- Setor e Indústria\n- Produtos e Serviços\n- Metas de Inovação\n- Iniciativas de Transformação Digital\n- Qualquer outra informação que possa ser relevante para determinarmos suas \"tarefas a serem - realizadas\" (jobs to be done) com a empresa do lead.\n\n2. CASO SEJA VOCÊ TENHA ADQUIRIDO O SITE DA EMPRESA, use crawl_website no site da empresa para saber mais sobre:\n\n- Missão e Visão\n- Setor e Indústria\n- Produtos e Serviços\n- Metas de Inovação\n- Iniciativas de Transformação Digital\n- Qualquer outra informação que possa ser relevante para determinarmos suas \"tarefas a serem realizadas\" (jobs to be done) com a empresa.\n\nCaso não tenha acesso a URL do website da empresa, ignore este comando.\n\n3. Organize todos os dados em uma nota curta e coesa, com seções e títulos claros, tornando-a fácil de entender e de agir. Certifique-se de validar que as informações encontradas são realmente sobre a empresa e a pessoa que você deveria pesquisar desde o início.\n\n## Estrutura da Nota\n\n1. Nome e empresa do Lead\n[nome]\n[cargo]\n[empresa]\n\n2. Análise da empresa\n[analise curta da empresa, seus objetivos e necessidades. Máximo 3 linhas]\n\n3. Análise de ação\n[Conecte os pontos entre as \"tarefas a serem realizadas\" (jobs to be done) e os detalhes da pesquisa que você encontrou.]\n\n4. O formato deve ser muito amigável para o usuário, curto, com uma estrutura clara."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1280,
+        -16
+      ],
+      "id": "38c4dadb-6b45-4f6b-87a4-5dcee6fc3900",
+      "name": "Criador de Notas"
+    },
+    {
+      "parameters": {
+        "content": "## Registro no CRM\nCria Org -> Pessoa -> Deal -> Nota",
+        "height": 336,
+        "width": 784,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        -112
+      ],
+      "id": "efb7b630-3af4-47c0-b50f-2d0c3cde645b",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Informações do Lead:\n\nNome: {{ $json.Nome }}\nSobrenome: {{ $json.Sobrenome }}\nE-mail: {{ $json.Email }}\nEmpresa {{ $json.Empresa }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "A partir de uma lista de resultados de busca, determine qual é a pessoa que corresponde às informações do lead. Se certifique sempre que é a pessoa é a correta comparando as informações vindas do formulário com as informações retiradas do Search.\n\nLeve em consideração:\n- Nome da pessoa\n- Empresa em que trabalha\n- Email da pessoa\n\nApós determinar a pessoa correta, retorne um json com os seguintes campos:\n- Nome completo\n- Empresa\n- Email\n- URL de LinkedIn\n- Sucesso ('Sim', caso tenha encontrado a pessoa correta; 'Não', caso não tenha encontrado a pessoa correta )"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        272,
+        0
+      ],
+      "id": "7de09e2d-ab34-485b-9ceb-ee19c960b17a",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+        "options": {
+          "include_domains": [
+            "linkedin.com"
+          ]
+        }
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        384,
+        224
+      ],
+      "id": "5a626721-56df-44e7-9eb4-83d39d90919a",
+      "name": "Search in Tavily",
+      "credentials": {
+        "tavilyApi": {
+          "id": "0dHB9uy0sCPdXvny",
+          "name": "Tavily account - Mateus"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unipile - Retrieve a Profile": {
+      "main": [
+        [
+          {
+            "node": "Unipile - Retrieve Company Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Criador de Notas",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Unipile - Retrieve a Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unipile - Retrieve Company Profile": {
+      "main": [
+        [
+          {
+            "node": "Criador de Notas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crawl_website": {
+      "ai_tool": [
+        [
+          {
+            "node": "Criador de Notas",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an organization": {
+      "main": [
+        [
+          {
+            "node": "Create a person",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a person": {
+      "main": [
+        [
+          {
+            "node": "Create a deal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Data": {
+      "main": [
+        [
+          {
+            "node": "Create an organization",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a deal": {
+      "main": [
+        [
+          {
+            "node": "Create a note",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criador de Notas": {
+      "main": [
+        [
+          {
+            "node": "Set Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search in Tavily": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "156a50ad-0be6-4301-9703-73d4602a9242",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "98a7f76cbff973591af08e09b5be2fed14b55b37d878782c0638229a94477203"
+  },
+  "id": "QbBuVSivELeTcKFX",
+  "tags": []
+}

@@ -1,0 +1,73 @@
+/* Compatibility bridge: legacy component token names -> the current
+   light-first Avraham palette. Values live in colors.css; this only aliases. */
+:root{
+  --bg-page:var(--bg);
+  --surface-sunken:var(--surface-deep);
+  --text-accent-alt:var(--lavender-500);
+  --border-subtle:var(--gbo);
+  --border-accent:var(--border-cyan);
+  --border-accent-alt:rgba(124,92,158,.40);
+
+  --action-primary-bg-hover:var(--emerald-600);
+  --action-primary-bg-press:var(--emerald-700);
+  --action-secondary-bg-hover:var(--surface-deep);
+
+  --neutral-300:var(--n-200); /* @kind color */
+  --neutral-400:var(--t4);    /* @kind color */
+  --ops-850:var(--surface-deep); /* @kind color */
+  --ops-line:var(--gbo);      /* @kind color */
+  --status-neutral:var(--t3); /* @kind color */
+  --whatsapp:#25D366;         /* @kind color */
+
+  --gradient-flow:var(--grad-flow); /* @kind color */
+  --gradient-card-emerald:linear-gradient(155deg,rgba(11,188,162,.12),rgba(255,255,255,0) 60%); /* @kind color */
+  --gradient-card-lavender:linear-gradient(155deg,rgba(124,92,158,.14),rgba(255,255,255,0) 60%); /* @kind color */
+
+  --radius-md:var(--rb); /* @kind radius */
+  --radius-lg:var(--rc); /* @kind radius */
+  --radius-xl:var(--rc); /* @kind radius */
+  --radius-pill:var(--r-pill); /* @kind radius */
+
+  --shadow-xs:var(--shadow-sm-t); /* @kind shadow */
+  --shadow-sm:var(--shadow-card); /* @kind shadow */
+  --shadow-md:var(--shadow-raised); /* @kind shadow */
+  --shadow-emerald:var(--glow-cyan); /* @kind shadow */
+  --shadow-emerald-sm:var(--glow-cyan-soft); /* @kind shadow */
+  --glow-focus:var(--glow-cyan); /* @kind shadow */
+
+  --card-pad:var(--sp-8); /* @kind spacing */
+  --control-h:44px; /* @kind spacing */
+  --control-h-sm:36px; /* @kind spacing */
+  --sidebar-w:264px; /* @kind spacing */
+  --sidebar-w-collapsed:76px; /* @kind spacing */
+
+  --font-display:var(--font-ui); /* @kind font */
+  --weight-medium:500; /* @kind font */
+  --weight-semibold:600; /* @kind font */
+  --weight-bold:700; /* @kind font */
+  --weight-extrabold:800; /* @kind font */
+
+  --ease-standard:var(--ease-out); /* @kind other */
+  --ease-out-soft:var(--ease-out); /* @kind other */
+  --transition-control:all var(--dur-base) var(--ease-out); /* @kind other */
+  --pulse-live:pulse-dot 2.5s var(--ease-out) infinite; /* @kind other */
+
+  --text-eyebrow-size:12px; /* @kind font */
+  --text-eyebrow-weight:700; /* @kind font */
+  --text-eyebrow-ls:.12em; /* @kind font */
+  --text-h2-size:var(--fs-h2); /* @kind font */
+  --text-h2-weight:800; /* @kind font */
+  --text-h2-lh:1.08; /* @kind font */
+  --text-h2-ls:-.02em; /* @kind font */
+  --text-h4-size:18px; /* @kind font */
+  --text-h4-weight:700; /* @kind font */
+  --text-h4-lh:1.3; /* @kind font */
+  --text-label-size:13px; /* @kind font */
+  --text-label-weight:600; /* @kind font */
+  --text-lead-size:16px; /* @kind font */
+  --text-lead-lh:1.7; /* @kind font */
+  --text-metric-size:28px; /* @kind font */
+  --text-metric-weight:800; /* @kind font */
+  --text-metric-lh:1.1; /* @kind font */
+  --text-metric-ls:-.02em; /* @kind font */
+}

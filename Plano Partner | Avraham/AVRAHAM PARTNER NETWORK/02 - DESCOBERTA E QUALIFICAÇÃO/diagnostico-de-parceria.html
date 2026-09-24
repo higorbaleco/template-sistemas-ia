@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagnóstico de parceria · Avraham</title>
+  <link rel="stylesheet" href="../materials.css"><script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+</head>
+<body class="material-page grid-bg glow-bg" data-theme="light" data-theme-fixed="true">
+  <main class="materials-app">
+    <nav class="topbar"><a class="brand-lockup" href="../index.html">Avraham Partner Network</a><div class="topbar-actions"><a class="button button-ghost" href="apresentacao-do-programa.html"><i data-lucide="presentation"></i>Conhecer o programa</a></div></nav>
+
+    <section class="material-hero">
+      <div><div class="eyebrow">DIAGNÓSTICO DE PARCERIA</div><h1 class="h1">Conte o que você já construiu. Nós desenhamos o melhor caminho.</h1><p class="body-lg">Não é preciso conhecer nossos modelos internos. Vamos entender seu relacionamento, carteira, rede ou produto e recomendar um primeiro passo concreto.</p><div class="inline-actions" style="margin-top:24px"><a class="button button-primary" href="#diagnostico"><i data-lucide="arrow-down"></i>Começar diagnóstico</a><span class="status ready">4 etapas · 4 minutos</span></div></div>
+      <div class="hero-side"><div class="hero-metric"><span>O que avaliamos</span><strong>Ativo + alcance + capacidade</strong></div><div class="hero-metric"><span>Saída</span><strong>Próximo passo recomendado</strong></div></div>
+    </section>
+
+    <section class="section-heading"><div><div class="eyebrow">PARA QUEM É</div><h2 class="h2">Perfis diferentes podem construir com a Avraham.</h2></div><p class="body">A classificação acontece por sinais objetivos. Uma empresa pode combinar mais de um perfil.</p></section>
+    <section class="profile-strip">
+      <article class="profile-card"><span class="icon-tile"><i data-lucide="contact-round"></i></span><strong>Relacionamento B2B</strong><p>Consultores, executivos e especialistas com acesso a decisores.</p></article>
+      <article class="profile-card"><span class="icon-tile"><i data-lucide="briefcase-business"></i></span><strong>Carteira de clientes</strong><p>Agências, consultorias, BPOs, contabilidades e serviços recorrentes.</p></article>
+      <article class="profile-card"><span class="icon-tile"><i data-lucide="network"></i></span><strong>Rede e distribuição</strong><p>Franquias, associações, redes, masters, distribuidores e comunidades.</p></article>
+      <article class="profile-card"><span class="icon-tile"><i data-lucide="blocks"></i></span><strong>Produto e plataforma</strong><p>ERPs, SaaS, CRMs, software houses, plataformas e sistemas verticais.</p></article>
+    </section>
+
+    <section class="section-heading" id="diagnostico"><div><div class="eyebrow">DIAGNÓSTICO GUIADO</div><h2 class="h2">Vamos mapear o potencial.</h2></div></section>
+    <section class="form-shell">
+      <form class="form-panel" id="partner-diagnostic" novalidate>
+        <div class="form-progress"><div class="form-progress-copy"><span data-step-copy>Etapa 1 de 4</span><span data-step-name>Contato</span></div><div class="form-progress-track"><div class="form-progress-bar" data-step-progress></div></div></div>
+
+        <section class="form-step is-active" data-step="0">
+          <div class="eyebrow">01 · CONTATO</div><h2 class="h2" style="margin-top:9px">Quem participa desta conversa?</h2><p class="body" style="margin-top:9px">Usaremos esses dados para devolver a leitura do diagnóstico.</p>
+          <div class="form-grid" style="margin-top:22px">
+            <div class="field"><label for="name">Nome completo</label><input id="name" name="name" required placeholder="Seu nome"></div>
+            <div class="field"><label for="role">Cargo ou função</label><input id="role" name="role" required placeholder="Ex.: fundador, diretor comercial"></div>
+            <div class="field"><label for="company">Empresa</label><input id="company" name="company" required placeholder="Nome da empresa"></div>
+            <div class="field"><label for="site">Site ou perfil profissional</label><input id="site" name="site" placeholder="https://"></div>
+            <div class="field"><label for="email">E-mail profissional</label><input id="email" name="email" type="email" required placeholder="voce@empresa.com"></div>
+            <div class="field"><label for="phone">WhatsApp</label><input id="phone" name="phone" required placeholder="(00) 00000-0000"></div>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="1">
+          <div class="eyebrow">02 · ORGANIZAÇÃO E ALCANCE</div><h2 class="h2" style="margin-top:9px">Como sua organização chega a outras empresas?</h2>
+          <!-- Pergunta 1 (§8): Qual alternativa descreve melhor a organização? -->
+          <div class="choice-grid" style="margin-top:22px">
+            <label class="choice-card"><input type="radio" name="organizationType" value="independent" required><strong>Profissional ou consultor(a) independente</strong><span>Atuo sozinho(a) ou com um time pequeno, com acesso direto a decisores.</span></label>
+            <label class="choice-card"><input type="radio" name="organizationType" value="agency" required><strong>Agência, consultoria ou empresa de serviços</strong><span>Atendemos uma carteira de clientes com recorrência.</span></label>
+            <label class="choice-card"><input type="radio" name="organizationType" value="network" required><strong>Rede, franquia, associação ou grupo</strong><span>Reunimos várias unidades, membros ou empresas sob uma governança comum.</span></label>
+            <label class="choice-card"><input type="radio" name="organizationType" value="product" required><strong>Empresa de produto, software ou plataforma</strong><span>Operamos um produto próprio, usado por outras empresas.</span></label>
+          </div>
+          <!-- Pergunta 2 (§8): Com quais tipos de empresa ela se relaciona? -->
+          <div class="field" style="margin-top:18px"><label>Com quais tipos de empresa ela se relaciona?</label>
+            <div class="choice-grid">
+              <label class="choice-card"><input type="checkbox" name="companyTypes" value="tech"><strong>Tecnologia e software</strong></label>
+              <label class="choice-card"><input type="checkbox" name="companyTypes" value="health"><strong>Clínicas, hospitais e saúde</strong></label>
+              <label class="choice-card"><input type="checkbox" name="companyTypes" value="realestate"><strong>Imobiliárias e corretores</strong></label>
+              <label class="choice-card"><input type="checkbox" name="companyTypes" value="retail"><strong>Varejo, concessionárias e e-commerce</strong></label>
+              <label class="choice-card"><input type="checkbox" name="companyTypes" value="hospitality"><strong>Restaurantes e hospitalidade</strong></label>
+              <label class="choice-card"><input type="checkbox" name="companyTypes" value="networks"><strong>Franquias, redes e associações</strong></label>
+            </div>
+            <textarea name="companyTypesOther" placeholder="Outros setores ou exemplos de empresas (opcional)" style="margin-top:10px"></textarea>
+          </div>
+          <!-- Pergunta 3 (§8): Quantas empresas ou unidades estão ativas nessa relação? -->
+          <div class="field" style="margin-top:18px"><label for="baseSize">Quantas empresas ou unidades estão ativas nessa relação?</label><select id="baseSize" name="baseSize" required><option value="">Selecione</option><option value="0">Ainda não existe uma base ativa</option><option value="10">1 a 20</option><option value="50">21 a 100</option><option value="200">101 a 300</option><option value="500">301 a 1.000</option><option value="1000">Mais de 1.000</option></select></div>
+        </section>
+
+        <section class="form-step" data-step="2">
+          <div class="eyebrow">03 · CAPACIDADE</div><h2 class="h2" style="margin-top:9px">O que já existe para ativar uma oferta?</h2>
+          <div class="form-grid" style="margin-top:22px">
+            <!-- Pergunta 4 (§8): Existe permissão e canal para comunicar uma nova oferta? -->
+            <div class="field"><label for="communication">Existe permissão e canal para comunicar uma nova oferta a essa base?</label><select id="communication" name="communication" required><option value="">Selecione</option><option value="yes">Sim, diretamente</option><option value="partial">Parcialmente ou com aprovação</option><option value="no">Ainda não</option></select></div>
+            <!-- Pergunta 5 (§8): Existe equipe comercial ou de relacionamento? -->
+            <div class="field"><label for="salesTeam">Existe equipe comercial ou de relacionamento?</label><select id="salesTeam" name="salesTeam" required><option value="">Selecione</option><option value="yes">Sim, dedicada</option><option value="shared">Sim, compartilhada</option><option value="owner">O fundador conduz</option><option value="no">Não</option></select></div>
+            <!-- Pergunta 6 (§8): A organização possui produto, plataforma ou dados próprios? -->
+            <div class="field"><label for="product">A organização possui produto, plataforma ou dados próprios?</label><select id="product" name="product" required><option value="">Selecione</option><option value="yes">Sim</option><option value="partial">Parcialmente</option><option value="no">Não</option></select></div>
+            <!-- Pergunta 7 (§8): Existe capacidade de integração? -->
+            <div class="field"><label for="integration">Existe capacidade de integração?</label><select id="integration" name="integration" required><option value="">Selecione</option><option value="yes">Sim, API ou time técnico</option><option value="limited">Limitada</option><option value="unknown">Ainda não sabemos</option><option value="no">Não se aplica</option></select></div>
+            <!-- Pergunta 8 (§8): A empresa já vende serviços ou módulos adicionais? -->
+            <div class="field"><label for="additionalOffers">A empresa já vende serviços ou módulos adicionais?</label><select id="additionalOffers" name="additionalOffers" required><option value="">Selecione</option><option value="yes">Sim, com processo comercial</option><option value="sometimes">Às vezes</option><option value="no">Ainda não</option></select></div>
+            <!-- Pergunta 9 (§8): Quantas empresas consegue envolver nos próximos 90 dias? -->
+            <div class="field"><label for="activationCapacity">Quantas empresas consegue envolver nos próximos 90 dias?</label><select id="activationCapacity" name="activationCapacity" required><option value="">Selecione</option><option value="1">1 a 3</option><option value="5">4 a 10</option><option value="15">11 a 30</option><option value="40">31 a 100</option><option value="100">Mais de 100</option></select></div>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="3">
+          <div class="eyebrow">04 · OBJETIVO</div><h2 class="h2" style="margin-top:9px">Que resultado você quer construir?</h2>
+          <!-- Pergunta 10 (§8): Qual resultado deseja construir com a Avraham? -->
+          <div class="choice-grid" style="margin-top:22px">
+            <label class="choice-card"><input type="radio" name="goal" value="introduce" required><strong>Levar boas oportunidades</strong><span>Quero apresentar empresas e participar quando houver venda.</span></label>
+            <label class="choice-card"><input type="radio" name="goal" value="monetize" required><strong>Monetizar minha carteira</strong><span>Quero oferecer uma nova solução aos clientes que já atendo.</span></label>
+            <label class="choice-card"><input type="radio" name="goal" value="activate" required><strong>Ativar uma rede ou base</strong><span>Quero criar uma oferta replicável para muitas empresas ou unidades.</span></label>
+            <label class="choice-card"><input type="radio" name="goal" value="embed" required><strong>Integrar ao meu produto</strong><span>Quero incorporar a solução ao meu sistema ou ecossistema.</span></label>
+          </div>
+          <div class="field" style="margin-top:18px"><label for="context">O que tornaria essa parceria valiosa?</label><textarea id="context" name="context" required placeholder="Descreva a oportunidade, as dores percebidas e o que gostaria de testar primeiro."></textarea></div>
+          <label style="display:flex;gap:9px;align-items:flex-start;margin-top:16px;color:var(--t3);font-size:12px"><input name="consent" type="checkbox" required style="margin-top:2px">Autorizo a Avraham a analisar estes dados e entrar em contato sobre a parceria.</label>
+        </section>
+
+        <div class="form-navigation"><button class="button button-ghost" type="button" data-back disabled><i data-lucide="arrow-left"></i>Voltar</button><button class="button button-primary" type="button" data-next>Continuar<i data-lucide="arrow-right"></i></button><button class="button button-primary" type="submit" data-submit hidden><i data-lucide="sparkles"></i>Ver próximo passo</button></div>
+        <div class="form-status" id="form-status" role="status"></div>
+      </form>
+
+      <aside class="form-panel">
+        <div class="eyebrow">O QUE VOCÊ RECEBE</div><h2 class="h2" style="margin-top:10px">Uma leitura orientada à ação.</h2>
+        <div class="flow" style="margin-top:22px"><div class="flow-step">Ativo principal identificado</div><div class="flow-step">Potencial e prontidão da base</div><div class="flow-step">Riscos e lacunas iniciais</div><div class="flow-step">Primeiro material recomendado</div><div class="flow-step">Próxima conversa indicada</div></div>
+        <div class="route-result" id="route-result" hidden style="margin-top:20px"><div class="eyebrow">PRÓXIMO PASSO RECOMENDADO</div><h3 data-result-title></h3><p data-result-copy></p><div class="route-tags" data-result-tags></div><a class="button button-primary" data-result-link href="#">Abrir material recomendado<i data-lucide="arrow-up-right"></i></a></div>
+        <div class="light-callout" style="margin-top:20px"><strong>A leitura é inicial</strong><p style="margin-top:8px">A decisão comercial, responsabilidades, preço e proteção são definidos depois da conversa e da validação dos dados.</p></div>
+      </aside>
+    </section>
+    <footer class="footer-note"><span>Avraham Partner Network · Diagnóstico v2</span><a href="../00%20-%20ESTRAT%C3%89GIA%2C%20REGRAS%20E%20DECIS%C3%95ES/12%20-%20Arquitetura%20can%C3%B4nica%20do%20Partner%20Network.md">Ver critérios internos</a></footer>
+  </main>
+  <script src="../materials.js"></script>
+  <script>
+    (() => {
+      const form = document.getElementById("partner-diagnostic");
+      const steps = [...form.querySelectorAll("[data-step]")];
+      const next = form.querySelector("[data-next]");
+      const back = form.querySelector("[data-back]");
+      const submit = form.querySelector("[data-submit]");
+      const status = document.getElementById("form-status");
+      const result = document.getElementById("route-result");
+      const names = ["Contato", "Organização e alcance", "Capacidade", "Objetivo"];
+      let index = 0;
+
+      const renderStep = () => {
+        steps.forEach((step, stepIndex) => step.classList.toggle("is-active", stepIndex === index));
+        form.querySelector("[data-step-copy]").textContent = `Etapa ${index + 1} de ${steps.length}`;
+        form.querySelector("[data-step-name]").textContent = names[index];
+        form.querySelector("[data-step-progress]").style.width = `${((index + 1) / steps.length) * 100}%`;
+        back.disabled = index === 0;
+        next.hidden = index === steps.length - 1;
+        submit.hidden = index !== steps.length - 1;
+        status.classList.remove("is-visible");
+      };
+
+      const validateStep = () => {
+        const required = [...steps[index].querySelectorAll("[required]")];
+        const invalid = required.find((field) => !field.checkValidity());
+        if (!invalid) return true;
+        status.classList.add("is-visible");
+        status.innerHTML = "<strong>Complete esta etapa.</strong>Revise os campos obrigatórios antes de continuar.";
+        invalid.reportValidity();
+        return false;
+      };
+
+      next.addEventListener("click", () => { if (validateStep()) { index += 1; renderStep(); form.scrollIntoView({ behavior: "smooth", block: "start" }); } });
+      back.addEventListener("click", () => { index = Math.max(0, index - 1); renderStep(); });
+
+      const diagnose = (data) => {
+        const scores = { origin: 0, portfolio: 0, network: 0, embedded: 0 };
+        const profilePoints = { independent: "origin", agency: "portfolio", network: "network", product: "embedded" };
+        const primaryRoute = profilePoints[data.organizationType];
+        if (primaryRoute) scores[primaryRoute] += 4;
+        if (Array.isArray(data.companyTypes) && data.companyTypes.includes("networks")) scores.network += 2;
+        if (Number(data.baseSize) >= 50) { scores.portfolio += 2; scores.network += 2; }
+        if (Number(data.baseSize) >= 200) scores.network += 3;
+        if (data.communication === "yes") { scores.portfolio += 1; scores.network += 2; }
+        if (data.salesTeam === "yes" || data.salesTeam === "shared") scores.portfolio += 1;
+        if (data.salesTeam === "owner") scores.origin += 1;
+        if (data.product === "yes") scores.embedded += 3;
+        if (data.integration === "yes") scores.embedded += 3;
+        if (data.additionalOffers === "yes") { scores.portfolio += 1; scores.embedded += 1; }
+        if (Number(data.activationCapacity) >= 40) scores.network += 2;
+        if (data.goal === "introduce") scores.origin += 4;
+        if (data.goal === "monetize") scores.portfolio += 4;
+        if (data.goal === "activate") scores.network += 4;
+        if (data.goal === "embed") scores.embedded += 4;
+        const route = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+        const routes = {
+          origin: { title: "Começar por uma oportunidade qualificada", copy: "O primeiro passo é registrar uma empresa real, preservar o contexto e validar uma venda conduzida com a Avraham.", tags: ["acesso a decisores", "contexto comercial", "validação rápida"], link: "../09%20-%20CARTEIRA%20E%20OPORTUNIDADES/cadastrar-oportunidade.html", internal: "origination" },
+          portfolio: { title: "Mapear e ativar sua carteira", copy: "Vamos identificar dores repetidas, escolher um recorte de clientes e construir uma oferta-piloto para a carteira que você já atende.", tags: ["carteira recorrente", "oferta-piloto", "campanha segmentada"], link: "../03%20-%20ATIVA%C3%87%C3%83O%20DE%20CARTEIRA%20E%20REDE/apresentacao-nova-receita-na-base.html", internal: "portfolio_activation" },
+          network: { title: "Desenhar um plano para sua rede", copy: "A oportunidade pede elegibilidade, lotes de ativação, governança e uma meta de penetração para 90 e 180 dias.", tags: ["rede ou unidades", "ativação em lotes", "plano de escala"], link: "../03%20-%20ATIVA%C3%87%C3%83O%20DE%20CARTEIRA%20E%20REDE/apresentacao-nova-receita-na-base.html", internal: "network_activation" },
+          embedded: { title: "Fazer um design de solução integrado", copy: "Vamos mapear produto, dados, APIs, responsabilidades e um cliente-piloto antes de definir a oferta de escala.", tags: ["produto próprio", "integração", "piloto técnico e comercial"], link: "../04%20-%20VENDA%20AO%20CLIENTE%20FINAL/modelo-proposta-comercial.html", internal: "embedded_ecosystem" }
+        };
+        return routes[route];
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!validateStep()) return;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        data.companyTypes = formData.getAll("companyTypes");
+        const route = diagnose(data);
+        const id = `PART-${new Date().getFullYear()}-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
+        const leads = JSON.parse(localStorage.getItem("avrahamPartnerLeads") || "[]");
+        leads.push({ id, ...data, internalRoute: route.internal, stage: "diagnostic_received", createdAt: new Date().toISOString() });
+        localStorage.setItem("avrahamPartnerLeads", JSON.stringify(leads));
+        result.hidden = false;
+        result.querySelector("[data-result-title]").textContent = route.title;
+        result.querySelector("[data-result-copy]").textContent = route.copy;
+        result.querySelector("[data-result-tags]").innerHTML = route.tags.map((tag) => `<span class="route-tag">${tag}</span>`).join("");
+        result.querySelector("[data-result-link]").href = route.link;
+        status.classList.add("is-visible");
+        status.innerHTML = `<strong>Diagnóstico ${id} registrado.</strong>A recomendação inicial apareceu ao lado. A Avraham ainda validará os dados antes de definir o modelo comercial.`;
+        result.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (window.lucide) window.lucide.createIcons();
+      });
+      renderStep();
+    })();
+  </script>
+</body>
+</html>

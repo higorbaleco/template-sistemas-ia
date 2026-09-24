@@ -1,4 +1,0 @@
-# Financing
-
-Simulador de financiamentos.
-

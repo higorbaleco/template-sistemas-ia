@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Data" subtitle="KPI tiles, score ring, progress, avatars, table" -->
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{background:var(--bg-page);padding:20px;font-family:var(--font-body)}#root{display:block}</style></head><body><div id="root"></div><script type="text/babel">
+const NS=window.AvrahamDesignSystem_609133;
+const {StatTile,ScoreRing,ProgressBar,Avatar,AvatarGroup,DataTable,Badge,Card}=NS;
+const rows=[{id:1,n:'Datlo',o:'Ana Lima',d:'R$ 48.000',s:91},{id:2,n:'Loovi',o:'Higor Plens',d:'R$ 22.400',s:64},{id:3,n:'TFLOW',o:'Bia Souza',d:'R$ 91.000',s:38}];
+function Demo(){return(<div style={{display:'flex',flexDirection:'column',gap:16}}>
+  <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
+    <StatTile label="Conversas" value="847" sub="tempo real" icon="message-square" delta="+12%"/>
+    <StatTile label="Qualificados" value="194" sub="pela IA" tone="emerald" delta="+8%"/>
+    <StatTile label="Em proposta" value="41" sub="ativos agora" icon="file-text"/>
+    <StatTile label="Pipeline" value="R$ 127k" sub="este mês" tone="lavender" delta="-4%" deltaTone="down"/>
+  </div>
+  <div style={{display:'flex',alignItems:'center',gap:24,flexWrap:'wrap'}}>
+    <ScoreRing value={91} label="Score IA"/><ScoreRing value={58} label="Meta"/><ScoreRing value={27} label="SLA"/>
+    <div style={{flex:1,minWidth:220,display:'flex',flexDirection:'column',gap:12}}>
+      <ProgressBar label="Meta do mês" value={68} showValue caption="R$ 86k de R$ 127k"/>
+      <ProgressBar label="XP até o nível 7" value={340} max={500} tone="flow" showValue/>
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:10}}>
+      <AvatarGroup people={[{name:'Ana Lima'},{name:'Higor Plens'},{name:'Bia Souza'},{name:'Caio Reis'},{name:'Duda M.'}]}/>
+      <div style={{display:'flex',gap:8}}><Avatar name="Ana Lima" status="online"/><Avatar name="Higor Plens" tone="lavender" status="busy"/><Avatar name="Bia Souza" tone="neutral" status="offline"/></div>
+    </div>
+  </div>
+  <Card pad={0}><DataTable dense columns={[{key:'n',label:'Organização'},{key:'o',label:'Responsável'},{key:'d',label:'Valor',mono:true,align:'right'},{key:'s',label:'Score IA',align:'right',render:r=><Badge tone={r.s>=75?'live':r.s>=45?'warn':'danger'} uppercase={false}>{r.s}</Badge>}]} rows={rows}/></Card>
+</div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+requestAnimationFrame(()=>window.lucide&&window.lucide.createIcons());
+setTimeout(()=>window.lucide&&window.lucide.createIcons(),120);
+</script></body></html>

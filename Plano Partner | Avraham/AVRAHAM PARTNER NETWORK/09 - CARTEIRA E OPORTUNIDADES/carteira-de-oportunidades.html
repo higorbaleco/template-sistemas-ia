@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carteira de oportunidades · Avraham</title>
+  <link rel="stylesheet" href="../materials.css"><script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+</head>
+<body class="material-page grid-bg glow-bg" data-theme="light" data-theme-fixed="true">
+  <main class="materials-app">
+    <nav class="topbar"><a class="brand-lockup" href="../index.html">Avraham · Carteira e oportunidades</a><div class="topbar-actions"><button class="button button-ghost" type="button" data-clear-demo><i data-lucide="rotate-ccw"></i>Limpar registros locais</button><a class="button button-primary" href="cadastrar-oportunidade.html"><i data-lucide="plus"></i>Cadastrar oportunidade</a></div></nav>
+    <section class="material-hero"><div><div class="eyebrow">CARTEIRA DE OPORTUNIDADES</div><h1 class="h1">Origem, decisão e próxima ação no mesmo lugar.</h1><p class="body-lg">A carteira acompanha cada empresa do registro à ativação. O nome do Partner aparece como origem; a rota interna não precisa ficar exposta ao cliente.</p></div><div class="hero-side"><div class="hero-metric"><span>Funil</span><strong>7 etapas</strong></div><div class="hero-metric"><span>Proteção</span><strong>Validada por atividade</strong></div></div></section>
+
+    <section class="section-heading"><div><div class="eyebrow">VISÃO EXECUTIVA</div><h2 class="h2">Saúde da carteira.</h2></div><div class="field" style="min-width:220px"><label for="filter-origin">Filtrar por origem</label><select id="filter-origin"><option value="">Todas as origens</option></select></div></section>
+    <section class="material-grid four" id="metrics"></section>
+    <div style="overflow-x:auto;padding-bottom:8px;margin-top:20px"><section class="pipeline-board" id="pipeline-board" style="grid-template-columns:repeat(7,minmax(210px,1fr));min-width:1540px"></section></div>
+    <div class="hypothesis-note" style="margin-top:20px"><i data-lucide="database"></i><div><strong>Protótipo operacional:</strong> os registros continuam armazenados neste navegador. O fluxo e os campos podem ser validados antes da conexão com CRM, autenticação e banco de dados.</div></div>
+    <footer class="footer-note"><span>Carteira e oportunidades · Funil v2</span><a href="../02%20-%20DESCOBERTA%20E%20QUALIFICA%C3%87%C3%83O/diagnostico-de-parceria.html">Abrir diagnóstico de parceria</a></footer>
+  </main>
+  <script src="../materials.js"></script>
+  <script>
+    (() => {
+      const stages = [
+        { key: "registered", label: "Registrada" },
+        { key: "validation", label: "Em validação" },
+        { key: "diagnostic", label: "Diagnóstico" },
+        { key: "solution", label: "Solução" },
+        { key: "proposal", label: "Proposta" },
+        { key: "negotiation", label: "Negociação" },
+        { key: "won", label: "Fechada" }
+      ];
+      const legacy = { novo: "registered", contato: "validation", diagnostico: "diagnostic", proposta: "proposal", fechado: "won" };
+      const board = document.getElementById("pipeline-board");
+      const metrics = document.getElementById("metrics");
+      const originFilter = document.getElementById("filter-origin");
+      const read = () => JSON.parse(localStorage.getItem("avrahamOpportunities") || "[]").map((item) => ({ ...item, stage: legacy[item.stage] || item.stage || "registered", originName: item.originName || item.partnerName || "Origem não informada" }));
+      const write = (items) => localStorage.setItem("avrahamOpportunities", JSON.stringify(items));
+
+      const render = () => {
+        const allItems = read();
+        const origins = [...new Set(allItems.map((item) => item.originName).filter(Boolean))].sort();
+        const selected = originFilter.value;
+        originFilter.innerHTML = `<option value="">Todas as origens</option>${origins.map((origin) => `<option${origin === selected ? " selected" : ""}>${origin}</option>`).join("")}`;
+        const items = selected ? allItems.filter((item) => item.originName === selected) : allItems;
+        const active = items.filter((item) => item.stage !== "won");
+        const high = items.filter((item) => item.priority === "Alta");
+        const due = items.filter((item) => item.nextDate && new Date(`${item.nextDate}T23:59:59`) < new Date() && item.stage !== "won");
+        metrics.innerHTML = `
+          <div class="material-card"><div class="icon-tile"><i data-lucide="inbox"></i></div><h3>${items.length}</h3><p>Oportunidades na carteira</p></div>
+          <div class="material-card"><div class="icon-tile"><i data-lucide="activity"></i></div><h3>${active.length}</h3><p>Em andamento</p></div>
+          <div class="material-card"><div class="icon-tile"><i data-lucide="badge-check"></i></div><h3>${high.length}</h3><p>Prioridade alta</p></div>
+          <div class="material-card"><div class="icon-tile"><i data-lucide="calendar-x"></i></div><h3>${due.length}</h3><p>Próximas ações vencidas</p></div>`;
+        board.innerHTML = stages.map((stage) => {
+          const inStage = items.filter((item) => item.stage === stage.key);
+          return `<section class="pipeline-column"><h3>${stage.label}<span>${inStage.length}</span></h3>${inStage.length ? inStage.map((item) => `
+            <article class="pipeline-item">
+              <strong>${item.clientCompany || "Empresa sem nome"}</strong>
+              <small>${item.id} · ${item.originName}</small>
+              <small>${item.clientIcp || item.segment || "ICP em definição"}</small>
+              <small>Prioridade: ${item.priority || "não calculada"}</small>
+              <small>Próxima: ${item.nextDate || "sem data"}</small>
+              <select class="button button-small" data-stage-id="${item.id}" aria-label="Atualizar etapa">${stages.map((option) => `<option value="${option.key}"${option.key === stage.key ? " selected" : ""}>${option.label}</option>`).join("")}</select>
+            </article>`).join("") : '<p class="muted" style="font-size:12px">Nenhuma oportunidade aqui.</p>'}</section>`;
+        }).join("");
+        board.querySelectorAll("[data-stage-id]").forEach((select) => select.addEventListener("change", () => {
+          const current = read();
+          const item = current.find((opportunity) => opportunity.id === select.dataset.stageId);
+          if (item) item.stage = select.value;
+          write(current);
+          render();
+        }));
+        if (window.lucide) window.lucide.createIcons();
+      };
+      originFilter.addEventListener("change", render);
+      document.querySelector("[data-clear-demo]").addEventListener("click", () => {
+        if (!window.confirm("Remover todos os registros salvos neste navegador?")) return;
+        localStorage.removeItem("avrahamOpportunities");
+        render();
+      });
+      render();
+    })();
+  </script>
+</body>
+</html>

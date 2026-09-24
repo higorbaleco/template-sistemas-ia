@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exemplo Sail — Proposta Avraham</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--cy:#0BBCA2;--cy6:#099B85;--cy1:#CFF5EC;--cy0:#EAFBF7;--mint:#00eed0;--pur:#4b227a;--lav:#7C5C9E;--t1:#111114;--t2:#45464A;--t3:#6E6F76;--ln:#E7E5E2;--off:#F7F6F5;--coral:#F0555B}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
+html,body,deck-stage,section,input,button,a,svg text{font-family:'Plus Jakarta Sans',sans-serif}
+body{background:#000}
+deck-stage{display:block;width:100%;height:100vh}
+section{position:absolute;inset:0;padding:64px 80px;font-family:'Plus Jakarta Sans',sans-serif;display:flex;flex-direction:column}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px;flex-shrink:0}
+.hdl{display:flex;align-items:center;gap:20px}
+.num{font-size:26px;font-weight:700;letter-spacing:.02em}
+.num i{font-style:normal;font-weight:400;opacity:.45}
+.lbl{font-size:26px;font-weight:400}
+.mark{height:30px;opacity:.95}
+.h1{font-size:76px;font-weight:800;line-height:1.04;letter-spacing:-.025em}
+.h1b{font-size:76px;font-weight:700;line-height:1.04;letter-spacing:-.025em;color:var(--cy)}
+.lead{font-size:30px;line-height:1.6;font-weight:400}
+.cap{font-size:27px;line-height:1.55;font-weight:400}
+.ct{font-size:29px;font-weight:700;letter-spacing:-.01em}
+.tile{width:60px;height:60px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--cy);color:#fff;padding:20px 34px;border-radius:12px;font-weight:700;font-size:28px;text-decoration:none}
+.btn2{display:inline-flex;align-items:center;gap:14px;background:transparent;color:var(--cy);border:2px solid var(--cy);padding:18px 34px;border-radius:12px;font-weight:700;font-size:28px;text-decoration:none}
+.arw{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:26px}
+a{color:var(--cy)}a:hover{color:var(--cy6)}
+</style>
+</head>
+<body>
+<script src="./deck-stage.js"></script>
+<deck-stage width="1920" height="1080">
+
+<!-- 01 CAPA -->
+<section data-screen-label="01" style="background:#000;overflow:hidden">
+<div style="position:absolute;top:-180px;right:-260px;width:1100px;height:1100px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(11,188,162,.30),rgba(11,188,162,.06) 45%,transparent 68%);pointer-events:none"></div>
+<div style="position:absolute;top:120px;right:40px;width:640px;height:640px;border-radius:50%;border:1px solid rgba(11,188,162,.14);pointer-events:none"></div>
+<div class="hd" style="position:relative;z-index:1">
+<img src="../../uploads/logo-branca.svg" class="mark" alt="Avraham">
+<div style="text-align:right;font-size:25px;line-height:1.75;color:rgba(255,255,255,.62)">Cliente · <b style="color:#fff;font-weight:700">[Cliente]</b><br>[Segmento] · [Cidade]<br>Proposta · [DD mmm AAAA]</div>
+</div>
+<div style="position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;flex:1;max-width:1080px">
+<div class="num" style="color:rgba(255,255,255,.55);margin-bottom:28px">01 <i>/ 10</i></div>
+<div class="h1" style="color:#fff">[Solução principal]</div>
+<div class="h1b">para [cliente].</div>
+<div class="lead" style="color:rgba(255,255,255,.66);margin-top:30px;max-width:840px"><b style="color:#fff;font-weight:700">[Frase-âncora em negrito]</b> — [complemento que explica o valor entregue, o público atendido e o resultado esperado em uma frase.]</div>
+<div style="display:flex;align-items:center;gap:32px;margin-top:44px">
+<a href="#" class="btn">Ver proposta <span class="arw">→</span></a>
+<div style="font-size:26px;line-height:1.6;color:rgba(255,255,255,.62)">[Benefício 1].<br>[Benefício 2].</div>
+</div>
+</div>
+</section>
+
+<!-- 02 OBJETIVO -->
+<section data-screen-label="02" style="background:#fff">
+<div class="hd">
+<div class="hdl"><span class="num" style="color:var(--t1)">02 <i>/ 10</i></span><span style="width:1px;height:20px;background:var(--ln)"></span><span class="lbl" style="color:var(--t3)">Objetivo do projeto</span></div>
+<img src="../../uploads/03 fundo branco letra preta.png" class="mark" alt="Avraham">
+</div>
+<div style="margin-bottom:52px">
+<div class="h1" style="color:var(--t1);font-size:66px">[Objetivo em uma linha]</div>
+<div class="h1b" style="font-size:66px">[qualificadores, claros e diretos.]</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:44px;flex:1;align-items:center">
+<div style="display:flex;gap:24px">
+<div class="tile" style="background:var(--cy1)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#067A68" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></div>
+<div><div class="ct" style="color:var(--t1);margin-bottom:12px">Contexto</div><div class="cap" style="color:var(--t3)">[Situação atual do cliente.] O público busca <b style="color:var(--t1);font-weight:600">[dor específica]</b>, então o [entregável] precisa <b style="color:var(--t1);font-weight:600">[requisito 1]</b> e ser de <b style="color:var(--t1);font-weight:600">[requisito 2]</b>.</div></div>
+</div>
+<div style="display:flex;gap:24px">
+<div class="tile" style="background:var(--cy1)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#067A68" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+<div><div class="ct" style="color:var(--t1);margin-bottom:12px">Entregáveis</div><div class="cap" style="color:var(--t3)">[Entregável principal] com <b style="color:var(--t1);font-weight:600">[característica]</b>, [entregável 2], [entregável 3] e até [N] [unidades] dedicadas a [finalidade].</div></div>
+</div>
+</div>
+<div style="background:var(--cy0);border-radius:18px;padding:34px 38px;display:flex;gap:24px;align-items:flex-start;margin-top:8px">
+<div class="tile" style="width:52px;height:52px;background:var(--cy);border-radius:12px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div>
+<div><div class="ct" style="color:#067A68;margin-bottom:8px">Resultado esperado</div><div class="cap" style="color:var(--t2)">[Resultado 1], [resultado 2] e [resultado 3 mensurável].</div></div>
+</div>
+</section>
+
+<!-- 03 DIAGNÓSTICO -->
+<section data-screen-label="03" style="background:#000">
+<div class="hd">
+<div class="hdl"><span class="num" style="color:#fff">03 <i>/ 10</i></span><span style="width:1px;height:20px;background:rgba(255,255,255,.18)"></span><span class="lbl" style="color:rgba(255,255,255,.55)">Diagnóstico da situação atual</span></div>
+<img src="../../uploads/logo-branca.svg" class="mark" alt="Avraham">
+</div>
+<div style="margin-bottom:56px">
+<div class="h1" style="color:#fff;font-size:66px">[O que existe hoje entrega]</div>
+<div class="h1" style="font-size:66px;color:#fff">[situação], <span style="color:var(--cy);font-weight:700">não [resultado].</span></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;flex:1">
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+<div style="display:flex;align-items:center;gap:16px">
+<div class="tile" style="width:48px;height:48px;border-radius:11px;background:rgba(11,188,162,.16)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00eed0" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18"/></svg></div>
+<span style="font-size:25px;color:rgba(255,255,255,.5);font-weight:500">01 · [Eixo]</span>
+</div>
+<div class="ct" style="color:#fff;line-height:1.3">[Falha estrutural em duas linhas]</div>
+<div class="cap" style="color:rgba(255,255,255,.6);font-size:25px">[Por que isso é um problema. O que se perde hoje por causa disso.]</div>
+</div>
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+<div style="display:flex;align-items:center;gap:16px">
+<div class="tile" style="width:48px;height:48px;border-radius:11px;background:rgba(11,188,162,.16)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00eed0" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h9"/></svg></div>
+<span style="font-size:25px;color:rgba(255,255,255,.5);font-weight:500">02 · [Eixo]</span>
+</div>
+<div class="ct" style="color:#fff;line-height:1.3">[Falha de conteúdo em duas linhas]</div>
+<div class="cap" style="color:rgba(255,255,255,.6);font-size:25px">[Consequência direta. O que o mercado ou o algoritmo não consegue enxergar.]</div>
+</div>
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+<div style="display:flex;align-items:center;gap:16px">
+<div class="tile" style="width:48px;height:48px;border-radius:11px;background:rgba(11,188,162,.16)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00eed0" stroke-width="1.8" stroke-linecap="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+<span style="font-size:25px;color:rgba(255,255,255,.5);font-weight:500">03 · [Eixo]</span>
+</div>
+<div class="ct" style="color:#fff;line-height:1.3">[Falha de conversão em duas linhas]</div>
+<div class="cap" style="color:rgba(255,255,255,.6);font-size:25px">[Onde o lead se perde hoje. O que resolveria isso.]</div>
+</div>
+</div>
+</section>
+
+<!-- 04 ESCOPO -->
+<section data-screen-label="04" style="background:#fff">
+<div class="hd">
+<div class="hdl"><span class="num" style="color:var(--t1)">04 <i>/ 10</i></span><span style="width:1px;height:20px;background:var(--ln)"></span><span class="lbl" style="color:var(--t3)">Escopo da entrega</span></div>
+<img src="../../uploads/03 fundo branco letra preta.png" class="mark" alt="Avraham">
+</div>
+<div style="display:grid;grid-template-columns:0.85fr 1.35fr 1fr;gap:44px;flex:1">
+<div style="display:flex;flex-direction:column;justify-content:space-between">
+<div><div class="h1" style="color:var(--t1);font-size:62px">O que está<br>incluso</div><div class="h1b" style="font-size:62px">no projeto.</div></div>
+<div><div style="font-size:29px;font-weight:700;color:var(--t1)">[Cliente]</div><div style="font-size:25px;color:var(--t3);margin-top:4px">[Segmento] · [Cidade]</div></div>
+</div>
+<div style="background:var(--cy0);border-radius:18px;padding:36px 34px;display:flex;flex-direction:column;gap:26px">
+<div style="font-size:27px;font-weight:700;color:#067A68">[Pacote] · [Nome do escopo]</div>
+<div style="display:flex;gap:16px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0BBCA2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:4px"><polyline points="20 6 9 17 4 12"/></svg><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Entrega 1]</div><div style="font-size:24px;color:var(--t3);margin-top:3px">[Detalhe técnico ou quantitativo]</div></div></div>
+<div style="display:flex;gap:16px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0BBCA2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:4px"><polyline points="20 6 9 17 4 12"/></svg><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Entrega 2]</div><div style="font-size:24px;color:var(--t3);margin-top:3px">[Detalhe técnico ou quantitativo]</div></div></div>
+<div style="display:flex;gap:16px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0BBCA2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:4px"><polyline points="20 6 9 17 4 12"/></svg><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Entrega 3]</div><div style="font-size:24px;color:var(--t3);margin-top:3px">[Detalhe técnico ou quantitativo]</div></div></div>
+<div style="display:flex;gap:16px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0BBCA2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:4px"><polyline points="20 6 9 17 4 12"/></svg><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Entrega 4]</div><div style="font-size:24px;color:var(--t3);margin-top:3px">[Detalhe técnico ou quantitativo]</div></div></div>
+<div style="display:flex;gap:16px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0BBCA2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:4px"><polyline points="20 6 9 17 4 12"/></svg><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Entrega 5]</div><div style="font-size:24px;color:var(--t3);margin-top:3px">[Detalhe técnico ou quantitativo]</div></div></div>
+</div>
+<div style="background:var(--off);border:1px solid var(--ln);border-radius:18px;padding:36px 34px;display:flex;flex-direction:column;gap:26px">
+<div style="font-size:27px;font-weight:700;color:var(--lav)">Opcionais · Adicionais</div>
+<div style="display:flex;gap:16px"><div style="width:22px;height:22px;border:2px solid var(--ln);border-radius:5px;flex-shrink:0;margin-top:4px;background:#fff"></div><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Opcional 1]</div><div style="font-size:24px;color:var(--t3);margin-top:3px">[O que entrega e por que vale.]</div></div></div>
+<div style="display:flex;gap:16px"><div style="width:22px;height:22px;border:2px solid var(--ln);border-radius:5px;flex-shrink:0;margin-top:4px;background:#fff"></div><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Opcional 2]</div><div style="font-size:24px;color:var(--t3);margin-top:3px">[O que entrega e por que vale.]</div></div></div>
+<div style="font-size:22px;color:var(--t3);margin-top:auto;line-height:1.6">Valores detalhados no slide de investimento.</div>
+</div>
+</div>
+</section>
+
+<!-- 05 TECNOLOGIAS / MÉTRICAS -->
+<section data-screen-label="05" style="background:#fff">
+<div class="hd">
+<div class="hdl"><span class="num" style="color:var(--t1)">05 <i>/ 10</i></span><span style="width:1px;height:20px;background:var(--ln)"></span><span class="lbl" style="color:var(--t3)">Tecnologias do projeto</span></div>
+<img src="../../uploads/03 fundo branco letra preta.png" class="mark" alt="Avraham">
+</div>
+<div style="margin-bottom:48px">
+<div class="h1" style="color:var(--t1);font-size:64px">[Stack pensada para]</div>
+<div class="h1" style="color:var(--t1);font-size:64px">[objetivo] <span style="color:var(--cy);font-weight:700">+ [objetivo 2].</span></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;flex:0 0 auto;margin-bottom:0">
+<div style="border:1px solid var(--ln);border-radius:18px;padding:32px;text-align:center">
+<div style="font-size:22px;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase">[Métrica 1]</div>
+<div style="font-size:62px;font-weight:800;color:var(--cy);line-height:1.15;margin:10px 0">90+</div>
+<div style="font-size:25px;color:var(--t3)">[unidade / contexto]</div>
+</div>
+<div style="border:1px solid var(--ln);border-radius:18px;padding:32px;text-align:center">
+<div style="font-size:22px;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase">[Métrica 2]</div>
+<div style="font-size:62px;font-weight:800;color:var(--cy);line-height:1.15;margin:10px 0">&lt; 1s</div>
+<div style="font-size:25px;color:var(--t3)">[unidade / contexto]</div>
+</div>
+<div style="border:1px solid var(--ln);border-radius:18px;padding:32px;text-align:center">
+<div style="font-size:22px;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase">[Métrica 3]</div>
+<div style="font-size:62px;font-weight:800;color:var(--cy);line-height:1.15;margin:10px 0">100</div>
+<div style="font-size:25px;color:var(--t3)">[unidade / contexto]</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px 56px;flex:1;align-content:center">
+<div style="display:flex;gap:20px"><div class="tile" style="width:50px;height:50px;border-radius:12px;background:var(--cy1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#067A68" stroke-width="1.8" stroke-linecap="round"><path d="M12 3l9 5-9 5-9-5 9-5zM3 14l9 5 9-5"/></svg></div><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Tecnologia 1]</div><div style="font-size:24px;color:var(--t3);margin-top:4px;line-height:1.55">[Descrição curta.] [Benefício objetivo.]</div></div></div>
+<div style="display:flex;gap:20px"><div class="tile" style="width:50px;height:50px;border-radius:12px;background:var(--cy1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#067A68" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 20h10"/></svg></div><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Tecnologia 2]</div><div style="font-size:24px;color:var(--t3);margin-top:4px;line-height:1.55">[Descrição curta.] [Benefício objetivo.]</div></div></div>
+<div style="display:flex;gap:20px"><div class="tile" style="width:50px;height:50px;border-radius:12px;background:var(--cy1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#067A68" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Tecnologia 3]</div><div style="font-size:24px;color:var(--t3);margin-top:4px;line-height:1.55">[Descrição curta.] [Benefício objetivo.]</div></div></div>
+<div style="display:flex;gap:20px"><div class="tile" style="width:50px;height:50px;border-radius:12px;background:var(--cy1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#067A68" stroke-width="1.8" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20v-3"/></svg></div><div><div style="font-size:27px;font-weight:700;color:var(--t1)">[Tecnologia 4]</div><div style="font-size:24px;color:var(--t3);margin-top:4px;line-height:1.55">[Descrição curta.] [Benefício objetivo.]</div></div></div>
+</div>
+</section>
+
+<!-- 06 CRONOGRAMA -->
+<section data-screen-label="06" style="background:#000">
+<div class="hd">
+<div class="hdl"><span class="num" style="color:#fff">06 <i>/ 10</i></span><span style="width:1px;height:20px;background:rgba(255,255,255,.18)"></span><span class="lbl" style="color:rgba(255,255,255,.55)">Plano de execução</span></div>
+<img src="../../uploads/logo-branca.svg" class="mark" alt="Avraham">
+</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px">
+<div><div class="h1" style="color:#fff;font-size:64px">Cronograma</div><div class="h1b" style="font-size:64px">[N] dias.</div></div>
+<div class="lead" style="color:rgba(255,255,255,.6);text-align:right">[Do início ao entregável no ar.]<br>[Com método, clareza e agilidade.]</div>
+</div>
+<div style="display:flex;justify-content:space-between;margin-bottom:14px;padding:0 4px">
+<span style="font-size:24px;color:rgba(255,255,255,.5)">Dia 0</span><span style="font-size:24px;color:rgba(255,255,255,.5)">Dia 4</span><span style="font-size:24px;color:rgba(255,255,255,.5)">Dia 9</span><span style="font-size:24px;color:rgba(255,255,255,.5)">Dia 17</span><span style="font-size:24px;color:rgba(255,255,255,.5)">Dia 20</span>
+</div>
+<div style="position:relative;height:14px;margin-bottom:28px">
+<div style="position:absolute;top:6px;left:0;right:0;height:2px;background:rgba(255,255,255,.14)"></div>
+<div style="position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between">
+<div style="width:14px;height:14px;border-radius:50%;background:var(--cy)"></div><div style="width:14px;height:14px;border-radius:50%;background:var(--cy)"></div><div style="width:14px;height:14px;border-radius:50%;background:var(--cy)"></div><div style="width:14px;height:14px;border-radius:50%;background:var(--cy)"></div><div style="width:14px;height:14px;border-radius:50%;background:var(--cy)"></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:22px;flex:1;align-items:start">
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:34px"><div style="font-size:24px;font-weight:600;color:var(--cy);margin-bottom:10px">01 · [N] dias</div><div style="font-size:31px;font-weight:700;color:#fff;margin-bottom:14px">[Fase 1]</div><div style="font-size:25px;color:rgba(255,255,255,.6);line-height:1.6">[Atividade] + [atividade] + [entregável da fase]</div></div>
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:34px"><div style="font-size:24px;font-weight:600;color:var(--cy);margin-bottom:10px">02 · [N] dias</div><div style="font-size:31px;font-weight:700;color:#fff;margin-bottom:14px">[Fase 2]</div><div style="font-size:25px;color:rgba(255,255,255,.6);line-height:1.6">[Atividade] + [atividade] + [entregável da fase]</div></div>
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:34px"><div style="font-size:24px;font-weight:600;color:var(--cy);margin-bottom:10px">03 · [N] dias</div><div style="font-size:31px;font-weight:700;color:#fff;margin-bottom:14px">[Fase 3]</div><div style="font-size:25px;color:rgba(255,255,255,.6);line-height:1.6">[Atividade] + [atividade] + [entregável da fase]</div></div>
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:34px"><div style="font-size:24px;font-weight:600;color:var(--cy);margin-bottom:10px">04 · [N] dias</div><div style="font-size:31px;font-weight:700;color:#fff;margin-bottom:14px">[Fase 4]</div><div style="font-size:25px;color:rgba(255,255,255,.6);line-height:1.6">[Atividade] + [atividade] + [entregável da fase]</div></div>
+</div>
+<div style="display:grid;grid-template-columns:1.9fr 1fr;gap:22px;margin-top:22px">
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:26px 30px;display:flex;gap:18px;align-items:center">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.8" style="flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 8v5" stroke-linecap="round"/><circle cx="12" cy="16.5" r=".6" fill="rgba(255,255,255,.5)"/></svg>
+<div><div style="font-size:26px;font-weight:700;color:#fff">Observação</div><div style="font-size:25px;color:rgba(255,255,255,.58);margin-top:3px">[Condição de prazo — ex.: considera respostas em até 24 horas úteis após cada fase.]</div></div>
+</div>
+<div style="background:var(--cy);border-radius:16px;padding:26px 30px;display:flex;gap:18px;align-items:center">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" style="flex-shrink:0"><path d="M5 3v18l7-5 7 5V3z"/></svg>
+<div><div style="font-size:26px;font-weight:700;color:#fff">Marco final</div><div style="font-size:25px;color:rgba(255,255,255,.85);margin-top:3px">[Entrega] · Dia [N]</div></div>
+</div>
+</div>
+</section>
+
+<!-- 07 INVESTIMENTO -->
+<section data-screen-label="07" style="background:#fff">
+<div class="hd">
+<div class="hdl"><span class="num" style="color:var(--t1)">07 <i>/ 10</i></span><span style="width:1px;height:20px;background:var(--ln)"></span><span class="lbl" style="color:var(--t3)">Investimento</span></div>
+<img src="../../uploads/03 fundo branco letra preta.png" class="mark" alt="Avraham">
+</div>
+<div style="display:grid;grid-template-columns:1fr 1.15fr;gap:60px;flex:1">
+<div style="display:flex;flex-direction:column;justify-content:space-between">
+<div>
+<div class="h1" style="color:var(--t1);font-size:62px">Quanto custa,</div>
+<div class="h1b" style="font-size:62px">e por quê.</div>
+<div class="cap" style="color:var(--t3);margin-top:32px;max-width:520px">Projeto <b style="color:var(--t1);font-weight:600">fechado em escopo</b>. [Condição comercial — ex.: sem fee recorrente, sem mensalidade.] [Direito de propriedade do cliente.]</div>
+<div style="background:var(--cy0);border-radius:16px;padding:26px 28px;display:flex;gap:18px;margin-top:32px;max-width:560px">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#067A68" stroke-width="1.8" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="9"/><path d="M12 8v5" stroke-linecap="round"/><circle cx="12" cy="16.5" r=".6" fill="#067A68"/></svg>
+<div><div style="font-size:26px;font-weight:700;color:#067A68">Compromisso</div><div style="font-size:25px;color:var(--t2);margin-top:4px;line-height:1.55">[Garantia comercial em uma frase — ex.: pagamento único, sem percentual sobre vendas.]</div></div>
+</div>
+</div>
+<div><div style="font-size:29px;font-weight:700;color:var(--t1)">[Cliente]</div><div style="font-size:25px;color:var(--t3);margin-top:4px">[Segmento] · [Cidade]</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="background:var(--cy0);border-radius:18px;padding:32px 34px">
+<div style="font-size:27px;font-weight:700;color:#067A68;margin-bottom:22px">[Pacote] · [Cliente] [Mês/Ano]</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px">
+<div><div style="font-size:28px;font-weight:700;color:var(--t1)">[Item principal]</div><div style="font-size:24px;color:var(--t3);margin-top:5px">[Composição resumida do escopo]</div></div>
+<div style="font-size:36px;font-weight:800;color:var(--t1);white-space:nowrap">R$ [0.000,00]</div>
+</div>
+</div>
+<div style="background:var(--off);border:1px solid var(--ln);border-radius:18px;padding:32px 34px;display:flex;flex-direction:column;gap:22px">
+<div style="font-size:27px;font-weight:700;color:var(--lav)">Opcionais · Adicionais</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px">
+<div><div style="font-size:28px;font-weight:700;color:var(--t1)">[Opcional 1]</div><div style="font-size:24px;color:var(--t3);margin-top:5px">[O que entrega]</div></div>
+<div style="font-size:29px;font-weight:700;color:var(--t1);white-space:nowrap">+ R$ [0.000,00]</div>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;border-top:1px solid var(--ln);padding-top:22px">
+<div><div style="font-size:28px;font-weight:700;color:var(--t1)">[Opcional 2]</div><div style="font-size:24px;color:var(--t3);margin-top:5px">[O que entrega]</div></div>
+<div style="font-size:29px;font-weight:700;color:var(--t1);white-space:nowrap">+ R$ [0.000,00]</div>
+</div>
+</div>
+<div style="background:#000;border-radius:18px;padding:32px 34px;display:flex;justify-content:space-between;align-items:center;gap:24px">
+<div><div style="font-size:29px;font-weight:700;color:#fff">Total · [escopo] sem opcionais</div><div style="font-size:24px;color:rgba(255,255,255,.55);margin-top:5px">Valores em reais, válidos por 30 dias a partir do envio.</div></div>
+<div style="text-align:right"><div style="font-size:22px;font-weight:600;color:var(--mint);letter-spacing:.1em;text-transform:uppercase">Você paga</div><div style="font-size:46px;font-weight:800;color:#fff;white-space:nowrap">R$ [0.000,00]</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 08 PAGAMENTO -->
+<section data-screen-label="08" style="background:#000">
+<div class="hd">
+<div class="hdl"><span class="num" style="color:#fff">08 <i>/ 10</i></span><span style="width:1px;height:20px;background:rgba(255,255,255,.18)"></span><span class="lbl" style="color:rgba(255,255,255,.55)">Condição de pagamento</span></div>
+<img src="../../uploads/logo-branca.svg" class="mark" alt="Avraham">
+</div>
+<div style="display:grid;grid-template-columns:1fr 1.2fr;gap:60px;flex:1;align-items:center">
+<div>
+<div class="h1" style="color:#fff;font-size:64px">Pagamento</div>
+<div class="h1" style="color:#fff;font-size:64px">simples,</div>
+<div class="h1b" style="font-size:64px">50% e 50%.</div>
+<div class="lead" style="color:rgba(255,255,255,.62);margin-top:30px">Claro, justo e sem surpresas.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:22px">
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:32px 34px;display:flex;gap:26px;align-items:center">
+<div style="width:62px;height:62px;border-radius:50%;background:var(--cy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:33px;font-weight:800;flex-shrink:0">1</div>
+<div><div style="font-size:33px;font-weight:700;color:#fff">50% na aprovação</div><div style="font-size:26px;color:rgba(255,255,255,.6);margin-top:5px">[Gatilho — ex.: início do projeto e reserva da equipe.]</div></div>
+</div>
+<div style="background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:32px 34px;display:flex;gap:26px;align-items:center">
+<div style="width:62px;height:62px;border-radius:50%;background:var(--cy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:33px;font-weight:800;flex-shrink:0">2</div>
+<div><div style="font-size:33px;font-weight:700;color:#fff">50% na entrega</div><div style="font-size:26px;color:rgba(255,255,255,.6);margin-top:5px">[Gatilho — ex.: após testes, indexação e projeto no ar.]</div></div>
+</div>
+<div style="background:rgba(11,188,162,.12);border:1px solid rgba(11,188,162,.28);border-radius:18px;padding:28px 34px;display:flex;gap:20px;align-items:center">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00eed0" stroke-width="1.8" style="flex-shrink:0"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20" stroke-linecap="round"/></svg>
+<div><div style="font-size:27px;font-weight:700;color:var(--mint)">Formas de pagamento</div><div style="font-size:26px;color:rgba(255,255,255,.72);margin-top:4px">Pix, transferência bancária ou boleto.</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 09 PROTÓTIPO -->
+<section data-screen-label="09" style="background:#000;overflow:hidden">
+<div style="position:absolute;bottom:-220px;right:-160px;width:880px;height:880px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(11,188,162,.26),rgba(11,188,162,.05) 48%,transparent 70%);pointer-events:none"></div>
+<div class="hd" style="position:relative;z-index:1">
+<div class="hdl"><span class="num" style="color:#fff">09 <i>/ 10</i></span><span style="width:1px;height:20px;background:rgba(255,255,255,.18)"></span><span class="lbl" style="color:rgba(255,255,255,.55)">Protótipo · Acesso exclusivo</span></div>
+<img src="../../uploads/logo-branca.svg" class="mark" alt="Avraham">
+</div>
+<div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:70px;flex:1;align-items:center">
+<div>
+<div class="h1" style="color:#fff;font-size:64px">Veja [o Cliente]</div>
+<div class="h1b" style="font-size:64px">já no ar.</div>
+<div class="lead" style="color:rgba(255,255,255,.62);margin-top:30px;max-width:620px">[Um protótipo navegável de verdade, no seu navegador. Clique, sinta o tom, valide o que faz sentido. Nada exportado em PDF.]</div>
+<div style="display:flex;align-items:center;gap:26px;margin-top:40px">
+<a href="#" class="btn">Abrir protótipo <span class="arw">→</span></a>
+<span style="font-size:25px;color:rgba(255,255,255,.5)">Abre em nova aba</span>
+</div>
+</div>
+<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:36px;backdrop-filter:blur(10px)">
+<div style="display:flex;gap:16px;align-items:flex-start;margin-bottom:24px">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="1.8" style="flex-shrink:0;margin-top:2px"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.5-4.5" stroke-linecap="round"/></svg>
+<div style="font-size:25px;color:rgba(255,255,255,.7);line-height:1.55">[Contexto da busca que o protótipo simula]<br>para [persona].</div>
+</div>
+<div style="background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;margin-bottom:26px">
+<span style="font-family:ui-monospace,monospace;font-size:36px;font-weight:700;color:#fff;letter-spacing:.06em">[CÓDIGO]</span>
+<span style="color:var(--mint);font-size:29px">→</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;gap:14px;align-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cy)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:26px;color:rgba(255,255,255,.75)">[Resultado 1]</span></div>
+<div style="display:flex;gap:14px;align-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cy)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:26px;color:rgba(255,255,255,.75)">[Resultado 2]</span></div>
+<div style="display:flex;gap:14px;align-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cy)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:26px;color:rgba(255,255,255,.75)">[Resultado 3]</span></div>
+<div style="display:flex;gap:14px;align-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cy)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:26px;color:rgba(255,255,255,.75)">[Resultado 4]</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 10 FECHAMENTO -->
+<section data-screen-label="10" style="background:#fff;overflow:hidden">
+<div style="position:absolute;bottom:-260px;right:-200px;width:820px;height:820px;border-radius:50%;background:radial-gradient(circle at 42% 42%,rgba(11,188,162,.16),rgba(11,188,162,.04) 50%,transparent 72%);pointer-events:none"></div>
+<div class="hd" style="position:relative;z-index:1">
+<div class="hdl"><span class="num" style="color:var(--t1)">10 <i>/ 10</i></span><span style="width:1px;height:20px;background:var(--ln)"></span><span class="lbl" style="color:var(--t3)">Vamos juntos?</span></div>
+<img src="../../uploads/03 fundo branco letra preta.png" class="mark" alt="Avraham">
+</div>
+<div style="position:relative;z-index:1;display:grid;grid-template-columns:1.5fr 1fr;gap:70px;flex:1;align-items:center">
+<div style="display:flex;flex-direction:column;gap:56px">
+<div>
+<div class="h1" style="color:var(--t1);font-size:64px">Pronto para transformar</div>
+<div class="h1" style="color:var(--t1);font-size:64px">[o que muda] de <span style="color:var(--cy);font-weight:700">[Cliente]?</span></div>
+<div class="lead" style="color:var(--t3);margin-top:28px">[Benefício 1]. [Benefício 2]. [Benefício 3].</div>
+<div style="display:flex;gap:20px;margin-top:44px">
+<a href="#" class="btn">Aprovar proposta <span class="arw">→</span></a>
+<a href="#" class="btn2">Falar com a equipe <span style="font-size:26px">💬</span></a>
+</div>
+</div>
+<div><div style="font-size:29px;font-weight:700;color:var(--t1)">[Cliente]</div><div style="font-size:25px;color:var(--t3);margin-top:4px">[Segmento] · [Cidade]</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:56px;align-items:flex-end;text-align:right">
+<div class="lead" style="color:var(--t2);max-width:280px">[Frase de posicionamento da Avraham em três linhas curtas.]</div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+<img src="../../uploads/03 fundo branco letra preta.png" style="height:34px" alt="Avraham">
+<div style="font-size:24px;color:var(--t3)">[Responsável] · [telefone] · [e-mail]</div>
+</div>
+</div>
+</div>
+</section>
+
+</deck-stage>
+</body>
+</html>

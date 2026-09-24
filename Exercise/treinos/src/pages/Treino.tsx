@@ -5,7 +5,7 @@ import { CheckItem } from '../components/CheckItem'
 import { ExerciseAccordion } from '../components/ExerciseAccordion'
 import { ProgressBar } from '../components/ProgressBar'
 import { ConfirmDialog } from '../components/ConfirmDialog'
-import workoutData from '../data/workouts/academia-1.json'
+import workoutsData from '../data/workouts.json'
 import exercisesData from '../data/exercises.json'
 import { Exercise, Workout, WorkoutExercise } from '../data/types'
 
@@ -15,8 +15,19 @@ export const Treino: React.FC = () => {
   const { getProgress, clearChecks } = useWorkoutStore()
   const [showConfirm, setShowConfirm] = useState(false)
 
-  // Mock: hardcoded para a amostra
-  const treino: Workout = workoutData as Workout
+  // Load workout dynamically from workouts.json
+  const treino = (workoutsData as Workout[]).find(w => w.id === treinoId)
+
+  if (!treino) {
+    return (
+      <div style={{ padding: '20px', textAlign: 'center', backgroundColor: '#1a1a1a', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div>
+          <p style={{ color: '#999', marginBottom: '16px' }}>Treino não encontrado</p>
+          <button onClick={() => navigate(-1)} style={{ padding: '8px 16px', backgroundColor: '#4CAF50', color: '#000', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Voltar</button>
+        </div>
+      </div>
+    )
+  }
   const exerciseMap = new Map<string, Exercise>(
     (exercisesData as any[]).map((ex) => [ex.id, ex])
   )

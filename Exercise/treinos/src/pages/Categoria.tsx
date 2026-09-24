@@ -1,42 +1,16 @@
 import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import categories from '../data/categories.json'
-
-// Simulação de treinos por categoria
-const treinesPorCategoria: Record<string, any[]> = {
-  'academia': [
-    {
-      id: 'academia-peito-triceps-rapido',
-      nome: 'Peito + Tríceps — Rápido',
-      duracao_min: 30,
-      duracao_max: 40,
-      nivel: 'intermediário'
-    }
-  ],
-  'forca': [
-    {
-      id: 'forca-completo',
-      nome: 'Força Completo',
-      duracao_min: 45,
-      duracao_max: 60,
-      nivel: 'avançado'
-    }
-  ],
-  'forca-util': [],
-  'militar': [],
-  'corpo-livre': [],
-  'corrida': [],
-  'condicionamento': [],
-  'mobilidade': [],
-  'rapido': []
-}
+import workoutsData from '../data/workouts.json'
+import { Workout } from '../data/types'
 
 export const Categoria: React.FC = () => {
   const { categoryId } = useParams<{ categoryId: string }>()
   const navigate = useNavigate()
 
   const category = categories.find((c) => c.id === categoryId)
-  const treinos = treinesPorCategoria[categoryId || ''] || []
+  // Dynamically filter workouts by category from workouts.json
+  const treinos = (workoutsData as Workout[]).filter(w => w.categoria === categoryId) || []
 
   if (!category) {
     return (

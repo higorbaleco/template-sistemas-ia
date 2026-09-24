@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react'
+import { Search } from 'lucide-react'
 import exercisesData from '../data/exercises.json'
 import { Exercise } from '../data/types'
-import { ExerciseAccordion } from '../components/ExerciseAccordion'
+import { ExerciseCard } from '../components/ExerciseCard'
 
 export const Exercicios: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -30,103 +31,86 @@ export const Exercicios: React.FC = () => {
   }, [searchTerm, selectedCategory])
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        backgroundColor: '#1a1a1a',
-        paddingBottom: '60px'
-      }}
-    >
+    <div className="flex flex-col h-screen bg-white dark:bg-neutral-950 pb-16">
       {/* Header */}
-      <div style={{ padding: '16px 20px', borderBottom: '1px solid #2a2a2a' }}>
-        <h1 style={{ fontSize: '24px', fontWeight: 600, marginBottom: '12px' }}>
+      <div className="p-6 border-b border-neutral-200 dark:border-neutral-800 space-y-4">
+        <h1 className="font-display text-2xl font-bold text-neutral-900 dark:text-neutral-50">
           Biblioteca de Exercícios
         </h1>
 
-        {/* Search */}
-        <input
-          type="text"
-          placeholder="Buscar exercício..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            width: '100%',
-            padding: '10px 12px',
-            backgroundColor: '#2a2a2a',
-            border: '1px solid #3a3a3a',
-            borderRadius: '6px',
-            color: '#f5f5f5',
-            fontSize: '14px',
-            marginBottom: '12px'
-          }}
-        />
+        {/* Search bar */}
+        <div className="relative">
+          <Search size={18} className="absolute left-3 top-3 text-neutral-400 dark:text-neutral-600" />
+          <input
+            type="text"
+            placeholder="Buscar exercício..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="
+              w-full pl-10 pr-4 py-2 rounded-lg
+              bg-neutral-100 dark:bg-neutral-800
+              border border-neutral-300 dark:border-neutral-700
+              text-neutral-900 dark:text-neutral-50
+              placeholder-neutral-500 dark:placeholder-neutral-400
+              focus:outline-none focus:ring-2 focus:ring-primary-500
+              transition-all
+            "
+          />
+        </div>
 
-        {/* Filter by category */}
-        <div style={{ overflowX: 'auto', paddingBottom: '4px' }}>
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        {/* Category filter pills */}
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`
+              px-4 py-2 rounded-full text-sm font-semibold
+              transition-all
+              ${!selectedCategory
+                ? 'bg-gradient-primary text-white'
+                : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-300 dark:hover:bg-neutral-700'
+              }
+            `}
+          >
+            Todas
+          </button>
+          {categories.map((cat) => (
             <button
-              onClick={() => setSelectedCategory(null)}
-              style={{
-                padding: '6px 12px',
-                backgroundColor:
-                  !selectedCategory ? '#4CAF50' : '#404040',
-                color: !selectedCategory ? '#1a1a1a' : '#999',
-                border: 'none',
-                borderRadius: '16px',
-                fontSize: '12px',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                transition: 'all 0.2s'
-              }}
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`
+                px-4 py-2 rounded-full text-sm font-semibold
+                transition-all whitespace-nowrap
+                ${selectedCategory === cat
+                  ? 'bg-gradient-primary text-white'
+                  : 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-300 dark:hover:bg-neutral-700'
+                }
+              `}
             >
-              Todas
+              {cat}
             </button>
-            {categories.map((cat: string) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat as string | null)}
-                style={{
-                  padding: '6px 12px',
-                  backgroundColor:
-                    selectedCategory === cat ? '#4CAF50' : '#404040',
-                  color: selectedCategory === cat ? '#1a1a1a' : '#999',
-                  border: 'none',
-                  borderRadius: '16px',
-                  fontSize: '12px',
-                  cursor: 'pointer',
-                  whiteSpace: 'nowrap',
-                  transition: 'all 0.2s'
-                }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* List */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px' }}>
+      {/* Exercise grid */}
+      <div className="flex-1 overflow-y-auto p-6">
         {filteredExercises.length === 0 ? (
-          <div
-            style={{
-              textAlign: 'center',
-              color: '#666',
-              paddingTop: '40px'
-            }}
-          >
-            <p>Nenhum exercício encontrado</p>
+          <div className="flex items-center justify-center h-full text-center">
+            <div className="space-y-2">
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Nenhum exercício encontrado
+              </p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-500">
+                Tente ajustar sua busca ou filtros
+              </p>
+            </div>
           </div>
         ) : (
-          <div style={{ display: 'grid', gap: '8px' }}>
+          <div className="grid grid-cols-1 gap-4">
             {filteredExercises.map((ex) => (
-              <ExerciseAccordion
+              <ExerciseCard
                 key={ex.id}
                 exercise={ex}
-                label={ex.nome}
-                description={ex.nome_secundario || ex.descricao}
               />
             ))}
           </div>

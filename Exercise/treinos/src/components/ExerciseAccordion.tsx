@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 import { Exercise } from '../data/types'
 
 interface ExerciseAccordionProps {
@@ -24,75 +25,74 @@ export const ExerciseAccordion: React.FC<ExerciseAccordionProps> = ({
   }
 
   return (
-    <div style={{ marginBottom: '12px' }}>
+    <div className="mb-3">
+      {/* Accordion header */}
       <div
         onClick={handleToggle}
-        style={{
-          padding: '12px 16px',
-          backgroundColor: '#2a2a2a',
-          borderRadius: '8px',
-          border: '1px solid #3a3a3a',
-          cursor: 'pointer',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          transition: 'background-color 0.2s'
-        }}
+        className="
+          p-3 rounded-lg
+          bg-neutral-100 dark:bg-neutral-800
+          border border-neutral-300 dark:border-neutral-700
+          cursor-pointer flex justify-between items-center
+          transition-colors hover:bg-neutral-200 dark:hover:bg-neutral-700
+        "
       >
         <div>
-          <div style={{ fontWeight: 500, fontSize: '15px', color: '#f5f5f5' }}>
+          <div className="font-semibold text-neutral-900 dark:text-neutral-50">
             {label}
           </div>
           {description && (
-            <div style={{ fontSize: '12px', color: '#999', marginTop: '2px' }}>
+            <div className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
               {description}
             </div>
           )}
         </div>
-        <div
-          style={{
-            fontSize: '18px',
-            transition: 'transform 0.2s',
-            transform: isOpen ? 'rotate(180deg)' : 'rotate(0)'
-          }}
-        >
-          ▼
-        </div>
+        <ChevronDown
+          size={20}
+          className={`
+            flex-shrink-0 text-neutral-600 dark:text-neutral-400
+            transition-transform duration-200
+            ${isOpen ? 'rotate-180' : 'rotate-0'}
+          `}
+        />
       </div>
 
+      {/* Accordion content */}
       {isOpen && (
         <div
-          style={{
-            padding: '12px 16px',
-            backgroundColor: '#242424',
-            borderRadius: '0 0 8px 8px',
-            borderLeft: '1px solid #3a3a3a',
-            borderRight: '1px solid #3a3a3a',
-            borderBottom: '1px solid #3a3a3a',
-            marginTop: '-4px'
-          }}
+          className="
+            p-4 rounded-b-lg
+            bg-neutral-50 dark:bg-neutral-900
+            border-l border-r border-b
+            border-neutral-300 dark:border-neutral-700
+            -mt-1 space-y-4
+          "
         >
-          <div style={{ marginBottom: '12px' }}>
-            <h4 style={{ fontSize: '13px', color: '#4CAF50', marginBottom: '6px' }}>
-              Como fazer
-            </h4>
-            <ol style={{ paddingLeft: '20px', color: '#ddd', fontSize: '13px', lineHeight: '1.6' }}>
-              {exercise.como_fazer?.map((step, i) => (
-                <li key={i} style={{ marginBottom: '4px' }}>
-                  {step}
-                </li>
-              ))}
-            </ol>
-          </div>
+          {/* How to do it */}
+          {exercise.como_fazer && exercise.como_fazer.length > 0 && (
+            <div>
+              <h4 className="text-sm font-semibold text-success dark:text-success mb-2">
+                Como fazer
+              </h4>
+              <ol className="list-decimal list-inside space-y-1 text-sm text-neutral-700 dark:text-neutral-300">
+                {exercise.como_fazer.map((step, i) => (
+                  <li key={i} className="text-sm">
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
 
+          {/* Common mistakes */}
           {exercise.erros_comuns && exercise.erros_comuns.length > 0 && (
-            <div style={{ marginBottom: '12px' }}>
-              <h4 style={{ fontSize: '13px', color: '#ff9800', marginBottom: '6px' }}>
+            <div>
+              <h4 className="text-sm font-semibold text-warning dark:text-warning mb-2">
                 Erros comuns
               </h4>
-              <ul style={{ paddingLeft: '20px', color: '#ddd', fontSize: '13px', lineHeight: '1.6' }}>
+              <ul className="list-disc list-inside space-y-1 text-sm text-neutral-700 dark:text-neutral-300">
                 {exercise.erros_comuns.map((error, i) => (
-                  <li key={i} style={{ marginBottom: '4px' }}>
+                  <li key={i} className="text-sm">
                     {error}
                   </li>
                 ))}
@@ -100,15 +100,21 @@ export const ExerciseAccordion: React.FC<ExerciseAccordionProps> = ({
             </div>
           )}
 
+          {/* Easier version */}
           {exercise.versao_facil && (
-            <div style={{ marginBottom: '8px', padding: '8px', backgroundColor: '#1a3a1a', borderRadius: '4px', fontSize: '13px', color: '#90EE90', borderLeft: '3px solid #4CAF50' }}>
-              <strong>Mais fácil:</strong> {exercise.versao_facil}
+            <div className="p-3 rounded-lg bg-success/10 border-l-4 border-success">
+              <p className="text-sm text-success font-semibold">
+                <strong>Mais fácil:</strong> {exercise.versao_facil}
+              </p>
             </div>
           )}
 
+          {/* Harder version */}
           {exercise.versao_dificil && (
-            <div style={{ padding: '8px', backgroundColor: '#3a1a1a', borderRadius: '4px', fontSize: '13px', color: '#ff6b6b', borderLeft: '3px solid #ff9800' }}>
-              <strong>Mais difícil:</strong> {exercise.versao_dificil}
+            <div className="p-3 rounded-lg bg-danger/10 border-l-4 border-danger">
+              <p className="text-sm text-danger font-semibold">
+                <strong>Mais difícil:</strong> {exercise.versao_dificil}
+              </p>
             </div>
           )}
         </div>

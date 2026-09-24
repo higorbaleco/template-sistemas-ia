@@ -1,7 +1,9 @@
 import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { ChevronLeft } from 'lucide-react'
 import categories from '../data/categories.json'
 import workoutsData from '../data/workouts.json'
+import { WorkoutCard } from '../components/WorkoutCard'
 import { Workout } from '../data/types'
 
 export const Categoria: React.FC = () => {
@@ -9,103 +11,62 @@ export const Categoria: React.FC = () => {
   const navigate = useNavigate()
 
   const category = categories.find((c) => c.id === categoryId)
-  // Dynamically filter workouts by category from workouts.json
   const treinos = (workoutsData as Workout[]).filter(w => w.categoria === categoryId) || []
 
   if (!category) {
     return (
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <p>Categoria não encontrada</p>
-        <button onClick={() => navigate('/')}>Voltar</button>
+      <div className="flex items-center justify-center h-screen bg-white dark:bg-neutral-950">
+        <div className="text-center space-y-4">
+          <p className="text-neutral-600 dark:text-neutral-400">Categoria não encontrada</p>
+          <button onClick={() => navigate('/')} className="btn-primary">
+            Voltar
+          </button>
+        </div>
       </div>
     )
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        backgroundColor: '#1a1a1a',
-        paddingBottom: '60px'
-      }}
-    >
-      <div style={{ padding: '16px 20px', borderBottom: '1px solid #2a2a2a' }}>
+    <div className="flex flex-col h-screen bg-white dark:bg-neutral-950 pb-16">
+      {/* Header */}
+      <div className="p-6 border-b border-neutral-200 dark:border-neutral-800 space-y-4">
         <button
           onClick={() => navigate('/')}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#4CAF50',
-            fontSize: '18px',
-            cursor: 'pointer',
-            marginBottom: '8px'
-          }}
+          className="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors"
         >
-          ← Voltar
+          <ChevronLeft size={20} />
+          Voltar
         </button>
-        <h1 style={{ fontSize: '24px', marginBottom: '4px' }}>{category.nome}</h1>
-        <p style={{ fontSize: '13px', color: '#999' }}>{category.descricao}</p>
+        <div>
+          <h1 className="font-display text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+            {category.nome}
+          </h1>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
+            {category.descricao}
+          </p>
+        </div>
       </div>
 
+      {/* Content */}
       {treinos.length === 0 ? (
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#666',
-            textAlign: 'center',
-            padding: '20px'
-          }}
-        >
-          <div>
-            <p style={{ fontSize: '14px', marginBottom: '8px' }}>Nenhum treino adicionado ainda nesta categoria.</p>
-            <p style={{ fontSize: '12px', color: '#555' }}>Em breve mais opções!</p>
+        <div className="flex-1 flex items-center justify-center text-center px-6">
+          <div className="space-y-2">
+            <p className="text-neutral-600 dark:text-neutral-400">
+              Nenhum treino adicionado ainda nesta categoria.
+            </p>
+            <p className="text-sm text-neutral-500 dark:text-neutral-500">
+              Em breve mais opções!
+            </p>
           </div>
         </div>
       ) : (
-        <div
-          style={{
-            flex: 1,
-            overflowY: 'auto',
-            padding: '16px 20px',
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '12px'
-          }}
-        >
+        <div className="flex-1 overflow-y-auto p-6 space-y-4">
           {treinos.map((treino) => (
-            <div
+            <WorkoutCard
               key={treino.id}
+              workout={treino}
               onClick={() => navigate(`/treino/${treino.id}`)}
-              style={{
-                padding: '16px',
-                backgroundColor: '#2a2a2a',
-                borderRadius: '8px',
-                border: '1px solid #3a3a3a',
-                cursor: 'pointer',
-                transition: 'all 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#333'
-                e.currentTarget.style.borderColor = '#4CAF50'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#2a2a2a'
-                e.currentTarget.style.borderColor = '#3a3a3a'
-              }}
-            >
-              <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>
-                {treino.nome}
-              </h3>
-              <div style={{ display: 'flex', gap: '12px', fontSize: '12px', color: '#999' }}>
-                <span>⏱️ {treino.duracao_min}-{treino.duracao_max} min</span>
-                <span>📊 {treino.nivel}</span>
-              </div>
-            </div>
+            />
           ))}
         </div>
       )}

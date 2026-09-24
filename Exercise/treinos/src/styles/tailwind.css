@@ -1,0 +1,128 @@
+/* Load Sora font for headings - must come before @tailwind */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base reset and theme configuration */
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  html {
+    @apply h-full w-full;
+    color-scheme: light dark;
+  }
+
+  body {
+    @apply h-full w-full;
+    @apply bg-white text-neutral-900;
+    @apply dark:bg-neutral-950 dark:text-neutral-50;
+    @apply font-sans transition-colors duration-300;
+    overflow: hidden;
+  }
+
+  #root {
+    @apply h-full w-full;
+  }
+
+  /* Headings use Sora font */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  /* Smooth transitions for theme changes */
+  html.transition {
+    @apply transition-colors duration-300;
+  }
+
+  html.transition,
+  html.transition *,
+  html.transition *::before,
+  html.transition *::after {
+    @apply !transition-colors !duration-300;
+  }
+}
+
+/* Accessible focus styles */
+@layer components {
+  .focus-ring {
+    @apply outline-none ring-2 ring-offset-2 ring-primary-500;
+  }
+
+  .dark .focus-ring {
+    @apply ring-offset-neutral-900;
+  }
+
+  /* Smooth scrolling for supported browsers */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Progress ring SVG styles */
+  .progress-ring {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+
+  .progress-ring__circle {
+    transition: stroke-dashoffset 0.35s;
+    transform-origin: 50% 50%;
+  }
+
+  /* Prevents text selection on icons/buttons while keeping accessible */
+  button, [role="button"] {
+    @apply select-none;
+  }
+
+  /* Ensures images don't overflow cards */
+  img {
+    @apply max-w-full;
+  }
+}
+
+/* Utility classes for common patterns */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  .glass {
+    @apply backdrop-blur-md bg-white/80 dark:bg-neutral-900/80;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-md bg-neutral-900/80;
+  }
+
+  .safe-area-inset {
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .ios-safe-bottom {
+    padding-bottom: calc(1rem + max(0px, env(safe-area-inset-bottom)));
+  }
+
+  /* Prevent zoom on iOS when focusing inputs */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Prefers reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

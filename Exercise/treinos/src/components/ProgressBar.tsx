@@ -12,32 +12,14 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   percent
 }) => {
   return (
-    <div style={{ padding: '16px', backgroundColor: '#2a2a2a', marginBottom: '16px' }}>
-      <div
-        style={{
-          marginBottom: '8px',
-          fontSize: '14px',
-          color: '#999'
-        }}
-      >
-        {done} de {total} etapas · {percent}%
+    <div className="px-6 py-4 bg-neutral-100 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
+      <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
+        {done} de {total} etapas · <span className="font-semibold text-primary-600 dark:text-primary-400">{percent}%</span>
       </div>
-      <div
-        style={{
-          width: '100%',
-          height: '8px',
-          backgroundColor: '#404040',
-          borderRadius: '4px',
-          overflow: 'hidden'
-        }}
-      >
+      <div className="w-full h-2 bg-neutral-300 dark:bg-neutral-700 rounded-full overflow-hidden">
         <div
-          style={{
-            height: '100%',
-            backgroundColor: '#4CAF50',
-            width: `${percent}%`,
-            transition: 'width 0.3s ease'
-          }}
+          className="h-full bg-gradient-primary rounded-full transition-all duration-300 ease-out"
+          style={{ width: `${percent}%` }}
         />
       </div>
     </div>

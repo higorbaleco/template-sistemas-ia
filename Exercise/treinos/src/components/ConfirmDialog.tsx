@@ -21,80 +21,35 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
 }) => {
   return (
     <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1000
-      }}
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
       onClick={onCancel}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        style={{
-          backgroundColor: '#2a2a2a',
-          borderRadius: '12px',
-          padding: '20px',
-          maxWidth: '280px',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8)'
-        }}
+        className="card-elevated max-w-sm space-y-4"
       >
-        <h3 style={{ marginBottom: '8px', fontSize: '16px', fontWeight: 600 }}>
+        <h3 className="font-display font-semibold text-lg text-neutral-900 dark:text-neutral-50">
           {title}
         </h3>
         {message && (
-          <p style={{ fontSize: '14px', color: '#999', marginBottom: '16px' }}>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {message}
           </p>
         )}
-        <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+        <div className="flex gap-2 justify-end pt-2">
           <button
             onClick={onCancel}
-            style={{
-              padding: '10px 16px',
-              backgroundColor: '#404040',
-              color: '#f5f5f5',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontWeight: 500,
-              transition: 'background-color 0.2s'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#505050'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#404040'
-            }}
+            className="btn-secondary px-4 py-2"
           >
             {cancelText}
           </button>
           <button
             onClick={onConfirm}
-            style={{
-              padding: '10px 16px',
-              backgroundColor: isDangerous ? '#d32f2f' : '#4CAF50',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontWeight: 500,
-              transition: 'background-color 0.2s'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = isDangerous ? '#e53935' : '#66BB6A'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = isDangerous ? '#d32f2f' : '#4CAF50'
-            }}
+            className={`px-4 py-2 font-semibold rounded-lg text-white transition-colors ${
+              isDangerous
+                ? 'bg-danger hover:bg-danger/90 active:bg-danger/80'
+                : 'bg-primary-600 hover:bg-primary-700 active:bg-primary-800'
+            }`}
           >
             {confirmText}
           </button>

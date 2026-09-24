@@ -1,4 +1,5 @@
 import React from 'react'
+import { Check } from 'lucide-react'
 import { useWorkoutStore } from '../lib/store'
 
 interface CheckItemProps {
@@ -30,46 +31,39 @@ export const CheckItem: React.FC<CheckItemProps> = ({
   return (
     <div
       onClick={handleChange}
-      style={{
-        padding: '12px 16px',
-        marginBottom: '8px',
-        borderRadius: '8px',
-        backgroundColor: isChecked ? '#2d5a2d' : '#2a2a2a',
-        border: isChecked ? '2px solid #4CAF50' : '2px solid #3a3a3a',
-        cursor: 'pointer',
-        transition: 'all 0.2s ease',
-        opacity: isChecked ? 0.7 : 1
-      }}
+      className={`
+        p-3 mb-2 rounded-lg
+        transition-all duration-200 cursor-pointer
+        ${isChecked
+          ? 'bg-success/20 border-2 border-success dark:bg-success/10'
+          : 'bg-neutral-100 dark:bg-neutral-800 border-2 border-neutral-300 dark:border-neutral-700'
+        }
+        ${isChecked ? 'opacity-70' : 'opacity-100 hover:opacity-90'}
+      `}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <div className="flex items-start gap-3">
+        {/* Checkbox */}
         <div
-          style={{
-            width: '20px',
-            height: '20px',
-            borderRadius: '4px',
-            backgroundColor: isChecked ? '#4CAF50' : '#404040',
-            border: isChecked ? 'none' : '2px solid #555',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-            fontSize: '14px'
-          }}
+          className={`
+            w-5 h-5 rounded-md flex-shrink-0
+            flex items-center justify-center
+            transition-all duration-200
+            ${isChecked
+              ? 'bg-success dark:bg-success/80'
+              : 'bg-neutral-300 dark:bg-neutral-600 border border-neutral-400 dark:border-neutral-500'
+            }
+          `}
         >
-          {isChecked && '✓'}
+          {isChecked && <Check size={16} className="text-white" strokeWidth={3} />}
         </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontWeight: 500, fontSize: '16px', color: '#f5f5f5' }}>
+
+        {/* Label and description */}
+        <div className="flex-1">
+          <div className="font-semibold text-neutral-900 dark:text-neutral-50">
             {label}
           </div>
           {description && (
-            <div
-              style={{
-                fontSize: '13px',
-                color: '#999',
-                marginTop: '4px'
-              }}
-            >
+            <div className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
               {description}
             </div>
           )}

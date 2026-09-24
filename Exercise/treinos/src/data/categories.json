@@ -3,54 +3,63 @@
     "id": "academia",
     "nome": "Academia",
     "descricao": "Máquinas, halteres e musculação.",
+    "icon": "Dumbbell",
     "ordem": 1
   },
   {
     "id": "forca",
     "nome": "Força",
     "descricao": "Treinos focados em ficar mais forte.",
+    "icon": "Zap",
     "ordem": 2
   },
   {
     "id": "forca-util",
     "nome": "Força Útil",
     "descricao": "Levantar, carregar, empurrar e sustentar peso.",
+    "icon": "Package",
     "ordem": 3
   },
   {
     "id": "militar",
     "nome": "Militar",
     "descricao": "Força, resistência e condicionamento.",
+    "icon": "Shield",
     "ordem": 4
   },
   {
     "id": "corpo-livre",
     "nome": "Corpo Livre",
     "descricao": "Treinos usando o próprio corpo.",
+    "icon": "Users",
     "ordem": 5
   },
   {
     "id": "corrida",
     "nome": "Corrida",
     "descricao": "Corrida, caminhada e condicionamento.",
+    "icon": "Wind",
     "ordem": 6
   },
   {
     "id": "condicionamento",
     "nome": "Condicionamento",
     "descricao": "Resistência e circuitos.",
+    "icon": "Activity",
     "ordem": 7
   },
   {
     "id": "mobilidade",
     "nome": "Mobilidade",
     "descricao": "Mobilidade, alongamento e recuperação.",
+    "icon": "Waves",
     "ordem": 8
   },
   {
     "id": "rapido",
     "nome": "Treino Rápido",
     "descricao": "Treinos para quando houver pouco tempo.",
+    "icon": "Zap",
     "ordem": 9
   }
 ]

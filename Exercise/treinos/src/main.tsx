@@ -1,6 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { App } from './App'
+import './styles/tailwind.css'
+
+// Theme initialization - run before React renders
+{
+  const savedTheme = localStorage.getItem('theme-preference')
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const theme = savedTheme || (prefersDark ? 'dark' : 'light')
+
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme-preference')) {
+      if (e.matches) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    }
+  })
+}
 
 // Register service worker for PWA offline support
 if ('serviceWorker' in navigator) {

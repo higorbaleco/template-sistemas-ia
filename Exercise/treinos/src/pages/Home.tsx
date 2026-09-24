@@ -1,7 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useWorkoutStore, type ProfileId } from '../lib/store'
+import { ThemeToggle } from '../components/ThemeToggle'
+import { CategoryCard } from '../components/CategoryCard'
 import categories from '../data/categories.json'
+import workouts from '../data/workouts.json'
 
 export const Home: React.FC = () => {
   const navigate = useNavigate()
@@ -15,139 +18,84 @@ export const Home: React.FC = () => {
     navigate(`/categoria/${categoryId}`)
   }
 
-  // Tela de seleção de perfil
+  // Count workouts per category
+  const workoutsByCategory = categories.reduce((acc, cat) => {
+    acc[cat.id] = workouts.filter(w => w.categoria === cat.id).length
+    return acc
+  }, {} as Record<string, number>)
+
+  // Profile selection screen
   if (!profileId) {
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100vh',
-          padding: '20px',
-          backgroundColor: '#1a1a1a'
-        }}
-      >
-        <h1 style={{ fontSize: '28px', marginBottom: '8px', textAlign: 'center' }}>
-          Catálogo de Treinos
-        </h1>
-        <p
-          style={{
-            fontSize: '14px',
-            color: '#999',
-            marginBottom: '40px',
-            textAlign: 'center'
-          }}
-        >
-          Escolha quem vai treinar
-        </p>
+      <div className="flex flex-col items-center justify-center h-screen p-6 bg-white dark:bg-neutral-950">
+        <div className="text-center space-y-4 w-full max-w-sm">
+          <h1 className="font-display text-4xl font-bold text-gradient">
+            Catálogo de Treinos
+          </h1>
+          <p className="text-neutral-600 dark:text-neutral-400 text-sm">
+            Escolha quem vai treinar
+          </p>
 
-        <div style={{ display: 'flex', gap: '16px', flexDirection: 'column', width: '100%', maxWidth: '280px' }}>
-          {(['higor', 'brenda'] as const).map((profile) => (
-            <button
-              key={profile}
-              onClick={() => handleSelectProfile(profile)}
-              style={{
-                padding: '16px 20px',
-                borderRadius: '8px',
-                border: 'none',
-                backgroundColor: profile === 'higor' ? '#1b5e20' : '#4a148c',
-                color: '#fff',
-                fontSize: '18px',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'all 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = '0.9'
-                e.currentTarget.style.transform = 'scale(1.02)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.opacity = '1'
-                e.currentTarget.style.transform = 'scale(1)'
-              }}
-            >
-              {profile.charAt(0).toUpperCase() + profile.slice(1)}
-            </button>
-          ))}
+          <div className="space-y-3 pt-8">
+            {(['higor', 'brenda'] as const).map((profile) => (
+              <button
+                key={profile}
+                onClick={() => handleSelectProfile(profile)}
+                className={`
+                  w-full py-4 px-6 rounded-xl font-semibold text-white
+                  transition-all duration-200 transform
+                  hover:scale-105 active:scale-95
+                  ${profile === 'higor'
+                    ? 'bg-gradient-to-r from-green-600 to-green-500'
+                    : 'bg-gradient-to-r from-purple-600 to-purple-500'
+                  }
+                `}
+              >
+                {profile.charAt(0).toUpperCase() + profile.slice(1)}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     )
   }
 
-  // Tela com categorias após escolher perfil
+  // Category grid screen
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        backgroundColor: '#1a1a1a',
-        paddingBottom: '60px'
-      }}
-    >
-      <div style={{ padding: '16px 20px', borderBottom: '1px solid #2a2a2a' }}>
-        <h1 style={{ fontSize: '20px', marginBottom: '4px' }}>
-          Olá, {profileId.charAt(0).toUpperCase() + profileId.slice(1)}
-        </h1>
-        <p style={{ fontSize: '14px', color: '#999' }}>O que vamos treinar hoje?</p>
+    <div className="flex flex-col h-screen bg-white dark:bg-neutral-950 pb-16">
+      {/* Header */}
+      <div className="p-6 border-b border-neutral-200 dark:border-neutral-800 space-y-4">
+        <div className="flex items-start justify-between">
+          <div>
+            <h1 className="font-display text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+              Olá, {profileId.charAt(0).toUpperCase() + profileId.slice(1)}
+            </h1>
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm mt-1">
+              O que vamos treinar hoje?
+            </p>
+          </div>
+          <ThemeToggle />
+        </div>
+
         <button
           onClick={() => {
             useWorkoutStore.setState({ profileId: null })
           }}
-          style={{
-            marginTop: '12px',
-            padding: '8px 12px',
-            backgroundColor: '#404040',
-            color: '#999',
-            border: 'none',
-            borderRadius: '6px',
-            fontSize: '12px',
-            cursor: 'pointer'
-          }}
+          className="btn-secondary text-sm"
         >
           Trocar perfil
         </button>
       </div>
 
-      <div
-        style={{
-          flex: 1,
-          overflowY: 'auto',
-          padding: '16px 20px',
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '12px',
-          alignContent: 'start'
-        }}
-      >
+      {/* Category grid */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-4">
         {categories.map((category) => (
-          <div
+          <CategoryCard
             key={category.id}
+            category={category}
+            workoutCount={workoutsByCategory[category.id]}
             onClick={() => handleChooseCategory(category.id)}
-            style={{
-              padding: '16px',
-              backgroundColor: '#2a2a2a',
-              borderRadius: '8px',
-              border: '1px solid #3a3a3a',
-              cursor: 'pointer',
-              transition: 'all 0.2s'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#333'
-              e.currentTarget.style.borderColor = '#4CAF50'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#2a2a2a'
-              e.currentTarget.style.borderColor = '#3a3a3a'
-            }}
-          >
-            <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '4px' }}>
-              {category.nome}
-            </h3>
-            <p style={{ fontSize: '13px', color: '#999' }}>{category.descricao}</p>
-          </div>
+          />
         ))}
       </div>
     </div>

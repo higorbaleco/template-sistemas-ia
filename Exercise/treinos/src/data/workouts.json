@@ -1,2005 +1,4750 @@
 [
   {
-    "id": "04-01",
-    "nome": "Full Body Base",
-    "descricao": "Hipertrofia geral",
-    "categoria": "hipertrofia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
+    "id": "academia-01-iniciante",
+    "nome": "Academia 01 — Iniciante",
+    "descricao": "Treino de academia nível iniciante, 15-25 min.",
+    "categoria": "academia",
+    "nivel": "iniciante",
+    "duracao_min": 15,
+    "duracao_max": 25,
     "equipamentos": [
-      "corpo-livre"
+      "barra",
+      "cabo",
+      "halteres",
+      "maquina"
     ],
-    "objetivo": "Hipertrofia geral",
-    "aquecimento": [],
+    "objetivo": "Desenvolver academia com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "seated-cable-rows",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
     "exercicios": [
       {
-        "exercise_id": "agachamento",
-        "series": 3,
+        "exercise_id": "decline-smith-press",
         "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "supino",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "exercise_id": "seated-palms-down-barbell-wrist-curl",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
       },
       {
-        "exercise_id": "remada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "exercise_id": "bent-over-dumbbell-rear-delt-raise-with-head-on-bench",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
       },
       {
-        "exercise_id": "rdl",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "exercise_id": "cable-hip-adduction",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
       },
       {
-        "exercise_id": "desenvolvimento",
+        "exercise_id": "triceps-overhead-extension-with-rope",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
         "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
       },
       {
-        "exercise_id": "core",
-        "series": 3,
+        "exercise_id": "cable-rope-overhead-triceps-extension",
         "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "bosu-ball-cable-crunch-with-side-bends",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "academia-02-intermediario",
+    "nome": "Academia 02 — Intermediário",
+    "descricao": "Treino de academia nível intermediário, 20-30 min.",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 20,
+    "duracao_max": 30,
+    "equipamentos": [
+      "barra",
+      "cabo",
+      "halteres",
+      "outros"
+    ],
+    "objetivo": "Desenvolver academia com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "wide-grip-lat-pulldown",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "dumbbell-one-arm-upright-row",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "barbell-deadlift",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "bent-over-two-arm-long-bar-row",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "lying-face-down-plate-neck-resistance",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "lying-cable-curl",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "barbell-shoulder-press",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "elevated-cable-rows",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "board-press",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
       }
     ],
     "finalizacao": []
   },
   {
-    "id": "04-02",
-    "nome": "Full Body Máquinas",
-    "descricao": "Academia/iniciante",
+    "id": "academia-03-avancado",
+    "nome": "Academia 03 — Avançado",
+    "descricao": "Treino de academia nível avançado, 25-35 min.",
+    "categoria": "academia",
+    "nivel": "avançado",
+    "duracao_min": 25,
+    "duracao_max": 35,
+    "equipamentos": [
+      "barra"
+    ],
+    "objetivo": "Desenvolver academia com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "incline-bench-pull",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "bench-press-with-chains",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "split-snatch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "clean-and-jerk",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "hang-snatch-below-knees",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "zercher-squats",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "overhead-squat",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "speed-squats",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "bent-arm-dumbbell-pullover",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "academia-04-iniciante",
+    "nome": "Academia 04 — Iniciante",
+    "descricao": "Treino de academia nível iniciante, 30-40 min.",
+    "categoria": "academia",
+    "nivel": "iniciante",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "bola-medicinal",
+      "cabo",
+      "halteres",
+      "maquina",
+      "outros"
+    ],
+    "objetivo": "Desenvolver academia com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "cable-seated-lateral-raise",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "close-grip-front-lat-pulldown",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "machine-bicep-curl",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "sled-overhead-triceps-extension",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "decline-dumbbell-bench-press",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "triceps-pushdown-rope-attachment",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "chair-squat",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "one-arm-medicine-ball-slam",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "dumbbell-squat",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "academia-05-intermediario",
+    "nome": "Academia 05 — Intermediário",
+    "descricao": "Treino de academia nível intermediário, 30-45 min.",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 45,
+    "equipamentos": [
+      "barra",
+      "barra-w",
+      "cabo",
+      "halteres",
+      "kettlebell",
+      "outros"
+    ],
+    "objetivo": "Desenvolver academia com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "bradford-rocky-presses",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "power-snatch-from-blocks",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "rope-climb",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "dumbbell-lying-one-arm-rear-lateral-raise",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "kettlebell-thruster",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "bodyweight-flyes",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "overhead-cable-curl",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "snatch-shrug",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "barbell-rollout-from-bench",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "incline-dumbbell-flyes",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "academia-06-avancado",
+    "nome": "Academia 06 — Avançado",
+    "descricao": "Treino de academia nível avançado, 35-50 min.",
+    "categoria": "academia",
+    "nivel": "avançado",
+    "duracao_min": 35,
+    "duracao_max": 50,
+    "equipamentos": [
+      "barra",
+      "kettlebell"
+    ],
+    "objetivo": "Desenvolver academia com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "kneeling-high-pulley-row",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "snatch-from-blocks",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "power-jerk",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "one-arm-overhead-kettlebell-squats",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "press-sit-up",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "split-snatch",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "one-leg-barbell-squat",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "one-arm-kettlebell-split-snatch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "academia-07-iniciante",
+    "nome": "Academia 07 — Iniciante",
+    "descricao": "Treino de academia nível iniciante, 40-55 min.",
+    "categoria": "academia",
+    "nivel": "iniciante",
+    "duracao_min": 40,
+    "duracao_max": 55,
+    "equipamentos": [
+      "cabo",
+      "halteres",
+      "kettlebell",
+      "outros"
+    ],
+    "objetivo": "Desenvolver academia com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "pull-through",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "kettlebell-pirate-ships",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "cable-iron-cross",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "one-arm-flat-bench-dumbbell-flye",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "svend-press",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "standing-olympic-plate-hand-squeeze",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "standing-alternating-dumbbell-press",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "academia-08-intermediario",
+    "nome": "Academia 08 — Intermediário",
+    "descricao": "Treino de academia nível intermediário, 45-60 min.",
     "categoria": "academia",
     "nivel": "intermediário",
     "duracao_min": 45,
     "duracao_max": 60,
     "equipamentos": [
-      "máquina"
+      "barra",
+      "cabo",
+      "halteres",
+      "kettlebell",
+      "outros"
     ],
-    "objetivo": "Academia/iniciante",
-    "aquecimento": [],
+    "objetivo": "Desenvolver academia com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "power-partials",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
     "exercicios": [
       {
-        "exercise_id": "leg-press",
-        "series": 3,
+        "exercise_id": "reverse-flyes-with-external-rotation",
         "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "chest-press",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "exercise_id": "barbell-step-ups",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
       },
       {
-        "exercise_id": "puxada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "exercise_id": "chain-press",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
       },
       {
-        "exercise_id": "flexora",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "exercise_id": "one-arm-kettlebell-military-press-to-the-side",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
       },
       {
-        "exercise_id": "shoulder-press",
+        "exercise_id": "lying-cable-curl",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
         "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
       },
       {
-        "exercise_id": "abdominal",
-        "series": 3,
+        "exercise_id": "double-kettlebell-push-press",
         "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "descanso": "60-90s",
+        "series": 3
       }
     ],
     "finalizacao": []
   },
   {
-    "id": "04-03",
-    "nome": "Full Body Halteres",
-    "descricao": "Livre/estabilidade",
+    "id": "forca-01-iniciante",
+    "nome": "Força 01 — Iniciante",
+    "descricao": "Treino de força nível iniciante, 15-25 min.",
+    "categoria": "forca",
+    "nivel": "iniciante",
+    "duracao_min": 15,
+    "duracao_max": 25,
+    "equipamentos": [
+      "barra",
+      "cabo",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver força com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "single-dumbbell-raise",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "reverse-crunch",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "one-arm-high-pulley-cable-side-bends",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "barbell-curl",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "standing-palms-up-barbell-behind-the-back-wrist-curl",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "bent-over-low-pulley-side-lateral",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "standing-dumbbell-straight-arm-front-delt-raise-above-head",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "forca-02-intermediario",
+    "nome": "Força 02 — Intermediário",
+    "descricao": "Treino de força nível intermediário, 20-30 min.",
+    "categoria": "forca",
+    "nivel": "intermediário",
+    "duracao_min": 20,
+    "duracao_max": 30,
+    "equipamentos": [
+      "barra",
+      "halteres",
+      "kettlebell",
+      "maquina"
+    ],
+    "objetivo": "Desenvolver força com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "physioball-hip-bridge",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "good-morning-off-pins",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "reverse-hyperextension",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "hang-clean",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "one-arm-kettlebell-row",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "lying-dumbbell-tricep-extension",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "one-arm-kettlebell-jerk",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "forca-03-avancado",
+    "nome": "Força 03 — Avançado",
+    "descricao": "Treino de força nível avançado, 25-35 min.",
+    "categoria": "forca",
+    "nivel": "avançado",
+    "duracao_min": 25,
+    "duracao_max": 35,
+    "equipamentos": [
+      "barra",
+      "kettlebell"
+    ],
+    "objetivo": "Desenvolver força com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "standing-overhead-barbell-triceps-extension",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "bent-press",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "hang-snatch-below-knees",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "overhead-squat",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "zercher-squats",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "bent-over-barbell-row",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "forca-04-iniciante",
+    "nome": "Força 04 — Iniciante",
+    "descricao": "Treino de força nível iniciante, 30-40 min.",
+    "categoria": "forca",
+    "nivel": "iniciante",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "halteres",
+      "outros"
+    ],
+    "objetivo": "Desenvolver força com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "sled-reverse-flye",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "wrist-roller",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "tricep-dumbbell-kickback",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "incline-dumbbell-bench-with-palms-facing-in",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "standing-dumbbell-press",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "forca-05-intermediario",
+    "nome": "Força 05 — Intermediário",
+    "descricao": "Treino de força nível intermediário, 30-45 min.",
+    "categoria": "forca",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 45,
+    "equipamentos": [
+      "barra",
+      "cabo",
+      "kettlebell",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver força com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "plie-dumbbell-squat",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "flat-bench-cable-flyes",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "romanian-deadlift",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "jefferson-squats",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "suspended-fallout",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "rack-pulls",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "gorilla-chin-crunch",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "alternating-kettlebell-row",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "machine-triceps-extension",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "forca-06-avancado",
+    "nome": "Força 06 — Avançado",
+    "descricao": "Treino de força nível avançado, 35-50 min.",
+    "categoria": "forca",
+    "nivel": "avançado",
+    "duracao_min": 35,
+    "duracao_max": 50,
+    "equipamentos": [
+      "barra",
+      "kettlebell"
+    ],
+    "objetivo": "Desenvolver força com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "glute-kickback",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "snatch-from-blocks",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "box-squat-with-chains",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "plyo-kettlebell-pushups",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "barbell-squat-to-a-bench",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "front-barbell-squat",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "forca-07-iniciante",
+    "nome": "Força 07 — Iniciante",
+    "descricao": "Treino de força nível iniciante, 40-55 min.",
+    "categoria": "forca",
+    "nivel": "iniciante",
+    "duracao_min": 40,
+    "duracao_max": 55,
+    "equipamentos": [
+      "cabo",
+      "halteres",
+      "maquina",
+      "outros"
+    ],
+    "objetivo": "Desenvolver força com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "close-grip-dumbbell-press",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "dumbbell-squat",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "lying-leg-curls",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "low-pulley-row-to-neck",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "reverse-plate-curls",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "bent-over-two-dumbbell-row",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "reverse-crunch",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "forca-08-intermediario",
+    "nome": "Força 08 — Intermediário",
+    "descricao": "Treino de força nível intermediário, 45-60 min.",
+    "categoria": "forca",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "barra",
+      "halteres",
+      "kettlebell",
+      "maquina",
+      "outros"
+    ],
+    "objetivo": "Desenvolver força com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "shoulder-press-with-bands",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "narrow-stance-leg-press",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "farmers-walk",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "sumo-deadlift-with-chains",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "clean",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "split-jerk",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "kettlebell-sumo-high-pull",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "standing-palms-in-dumbbell-press",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "forca-util-01-iniciante",
+    "nome": "Força Útil 01 — Iniciante",
+    "descricao": "Treino de força útil nível iniciante, 15-25 min.",
+    "categoria": "forca-util",
+    "nivel": "iniciante",
+    "duracao_min": 15,
+    "duracao_max": 25,
+    "equipamentos": [
+      "kettlebell",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver força útil com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "cocoons",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "sandbag-load",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "goblet-squat",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "extended-range-one-arm-kettlebell-floor-press",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "pushups",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "suspended-row",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "flutter-kicks",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "double-kettlebell-push-press",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "forca-util-02-intermediario",
+    "nome": "Força Útil 02 — Intermediário",
+    "descricao": "Treino de força útil nível intermediário, 20-30 min.",
+    "categoria": "forca-util",
+    "nivel": "intermediário",
+    "duracao_min": 20,
+    "duracao_max": 30,
+    "equipamentos": [
+      "kettlebell",
+      "outros"
+    ],
+    "objetivo": "Desenvolver força útil com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "incline-push-up-wide",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "keg-load",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "gironda-sternum-chins",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "kettlebell-seesaw-press",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "alternating-hang-clean",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "forca-util-03-avancado",
+    "nome": "Força Útil 03 — Avançado",
+    "descricao": "Treino de força útil nível avançado, 25-35 min.",
+    "categoria": "forca-util",
+    "nivel": "avançado",
+    "duracao_min": 25,
+    "duracao_max": 35,
+    "equipamentos": [
+      "kettlebell",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver força útil com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "pullups",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "bent-press",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "double-kettlebell-snatch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "open-palm-kettlebell-clean",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "alternating-renegade-row",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "plyo-kettlebell-pushups",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "hanging-pike",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "mixed-grip-chin",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "handstand-push-ups",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "natural-glute-ham-raise",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "forca-util-04-iniciante",
+    "nome": "Força Útil 04 — Iniciante",
+    "descricao": "Treino de força útil nível iniciante, 30-40 min.",
+    "categoria": "forca-util",
+    "nivel": "iniciante",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver força útil com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "pushups",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "pushups-close-and-wide-hand-positions",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "step-up-with-knee-raise",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "inverted-row-with-straps",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "wind-sprints",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "pullups",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "forca-util-05-intermediario",
+    "nome": "Força Útil 05 — Intermediário",
+    "descricao": "Treino de força útil nível intermediário, 30-45 min.",
+    "categoria": "forca-util",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 45,
+    "equipamentos": [
+      "kettlebell",
+      "outros"
+    ],
+    "objetivo": "Desenvolver força útil com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "glute-kickback",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "ring-dips",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "weighted-pull-ups",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "one-arm-kettlebell-split-jerk",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "one-arm-kettlebell-swings",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "clock-push-up",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "forca-util-06-avancado",
+    "nome": "Força Útil 06 — Avançado",
+    "descricao": "Treino de força útil nível avançado, 35-50 min.",
+    "categoria": "forca-util",
+    "nivel": "avançado",
+    "duracao_min": 35,
+    "duracao_max": 50,
+    "equipamentos": [
+      "kettlebell",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver força útil com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "bodyweight-squat",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "one-arm-kettlebell-split-snatch",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "hanging-pike",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "alternating-renegade-row",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "circus-bell",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "atlas-stones",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "one-arm-overhead-kettlebell-squats",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "kettlebell-pistol-squat",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "forca-util-07-iniciante",
+    "nome": "Força Útil 07 — Iniciante",
+    "descricao": "Treino de força útil nível iniciante, 40-55 min.",
+    "categoria": "forca-util",
+    "nivel": "iniciante",
+    "duracao_min": 40,
+    "duracao_max": 55,
+    "equipamentos": [
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver força útil com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "3-4-sit-up",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "elbow-to-knee",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "parallel-bar-dip",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "backward-drag",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "battling-ropes",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "yoke-walk",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "forca-util-08-intermediario",
+    "nome": "Força Útil 08 — Intermediário",
+    "descricao": "Treino de força útil nível intermediário, 45-60 min.",
+    "categoria": "forca-util",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "kettlebell",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver força útil com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "suspended-push-up",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "two-arm-kettlebell-military-press",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "double-kettlebell-alternating-hang-clean",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "one-arm-kettlebell-military-press-to-the-side",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "atlas-stone-trainer",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "close-grip-push-up-off-of-a-dumbbell",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "militar-01-iniciante",
+    "nome": "Militar 01 — Iniciante",
+    "descricao": "Treino de militar nível iniciante, 15-25 min.",
+    "categoria": "militar",
+    "nivel": "iniciante",
+    "duracao_min": 15,
+    "duracao_max": 25,
+    "equipamentos": [
+      "bola-medicinal",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver militar com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "incline-push-up-wide",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "sandbag-load",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "isometric-wipers",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "chest-push-multiple-response",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "side-hop-sprint",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "elbow-to-knee",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "pushups-close-and-wide-hand-positions",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "militar-02-intermediario",
+    "nome": "Militar 02 — Intermediário",
+    "descricao": "Treino de militar nível intermediário, 20-30 min.",
+    "categoria": "militar",
+    "nivel": "intermediário",
+    "duracao_min": 20,
+    "duracao_max": 30,
+    "equipamentos": [
+      "maquina",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver militar com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "heavy-bag-thrust",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "drop-push",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "yoke-walk",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "skating",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "keg-load",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "hyperextensions-with-no-hyperextension-bench",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "step-mill",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "tire-flip",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "militar-03-avancado",
+    "nome": "Militar 03 — Avançado",
+    "descricao": "Treino de militar nível avançado, 25-35 min.",
+    "categoria": "militar",
+    "nivel": "avançado",
+    "duracao_min": 25,
+    "duracao_max": 35,
+    "equipamentos": [
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver militar com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "medicine-ball-scoop-throw",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "circus-bell",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "atlas-stones",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "hanging-pike",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "handstand-push-ups",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "elbow-to-knee",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "militar-04-iniciante",
+    "nome": "Militar 04 — Iniciante",
+    "descricao": "Treino de militar nível iniciante, 30-40 min.",
+    "categoria": "militar",
+    "nivel": "iniciante",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "bola-medicinal",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver militar com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "v-bar-pullup",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "alternate-leg-diagonal-bound",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "dead-bug",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "pullups",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "incline-push-up-wide",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "chest-push-from-3-point-stance",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "single-leg-stride-jump",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "push-ups-with-feet-elevated",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "backward-drag",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "militar-05-intermediario",
+    "nome": "Militar 05 — Intermediário",
+    "descricao": "Treino de militar nível intermediário, 30-45 min.",
+    "categoria": "militar",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 45,
+    "equipamentos": [
+      "halteres",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver militar com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "incline-push-up-reverse-grip",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "power-stairs",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "close-grip-push-up-off-of-a-dumbbell",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "rickshaw-deadlift",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "skating",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "dumbbell-seated-box-jump",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "linear-depth-jump",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "forward-drag-with-press",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "wide-grip-rear-pull-up",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "incline-push-up",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "militar-06-avancado",
+    "nome": "Militar 06 — Avançado",
+    "descricao": "Treino de militar nível avançado, 35-50 min.",
+    "categoria": "militar",
+    "nivel": "avançado",
+    "duracao_min": 35,
+    "duracao_max": 50,
+    "equipamentos": [
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver militar com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "supine-two-arm-overhead-throw",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "handstand-push-ups",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "hanging-pike",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "atlas-stones",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "circus-bell",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "militar-07-iniciante",
+    "nome": "Militar 07 — Iniciante",
+    "descricao": "Treino de militar nível iniciante, 40-55 min.",
+    "categoria": "militar",
+    "nivel": "iniciante",
+    "duracao_min": 40,
+    "duracao_max": 55,
+    "equipamentos": [
+      "bola-medicinal",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver militar com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "crucifix",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "trail-running-walking",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "knee-tuck-jump",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "spider-crawl",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "supine-one-arm-overhead-throw",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "depth-jump-leap",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "supine-two-arm-overhead-throw",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "militar-08-intermediario",
+    "nome": "Militar 08 — Intermediário",
+    "descricao": "Treino de militar nível intermediário, 45-60 min.",
+    "categoria": "militar",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "halteres",
+      "maquina",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver militar com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "cross-body-crunch",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "rickshaw-deadlift",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "axle-deadlift",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "atlas-stone-trainer",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "russian-twist",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "dumbbell-seated-box-jump",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "keg-load",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "stairmaster",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "corpo-livre-01-iniciante",
+    "nome": "Corpo Livre 01 — Iniciante",
+    "descricao": "Treino de corpo livre nível iniciante, 15-25 min.",
+    "categoria": "corpo-livre",
+    "nivel": "iniciante",
+    "duracao_min": 15,
+    "duracao_max": 25,
+    "equipamentos": [
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver corpo livre com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "side-leg-raises",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "lateral-bound",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "pushups-close-and-wide-hand-positions",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "wrist-circles",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "leg-pull-in",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "butt-lift-bridge",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "glute-kickback",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "cross-body-crunch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "hip-circles-prone",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "double-leg-butt-kick",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "corpo-livre-02-intermediario",
+    "nome": "Corpo Livre 02 — Intermediário",
+    "descricao": "Treino de corpo livre nível intermediário, 20-30 min.",
+    "categoria": "corpo-livre",
+    "nivel": "intermediário",
+    "duracao_min": 20,
+    "duracao_max": 30,
+    "equipamentos": [
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver corpo livre com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "wind-sprints",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "freehand-jump-squat",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "frog-sit-ups",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "groiners",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "russian-twist",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "all-fours-quad-stretch",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "single-arm-push-up",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "corpo-livre-03-avancado",
+    "nome": "Corpo Livre 03 — Avançado",
+    "descricao": "Treino de corpo livre nível avançado, 25-35 min.",
+    "categoria": "corpo-livre",
+    "nivel": "avançado",
+    "duracao_min": 25,
+    "duracao_max": 35,
+    "equipamentos": [
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver corpo livre com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "scissor-kick",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "hanging-leg-raise",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "seated-glute",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "overhead-triceps",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "seated-biceps",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "lying-prone-quadriceps",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "seated-front-deltoid",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "dead-bug",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "corpo-livre-04-iniciante",
+    "nome": "Corpo Livre 04 — Iniciante",
+    "descricao": "Treino de corpo livre nível iniciante, 30-40 min.",
+    "categoria": "corpo-livre",
+    "nivel": "iniciante",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver corpo livre com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "elbow-to-knee",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "tuck-crunch",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "knee-circles",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "chin-up",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "plank",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "reverse-crunch",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "plyo-push-up",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "butt-lift-bridge",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "corpo-livre-05-intermediario",
+    "nome": "Corpo Livre 05 — Intermediário",
+    "descricao": "Treino de corpo livre nível intermediário, 30-45 min.",
+    "categoria": "corpo-livre",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 45,
+    "equipamentos": [
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver corpo livre com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "wind-sprints",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "close-grip-push-up-off-of-a-dumbbell",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "all-fours-quad-stretch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "body-up",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "groiners",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "frog-sit-ups",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "crunches",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "corpo-livre-06-avancado",
+    "nome": "Corpo Livre 06 — Avançado",
+    "descricao": "Treino de corpo livre nível avançado, 35-50 min.",
+    "categoria": "corpo-livre",
+    "nivel": "avançado",
+    "duracao_min": 35,
+    "duracao_max": 50,
+    "equipamentos": [
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver corpo livre com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "90-90-hamstring",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "seated-glute",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "seated-biceps",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "lying-prone-quadriceps",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "hanging-leg-raise",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "lying-glute",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "seated-front-deltoid",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "overhead-triceps",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "handstand-push-ups",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "corpo-livre-07-iniciante",
+    "nome": "Corpo Livre 07 — Iniciante",
+    "descricao": "Treino de corpo livre nível iniciante, 40-55 min.",
+    "categoria": "corpo-livre",
+    "nivel": "iniciante",
+    "duracao_min": 40,
+    "duracao_max": 55,
+    "equipamentos": [
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver corpo livre com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "hip-circles-prone",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "side-leg-raises",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "dead-bug",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "push-up-to-side-plank",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "flat-bench-leg-pull-in",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "all-fours-quad-stretch",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "corpo-livre-08-intermediario",
+    "nome": "Corpo Livre 08 — Intermediário",
+    "descricao": "Treino de corpo livre nível intermediário, 45-60 min.",
     "categoria": "corpo-livre",
     "nivel": "intermediário",
     "duracao_min": 45,
     "duracao_max": 60,
     "equipamentos": [
-      "halteres"
+      "peso-do-corpo"
     ],
-    "objetivo": "Livre/estabilidade",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "goblet-squat",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "supino-halteres",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada-unilateral",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "rdl",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "desenvolvimento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "farmer-carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-04",
-    "nome": "Full Body Barra",
-    "descricao": "Força",
-    "categoria": "forca",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "corpo-livre"
-    ],
-    "objetivo": "Força",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "supino",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "terra",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "desenvolvimento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-05",
-    "nome": "Força Real",
-    "descricao": "Força funcional",
-    "categoria": "forca",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "barra",
-      "corpo-livre"
-    ],
-    "objetivo": "Força funcional",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "terra",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "barra-fixa",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "farmer-carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "bear-hug-carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "flexo",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-06",
-    "nome": "Carregar Gente",
-    "descricao": "Força cotidiana",
-    "categoria": "forca",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [],
-    "objetivo": "Força cotidiana",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "zercher-squat",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "bear-hug-carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "front-carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "suitcase-carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "levantamento-do-cho",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-07",
-    "nome": "Calistenia Base",
-    "descricao": "Peso corporal",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "corpo-livre"
-    ],
-    "objetivo": "Peso corporal",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "flexo",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada-invertida",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "avano",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "prancha",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "dead-hang",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-08",
-    "nome": "Calistenia Forte",
-    "descricao": "Domínio corporal",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "barra",
-      "corpo-livre"
-    ],
-    "objetivo": "Domínio corporal",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "barra-fixa",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "dips",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "flexo-declinada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "bulgarian-squat",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "hanging-knee-raise",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-09",
-    "nome": "Militar Básico",
-    "descricao": "Condicionamento",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "corpo-livre"
-    ],
-    "objetivo": "Condicionamento",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "flexo",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "avano",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "burpee",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "mountain-climber",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "prancha",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-10",
-    "nome": "Combat Ready",
-    "descricao": "Potência + resistência",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [],
-    "objetivo": "Potência + resistência",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "kettlebell-swing",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "push-press",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "goblet-squat",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "burpee",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-11",
-    "nome": "Strongman Light",
-    "descricao": "Força bruta",
-    "categoria": "forca",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [],
-    "objetivo": "Força bruta",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "sandbag-lift",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "bear-hug-carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "farmer-walk",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "sled-push",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "levantamento-terra",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-12",
-    "nome": "30 Min Hipertrofia",
-    "descricao": "Ganho muscular",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "máquina"
-    ],
-    "objetivo": "Ganho muscular",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "leg-press",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "supino",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "puxada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "flexora",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "lateral",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "bcepstrceps",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-13",
-    "nome": "30 Min Força",
-    "descricao": "Carga/progressão",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "corpo-livre"
-    ],
-    "objetivo": "Carga/progressão",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "supino",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "terraremada-carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-14",
-    "nome": "30 Min Metabólico",
-    "descricao": "Alto gasto energético",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "corpo-livre"
-    ],
-    "objetivo": "Alto gasto energético",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "goblet-squat",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "flexo",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "swing",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "caminhada-carregada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "bike",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-15",
-    "nome": "Upper Bias",
-    "descricao": "Tronco",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "corpo-livre"
-    ],
-    "objetivo": "Tronco",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "supino",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "puxada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "desenvolvimento-agachamento-e-posterior-reduzidos",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-16",
-    "nome": "Lower Bias",
-    "descricao": "Pernas/glúteos",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "corpo-livre"
-    ],
-    "objetivo": "Pernas/glúteos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "rdl",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "avano",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "panturrilha-supino-e-remada-reduzidos",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-17",
-    "nome": "Posterior & Pegada",
-    "descricao": "Costas/posterior/antebraço",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "barra"
-    ],
-    "objetivo": "Costas/posterior/antebraço",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "terra",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "barra",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "rdl",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "farmer-carry",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "dead-hang",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-18",
-    "nome": "Atleta Híbrido",
-    "descricao": "Força + cardio",
-    "categoria": "forca",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "barra",
-      "corpo-livre"
-    ],
-    "objetivo": "Força + cardio",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "supino",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "barraremada",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "terra-corridabike-curta",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-19",
-    "nome": "Minimalista 5",
-    "descricao": "Máximo com pouco tempo",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "corpo-livre"
-    ],
-    "objetivo": "Máximo com pouco tempo",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "hinge",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "empurrar",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "puxar",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "carregar",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "04-20",
-    "nome": "Sobrevivência Física",
-    "descricao": "Capacidade geral",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [],
-    "objetivo": "Capacidade geral",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "levantar-peso-do-cho",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "carregar",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "empurrar",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "puxar",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "agachar",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "locomover",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      }
-    ],
-    "finalizacao": []
-  },
-  {
-    "id": "05-01",
-    "nome": "Peito + Tríceps --- Rápido",
-    "descricao": "Treino de Peito + Tríceps --- Rápido com intensidade média",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 30,
-    "duracao_max": 40,
-    "equipamentos": [
-      "halteres",
-      "corda"
-    ],
-    "objetivo": "Rápido - 30-40 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "supino-reto",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "supino-inclinado-com-halteres",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "crossover",
-        "series": 3,
-        "repeticoes": "10-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "trceps-corda",
-        "series": 3,
-        "repeticoes": "10-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "trceps-francs",
-        "series": 3,
-        "repeticoes": "10-12",
-        "descanso": "60-90s"
-      }
-    ]
-  },
-  {
-    "id": "05-02",
-    "nome": "Peito + Tríceps --- Pesado",
-    "descricao": "Treino de Peito + Tríceps --- Pesado com intensidade alta",
-    "categoria": "academia",
-    "nivel": "avançado",
-    "duracao_min": 60,
-    "duracao_max": 75,
-    "equipamentos": [
-      "halteres",
-      "corda"
-    ],
-    "objetivo": "Pesado - 60-75 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "supino-reto",
-        "series": 4,
-        "repeticoes": "6-10",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "supino-inclinado-com-halteres",
-        "series": 4,
+    "objetivo": "Desenvolver corpo livre com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "incline-push-up-medium",
+        "series": 1,
         "repeticoes": "8-10",
-        "descanso": "90-120s"
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "freehand-jump-squat",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "crucifixo-inclinado",
-        "series": 3,
-        "repeticoes": "10-12",
-        "descanso": "90-120s"
+        "exercise_id": "close-grip-push-up-off-of-a-dumbbell",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
       },
       {
-        "exercise_id": "crossover",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "90-120s"
+        "exercise_id": "gorilla-chin-crunch",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
       },
       {
-        "exercise_id": "flexo",
-        "series": 3,
+        "exercise_id": "clock-push-up",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "groiners",
         "repeticoes": "máximo técnico",
-        "descanso": "90-120s"
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
       },
       {
-        "exercise_id": "trceps-testa",
-        "series": 3,
+        "exercise_id": "decline-crunch",
         "repeticoes": "8-12",
-        "descanso": "90-120s"
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "corrida-01-iniciante",
+    "nome": "Corrida 01 — Iniciante",
+    "descricao": "Treino de corrida nível iniciante, 15-25 min.",
+    "categoria": "corrida",
+    "nivel": "iniciante",
+    "duracao_min": 15,
+    "duracao_max": 25,
+    "equipamentos": [
+      "maquina",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver corrida com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "walking-treadmill",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "single-cone-sprint-drill",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "trceps-corda",
+        "exercise_id": "front-box-jump",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "bicycling-stationary",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "running-treadmill",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "single-leg-lateral-hop",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
         "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "90-120s"
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "lateral-bound",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "rocket-jump",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "prowler-sprint",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "stride-jump-crossover",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
       }
     ]
   },
   {
-    "id": "05-03",
-    "nome": "Costas + Bíceps --- Rápido",
-    "descricao": "Treino de Costas + Bíceps --- Rápido com intensidade média",
-    "categoria": "academia",
+    "id": "corrida-02-intermediario",
+    "nome": "Corrida 02 — Intermediário",
+    "descricao": "Treino de corrida nível intermediário, 20-30 min.",
+    "categoria": "corrida",
     "nivel": "intermediário",
-    "duracao_min": 30,
-    "duracao_max": 40,
-    "equipamentos": [
-      "halteres"
-    ],
-    "objetivo": "Rápido - 30-40 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "puxador-frontal",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada-baixa",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada-unilateral-com-halter",
-        "series": 3,
-        "repeticoes": "8-12/cada",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "rosca-direta",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "rosca-martelo",
-        "series": 3,
-        "repeticoes": "10-12",
-        "descanso": "60-90s"
-      }
-    ]
-  },
-  {
-    "id": "05-04",
-    "nome": "Costas + Bíceps --- Pesado",
-    "descricao": "Treino de Costas + Bíceps --- Pesado com intensidade alta",
-    "categoria": "academia",
-    "nivel": "avançado",
-    "duracao_min": 60,
-    "duracao_max": 75,
-    "equipamentos": [
-      "barra"
-    ],
-    "objetivo": "Pesado - 60-75 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "puxador-frontal",
-        "series": 4,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "remada-curvada-com-barra",
-        "series": 4,
-        "repeticoes": "6-10",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "remada-baixa",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "remada-unilateral",
-        "series": 3,
-        "repeticoes": "8-12/cada",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "pulldown-braos-estendidos",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "rosca-direta",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "rosca-martelo",
-        "series": 3,
-        "repeticoes": "10-12",
-        "descanso": "90-120s"
-      }
-    ]
-  },
-  {
-    "id": "05-05",
-    "nome": "Pernas --- Rápido",
-    "descricao": "Treino de Pernas --- Rápido com intensidade média",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 30,
-    "duracao_max": 40,
-    "equipamentos": [
-      "máquina"
-    ],
-    "objetivo": "Rápido - 30-40 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "leg-press",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "mesa-flexora",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "cadeira-extensora",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "panturrilha",
-        "series": 3,
-        "repeticoes": "15-20",
-        "descanso": "60-90s"
-      }
-    ]
-  },
-  {
-    "id": "05-06",
-    "nome": "Pernas --- Pesado Completo",
-    "descricao": "Treino de Pernas --- Pesado Completo com intensidade alta",
-    "categoria": "academia",
-    "nivel": "avançado",
-    "duracao_min": 70,
-    "duracao_max": 90,
-    "equipamentos": [
-      "máquina"
-    ],
-    "objetivo": "Pesado Completo - 70-90 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 4,
-        "repeticoes": "6-10",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "leg-press",
-        "series": 4,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "afundo-blgaro",
-        "series": 3,
-        "repeticoes": "8-12/cada",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "stiff",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "mesa-flexora",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "cadeira-extensora",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "panturrilha",
-        "series": 4,
-        "repeticoes": "15-20",
-        "descanso": "90-120s"
-      }
-    ]
-  },
-  {
-    "id": "05-07",
-    "nome": "Posterior + Glúteos",
-    "descricao": "Treino de Posterior + Glúteos com intensidade média/alta",
-    "categoria": "academia",
-    "nivel": "avançado",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "máquina"
-    ],
-    "objetivo": "Posterior + Glúteos - 45-60 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "stiff",
-        "series": 4,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "afundo-blgaro",
-        "series": 3,
-        "repeticoes": "8-12/cada",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "mesa-flexora",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "glteo-na-polia",
-        "series": 3,
-        "repeticoes": "10-15/cada",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "abdutora",
-        "series": 3,
-        "repeticoes": "12-20",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "panturrilha",
-        "series": 4,
-        "repeticoes": "15-20",
-        "descanso": "60-90s"
-      }
-    ]
-  },
-  {
-    "id": "05-08",
-    "nome": "Quadríceps + Panturrilha",
-    "descricao": "Treino de Quadríceps + Panturrilha com intensidade média/alta",
-    "categoria": "academia",
-    "nivel": "avançado",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "máquina"
-    ],
-    "objetivo": "Quadríceps + Panturrilha - 45-60 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 4,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "leg-press",
-        "series": 4,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "afundo",
-        "series": 3,
-        "repeticoes": "10/cada",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "cadeira-extensora",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "panturrilha-em-p",
-        "series": 4,
-        "repeticoes": "15-20",
-        "descanso": "60-90s"
-      }
-    ]
-  },
-  {
-    "id": "05-09",
-    "nome": "Ombros + Abdômen",
-    "descricao": "Treino de Ombros + Abdômen com intensidade média",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 40,
-    "duracao_max": 50,
+    "duracao_min": 20,
+    "duracao_max": 30,
     "equipamentos": [
       "halteres",
-      "corda"
+      "maquina",
+      "outros",
+      "peso-do-corpo"
     ],
-    "objetivo": "Ombros + Abdômen - 40-50 minutos",
-    "aquecimento": [],
-    "exercicios": [
+    "objetivo": "Desenvolver corrida com foco em consistência e técnica.",
+    "aquecimento": [
       {
-        "exercise_id": "desenvolvimento-com-halteres",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "elevao-lateral",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "crucifixo-invertido",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "elevao-frontal",
-        "series": 2,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "abdominal-na-corda",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "prancha",
-        "series": 3,
-        "repeticoes": "30-60 s",
-        "descanso": "60-90s"
+        "exercise_id": "incline-push-up-depth-jump",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
       }
-    ]
-  },
-  {
-    "id": "05-10",
-    "nome": "Upper Body --- Corpo Superior",
-    "descricao": "Treino de Upper Body --- Corpo Superior com intensidade média",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 50,
-    "duracao_max": 65,
-    "equipamentos": [
-      "corda"
     ],
-    "objetivo": "Corpo Superior - 50-65 minutos",
-    "aquecimento": [],
     "exercicios": [
       {
-        "exercise_id": "supino-reto",
-        "series": 3,
+        "exercise_id": "step-mill",
         "repeticoes": "8-12",
-        "descanso": "90-120s"
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "puxador-frontal",
+        "exercise_id": "elliptical-trainer",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "rope-jumping",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "dumbbell-seated-box-jump",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "skating",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
         "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "bench-jump",
         "repeticoes": "8-12",
-        "descanso": "90-120s"
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "remada-baixa",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "desenvolvimento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "elevao-lateral",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "rosca-martelo",
-        "series": 2,
-        "repeticoes": "10-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "trceps-corda",
-        "series": 2,
-        "repeticoes": "10-12",
-        "descanso": "90-120s"
+        "exercise_id": "rowing-stationary",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
       }
-    ]
+    ],
+    "finalizacao": []
   },
   {
-    "id": "05-11",
-    "nome": "Full Body --- 30 Minutos",
-    "descricao": "Treino de Full Body --- 30 Minutos com intensidade média",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 30,
-    "duracao_max": 30,
-    "equipamentos": [],
-    "objetivo": "30 Minutos - 30-30 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "supino-reto",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada-baixa",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "desenvolvimento",
-        "series": 2,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "prancha",
-        "series": 3,
-        "repeticoes": "30-45 s",
-        "descanso": "60-90s"
-      }
-    ]
-  },
-  {
-    "id": "05-12",
-    "nome": "Full Body --- Completo",
-    "descricao": "Treino de Full Body --- Completo com intensidade média/alta",
-    "categoria": "academia",
+    "id": "corrida-03-avancado",
+    "nome": "Corrida 03 — Avançado",
+    "descricao": "Treino de corrida nível avançado, 25-35 min.",
+    "categoria": "corrida",
     "nivel": "avançado",
-    "duracao_min": 60,
-    "duracao_max": 75,
-    "equipamentos": [],
-    "objetivo": "Completo - 60-75 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "stiff",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "supino-reto",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "puxador-frontal",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "remada-baixa",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "desenvolvimento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "farmers-walk",
-        "series": 3,
-        "repeticoes": "30-60 s",
-        "descanso": "90-120s"
-      }
-    ]
-  },
-  {
-    "id": "05-13",
-    "nome": "Full Body --- Dia de Preguiça",
-    "descricao": "Treino de Full Body --- Dia de Preguiça com intensidade leve",
-    "categoria": "academia",
-    "nivel": "iniciante",
     "duracao_min": 25,
     "duracao_max": 35,
     "equipamentos": [
-      "máquina"
+      "bola-medicinal",
+      "halteres",
+      "outros"
     ],
-    "objetivo": "Dia de Preguiça - 25-35 minutos",
-    "aquecimento": [],
-    "exercicios": [
+    "objetivo": "Desenvolver corrida com foco em consistência e técnica.",
+    "aquecimento": [
       {
-        "exercise_id": "leg-press",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "supino-mquina",
-        "series": 3,
-        "repeticoes": "10-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "puxador-frontal",
-        "series": 3,
-        "repeticoes": "10-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada-baixa",
-        "series": 2,
-        "repeticoes": "10-12",
-        "descanso": "60-90s"
-      }
-    ]
-  },
-  {
-    "id": "05-14",
-    "nome": "Força Funcional",
-    "descricao": "Treino de Força Funcional com intensidade alta",
-    "categoria": "forca",
-    "nivel": "avançado",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "halteres"
-    ],
-    "objetivo": "Força Funcional - 45-60 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "agachamento",
-        "series": 4,
-        "repeticoes": "6-8",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "stiff",
-        "series": 3,
+        "exercise_id": "lateral-bound",
+        "series": 1,
         "repeticoes": "8-10",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "flexo",
-        "series": 3,
-        "repeticoes": "máximo técnico",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada-com-halter",
-        "series": 3,
-        "repeticoes": "8-12/cada",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "farmers-walk",
-        "series": 4,
-        "repeticoes": "30-60 s",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "prancha",
-        "series": 3,
-        "repeticoes": "45-60 s",
-        "descanso": "60-90s"
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
       }
-    ]
-  },
-  {
-    "id": "05-15",
-    "nome": "Militar / Peso Corporal",
-    "descricao": "Treino de Militar / Peso Corporal com intensidade variável",
-    "categoria": "forca",
-    "nivel": "intermediário",
-    "duracao_min": 35,
-    "duracao_max": 50,
-    "equipamentos": [
-      "barra",
-      "peso corporal"
     ],
-    "objetivo": "Militar / Peso Corporal - 35-50 minutos",
-    "aquecimento": [],
     "exercicios": [
       {
-        "exercise_id": "flexo",
-        "series": 4,
+        "exercise_id": "alternate-leg-diagonal-bound",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "dumbbell-seated-box-jump",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "front-box-jump",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "trail-running-walking",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "side-hop-sprint",
         "repeticoes": "máximo técnico",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "agachamento-livre-sem-carga",
-        "series": 4,
-        "repeticoes": "15-20",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "afundo",
+        "descanso": "60s",
         "series": 3,
-        "repeticoes": "10-15/cada",
-        "descanso": "60-90s"
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
       },
       {
-        "exercise_id": "barra-fixa-assistida-ou-puxador",
-        "series": 4,
-        "repeticoes": "6-12",
-        "descanso": "60-90s"
+        "exercise_id": "chest-push-with-run-release",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "prancha",
-        "series": 3,
-        "repeticoes": "45-60 s",
-        "descanso": "60-90s"
+        "exercise_id": "single-leg-stride-jump",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "bicycling",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
       }
-    ]
-  },
-  {
-    "id": "05-16",
-    "nome": "Força para a Vida Real",
-    "descricao": "Treino de Força para a Vida Real com intensidade média/alta",
-    "categoria": "forca",
-    "nivel": "avançado",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "halteres"
     ],
-    "objetivo": "Força para a Vida Real - 45-60 minutos",
-    "aquecimento": [],
-    "exercicios": [
+    "finalizacao": [
       {
-        "exercise_id": "agachamento-goblet",
-        "series": 4,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "levantamento-stiff-com-halteres",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "farmers-walk",
-        "series": 4,
-        "repeticoes": "30-60 s",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada-unilateral",
-        "series": 3,
-        "repeticoes": "10/cada",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "flexo",
-        "series": 3,
-        "repeticoes": "máximo técnico",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "carregada-unilateral-de-halter",
-        "series": 3,
-        "repeticoes": "30-45 s/cada",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "prancha",
-        "series": 3,
-        "repeticoes": "45 s",
-        "descanso": "60-90s"
-      }
-    ]
-  },
-  {
-    "id": "05-17",
-    "nome": "Push --- Empurrar",
-    "descricao": "Treino de Push --- Empurrar com intensidade média",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [
-      "corda"
-    ],
-    "objetivo": "Empurrar - 45-60 minutos",
-    "aquecimento": [],
-    "exercicios": [
-      {
-        "exercise_id": "supino-reto",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "supino-inclinado",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "desenvolvimento",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "elevao-lateral",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "trceps-corda",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "flexo",
+        "exercise_id": "stride-jump-crossover",
         "series": 2,
-        "repeticoes": "máximo técnico",
-        "descanso": "60-90s"
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
       }
     ]
   },
   {
-    "id": "05-18",
-    "nome": "Pull --- Puxar",
-    "descricao": "Treino de Pull --- Puxar com intensidade média",
-    "categoria": "academia",
-    "nivel": "intermediário",
-    "duracao_min": 45,
-    "duracao_max": 60,
-    "equipamentos": [],
-    "objetivo": "Puxar - 45-60 minutos",
-    "aquecimento": [],
+    "id": "corrida-04-iniciante",
+    "nome": "Corrida 04 — Iniciante",
+    "descricao": "Treino de corrida nível iniciante, 30-40 min.",
+    "categoria": "corrida",
+    "nivel": "iniciante",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "bola-medicinal",
+      "maquina",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver corrida com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "carioca-quick-step",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
     "exercicios": [
       {
-        "exercise_id": "puxador-frontal",
-        "series": 3,
+        "exercise_id": "split-jump",
         "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "remada-baixa",
+        "exercise_id": "chest-push-with-run-release",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "bicycling-stationary",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "lateral-box-jump",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "trail-running-walking",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
         "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "front-box-jump",
         "repeticoes": "8-12",
-        "descanso": "60-90s"
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "remada-unilateral",
-        "series": 3,
-        "repeticoes": "8-12/cada",
-        "descanso": "60-90s"
+        "exercise_id": "bench-sprint",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
       },
       {
-        "exercise_id": "crucifixo-invertido",
-        "series": 3,
-        "repeticoes": "10-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "rosca-direta",
-        "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "rosca-martelo",
-        "series": 3,
-        "repeticoes": "10-12",
-        "descanso": "60-90s"
+        "exercise_id": "side-hop-sprint",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
       }
-    ]
+    ],
+    "finalizacao": []
   },
   {
-    "id": "05-19",
-    "nome": "Metabólico + Cardio",
-    "descricao": "Treino de Metabólico + Cardio com intensidade média/alta",
-    "categoria": "condicionamento",
-    "nivel": "avançado",
+    "id": "corrida-05-intermediario",
+    "nome": "Corrida 05 — Intermediário",
+    "descricao": "Treino de corrida nível intermediário, 30-45 min.",
+    "categoria": "corrida",
+    "nivel": "intermediário",
     "duracao_min": 30,
     "duracao_max": 45,
     "equipamentos": [
-      "halteres"
+      "maquina",
+      "outros",
+      "peso-do-corpo"
     ],
-    "objetivo": "Metabólico + Cardio - 30-45 minutos",
-    "aquecimento": [],
+    "objetivo": "Desenvolver corrida com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "moving-claw-series",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
     "exercicios": [
       {
-        "exercise_id": "agachamento-goblet",
-        "series": 3,
-        "repeticoes": "12",
-        "descanso": "60-90s"
+        "exercise_id": "stairmaster",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "flexo",
-        "series": 3,
-        "repeticoes": "8-15",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "remada-baixa",
-        "series": 3,
-        "repeticoes": "12",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "afundo",
-        "series": 3,
-        "repeticoes": "10/cada",
-        "descanso": "60-90s"
-      },
-      {
-        "exercise_id": "desenvolvimento-com-halteres",
-        "series": 3,
+        "exercise_id": "bench-jump",
         "repeticoes": "10",
-        "descanso": "60-90s"
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "skating",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "step-mill",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "linear-depth-jump",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "elliptical-trainer",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "rope-jumping",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "rowing-stationary",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "single-leg-lateral-hop",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
       }
     ]
   },
   {
-    "id": "05-20",
-    "nome": "Treinão Brabo",
-    "descricao": "Treino de Treinão Brabo com intensidade alta",
-    "categoria": "academia",
+    "id": "corrida-06-avancado",
+    "nome": "Corrida 06 — Avançado",
+    "descricao": "Treino de corrida nível avançado, 35-50 min.",
+    "categoria": "corrida",
     "nivel": "avançado",
-    "duracao_min": 75,
-    "duracao_max": 90,
+    "duracao_min": 35,
+    "duracao_max": 50,
     "equipamentos": [
-      "corda"
+      "maquina",
+      "outros",
+      "peso-do-corpo"
     ],
-    "objetivo": "Treinão Brabo - 75-90 minutos",
-    "aquecimento": [],
+    "objetivo": "Desenvolver corrida com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "walking-treadmill",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
     "exercicios": [
       {
-        "exercise_id": "agachamento",
-        "series": 4,
-        "repeticoes": "6-10",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "supino-reto",
-        "series": 4,
-        "repeticoes": "6-10",
-        "descanso": "90-120s"
-      },
-      {
-        "exercise_id": "puxador-frontal",
-        "series": 4,
+        "exercise_id": "single-leg-lateral-hop",
         "repeticoes": "8-12",
-        "descanso": "90-120s"
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "stiff",
+        "exercise_id": "side-hop-sprint",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "single-cone-sprint-drill",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "jogging-treadmill",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "single-leg-hop-progression",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
         "series": 3,
-        "repeticoes": "8-12",
-        "descanso": "90-120s"
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
       },
       {
-        "exercise_id": "remada-baixa",
-        "series": 3,
+        "exercise_id": "knee-tuck-jump",
         "repeticoes": "8-12",
-        "descanso": "90-120s"
+        "descanso": "60-90s",
+        "series": 3
       },
       {
-        "exercise_id": "desenvolvimento",
-        "series": 3,
+        "exercise_id": "single-leg-stride-jump",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "front-cone-hops-or-hurdle-hops",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "condicionamento-01-iniciante",
+    "nome": "Condicionamento 01 — Iniciante",
+    "descricao": "Treino de condicionamento nível iniciante, 15-25 min.",
+    "categoria": "condicionamento",
+    "nivel": "iniciante",
+    "duracao_min": 15,
+    "duracao_max": 25,
+    "equipamentos": [
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver condicionamento com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "medicine-ball-chest-pass",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "double-leg-butt-kick",
         "repeticoes": "8-12",
-        "descanso": "90-120s"
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "single-leg-lateral-hop",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "crucifix",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "side-to-side-box-shuffle",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "single-leg-push-off",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "prowler-sprint",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "carioca-quick-step",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "return-push-from-stance",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "condicionamento-02-intermediario",
+    "nome": "Condicionamento 02 — Intermediário",
+    "descricao": "Treino de condicionamento nível intermediário, 20-30 min.",
+    "categoria": "condicionamento",
+    "nivel": "intermediário",
+    "duracao_min": 20,
+    "duracao_max": 30,
+    "equipamentos": [
+      "halteres",
+      "outros"
+    ],
+    "objetivo": "Desenvolver condicionamento com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "front-box-jump",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "dumbbell-seated-box-jump",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "tire-flip",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "forward-drag-with-press",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "car-deadlift",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "condicionamento-03-avancado",
+    "nome": "Condicionamento 03 — Avançado",
+    "descricao": "Treino de condicionamento nível avançado, 25-35 min.",
+    "categoria": "condicionamento",
+    "nivel": "avançado",
+    "duracao_min": 25,
+    "duracao_max": 35,
+    "equipamentos": [
+      "bola-medicinal",
+      "outros"
+    ],
+    "objetivo": "Desenvolver condicionamento com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "chest-push-with-run-release",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "chest-push-single-response",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "front-cone-hops-or-hurdle-hops",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "chest-push-multiple-response",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "return-push-from-stance",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
       },
       {
         "exercise_id": "farmers-walk",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
         "series": 3,
-        "repeticoes": "45-60 s",
-        "descanso": "90-120s"
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
       },
       {
-        "exercise_id": "abdominal-na-corda",
-        "series": 3,
-        "repeticoes": "12-15",
-        "descanso": "90-120s"
+        "exercise_id": "yoke-walk",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "power-stairs",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
       }
     ]
+  },
+  {
+    "id": "condicionamento-04-iniciante",
+    "nome": "Condicionamento 04 — Iniciante",
+    "descricao": "Treino de condicionamento nível iniciante, 30-40 min.",
+    "categoria": "condicionamento",
+    "nivel": "iniciante",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "bola-medicinal",
+      "maquina",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver condicionamento com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "sled-push",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "front-cone-hops-or-hurdle-hops",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "lateral-bound",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "walking-treadmill",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "single-leg-butt-kick",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "supine-chest-throw",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "single-cone-sprint-drill",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "return-push-from-stance",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "condicionamento-05-intermediario",
+    "nome": "Condicionamento 05 — Intermediário",
+    "descricao": "Treino de condicionamento nível intermediário, 30-45 min.",
+    "categoria": "condicionamento",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 45,
+    "equipamentos": [
+      "maquina",
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver condicionamento com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "sled-push",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "linear-depth-jump",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "keg-load",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "bench-jump",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "atlas-stone-trainer",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "rowing-stationary",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "rickshaw-carry",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "condicionamento-06-avancado",
+    "nome": "Condicionamento 06 — Avançado",
+    "descricao": "Treino de condicionamento nível avançado, 35-50 min.",
+    "categoria": "condicionamento",
+    "nivel": "avançado",
+    "duracao_min": 35,
+    "duracao_max": 50,
+    "equipamentos": [
+      "bola-medicinal",
+      "outros"
+    ],
+    "objetivo": "Desenvolver condicionamento com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "plyo-push-up",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "medicine-ball-full-twist",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "lateral-box-jump",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "sandbag-load",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "sled-push",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "condicionamento-07-iniciante",
+    "nome": "Condicionamento 07 — Iniciante",
+    "descricao": "Treino de condicionamento nível iniciante, 40-55 min.",
+    "categoria": "condicionamento",
+    "nivel": "iniciante",
+    "duracao_min": 40,
+    "duracao_max": 55,
+    "equipamentos": [
+      "bola-medicinal",
+      "outros"
+    ],
+    "objetivo": "Desenvolver condicionamento com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "supine-chest-throw",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "box-skip",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "chest-push-with-run-release",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "lateral-box-jump",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "chest-push-single-response",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "catch-and-overhead-throw",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "medicine-ball-chest-pass",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "medicine-ball-full-twist",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "bicycling",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "farmers-walk",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "condicionamento-08-intermediario",
+    "nome": "Condicionamento 08 — Intermediário",
+    "descricao": "Treino de condicionamento nível intermediário, 45-60 min.",
+    "categoria": "condicionamento",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "maquina",
+      "outros"
+    ],
+    "objetivo": "Desenvolver condicionamento com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "supine-chest-throw",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "conans-wheel",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "power-stairs",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "farmers-walk",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "log-lift",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "yoke-walk",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "rowing-stationary",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "mobilidade-01-iniciante",
+    "nome": "Mobilidade 01 — Iniciante",
+    "descricao": "Treino de mobilidade nível iniciante, 15-25 min.",
+    "categoria": "mobilidade",
+    "nivel": "iniciante",
+    "duracao_min": 15,
+    "duracao_max": 25,
+    "equipamentos": [
+      "bola-de-exercicio",
+      "outros"
+    ],
+    "objetivo": "Desenvolver mobilidade com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "one-half-locust",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "standing-gastrocnemius-calf-stretch",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "one-knee-to-chest",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "chest-stretch-on-stability-ball",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "middle-back-stretch",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "chair-leg-extended-stretch",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "hug-a-ball",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "side-lying-floor-stretch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "chair-upper-body-stretch",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "adductor-groin",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "mobilidade-02-intermediario",
+    "nome": "Mobilidade 02 — Intermediário",
+    "descricao": "Treino de mobilidade nível intermediário, 20-30 min.",
+    "categoria": "mobilidade",
+    "nivel": "intermediário",
+    "duracao_min": 20,
+    "duracao_max": 30,
+    "equipamentos": [
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver mobilidade com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "kneeling-forearm-stretch",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "seated-hamstring-and-calf-stretch",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "frog-hops",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "all-fours-quad-stretch",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "peroneals-stretch",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "mobilidade-03-avancado",
+    "nome": "Mobilidade 03 — Avançado",
+    "descricao": "Treino de mobilidade nível avançado, 25-35 min.",
+    "categoria": "mobilidade",
+    "nivel": "avançado",
+    "duracao_min": 25,
+    "duracao_max": 35,
+    "equipamentos": [
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver mobilidade com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "pyramid",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "lying-hamstring",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "lying-bent-leg-groin",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "overhead-triceps",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "behind-head-chest-stretch",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "quadriceps-smr",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "mobilidade-04-iniciante",
+    "nome": "Mobilidade 04 — Iniciante",
+    "descricao": "Treino de mobilidade nível iniciante, 30-40 min.",
+    "categoria": "mobilidade",
+    "nivel": "iniciante",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "peso-do-corpo",
+      "rolo-de-espuma"
+    ],
+    "objetivo": "Desenvolver mobilidade com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "hug-a-ball",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "lower-back-curl",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "upper-back-stretch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "dynamic-chest-stretch",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "calf-stretch-hands-against-wall",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "standing-lateral-stretch",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "latissimus-dorsi-smr",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "dancers-stretch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "mobilidade-05-intermediario",
+    "nome": "Mobilidade 05 — Intermediário",
+    "descricao": "Treino de mobilidade nível intermediário, 30-45 min.",
+    "categoria": "mobilidade",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 45,
+    "equipamentos": [
+      "outros",
+      "rolo-de-espuma"
+    ],
+    "objetivo": "Desenvolver mobilidade com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "standing-lateral-stretch",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "adductor-groin",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "calves-smr",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "crossover-reverse-lunge",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "groin-and-back-stretch",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "piriformis-smr",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "seated-hamstring-and-calf-stretch",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "standing-hamstring-and-calf-stretch",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "mobilidade-06-avancado",
+    "nome": "Mobilidade 06 — Avançado",
+    "descricao": "Treino de mobilidade nível avançado, 35-50 min.",
+    "categoria": "mobilidade",
+    "nivel": "avançado",
+    "duracao_min": 35,
+    "duracao_max": 50,
+    "equipamentos": [
+      "outros",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver mobilidade com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "rear-leg-raises",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "lying-hamstring",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "overhead-triceps",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "seated-biceps",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "lying-crossover",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "seated-hamstring",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "mobilidade-07-iniciante",
+    "nome": "Mobilidade 07 — Iniciante",
+    "descricao": "Treino de mobilidade nível iniciante, 40-55 min.",
+    "categoria": "mobilidade",
+    "nivel": "iniciante",
+    "duracao_min": 40,
+    "duracao_max": 55,
+    "equipamentos": [],
+    "objetivo": "Desenvolver mobilidade com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "standing-pelvic-tilt",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "looking-at-ceiling",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "calf-stretch-elbows-against-wall",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "ankle-circles",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "ankle-on-the-knee",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "quad-stretch",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "mobilidade-08-intermediario",
+    "nome": "Mobilidade 08 — Intermediário",
+    "descricao": "Treino de mobilidade nível intermediário, 45-60 min.",
+    "categoria": "mobilidade",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "outros"
+    ],
+    "objetivo": "Desenvolver mobilidade com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "side-leg-raises",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "neck-smr",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "iron-crosses-stretch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "foot-smr",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "intermediate-hip-flexor-and-quad-stretch",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "anterior-tibialis-smr",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "rapido-01-iniciante",
+    "nome": "Treino Rápido 01 — Iniciante",
+    "descricao": "Treino de treino rápido nível iniciante, 15-25 min.",
+    "categoria": "rapido",
+    "nivel": "iniciante",
+    "duracao_min": 15,
+    "duracao_max": 25,
+    "equipamentos": [
+      "halteres",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver treino rápido com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "extended-range-one-arm-kettlebell-floor-press",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "standing-bent-over-one-arm-dumbbell-triceps-extension",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "plank",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "side-laterals-to-front-raise",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "isometric-neck-exercise-sides",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "flexor-incline-dumbbell-curls",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "front-incline-dumbbell-raise",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "lying-supine-dumbbell-curl",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "single-dumbbell-raise",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "rapido-02-intermediario",
+    "nome": "Treino Rápido 02 — Intermediário",
+    "descricao": "Treino de treino rápido nível intermediário, 20-30 min.",
+    "categoria": "rapido",
+    "nivel": "intermediário",
+    "duracao_min": 20,
+    "duracao_max": 30,
+    "equipamentos": [
+      "kettlebell",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver treino rápido com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "close-grip-dumbbell-press",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "kettlebell-windmill",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "kettlebell-pass-between-the-legs",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "bench-jump",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "double-kettlebell-jerk",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "alternating-hang-clean",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "rapido-03-avancado",
+    "nome": "Treino Rápido 03 — Avançado",
+    "descricao": "Treino de treino rápido nível avançado, 25-35 min.",
+    "categoria": "rapido",
+    "nivel": "avançado",
+    "duracao_min": 25,
+    "duracao_max": 35,
+    "equipamentos": [
+      "kettlebell"
+    ],
+    "objetivo": "Desenvolver treino rápido com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "side-laterals-to-front-raise",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "kettlebell-pistol-squat",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "double-kettlebell-snatch",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "alternating-renegade-row",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "bent-press",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "plyo-kettlebell-pushups",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "one-arm-kettlebell-snatch",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "lying-dumbbell-tricep-extension",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "rapido-04-iniciante",
+    "nome": "Treino Rápido 04 — Iniciante",
+    "descricao": "Treino de treino rápido nível iniciante, 30-40 min.",
+    "categoria": "rapido",
+    "nivel": "iniciante",
+    "duracao_min": 30,
+    "duracao_max": 40,
+    "equipamentos": [
+      "halteres",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver treino rápido com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "3-4-sit-up",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "hammer-curls",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "incline-push-up-wide",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "bent-over-two-dumbbell-row-with-palms-in",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "seated-dumbbell-inner-biceps-curl",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "dumbbell-squat",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "dumbbell-incline-shoulder-raise",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "incline-dumbbell-press",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "scissors-jump",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "rapido-05-intermediario",
+    "nome": "Treino Rápido 05 — Intermediário",
+    "descricao": "Treino de treino rápido nível intermediário, 30-45 min.",
+    "categoria": "rapido",
+    "nivel": "intermediário",
+    "duracao_min": 30,
+    "duracao_max": 45,
+    "equipamentos": [
+      "halteres",
+      "kettlebell",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver treino rápido com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "isometric-wipers",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "kettlebell-seesaw-press",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "kettlebell-hang-clean",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "push-ups-close-triceps-position",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "kettlebell-figure-8",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "dumbbell-squat-to-a-bench",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "arnold-dumbbell-press",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "incline-hammer-curls",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "rapido-06-avancado",
+    "nome": "Treino Rápido 06 — Avançado",
+    "descricao": "Treino de treino rápido nível avançado, 35-50 min.",
+    "categoria": "rapido",
+    "nivel": "avançado",
+    "duracao_min": 35,
+    "duracao_max": 50,
+    "equipamentos": [
+      "kettlebell",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver treino rápido com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "incline-push-up",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "double-kettlebell-snatch",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "alternating-renegade-row",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "hanging-pike",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "kettlebell-pistol-squat",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "bent-press",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "handstand-push-ups",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "rapido-07-iniciante",
+    "nome": "Treino Rápido 07 — Iniciante",
+    "descricao": "Treino de treino rápido nível iniciante, 40-55 min.",
+    "categoria": "rapido",
+    "nivel": "iniciante",
+    "duracao_min": 40,
+    "duracao_max": 55,
+    "equipamentos": [
+      "halteres",
+      "peso-do-corpo"
+    ],
+    "objetivo": "Desenvolver treino rápido com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "pushups",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "external-rotation",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "hammer-grip-incline-db-bench-press",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "side-laterals-to-front-raise",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "air-bike",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      },
+      {
+        "exercise_id": "crunch-hands-overhead",
+        "repeticoes": "máximo técnico",
+        "descanso": "60s",
+        "series": 3,
+        "observacao": "Estilo AMRAP: máximo de repetições com boa técnica"
+      },
+      {
+        "exercise_id": "incline-dumbbell-flyes-with-a-twist",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "cross-body-hammer-curl",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "dumbbell-bench-press-with-neutral-grip",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      }
+    ],
+    "finalizacao": [
+      {
+        "exercise_id": "one-arm-flat-bench-dumbbell-flye",
+        "series": 2,
+        "tempo": "30-45s",
+        "descanso": "30s",
+        "observacao": "Finalização"
+      }
+    ]
+  },
+  {
+    "id": "rapido-08-intermediario",
+    "nome": "Treino Rápido 08 — Intermediário",
+    "descricao": "Treino de treino rápido nível intermediário, 45-60 min.",
+    "categoria": "rapido",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "halteres",
+      "kettlebell"
+    ],
+    "objetivo": "Desenvolver treino rápido com foco em consistência e técnica.",
+    "aquecimento": [
+      {
+        "exercise_id": "front-two-dumbbell-raise",
+        "series": 1,
+        "repeticoes": "8-10",
+        "tempo": "2-3 min",
+        "observacao": "Aquecimento leve"
+      }
+    ],
+    "exercicios": [
+      {
+        "exercise_id": "kettlebell-turkish-get-up-squat-style",
+        "repeticoes": "8-12",
+        "descanso": "60-90s",
+        "series": 3
+      },
+      {
+        "exercise_id": "alternating-kettlebell-press",
+        "repeticoes": "10",
+        "descanso": "45-60s",
+        "series": 4
+      },
+      {
+        "exercise_id": "iron-cross",
+        "repeticoes": "5",
+        "descanso": "90-120s",
+        "series": 5
+      },
+      {
+        "exercise_id": "standing-dumbbell-straight-arm-front-delt-raise-above-head",
+        "repeticoes": "12-15",
+        "descanso": "45s",
+        "series": 3
+      }
+    ],
+    "finalizacao": []
   }
 ]

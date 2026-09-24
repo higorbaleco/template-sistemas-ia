@@ -1,10 +1,12 @@
 import React, { useState, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { ChevronLeft, Trash2 } from 'lucide-react'
 import { useWorkoutStore } from '../lib/store'
 import { CheckItem } from '../components/CheckItem'
 import { ExerciseAccordion } from '../components/ExerciseAccordion'
 import { ProgressBar } from '../components/ProgressBar'
 import { ConfirmDialog } from '../components/ConfirmDialog'
+import { LevelBadge } from '../components/Badges'
 import workoutsData from '../data/workouts.json'
 import exercisesData from '../data/exercises.json'
 import { Exercise, Workout, WorkoutExercise } from '../data/types'
@@ -20,10 +22,12 @@ export const Treino: React.FC = () => {
 
   if (!treino) {
     return (
-      <div style={{ padding: '20px', textAlign: 'center', backgroundColor: '#1a1a1a', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div>
-          <p style={{ color: '#999', marginBottom: '16px' }}>Treino não encontrado</p>
-          <button onClick={() => navigate(-1)} style={{ padding: '8px 16px', backgroundColor: '#4CAF50', color: '#000', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Voltar</button>
+      <div className="flex items-center justify-center h-screen bg-white dark:bg-neutral-950">
+        <div className="text-center space-y-4">
+          <p className="text-neutral-600 dark:text-neutral-400">Treino não encontrado</p>
+          <button onClick={() => navigate(-1)} className="btn-primary">
+            Voltar
+          </button>
         </div>
       </div>
     )
@@ -50,27 +54,18 @@ export const Treino: React.FC = () => {
     if (items.length === 0) return null
 
     return (
-      <div key={title} style={{ marginBottom: '16px' }}>
-        <h3
-          style={{
-            fontSize: '14px',
-            fontWeight: 600,
-            color: '#4CAF50',
-            marginBottom: '8px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px'
-          }}
-        >
+      <div key={title} className="mb-6">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-primary-600 dark:text-primary-400 mb-3">
           {title}
         </h3>
-        <div>
+        <div className="space-y-2">
           {items.map((item, idx) => {
             const exercise = exerciseMap.get(item.exercise_id)
             const checkKey = `${treinoId}-${title}-${idx}`
 
             if (!exercise) {
               return (
-                <div key={idx} style={{ color: '#666', padding: '8px' }}>
+                <div key={idx} className="text-neutral-500 dark:text-neutral-400 p-3 text-sm">
                   Exercício não encontrado: {item.exercise_id}
                 </div>
               )
@@ -86,7 +81,7 @@ export const Treino: React.FC = () => {
               .join(' · ')
 
             return (
-              <div key={idx} style={{ marginBottom: '8px' }}>
+              <div key={idx}>
                 <CheckItem
                   id={checkKey}
                   label={exercise.nome}
@@ -111,81 +106,48 @@ export const Treino: React.FC = () => {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        backgroundColor: '#1a1a1a',
-        paddingBottom: '60px'
-      }}
-    >
+    <div className="flex flex-col h-screen bg-white dark:bg-neutral-950 pb-16">
       {/* Header */}
-      <div style={{ padding: '16px 20px', borderBottom: '1px solid #2a2a2a' }}>
+      <div className="p-6 border-b border-neutral-200 dark:border-neutral-800 space-y-4">
         <button
           onClick={() => navigate(-1)}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#4CAF50',
-            fontSize: '18px',
-            cursor: 'pointer',
-            marginBottom: '8px'
-          }}
+          className="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors"
         >
-          ← Voltar
+          <ChevronLeft size={20} />
+          Voltar
         </button>
-        <h1 style={{ fontSize: '22px', fontWeight: 600, marginBottom: '8px' }}>
-          {treino.nome}
-        </h1>
-        <div style={{ display: 'flex', gap: '16px', fontSize: '12px', color: '#999' }}>
-          <span>⏱️ {treino.duracao_min}-{treino.duracao_max} min</span>
-          <span>📊 {treino.nivel}</span>
+        <div>
+          <h1 className="font-display text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+            {treino.nome}
+          </h1>
+          <div className="flex flex-wrap gap-3 mt-2">
+            <div className="stat-pill">
+              <span>⏱️ {treino.duracao_min}-{treino.duracao_max} min</span>
+            </div>
+            <LevelBadge level={treino.nivel} />
+          </div>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-3">
+            {treino.objetivo}
+          </p>
         </div>
-        <p style={{ fontSize: '13px', color: '#bbb', marginTop: '8px' }}>
-          {treino.objetivo}
-        </p>
       </div>
 
       {/* Progress Bar */}
       <ProgressBar done={done} total={allItems.length} percent={percent} />
 
       {/* Content */}
-      <div
-        style={{
-          flex: 1,
-          overflowY: 'auto',
-          padding: '16px 20px'
-        }}
-      >
+      <div className="flex-1 overflow-y-auto p-6">
         {renderExerciseSection('Aquecimento', treino.aquecimento)}
         {renderExerciseSection('Treino Principal', treino.exercicios)}
         {renderExerciseSection('Finalização', treino.finalizacao || [])}
 
         {/* Clear button */}
-        <div style={{ marginTop: '24px', marginBottom: '12px' }}>
+        <div className="mt-8">
           <button
             onClick={() => setShowConfirm(true)}
-            style={{
-              width: '100%',
-              padding: '12px 16px',
-              backgroundColor: '#404040',
-              color: '#999',
-              border: '1px solid #555',
-              borderRadius: '6px',
-              fontSize: '14px',
-              cursor: 'pointer',
-              transition: 'all 0.2s'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#505050'
-              e.currentTarget.style.color = '#ddd'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#404040'
-              e.currentTarget.style.color = '#999'
-            }}
+            className="btn-ghost w-full flex items-center justify-center gap-2 border border-danger/30 text-danger hover:bg-danger/10"
           >
+            <Trash2 size={18} />
             Limpar marcações
           </button>
         </div>

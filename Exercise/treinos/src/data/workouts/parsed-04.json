@@ -1,0 +1,973 @@
+[
+  {
+    "id": "04-01",
+    "nome": "Full Body Base",
+    "descricao": "Hipertrofia geral",
+    "categoria": "hipertrofia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corpo-livre"
+    ],
+    "objetivo": "Hipertrofia geral",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "rdl",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "desenvolvimento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "core",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-02",
+    "nome": "Full Body Máquinas",
+    "descricao": "Academia/iniciante",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "máquina"
+    ],
+    "objetivo": "Academia/iniciante",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "leg-press",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "chest-press",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "puxada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexora",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "shoulder-press",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "abdominal",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-03",
+    "nome": "Full Body Halteres",
+    "descricao": "Livre/estabilidade",
+    "categoria": "corpo-livre",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "halteres"
+    ],
+    "objetivo": "Livre/estabilidade",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "goblet-squat",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino-halteres",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-unilateral",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "rdl",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "desenvolvimento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "farmer-carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-04",
+    "nome": "Full Body Barra",
+    "descricao": "Força",
+    "categoria": "forca",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corpo-livre"
+    ],
+    "objetivo": "Força",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "terra",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "desenvolvimento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-05",
+    "nome": "Força Real",
+    "descricao": "Força funcional",
+    "categoria": "forca",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "barra",
+      "corpo-livre"
+    ],
+    "objetivo": "Força funcional",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "terra",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "barra-fixa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "farmer-carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "bear-hug-carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexo",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-06",
+    "nome": "Carregar Gente",
+    "descricao": "Força cotidiana",
+    "categoria": "forca",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [],
+    "objetivo": "Força cotidiana",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "zercher-squat",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "bear-hug-carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "front-carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "suitcase-carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "levantamento-do-cho",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-07",
+    "nome": "Calistenia Base",
+    "descricao": "Peso corporal",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corpo-livre"
+    ],
+    "objetivo": "Peso corporal",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexo",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada-invertida",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "avano",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "prancha",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "dead-hang",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-08",
+    "nome": "Calistenia Forte",
+    "descricao": "Domínio corporal",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "barra",
+      "corpo-livre"
+    ],
+    "objetivo": "Domínio corporal",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "barra-fixa",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "dips",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexo-declinada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "bulgarian-squat",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "hanging-knee-raise",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-09",
+    "nome": "Militar Básico",
+    "descricao": "Condicionamento",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corpo-livre"
+    ],
+    "objetivo": "Condicionamento",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "flexo",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "avano",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "burpee",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "mountain-climber",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "prancha",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-10",
+    "nome": "Combat Ready",
+    "descricao": "Potência + resistência",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [],
+    "objetivo": "Potência + resistência",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "kettlebell-swing",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "push-press",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "goblet-squat",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "burpee",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-11",
+    "nome": "Strongman Light",
+    "descricao": "Força bruta",
+    "categoria": "forca",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [],
+    "objetivo": "Força bruta",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "sandbag-lift",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "bear-hug-carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "farmer-walk",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "sled-push",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "levantamento-terra",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-12",
+    "nome": "30 Min Hipertrofia",
+    "descricao": "Ganho muscular",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "máquina"
+    ],
+    "objetivo": "Ganho muscular",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "leg-press",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "puxada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexora",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "lateral",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "bcepstrceps",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-13",
+    "nome": "30 Min Força",
+    "descricao": "Carga/progressão",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corpo-livre"
+    ],
+    "objetivo": "Carga/progressão",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "terraremada-carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-14",
+    "nome": "30 Min Metabólico",
+    "descricao": "Alto gasto energético",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corpo-livre"
+    ],
+    "objetivo": "Alto gasto energético",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "goblet-squat",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "flexo",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "swing",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "caminhada-carregada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "bike",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-15",
+    "nome": "Upper Bias",
+    "descricao": "Tronco",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corpo-livre"
+    ],
+    "objetivo": "Tronco",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "supino",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "puxada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "desenvolvimento-agachamento-e-posterior-reduzidos",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-16",
+    "nome": "Lower Bias",
+    "descricao": "Pernas/glúteos",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corpo-livre"
+    ],
+    "objetivo": "Pernas/glúteos",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "rdl",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "avano",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "panturrilha-supino-e-remada-reduzidos",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-17",
+    "nome": "Posterior & Pegada",
+    "descricao": "Costas/posterior/antebraço",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "barra"
+    ],
+    "objetivo": "Costas/posterior/antebraço",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "terra",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "remada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "barra",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "rdl",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "farmer-carry",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "dead-hang",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-18",
+    "nome": "Atleta Híbrido",
+    "descricao": "Força + cardio",
+    "categoria": "forca",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "barra",
+      "corpo-livre"
+    ],
+    "objetivo": "Força + cardio",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "supino",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "barraremada",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "terra-corridabike-curta",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-19",
+    "nome": "Minimalista 5",
+    "descricao": "Máximo com pouco tempo",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [
+      "corpo-livre"
+    ],
+    "objetivo": "Máximo com pouco tempo",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "agachamento",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "hinge",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "empurrar",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "puxar",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "carregar",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  },
+  {
+    "id": "04-20",
+    "nome": "Sobrevivência Física",
+    "descricao": "Capacidade geral",
+    "categoria": "academia",
+    "nivel": "intermediário",
+    "duracao_min": 45,
+    "duracao_max": 60,
+    "equipamentos": [],
+    "objetivo": "Capacidade geral",
+    "aquecimento": [],
+    "exercicios": [
+      {
+        "exercise_id": "levantar-peso-do-cho",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "carregar",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "empurrar",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "puxar",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "agachar",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      },
+      {
+        "exercise_id": "locomover",
+        "series": 3,
+        "repeticoes": "8-12",
+        "descanso": "60-90s"
+      }
+    ],
+    "finalizacao": []
+  }
+]

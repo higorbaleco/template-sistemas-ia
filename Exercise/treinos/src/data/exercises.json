@@ -1,107 +1,26 @@
 [
   {
-    "id": "supino-reto",
-    "nome": "Supino Reto",
-    "nome_secundario": "Bench Press",
-    "descricao": "Exercício de peito e tríceps usando barra.",
-    "categorias": ["academia", "forca"],
-    "musculos": ["peito", "tríceps", "ombros"],
-    "movimentos": ["empurrar"],
-    "equipamentos": ["barra", "banco"],
-    "dificuldade": "iniciante",
-    "como_fazer": [
-      "Deite-se no banco com os pés apoiados no chão.",
-      "Pegue a barra com as mãos um pouco mais largas que a largura dos ombros.",
-      "Baixe a barra até o peito de forma controlada.",
-      "Empurre a barra para cima até a posição inicial."
-    ],
-    "erros_comuns": [
-      "Não descer a barra até o peito.",
-      "Deixar os cotovelos muito abertos.",
-      "Fazer movimentos muito rápidos sem controle."
-    ],
-    "versao_facil": "Supino com halteres (menos estabilidade exigida)",
-    "versao_dificil": "Supino inclinado ou supino com pausa na parte inferior"
-  },
-  {
-    "id": "supino-inclinado",
-    "nome": "Supino Inclinado",
-    "nome_secundario": "Incline Bench Press",
-    "descricao": "Variação do supino focada na parte superior do peito.",
-    "categorias": ["academia", "forca"],
-    "musculos": ["peito superior", "ombros", "tríceps"],
-    "movimentos": ["empurrar"],
-    "equipamentos": ["barra", "banco inclinado"],
-    "dificuldade": "intermediário",
-    "como_fazer": [
-      "Ajuste o banco em ângulo de 30-45 graus.",
-      "Deite-se e pegue a barra com as mãos um pouco mais largas que a largura dos ombros.",
-      "Baixe a barra em direção ao peito superior.",
-      "Empurre até a posição inicial."
-    ],
-    "erros_comuns": [
-      "Ângulo do banco muito inclinado (acima de 50 graus).",
-      "Deixar a barra descir muito à frente do corpo.",
-      "Não manter os pés e as costas firmes no banco."
-    ]
-  },
-  {
-    "id": "remada-baixa",
-    "nome": "Remada Baixa",
-    "nome_secundario": "Seated Row",
-    "descricao": "Exercício de costas usando máquina ou cabos.",
-    "categorias": ["academia", "forca"],
-    "musculos": ["costas", "bíceps", "ombros"],
-    "movimentos": ["puxar"],
-    "equipamentos": ["máquina", "cabo"],
-    "dificuldade": "iniciante",
-    "como_fazer": [
-      "Sente-se na máquina com o peito apoiado.",
-      "Pegue a barra com ambas as mãos.",
-      "Puxe em direção ao corpo, levando os cotovelos para trás.",
-      "Controle o retorno à posição inicial."
-    ],
-    "erros_comuns": [
-      "Usar muito peso e fazer movimentos parciais.",
-      "Inclinar-se excessivamente para frente.",
-      "Não trazer os cotovelos para trás o suficiente."
-    ],
-    "versao_facil": "Remada com banda elástica",
-    "versao_dificil": "Remada unilateral com halter"
-  },
-  {
-    "id": "puxada-frontal",
-    "nome": "Puxada Frontal",
-    "nome_secundario": "Lat Pulldown",
-    "descricao": "Exercício de costas focado nas costas largas.",
-    "categorias": ["academia", "forca"],
-    "musculos": ["dorsal", "bíceps"],
-    "movimentos": ["puxar"],
-    "equipamentos": ["máquina", "cabo"],
-    "dificuldade": "iniciante",
-    "como_fazer": [
-      "Sente-se na máquina com as pernas presas.",
-      "Pegue a barra um pouco mais larga que a largura dos ombros.",
-      "Puxe a barra em direção ao peito.",
-      "Controle o retorno lentamente."
-    ],
-    "erros_comuns": [
-      "Inclinar-se muito para trás.",
-      "Puxar somente com os braços, sem envolver as costas.",
-      "Usar peso muito pesado."
-    ],
-    "versao_facil": "Puxada com banda elástica auxiliar",
-    "versao_dificil": "Puxada por trás da nuca ou puxada explosiva"
-  },
-  {
     "id": "agachamento-livre",
     "nome": "Agachamento Livre",
     "nome_secundario": "Back Squat",
     "descricao": "Exercício fundamental de pernas com barra nas costas.",
-    "categorias": ["academia", "forca", "forca-util"],
-    "musculos": ["quadríceps", "glúteos", "isquiotibiais"],
-    "movimentos": ["agachar"],
-    "equipamentos": ["barra", "rack"],
+    "categorias": [
+      "academia",
+      "forca",
+      "forca-util"
+    ],
+    "musculos": [
+      "quadríceps",
+      "glúteos",
+      "isquiotibiais"
+    ],
+    "movimentos": [
+      "agachar"
+    ],
+    "equipamentos": [
+      "barra",
+      "rack"
+    ],
     "dificuldade": "intermediário",
     "como_fazer": [
       "Coloque a barra nas costas, abaixo do ombro.",
@@ -119,14 +38,94 @@
     "versao_dificil": "Agachamento pausa ou agachamento pistol"
   },
   {
+    "id": "puxada-frontal",
+    "nome": "Puxada Frontal",
+    "nome_secundario": "Lat Pulldown",
+    "descricao": "Exercício de costas focado nas costas largas.",
+    "categorias": [
+      "academia",
+      "forca"
+    ],
+    "musculos": [
+      "dorsal",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [
+      "máquina",
+      "cabo"
+    ],
+    "dificuldade": "iniciante",
+    "como_fazer": [
+      "Sente-se na máquina com as pernas presas.",
+      "Pegue a barra um pouco mais larga que a largura dos ombros.",
+      "Puxe a barra em direção ao peito.",
+      "Controle o retorno lentamente."
+    ],
+    "erros_comuns": [
+      "Inclinar-se muito para trás.",
+      "Puxar somente com os braços, sem envolver as costas.",
+      "Usar peso muito pesado."
+    ],
+    "versao_facil": "Puxada com banda elástica auxiliar",
+    "versao_dificil": "Puxada por trás da nuca ou puxada explosiva"
+  },
+  {
+    "id": "remada-baixa",
+    "nome": "Remada Baixa",
+    "nome_secundario": "Seated Row",
+    "descricao": "Exercício de costas usando máquina ou cabos.",
+    "categorias": [
+      "academia",
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps",
+      "ombros"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [
+      "máquina",
+      "cabo"
+    ],
+    "dificuldade": "iniciante",
+    "como_fazer": [
+      "Sente-se na máquina com o peito apoiado.",
+      "Pegue a barra com ambas as mãos.",
+      "Puxe em direção ao corpo, levando os cotovelos para trás.",
+      "Controle o retorno à posição inicial."
+    ],
+    "erros_comuns": [
+      "Usar muito peso e fazer movimentos parciais.",
+      "Inclinar-se excessivamente para frente.",
+      "Não trazer os cotovelos para trás o suficiente."
+    ],
+    "versao_facil": "Remada com banda elástica",
+    "versao_dificil": "Remada unilateral com halter"
+  },
+  {
     "id": "rosca-direta",
     "nome": "Rosca Direta",
     "nome_secundario": "Barbell Curl",
     "descricao": "Exercício isolado de bíceps.",
-    "categorias": ["academia"],
-    "musculos": ["bíceps"],
-    "movimentos": ["flexão"],
-    "equipamentos": ["barra", "disco"],
+    "categorias": [
+      "academia"
+    ],
+    "musculos": [
+      "bíceps"
+    ],
+    "movimentos": [
+      "flexão"
+    ],
+    "equipamentos": [
+      "barra",
+      "disco"
+    ],
     "dificuldade": "iniciante",
     "como_fazer": [
       "Fique em pé com a barra na altura das coxas.",
@@ -143,13 +142,115 @@
     "versao_dificil": "Rosca com pausa ou rosca 21 (arco completo dividido em 3 fases)"
   },
   {
+    "id": "supino-inclinado",
+    "nome": "Supino Inclinado",
+    "nome_secundario": "Incline Bench Press",
+    "descricao": "Variação do supino focada na parte superior do peito.",
+    "categorias": [
+      "academia",
+      "forca"
+    ],
+    "musculos": [
+      "peito superior",
+      "ombros",
+      "tríceps"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [
+      "barra",
+      "banco inclinado"
+    ],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ajuste o banco em ângulo de 30-45 graus.",
+      "Deite-se e pegue a barra com as mãos um pouco mais largas que a largura dos ombros.",
+      "Baixe a barra em direção ao peito superior.",
+      "Empurre até a posição inicial."
+    ],
+    "erros_comuns": [
+      "Ângulo do banco muito inclinado (acima de 50 graus).",
+      "Deixar a barra descir muito à frente do corpo.",
+      "Não manter os pés e as costas firmes no banco."
+    ]
+  },
+  {
+    "id": "supino-reto",
+    "nome": "Supino Reto",
+    "nome_secundario": "Bench Press",
+    "descricao": "Exercício de peito e tríceps usando barra.",
+    "categorias": [
+      "academia",
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps",
+      "ombros"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [
+      "barra",
+      "banco"
+    ],
+    "dificuldade": "iniciante",
+    "como_fazer": [
+      "Deite-se no banco com os pés apoiados no chão.",
+      "Pegue a barra com as mãos um pouco mais largas que a largura dos ombros.",
+      "Baixe a barra até o peito de forma controlada.",
+      "Empurre a barra para cima até a posição inicial."
+    ],
+    "erros_comuns": [
+      "Não descer a barra até o peito.",
+      "Deixar os cotovelos muito abertos.",
+      "Fazer movimentos muito rápidos sem controle."
+    ],
+    "versao_facil": "Supino com halteres (menos estabilidade exigida)",
+    "versao_dificil": "Supino inclinado ou supino com pausa na parte inferior"
+  },
+  {
+    "id": "dips",
+    "nome": "Dips",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "corpo-livre"
+    ],
+    "musculos": [
+      "tríceps",
+      "peito"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
     "id": "flexao-apoiada",
     "nome": "Flexão Apoiada",
     "nome_secundario": "Push-up",
     "descricao": "Exercício de corpo livre para peito, ombros e tríceps.",
-    "categorias": ["corpo-livre", "militar", "forca"],
-    "musculos": ["peito", "tríceps", "ombros", "core"],
-    "movimentos": ["empurrar"],
+    "categorias": [
+      "corpo-livre",
+      "militar",
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps",
+      "ombros",
+      "core"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
     "equipamentos": [],
     "dificuldade": "iniciante",
     "como_fazer": [
@@ -171,9 +272,19 @@
     "nome": "Prancha Frontal",
     "nome_secundario": "Plank",
     "descricao": "Exercício isométrico de core.",
-    "categorias": ["corpo-livre", "militar", "core"],
-    "musculos": ["abdômen", "costas", "ombros"],
-    "movimentos": ["isometria"],
+    "categorias": [
+      "corpo-livre",
+      "militar",
+      "core"
+    ],
+    "musculos": [
+      "abdômen",
+      "costas",
+      "ombros"
+    ],
+    "movimentos": [
+      "isometria"
+    ],
     "equipamentos": [],
     "dificuldade": "iniciante",
     "como_fazer": [
@@ -192,14 +303,2516 @@
     "versao_dificil": "Prancha com os pés elevados ou prancha dinâmica"
   },
   {
+    "id": "dead-hang",
+    "nome": "Segurar na Barra",
+    "nome_secundario": "Dead Hang",
+    "descricao": "Exercício de grip e mobilidade de ombros.",
+    "categorias": [
+      "corpo-livre",
+      "militar",
+      "forca-util"
+    ],
+    "musculos": [
+      "antebraços",
+      "ombros",
+      "costas"
+    ],
+    "movimentos": [
+      "pendurar"
+    ],
+    "equipamentos": [
+      "barra"
+    ],
+    "dificuldade": "iniciante",
+    "como_fazer": [
+      "Pegue a barra com as mãos na largura dos ombros, palmas viradas para a frente.",
+      "Deixe o corpo pender, com os pés fora do chão.",
+      "Mantenha os ombros ligeiramente contraídos.",
+      "Sustente a posição pelo tempo determinado."
+    ],
+    "erros_comuns": [
+      "Deixar os ombros subir até as orelhas.",
+      "Balançar o corpo.",
+      "Soltar muito cedo devido à fadiga de grip."
+    ],
+    "versao_facil": "Dead hang com os pés tocando o chão",
+    "versao_dificil": "Dead hang com pesos ou transição para pull-up"
+  },
+  {
+    "id": "abdominal",
+    "nome": "Abdominal",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "abdominal-na-corda",
+    "nome": "Abdominal Na Corda",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "abdutora",
+    "nome": "Abdutora",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "afundo",
+    "nome": "Afundo",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "locomoção"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "afundo-andando",
+    "nome": "Afundo Andando",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "locomoção"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "afundo-blgaro",
+    "nome": "Afundo Búlgaro",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "locomoção"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "agachamento",
+    "nome": "Agachamento",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "quadríceps",
+      "glúteos"
+    ],
+    "movimentos": [
+      "agachar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "agachamento-goblet",
+    "nome": "Agachamento Goblet",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "quadríceps",
+      "glúteos"
+    ],
+    "movimentos": [
+      "agachar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "agachamento-livre-sem-carga",
+    "nome": "Agachamento Livre Sem Carga",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "quadríceps",
+      "glúteos"
+    ],
+    "movimentos": [
+      "agachar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "agachamento-sem-peso",
+    "nome": "Agachamento Sem Peso",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "quadríceps",
+      "glúteos"
+    ],
+    "movimentos": [
+      "agachar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "agachar",
+    "nome": "Agachar",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "aquecimento",
+    "nome": "Aquecimento",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "avano",
+    "nome": "Avano",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "barra",
+    "nome": "Barra",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "tríceps",
+      "peito"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "barra-fixa",
+    "nome": "Barra Fixa",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "costas"
+    ],
+    "movimentos": [
+      "pendurar"
+    ],
+    "equipamentos": [
+      "barra"
+    ],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "barra-fixa-assistida",
+    "nome": "Barra Fixa Assistida",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "costas"
+    ],
+    "movimentos": [
+      "pendurar"
+    ],
+    "equipamentos": [
+      "barra"
+    ],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "barra-fixa-assistida-ou-puxador",
+    "nome": "Barra Fixa Assistida Ou Puxador",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "tríceps",
+      "peito"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "barraremada",
+    "nome": "Barraremada",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps",
+      "tríceps",
+      "peito"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "bcepstrceps",
+    "nome": "Bcepstrceps",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "bear-crawl",
+    "nome": "Bear Crawl",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "bear-hug-carry",
+    "nome": "Bear Hug Carry",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "carregar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "bike",
+    "nome": "Bike",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "bulgarian-squat",
+    "nome": "Bulgarian Squat",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "agachar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "burpee",
+    "nome": "Burpee",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "cadeira-extensora",
+    "nome": "Cadeira Extensora",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "caminhada-carregada",
+    "nome": "Caminhada Carregada",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "caminhada-com-peso-de-um-lado",
+    "nome": "Caminhada Com Peso De Um Lado",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "carregar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "caminhada-com-peso-nas-duas-mos",
+    "nome": "Caminhada Com Peso Nas Duas Mãos",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "carregar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "caminhada-pesada-com-halteres",
+    "nome": "Caminhada Pesada Com Halteres",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "carregar"
+    ],
+    "equipamentos": [
+      "halteres"
+    ],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "caminhar-engatinhando",
+    "nome": "Caminhar Engatinhando",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "carregada-unilateral-de-halter",
+    "nome": "Carregada Unilateral De Halter",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "carregamento-frontal-com-saco",
+    "nome": "Carregamento Frontal Com Saco",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [
+      "sandbag"
+    ],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "carregar",
+    "nome": "Carregar",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "carregar-peso-abraado-ao-peito",
+    "nome": "Carregar Peso Abraçado Ao Peito",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "chest-press",
+    "nome": "Chest Press",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "comear-com-4-voltas-1-8-flexes-2-5-barras-assistidas-ou-10",
+    "nome": "Começar Com 4 Voltas: 1. 8 Flexões 2. 5 Barras Assistidas Ou 10",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "costas"
+    ],
+    "movimentos": [
+      "pendurar"
+    ],
+    "equipamentos": [
+      "barra"
+    ],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "comear-com-8-ciclos-de-1-min-trotando-2-min-caminhando-24-min",
+    "nome": "Começar Com 8 Ciclos De 1 Min Trotando + 2 Min Caminhando = 24 Min.",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "core",
+    "nome": "Core",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "abdômen"
+    ],
+    "movimentos": [
+      "isometria"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "corpo-livre",
+    "nome": "Corpo Livre",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "corrida",
+    "nome": "Corrida",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "crossover",
+    "nome": "Crossover",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "crucifixo",
+    "nome": "Crucifixo",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "crucifixo-inclinado",
+    "nome": "Crucifixo Inclinado",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "crucifixo-invertido",
+    "nome": "Crucifixo Invertido",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "desenvolvimento",
+    "nome": "Desenvolvimento",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "ombros"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "desenvolvimento-agachamento-e-posterior-reduzidos",
+    "nome": "Desenvolvimento Agachamento E Posterior Reduzidos",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "quadríceps",
+      "glúteos",
+      "ombros"
+    ],
+    "movimentos": [
+      "agachar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "desenvolvimento-com-halteres",
+    "nome": "Desenvolvimento Com Halteres",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "ombros"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "desenvolvimento-de-ombros-em-p",
+    "nome": "Desenvolvimento De Ombros Em Pé",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "ombros"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "elevao-de-joelho",
+    "nome": "Elevação De Joelho",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "elevao-frontal",
+    "nome": "Elevação Frontal",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "elevao-lateral",
+    "nome": "Elevação Lateral",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "elevated-leg-press",
+    "nome": "Elevated Leg Press",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "quadríceps",
+      "glúteos"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "empurrar",
+    "nome": "Empurrar",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "escolher-inicialmente-uma-opo",
+    "nome": "Escolher Inicialmente Uma Opção:",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "farmer-walk",
+    "nome": "Farmer Walk",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "carregar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "flexo",
+    "nome": "Flexão",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "flexo-na",
+    "nome": "Flexão Na",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "flexo-na-parede",
+    "nome": "Flexão Na Parede",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "flexo-declinada",
+    "nome": "Flexo Declinada",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "flexora",
+    "nome": "Flexora",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "glteo-na-polia",
+    "nome": "Glteo Na Polia",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "goblet-squat",
+    "nome": "Goblet Squat",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "agachar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "hanging-knee-raise",
+    "nome": "Hanging Knee Raise",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "hinge",
+    "nome": "Hinge",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "kettlebell-swing",
+    "nome": "Kettlebell Swing",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "lateral",
+    "nome": "Lateral",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "leg-press",
+    "nome": "Leg Press",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "quadríceps",
+      "glúteos"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "levantamento-do-cho",
+    "nome": "Levantamento Do Cho",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "glúteos",
+      "isquiotibiais",
+      "costas"
+    ],
+    "movimentos": [
+      "levantar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "levantamento-stiff-com-halteres",
+    "nome": "Levantamento Stiff Com Halteres",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "glúteos",
+      "isquiotibiais",
+      "costas"
+    ],
+    "movimentos": [
+      "levantar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "levantamento-terra",
+    "nome": "Levantamento Terra",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "glúteos",
+      "isquiotibiais",
+      "costas"
+    ],
+    "movimentos": [
+      "levantar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "levantar-peso-do-cho",
+    "nome": "Levantar Peso Do Cho",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "glúteos",
+      "isquiotibiais",
+      "costas"
+    ],
+    "movimentos": [
+      "levantar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "locomover",
+    "nome": "Locomover",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "mesa-flexora",
+    "nome": "Mesa Flexora",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "mobilidade-de-ombros",
+    "nome": "Mobilidade De Ombros",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "ombros"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "mountain-climber",
+    "nome": "Mountain Climber",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "o-objetivo-terminar-bem-no-correr-rpido",
+    "nome": "O Objetivo É Terminar Bem, Não Correr Rápido.",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "panturrilha",
+    "nome": "Panturrilha",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "panturrilha-em-p",
+    "nome": "Panturrilha Em P",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "panturrilha-supino-e-remada-reduzidos",
+    "nome": "Panturrilha Supino E Remada Reduzidos",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps",
+      "peito",
+      "tríceps",
+      "ombros"
+    ],
+    "movimentos": [
+      "puxar",
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "prancha",
+    "nome": "Prancha",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "abdômen",
+      "core"
+    ],
+    "movimentos": [
+      "isometria"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "prancha-lateral",
+    "nome": "Prancha Lateral",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "abdômen",
+      "core"
+    ],
+    "movimentos": [
+      "isometria"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "principal",
+    "nome": "Principal",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "pulldown-braos-estendidos",
+    "nome": "Pulldown Braos Estendidos",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "push-press",
+    "nome": "Push Press",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "puxada",
+    "nome": "Puxada",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "puxada-na-frente",
+    "nome": "Puxada Na Frente",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "puxador-frontal",
+    "nome": "Puxador Frontal",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "puxar",
+    "nome": "Puxar",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "rdl",
+    "nome": "Rdl",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "remada",
+    "nome": "Remada",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "remada-australiana",
+    "nome": "Remada Australiana",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "remada-com-halter",
+    "nome": "Remada Com Halter",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "remada-curvada-com-barra",
+    "nome": "Remada Curvada Com Barra",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps",
+      "tríceps",
+      "peito"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "remada-invertida",
+    "nome": "Remada Invertida",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "remada-sentada",
+    "nome": "Remada Sentada",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "remada-unilateral",
+    "nome": "Remada Unilateral",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "remada-unilateral-com-halter",
+    "nome": "Remada Unilateral Com Halter",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps"
+    ],
+    "movimentos": [
+      "puxar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "rosca-martelo",
+    "nome": "Rosca Martelo",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "bíceps"
+    ],
+    "movimentos": [
+      "flexão"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "shoulder-press",
+    "nome": "Shoulder Press",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "sled-push",
+    "nome": "Sled Push",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "step-up",
+    "nome": "Step-up",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "locomoção"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "stiff",
+    "nome": "Stiff",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "glúteos",
+      "isquiotibiais",
+      "costas"
+    ],
+    "movimentos": [
+      "levantar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "subida-no-banco",
+    "nome": "Subida No Banco",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [
+      "banco"
+    ],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "suitcase-carry",
+    "nome": "Suitcase Carry",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "carregar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "supino",
+    "nome": "Supino",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps",
+      "ombros"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "supino-com-halteres",
+    "nome": "Supino Com Halteres",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps",
+      "ombros"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [
+      "halteres"
+    ],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "supino-halteres",
+    "nome": "Supino Halteres",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps",
+      "ombros"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "supino-inclinado-com-halteres",
+    "nome": "Supino Inclinado Com Halteres",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps",
+      "ombros"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "supino-mquina",
+    "nome": "Supino Mquina",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "peito",
+      "tríceps",
+      "ombros"
+    ],
+    "movimentos": [
+      "empurrar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "suspenso-na-barra",
+    "nome": "Suspensão Na Barra",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "antebraços",
+      "costas"
+    ],
+    "movimentos": [
+      "pendurar"
+    ],
+    "equipamentos": [
+      "barra"
+    ],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "swing",
+    "nome": "Swing",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "terra",
+    "nome": "Terra",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "glúteos",
+      "isquiotibiais",
+      "costas"
+    ],
+    "movimentos": [
+      "levantar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "terra-corridabike-curta",
+    "nome": "Terra Corridabike Curta",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "glúteos",
+      "isquiotibiais",
+      "costas"
+    ],
+    "movimentos": [
+      "levantar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "terra-romeno",
+    "nome": "Terra Romeno",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "glúteos",
+      "isquiotibiais",
+      "costas"
+    ],
+    "movimentos": [
+      "levantar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "trceps-testa",
+    "nome": "Trceps Testa",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "trceps-corda",
+    "nome": "Tríceps Corda",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "tríceps"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "trceps-francs",
+    "nome": "Tríceps Francês",
+    "descricao": "Exercício de treinamento funcional e força",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "tríceps"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "zercher-squat",
+    "nome": "Zercher Squat",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "agachar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
     "id": "farmer-carry",
     "nome": "Caminhada Carregando Peso",
     "nome_secundario": "Farmer's Carry",
     "descricao": "Exercício de força funcional: carregar peso enquanto caminha.",
-    "categorias": ["forca-util", "forca", "militar"],
-    "musculos": ["antebraços", "trapézio", "core", "pernas"],
-    "movimentos": ["carregar", "caminhar"],
-    "equipamentos": ["halteres", "kettlebells"],
+    "categorias": [
+      "forca-util",
+      "forca",
+      "militar"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio",
+      "core",
+      "pernas"
+    ],
+    "movimentos": [
+      "carregar",
+      "caminhar"
+    ],
+    "equipamentos": [
+      "halteres",
+      "kettlebells"
+    ],
     "dificuldade": "iniciante",
     "como_fazer": [
       "Pegue um peso em cada mão (halteres ou kettlebells).",
@@ -218,27 +2831,113 @@
     "versao_dificil": "Farmer carry pesado ou unilateral com muito peso"
   },
   {
-    "id": "dead-hang",
-    "nome": "Segurar na Barra",
-    "nome_secundario": "Dead Hang",
-    "descricao": "Exercício de grip e mobilidade de ombros.",
-    "categorias": ["corpo-livre", "militar", "forca-util"],
-    "musculos": ["antebraços", "ombros", "costas"],
-    "movimentos": ["pendurar"],
-    "equipamentos": ["barra"],
-    "dificuldade": "iniciante",
+    "id": "carry",
+    "nome": "Carry",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca-util"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "carregar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
     "como_fazer": [
-      "Pegue a barra com as mãos na largura dos ombros, palmas viradas para a frente.",
-      "Deixe o corpo pender, com os pés fora do chão.",
-      "Mantenha os ombros ligeiramente contraídos.",
-      "Sustente a posição pelo tempo determinado."
+      "Ver instrução completa"
     ],
-    "erros_comuns": [
-      "Deixar os ombros subir até as orelhas.",
-      "Balançar o corpo.",
-      "Soltar muito cedo devido à fadiga de grip."
+    "erros_comuns": []
+  },
+  {
+    "id": "farmers-walk",
+    "nome": "Farmers Walk",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca-util"
     ],
-    "versao_facil": "Dead hang com os pés tocando o chão",
-    "versao_dificil": "Dead hang com pesos ou transição para pull-up"
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "carregar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "front-carry",
+    "nome": "Front Carry",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca-util"
+    ],
+    "musculos": [
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "carregar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "sandbag-lift",
+    "nome": "Sandbag Lift",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca-util"
+    ],
+    "musculos": [
+      "geral"
+    ],
+    "movimentos": [
+      "força"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
+  },
+  {
+    "id": "terraremada-carry",
+    "nome": "Terraremada Carry",
+    "descricao": "Exercício de treinamento",
+    "categorias": [
+      "forca-util"
+    ],
+    "musculos": [
+      "costas",
+      "bíceps",
+      "glúteos",
+      "isquiotibiais",
+      "antebraços",
+      "trapézio"
+    ],
+    "movimentos": [
+      "puxar",
+      "levantar",
+      "carregar"
+    ],
+    "equipamentos": [],
+    "dificuldade": "intermediário",
+    "como_fazer": [
+      "Ver instrução completa"
+    ],
+    "erros_comuns": []
   }
 ]

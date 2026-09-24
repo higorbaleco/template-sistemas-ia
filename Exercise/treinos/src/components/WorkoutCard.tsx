@@ -20,7 +20,7 @@ export const WorkoutCard: React.FC<WorkoutCardProps> = ({
       className={`
         card-elevated
         cursor-pointer hover:shadow-elevated transform hover:scale-105
-        space-y-3
+        space-y-3 transition-all duration-200
         ${className}
       `}
     >

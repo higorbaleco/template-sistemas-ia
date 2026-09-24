@@ -51,7 +51,7 @@ export const ExerciseAccordion: React.FC<ExerciseAccordionProps> = ({
           size={20}
           className={`
             flex-shrink-0 text-neutral-600 dark:text-neutral-400
-            transition-transform duration-200
+            transition-transform duration-300 ease-in-out
             ${isOpen ? 'rotate-180' : 'rotate-0'}
           `}
         />

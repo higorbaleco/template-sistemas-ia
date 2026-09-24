@@ -42,6 +42,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
         transform hover:scale-105
         bg-white dark:bg-neutral-900 text-left
         border-none p-4
+        transition-all duration-200
         ${className}
       `}
     >

@@ -1,0 +1,4 @@
+name = "supermassas-lp"
+type = "javascript"
+workers_dev = true
+build = { command = "npm run build", cwd = "." }

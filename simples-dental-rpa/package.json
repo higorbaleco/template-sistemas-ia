@@ -1,0 +1,23 @@
+{
+  "name": "simples-dental-rpa",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Camada de automação/RPA para integrar uma IA ao Simples Dental (sem API oficial)",
+  "type": "module",
+  "scripts": {
+    "login": "node src/cli.js login",
+    "capture": "node scripts/manual-capture.js",
+    "auto-capture": "node scripts/auto-capture.js",
+    "help": "node src/cli.js help",
+    "list-appointments": "node src/cli.js list-appointments",
+    "list-patients": "node src/cli.js list-patients",
+    "get-patient": "node src/cli.js get-patient",
+    "create-appointment": "node src/cli.js create-appointment"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2",
+    "playwright": "^1.47.0"
+  }
+}

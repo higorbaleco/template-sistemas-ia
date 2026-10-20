@@ -1,0 +1,3 @@
+[submodule "Agente Comercial Avraham/painel-agente-comercial"]
+	path = Agente Comercial Avraham/painel-agente-comercial
+	url = https://github.com/higorbaleco/painel-agente-comercial-avraham.git
